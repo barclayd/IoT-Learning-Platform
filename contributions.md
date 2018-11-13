@@ -90,7 +90,9 @@ The agreement should be approximately a one-page document (with references if ne
 
 ##### Links:
 
-
+Taiga: https://taiga.cs.cf.ac.uk/project/c1567964-team-1/
+Gitlab: https://gitlab.cs.cf.ac.uk/c1575232/iot-team1
+Google Docs: https://docs.google.com/document/d/1llLfmqp-ePLWH6VPOIzwdXw8mmks8Nne3ZndjdZ2jcA/edit?usp=sharing
 
 ##### References:
 
