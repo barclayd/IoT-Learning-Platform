@@ -1,6 +1,4 @@
-# Deliverable CFLT-1: Team agreement
-
----
+# Team Agreement
 
 ### Meeting Schedule:
 
