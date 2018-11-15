@@ -28,8 +28,8 @@
 
 * Understand client requirements
 * Generate a sprint backlog after client meeting
-* Write and assign user stories
-* Planning poker
+* Write and assign user stories - They must follow the structure of “As A <Role> I want <Feature> So that <Value>”
+* Planning poker - 1-5 point means not too difficult and some effort. 5-10 point means difficult and will require effort.
 * Set a sprint goal for the week
 * Use Taiga to update progress
 * Sprint Review
@@ -54,17 +54,21 @@
 
 ### Definition of Ready
 
-- [x] All stories are I.N.V.E.S.T
+- [x] Business rules are documented.
+- [x] All stories are I.N.V.E.S.T (Independent, Negotiable, Valuable, Estimatable, Small, Testable).
+- [x] All stories follow the structure of “As A <Role> I want <Feature> So that <Value>”
 - [x]  Business value clear and conditions for customer satisfaction are fully identified for the story
 - [x] Details are sufficiently understood
 - [x] Dependencies are identified and resolved
     - [x] No blockers to allow functionality of a specific feature
-- [x] Acceptance criteria are clear and testable
-- [x] Performance criteria and clear and testable	
+- [x] Acceptance criteria are well-defined and testable
+- [x] Performance criteria are well-defined and testable	
 
 ---
 
 ### Working Agreement
+
+As a team we agree to work together having:
 
 * Daily stand-ups to be held at 10:30 am every Monday and Tuesday
 * To be held via Teams for the rest of the week with each group member contributing by 12pm each day - communicate with other members of the team via Microsoft Teams once a day to update of progress
@@ -72,6 +76,7 @@
 * Follow and work to Agile principles as closely as possible
 * A branch per feature
 * Update the READ.ME file on Gitlab to explain importance and use of feature specific code
+* Update the status of your work on the Scrum board (Taiga).
 * Code reviews to be completed by at least two team members before merging code from a development into master branch
 * If a team-member is late to/missing from the meeting, must inform other members of the team (acceptable to do this via Microsoft Teams)
 
