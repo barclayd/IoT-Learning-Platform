@@ -28,7 +28,7 @@
 
 * Understand client requirements
 * Generate a sprint backlog after client meeting
-* Write and assign user stories - They must follow the structure of “As A <Role> I want <Feature> So that <Value>”
+* Write and assign user stories - They must follow the structure of “As A [Role], I want [Feature] So that [Value] is added”
 * Planning poker - 1-5 point means not too difficult and some effort. 5-10 point means difficult and will require effort.
 * Set a sprint goal for the week
 * Use Taiga to update progress
