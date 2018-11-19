@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {getTempData} from "../../shared/serverUtility/serverData";
+import HistoricTemperature from '../HistoricData/HistoricTemperatures';
 
 class TemperatureData extends Component {
 
@@ -27,6 +28,7 @@ class TemperatureData extends Component {
         return (
             <div>
                 {temp}
+                <HistoricTemperature />
             </div>
         );
     }
