@@ -20,20 +20,17 @@ const Navbar = (props) => {
 
                 <div className={styles.User}>
                     <div className={styles.Actions}>
-                        
+
 
                     </div>
                     <div className={styles.Details}>
-                        
+
                     </div>
                 </div>
             </nav>
         </header>
-        
+
     );
-
-
-
-} 
+};
 
 export default Navbar;

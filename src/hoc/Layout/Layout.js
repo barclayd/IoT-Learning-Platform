@@ -6,9 +6,9 @@ class Layout extends React.Component {
 
     render () {
         return (
-            <>
+            <React.Fragement>
                 <Navbar />
-            </>
+            </React.Fragement>
         );
     }
 }

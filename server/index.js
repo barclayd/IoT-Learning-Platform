@@ -1,12 +1,17 @@
 const axios = require('./axios-instance');
 const io = require('socket.io')();
+const dateformat = require('dateformat');
 
 const sensorsData = require('./data/sensorData.json');
 
 const getTemperatures = () => {
     let temperatures = {};
+    let time = new Date();
+    // format date in readable format e.g. 'November 19th 2018, 10:43:48 PM'
+    const timeRecorded = dateformat(time, "mmmm dS yyyy, h:MM:ss TT");
     for (let record in sensorsData) {
-        temperatures[sensorsData[record].data.timeRecorded] = sensorsData[record].data['fridgeTemp'];
+        temperatures[timeRecorded] = sensorsData[record].data['fridgeTemp'];
+        // temperatures[sensorsData[record].data.timeRecorded] = sensorsData[record].data['fridgeTemp'];
     }
     return temperatures;
 };

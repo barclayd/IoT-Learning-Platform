@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from '../../../shared/axios-instance';
+import axios from '../../shared/axios-instance';
 
 
 class HistoricTemperatures extends Component {
@@ -11,9 +11,16 @@ class HistoricTemperatures extends Component {
     componentDidMount() {
         axios.get('/test.json')
             .then(response => {
+                const fetchedData = [];
+                for (let key in response.data) {
+                    fetchedData.push({
+                        ...response.data[key],
+                        id: key
+                    });
+                }
                 console.log(response.data);
                 this.setState({
-                    historicData: response.data
+                    historicData: fetchedData
                 })
             })
             .catch(err => {
@@ -25,8 +32,8 @@ class HistoricTemperatures extends Component {
 
         let historicTemp;
         if(this.state.historicData) {
-            historicTemp = Object.keys(this.state.historicData).map((record) => {
-                return <p key={record}>{record}</p>
+            historicTemp = (this.state.historicData).map((record) => {
+                return <p key={record}>{record['23:26']}</p>
             });
         }
 
