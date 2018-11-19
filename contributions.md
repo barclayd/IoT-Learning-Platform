@@ -75,6 +75,7 @@ As a team we agree to work together having:
 * Development made on ‘Development’ branch
 * Follow and work to Agile principles as closely as possible
 * A branch per feature
+* Pull and push regularly to minimize code conflicts
 * Update the READ.ME file on Gitlab to explain importance and use of feature specific code
 * Update the status of your work on the Scrum board (Taiga).
 * Code reviews to be completed by at least two team members before merging code from a development into master branch
