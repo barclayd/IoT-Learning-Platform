@@ -1,0 +1,29 @@
+{
+    "18Nov2018-2326:01:01": {
+        "data": {
+            "fridgeTemp": 4.5,
+            "date": "18-Nov-2018",
+            "timeRecorded": "23:26",
+            "hospital": "University Hospital of Wales",
+            "ward": "4A"
+        }
+    },
+    "18Nov2018-2327:01:01": {
+        "data": {
+            "fridgeTemp": 4.6,
+            "date": "18-Nov-2018",
+            "timeRecorded": "23:27",
+            "hospital": "University Hospital of Wales",
+            "ward": "4A"
+        }
+    },
+    "18Nov2018-2328:01:01": {
+        "data": {
+            "fridgeTemp": 4.65,
+            "date": "18-Nov-2018",
+            "timeRecorded": "23:28",
+            "hospital": "University Hospital of Wales",
+            "ward": "4A"
+        }
+    }
+}
