@@ -7,7 +7,7 @@ const Navbar = (props) => {
         <header>
             <nav>
                 <div className={styles.Logo}>
-                    <h1>Logo</h1>
+                    <a href="/">THE LOGO</a>
                 </div>
 
                 <div className={styles.Links}>
@@ -26,7 +26,6 @@ const Navbar = (props) => {
                     <div className={styles.Details}>
                         
                     </div>
-
                 </div>
             </nav>
         </header>
