@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from '../../shared/axios-instance';
+import axios from '../../../shared/axios-instance';
 
 
 class HistoricTemperatures extends Component {
