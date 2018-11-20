@@ -12,11 +12,13 @@ const getTemperatures = () => {
     let temperatures = {};
     let time = new Date();
     // format date in readable format e.g. 'November 19th 2018, 10:43:48 PM'
-    const timeRecorded = dateformat(time, "mmmm dS yyyy, h:MM:ss TT");
+    const dateRecorded = dateformat(time, "mmmm dS yyyy");
+    const timeRecorded = dateformat(time, "h:MM:ss TT");
     for (let record in sensorsData) {
         // temperatures[timeRecorded] = sensorsData[record].data['fridgeTemp'];
-        temperatures['fridgeTemp'] = Number.parseFloat(getRandomTemperature(sensorsData[record].data['fridgeTemp'], 6));
+        temperatures['fridgeTemp'] = Number.parseFloat(getRandomTemperature(sensorsData[record].data['fridgeTemp'], 4));
         temperatures['timeRecorded'] = timeRecorded;
+        temperatures['dateRecorded'] = dateRecorded;
         // temperatures[sensorsData[record].data.timeRecorded] = sensorsData[record].data['fridgeTemp'];
     }
     return temperatures;
@@ -35,9 +37,10 @@ const retrieveData = () => {
 };
 
 const sendSensorData = () => {
+    const dateRecorded = dateformat(new Date(), "h:MM:ss TT");
     axios.post('/test.json', getTemperatures())
         .then(response => {
-            console.log(`Sensor data successfully sent to Firebase at ${new Date()}`);
+            console.log(`Sensor data successfully sent to Firebase at ${dateRecorded}`);
         })
         .catch(error => {
             console.log('An error occurred');
