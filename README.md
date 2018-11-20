@@ -28,11 +28,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Components
 
 src
-├── ...
+├──
 ├── contianers                    
 │   ├── UseCasesCardsList              
 │   ├── UseCase              
-│   └── ... 
+│   └── 
 |
 ├── components                   
 │   ├── UseCaseCard            
@@ -41,6 +41,6 @@ src
 │   └── ... 
 ├── hoc                              # higer order components                    
 │   ├── Layout             
-│   └── ... 
-└── ...
+│   └── 
+└──
 
