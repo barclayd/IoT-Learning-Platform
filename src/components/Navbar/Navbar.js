@@ -5,7 +5,6 @@ import { Row, Col, Icon} from 'antd';
 const Navbar = (props) => {
 
     return (
-<<<<<<< HEAD:src/client/components/Navbar/Navbar.js
         <header className={styles.Header}>
             <nav className={styles.Nav}>
                 <Row type="flex" justify="start">
@@ -40,31 +39,6 @@ const Navbar = (props) => {
                     </Col>
                   
                 </Row>
-=======
-        <header>
-            <nav>
-                <div className={styles.Logo}>
-                    <a href="/">THE LOGO</a>
-                </div>
-
-                <div className={styles.Links}>
-                    <ul>
-                        <li><a href='#'>User Cases</a></li>
-                        <li><a href='#'>Documentation</a></li>
-                        <li><a href='#'>About</a></li>
-                    </ul>
-                </div>
-
-                <div className={styles.User}>
-                    <div className={styles.Actions}>
-
-
-                    </div>
-                    <div className={styles.Details}>
-
-                    </div>
-                </div>
->>>>>>> 13932b0e002334e85fcc57fca9e0fb09da1cf5e2:src/components/Navbar/Navbar.js
             </nav>
         </header>
 
