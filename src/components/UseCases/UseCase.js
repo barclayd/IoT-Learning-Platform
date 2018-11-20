@@ -5,7 +5,7 @@ class UseCase extends Component {
     render() {
         return (
             <div className="usecase_container">
-                <h3>Thermometer Case</h3>
+                <h3 className="usecase_title">Thermometer Case</h3>
                 <Divider type="horizontal" />
                 <p>Improved own provided blessing may peculiar domestic. Sight house has sex never. No visited raising gravity outward s</p>
                 {/*<div>*/}
