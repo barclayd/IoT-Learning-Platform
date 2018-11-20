@@ -6,15 +6,21 @@ const {sendSensorData, getTemperatures, retrieveData} = require('./models/temper
 io.on('connection', (client) => {
     client.on('sendTemp', () => {
         console.log('Client has requested temperature');
-        client.emit('tempData', getTemperatures());
+        setInterval(() => {
+            client.emit('tempData', getTemperatures());
+        }, 2000)
     });
 });
 
 const port = 8000;
 io.listen(port);
 console.log('listening on port ', port);
-sendSensorData();
+// sends data to Firebase dB every 2 seconds
+// setInterval(() => {
+//     sendSensorData();
+// }, 2000);
 
+// retrieves data from firebase asynchronously
 setTimeout(() => {
     retrieveData();
-}, 3000);
+}, 2000);

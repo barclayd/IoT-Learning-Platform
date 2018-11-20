@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from '../../shared/axios-instance';
+import './HistoricTemperature.css';
 
 
 class HistoricTemperatures extends Component {
@@ -31,15 +32,19 @@ class HistoricTemperatures extends Component {
     render() {
 
         let historicTemp;
-        //TODO: fix mapping of data object from Firebase to display in client
+        console.log(this.state.historicData);
         if(this.state.historicData) {
             historicTemp = (this.state.historicData).map((record) => {
-                return <p key={record}>{record}</p>
+                return <p key={(record.timeRecorded)}>
+                    <strong>{record.dateRecorded}</strong> |
+                    {record.timeRecorded} |
+                    <strong style={{color: 'red'}}>{record.fridgeTemp.toFixed(1)}</strong>
+                </p>
             });
         }
 
         return (
-            <div>
+            <div className="data">
                 <h3>Loaded historic data from Firebase: </h3>
                 {historicTemp}
             </div>

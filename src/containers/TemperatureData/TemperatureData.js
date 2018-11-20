@@ -20,13 +20,15 @@ class TemperatureData extends Component {
     render() {
         let temp;
         if(this.state.tempData) {
+            console.log(this.state.tempData);
             temp = Object.keys(this.state.tempData).map((record) => {
-                return <p key={record}>{record}: {this.state.tempData[record]}</p>
+                return <p key={record.timeRecorded}>{record}: {this.state.tempData[record]}</p>
             });
         }
 
         return (
             <div>
+                {this.state.tempData ? <h1>Live Data </h1> : null}
                 {temp}
                 <HistoricTemperature />
             </div>
