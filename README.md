@@ -15,6 +15,13 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run server`
+
+Runs the server in the development mode using Nodemon.<br>
+This currently is set-up to post data to Firebase and live data to client via websockets.
+
+Alternatively, you can run 'node server/index' from terminal.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
@@ -30,7 +37,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### contianers                    
 * UseCasesCardsList              
-* UseCase              
+* UseCase        
+* HistoricData
+* TemperatureData
 
 ### components                   
 * UseCaseCard            
