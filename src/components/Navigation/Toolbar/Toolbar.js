@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Toolbar.module.css';
+import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
 import { NavLink } from 'react-router-dom'
 
@@ -16,18 +16,18 @@ const Toolbar = (props) => {
                         </div>
                     </Col>
 
-                    <Col span={16}>
+                    <Col span={12}>
                         <div className={styles.Links}>
                             <ul>
-                                <li><a href='#'>User Cases</a></li>
-                                <li><a href='#'>Documentation</a></li>
-                                <li><a href='#'>About</a></li>
+                                <li><a href='/'>User Cases</a></li>
+                                <li><a href='/'>Documentation</a></li>
+                                <li><a href='/'>About</a></li>
                             </ul>
                         </div>
                     </Col>
                    
 
-                    <Col span={4}>
+                    <Col span={5} offset={3} >
                         <div className={styles.User}>
                             <div className={styles.Actions}>
                                 <Icon style={{ fontSize: '18px'}} type="bell" />

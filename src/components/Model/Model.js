@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styles from './Model.module.css'
+import styles from './Model.module.scss'
 
 class Model extends Component {
     render() {
