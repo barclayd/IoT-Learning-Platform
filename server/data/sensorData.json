@@ -1,24 +1,30 @@
 {
-    "18Nov2018-2326:01:01": {
+    "uuid1": {
         "data": {
             "fridgeTemp": 4.5,
-            "timeRecorded": "November 19th 2018, 10:43:48 PM",
+            "timeRecorded": "November 19th 2018, 10:43:48 PM"
+        },
+        "info": {
             "hospital": "University Hospital of Wales",
             "ward": "4A"
         }
     },
-    "18Nov2018-2327:01:01": {
+    "uuid2": {
         "data": {
             "fridgeTemp": 4.6,
-            "timeRecorded": "'November 19th 2018, 10:44:48 PM",
+            "timeRecorded": "'November 19th 2018, 10:44:48 PM"
+        },
+        "info": {
             "hospital": "University Hospital of Wales",
             "ward": "4A"
         }
     },
-    "18Nov2018-2328:01:01": {
+    "uuid3": {
         "data": {
             "fridgeTemp": 4.65,
-            "timeRecorded": "'November 19th 2018, 10:45:48 PM",
+            "timeRecorded": "'November 19th 2018, 10:45:48 PM"
+        },
+        "info": {
             "hospital": "University Hospital of Wales",
             "ward": "4A"
         }
