@@ -4,7 +4,6 @@ import {getTempData} from "../../shared/serverUtility/serverData";
 
 
 export const fetchLiveDataSuccess = (data) => {
-    console.log(data);
     return {
         type: actionTypes.FETCH_LIVE_DATA_SUCCESS,
         tempData: data

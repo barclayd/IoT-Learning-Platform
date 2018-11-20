@@ -5,16 +5,8 @@ import HistoricTemperature from '../HistoricData/HistoricTemperatures';
 
 class TemperatureData extends Component {
 
-    // state = {
-    //     tempData: null
-    // };
 
     componentDidMount() {
-        // getTempData((err, data) => {
-        //     this.setState({
-        //         tempData: data
-        //     });
-        // });
         this.props.onFetchLiveData();
     }
 
