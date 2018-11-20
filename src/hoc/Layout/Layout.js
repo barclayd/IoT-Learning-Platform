@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar.js';
-import Models from '../../components/Models/Models';
+import Models from '../../components/Model/Models';
 
 
 class Layout extends React.Component {
