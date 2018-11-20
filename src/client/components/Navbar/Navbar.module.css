@@ -1,0 +1,15 @@
+.Nav {
+    width: 100%;
+    height: 50px;
+    padding: 12px;
+    background-color: white;
+}
+
+
+
+.Links > ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

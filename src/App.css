@@ -1,3 +1,13 @@
 .App {
+    background-color: red;
+}
+
+a {
+    text-decoration: none ;
+}
+
+a:hover {
+   text-decoration:none;
+   cursor:pointer;
 }
 
