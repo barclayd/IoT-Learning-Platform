@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import TemperatureData from "./containers/TemperatureData/TemperatureData";
 import Layout from './hoc/Layout/Layout';
 class App extends Component {
@@ -9,14 +9,12 @@ class App extends Component {
 
     return (
       <div className="App">
-          <Switch>
-              <Route path='/test' exact  component={TemperatureData}/>
-          </Switch>
-        <Layout>
+          <Route path='/test' exact  component={TemperatureData}/>
+          <Layout>
         </Layout>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
