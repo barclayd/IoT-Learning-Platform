@@ -8,6 +8,7 @@ class Layout extends React.Component {
         return (
             <>
                 <Navbar />
+                
             </>
         );
     }
