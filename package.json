@@ -36,6 +36,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.1.0",
+    "react-redux": "^5.1.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }

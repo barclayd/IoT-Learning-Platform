@@ -1,9 +1,11 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Switch} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import NavBar from '../components/Navbar/Navbar';
 
 const AppRouter = () => (
-    <BrowserRouter>
+    <Provider>
+        <BrowserRouter>
         <div>
             <NavBar />
 
@@ -11,7 +13,8 @@ const AppRouter = () => (
 
             </Switch>
         </div>
-    </BrowserRouter>
+        </BrowserRouter>
+    </Provider>
 );
 
 export default AppRouter;
