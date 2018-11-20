@@ -1,20 +1,22 @@
 import React from 'react'
-import styles from './Navbar.module.css';
-import { Row, Col, Icon} from 'antd';
+import styles from './Toolbar.module.css';
+import { Row, Col, Icon, Avatar} from 'antd';
+import { NavLink } from 'react-router-dom'
 
-const Navbar = (props) => {
+
+const Toolbar = (props) => {
 
     return (
         <header className={styles.Header}>
             <nav className={styles.Nav}>
-                <Row type="flex" justify="start">
+                <Row type="flex" justify="start" align="middle">
                     <Col span={4}>
                         <div className={styles.Logo}>
                             <a href="/">LOGO</a>
                         </div>
                     </Col>
 
-                    <Col span={14}>
+                    <Col span={16}>
                         <div className={styles.Links}>
                             <ul>
                                 <li><a href='#'>User Cases</a></li>
@@ -25,19 +27,18 @@ const Navbar = (props) => {
                     </Col>
                    
 
-                    <Col span={6}>
+                    <Col span={4}>
                         <div className={styles.User}>
                             <div className={styles.Actions}>
-                                <Icon type="bell" />
-                                <Icon type="search" />
+                                <Icon style={{ fontSize: '18px'}} type="bell" />
+                                <Icon  style={{ fontSize: '18px', marginLeft: '25px'}} type="search" />
                             </div>
                             <div className={styles.Info}>
+                                <Avatar size={28} icon="user" />
                                 <p>Patrick Morrow</p>
-                                
                             </div>
                         </div>
                     </Col>
-                  
                 </Row>
             </nav>
         </header>
@@ -45,4 +46,4 @@ const Navbar = (props) => {
     );
 };
 
-export default Navbar;
+export default Toolbar;
