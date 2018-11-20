@@ -8,11 +8,13 @@ import * as serviceWorker from './serviceWorker';
 import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import historicDataReducer from './store/reducers/historicData';
+import liveDataReducer from './store/reducers/liveData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
 
 const rootReducer = combineReducers({
-    historicData: historicDataReducer
+    historicData: historicDataReducer,
+    liveData: liveDataReducer
 });
 
 // const composeEnhancers = process.env.NODE_ENV ==='development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
