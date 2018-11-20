@@ -22,7 +22,8 @@ class TemperatureData extends Component {
         if(this.state.tempData) {
             console.log(this.state.tempData);
             temp = Object.keys(this.state.tempData).map((record) => {
-                return <p key={record.timeRecorded}>{record}: {this.state.tempData[record]}</p>
+                console.log(record);
+                return <p key={record}>{record}: {this.state.tempData[record]}</p>
             });
         }
 

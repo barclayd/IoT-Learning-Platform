@@ -1,40 +1,21 @@
 import React, {Component} from 'react';
-import axios from '../../shared/axios-instance';
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/index';
 import './HistoricTemperature.css';
 
 
 class HistoricTemperatures extends Component {
 
-    state = {
-        historicData: null
-    };
-
     componentDidMount() {
-        axios.get('/test.json')
-            .then(response => {
-                const fetchedData = [];
-                for (let key in response.data) {
-                    fetchedData.push({
-                        ...response.data[key],
-                        id: key
-                    });
-                }
-                console.log(response.data);
-                this.setState({
-                    historicData: fetchedData
-                })
-            })
-            .catch(err => {
-                console.log(`Following error occurred: ${err}`)
-            })
+        this.props.onFetchData();
     }
 
     render() {
 
         let historicTemp;
-        console.log(this.state.historicData);
-        if(this.state.historicData) {
-            historicTemp = (this.state.historicData).map((record) => {
+        console.log(this.props.historicData);
+        if(this.props.historicData) {
+            historicTemp = (this.props.historicData).map((record) => {
                 return <p key={(record.timeRecorded)}>
                     <strong>{record.dateRecorded}</strong> |
                     {record.timeRecorded} |
@@ -52,5 +33,17 @@ class HistoricTemperatures extends Component {
     };
 }
 
+const mapStateToProps = state => {
+    return {
+        historicData: state.historicData.data
+    }
+};
 
-export default HistoricTemperatures;
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchData: () => dispatch(actions.fetchData())
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoricTemperatures);

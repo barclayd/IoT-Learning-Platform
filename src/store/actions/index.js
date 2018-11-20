@@ -1,0 +1,4 @@
+export {
+    fetchData
+} from './historicData';
+
