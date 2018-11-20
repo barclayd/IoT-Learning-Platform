@@ -28,15 +28,15 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Components
 
 
-├── contianers                    
-│   ├── UseCasesCardsList              
-│   ├── UseCase              
-|
-├── components                   
-│   ├── UseCaseCard            
-│   ├── Navigation   
-|       ├── Toolbar
-|
-├── hoc                              # higer order components                    
-│   ├── Layout             
+### contianers                    
+* UseCasesCardsList              
+* UseCase              
+
+### components                   
+* UseCaseCard            
+* Navigation   
+* Toolbar
+
+### hoc                
+* Layout             
 
