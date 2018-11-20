@@ -27,8 +27,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Components
 
-src
-├──
+
 ├── contianers                    
 │   ├── UseCasesCardsList              
 │   ├── UseCase              
@@ -38,7 +37,7 @@ src
 │   ├── UseCaseCard            
 │   ├── Navigation   
 |       ├── Toolbar
-│   └── ... 
+│   └──  
 ├── hoc                              # higer order components                    
 │   ├── Layout             
 │   └── 
