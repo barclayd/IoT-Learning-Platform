@@ -7,6 +7,8 @@
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",
     "dateformat": "^3.0.3",
+    "fs": "0.0.1-security",
+    "johnny-five": "^1.0.0",
     "node-sass": "^4.10.0",
     "nodemon": "^1.18.6",
     "normalize.css": "^8.0.1",
