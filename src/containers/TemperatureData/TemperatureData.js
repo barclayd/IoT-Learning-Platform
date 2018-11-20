@@ -1,35 +1,29 @@
 import React, {Component} from 'react';
-import {getTempData} from '../../shared/serverUtility/serverData';
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/index';
 import HistoricTemperature from '../HistoricData/HistoricTemperatures';
 
 class TemperatureData extends Component {
 
-    state = {
-        tempData: null
-    };
 
     componentDidMount() {
-        getTempData((err, data) => {
-            this.setState({
-                tempData: data
-            });
-        });
+        this.props.onFetchLiveData();
     }
 
 
     render() {
         let temp;
-        if(this.state.tempData) {
-            console.log(this.state.tempData);
-            temp = Object.keys(this.state.tempData).map((record) => {
+        if(this.props.tempData) {
+            console.log(this.props.tempData);
+            temp = Object.keys(this.props.tempData).map((record) => {
                 console.log(record);
-                return <p key={record}>{record}: {this.state.tempData[record]}</p>
+                return <p key={record}>{record}: {this.props.tempData[record]}</p>
             });
         }
 
         return (
             <div>
-                {this.state.tempData ? <h1>Live Data </h1> : null}
+                {this.props.tempData ? <h1>Live Data </h1> : null}
                 {temp}
                 <HistoricTemperature />
             </div>
@@ -37,4 +31,16 @@ class TemperatureData extends Component {
     }
 }
 
-export default TemperatureData;
+const mapStateToProps = state => {
+    return {
+        tempData: state.liveData.data
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchLiveData: () => dispatch(actions.fetchLiveData())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TemperatureData);
