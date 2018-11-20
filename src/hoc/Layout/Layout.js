@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar.js';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Models from '../../components/Models/Models';
 
 
@@ -9,7 +9,7 @@ class Layout extends React.Component {
     render () {
         return (
             <>
-                <Navbar />
+                <Toolbar />
                 <Models />
             </>
         );
