@@ -1,14 +1,18 @@
-.usecase_button {
+@import "../../styles/base/settings";
+
+
+.Button {
   margin-bottom: $s-size;
 }
 
-.usecase_container {
+.UseCaseCard {
   border: 1px solid $light-blue;
   margin: $s-size;
   padding: 0 $m-size;
 }
 
-.usecase_title {
+.Logo
+.Title {
   font-weight: 300;
   margin: 0;
   text-align: center;

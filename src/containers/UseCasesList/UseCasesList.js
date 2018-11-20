@@ -1,42 +1,42 @@
 import React, {Component} from 'react';
-import UseCase from "../../components/UseCases/UseCase";
+import UseCaseCard from "../../components/UseCaseCard/UseCaseCard";
 import { Row, Col } from 'antd';
 
-class UseCases extends Component {
+class UseCasesList extends Component {
     render() {
         return (
             <Row gutter={16}>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
 
                 <Col span={6} >
-                    <UseCase />
+                    <UseCaseCard />
                 </Col>
             </Row>
         )
     }
 }
 
-export default UseCases;
+export default UseCasesList;
