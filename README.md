@@ -36,15 +36,14 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 * UseCaseCard            
 * Navigation   
 * Toolbar
-* 
 
 ### store
 * actions
 * reducers
-* 
 
 ### shared
-*serverUtility
+
+* serverUtility
 
 ### hoc                
 * Layout             
