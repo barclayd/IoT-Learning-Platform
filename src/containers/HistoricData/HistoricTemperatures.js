@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from '../../shared/axios-instance';
+import './HistoricTemperature.css';
 
 
 class HistoricTemperatures extends Component {
@@ -43,7 +44,7 @@ class HistoricTemperatures extends Component {
         }
 
         return (
-            <div>
+            <div className="data">
                 <h3>Loaded historic data from Firebase: </h3>
                 {historicTemp}
             </div>

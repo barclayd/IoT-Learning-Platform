@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import Model from "./Model";
+import UseCases from "../../containers/UseCases/UseCases";
 
 class Models extends Component {
     render() {
         return (
-            <div>
-                <Model />
-            </div>
+            <UseCases />
         )
     }
 }
