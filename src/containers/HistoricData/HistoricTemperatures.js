@@ -31,9 +31,10 @@ class HistoricTemperatures extends Component {
     render() {
 
         let historicTemp;
+        //TODO: fix mapping of data object from Firebase to display in client
         if(this.state.historicData) {
             historicTemp = (this.state.historicData).map((record) => {
-                return <p key={record}>{record['23:26']}</p>
+                return <p key={record}>{record}</p>
             });
         }
 
