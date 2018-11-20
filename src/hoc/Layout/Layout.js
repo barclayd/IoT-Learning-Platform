@@ -1,5 +1,7 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar/Navbar.js';
+import Models from '../../components/Models/Models';
+
 
 class Layout extends React.Component {
     state= {};
@@ -8,7 +10,7 @@ class Layout extends React.Component {
         return (
             <>
                 <Navbar />
-                
+                <Models />
             </>
         );
     }
