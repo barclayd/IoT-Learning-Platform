@@ -1,6 +1,7 @@
 import React from 'react';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
-import Models from '../../components/Models/Models';
+import Model from '../../components/Model/Model';
+import UseCasesList from '../../containers/UseCasesList/UseCasesList';
 
 
 class Layout extends React.Component {
@@ -10,7 +11,9 @@ class Layout extends React.Component {
         return (
             <>
                 <Toolbar />
-                <Models />
+                <Model>
+                    <UseCasesList />
+                </Model>
             </>
         );
     }
