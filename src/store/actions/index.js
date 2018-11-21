@@ -6,3 +6,6 @@ export {
     fetchLiveData
 } from './liveData';
 
+export {
+    fetchUseCase
+} from './useCaseData';
