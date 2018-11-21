@@ -1,22 +1,21 @@
 import React from 'react'
 import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 
 
 const Toolbar = (props) => {
-
     return (
         <header className={styles.Header}>
             <nav className={styles.Nav}>
                 <Row type="flex" justify="start" align="middle">
-                    <Col span={4}>
+                    <Col span={3}>
                         <div className={styles.Logo}>
                             <a href="/">LOGO</a>
                         </div>
                     </Col>
 
-                    <Col span={12}>
+                    <Col span={8}>
                         <div className={styles.Links}>
                             <ul>
                                 <li><a href='/'>User Cases</a></li>
@@ -27,7 +26,7 @@ const Toolbar = (props) => {
                     </Col>
                    
 
-                    <Col span={5} offset={3} >
+                    <Col span={7} offset={5} >
                         <div className={styles.User}>
                             <div className={styles.Actions}>
                                 <Icon style={{ fontSize: '18px'}} type="bell" />
