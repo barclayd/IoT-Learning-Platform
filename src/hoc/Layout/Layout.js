@@ -13,8 +13,8 @@ class Layout extends React.Component {
             <>
                 <Toolbar />
                 <Model>
-                    {/*<UseCasesList /> */}
-                    <UseCase/>
+                    <UseCasesList />
+                    {/*<UseCase/>*/}
                 </Model>
             </>
         );
