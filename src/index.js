@@ -9,12 +9,14 @@ import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
+import useCaseReducer from './store/reducers/useCaseData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
 
 const rootReducer = combineReducers({
     historicData: historicDataReducer,
-    liveData: liveDataReducer
+    liveData: liveDataReducer,
+    useCaseData: useCaseReducer
 });
 
 // const composeEnhancers = process.env.NODE_ENV ==='development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;

@@ -6,6 +6,12 @@ function getTempData(cb) {
     socket.emit('sendTemp', 1000);
 }
 
+function getUseCaseData(cb) {
+    socket.on('useCaseData', data => cb(null, data));
+    socket.emit('sendUseCases', 1000);
+}
+
 export {
-    getTempData
+    getTempData,
+    getUseCaseData
 };
