@@ -13,7 +13,7 @@ class UseCase extends React.Component {
     render() {
         return (
             <div className={styles.UseCase}>
-                <Row gutter={16} >
+                <Row gutter={15} >
                     <Col span={6}>
                         <div className={styles.Sider}>
                             <Menu onClick={this.navLinkOnClick} style={{fontSize: '24px'}} mode="inline">

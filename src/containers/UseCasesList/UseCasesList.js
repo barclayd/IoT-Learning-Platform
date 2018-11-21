@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import UseCaseCard from "../../components/UseCaseCard/UseCaseCard";
 import styles from './UseCasesList.module.scss';
 import { Row, Col } from 'antd';
+import { connect } from 'react-redux';
 
 class UseCasesList extends Component {
     render() {
@@ -9,29 +10,15 @@ class UseCasesList extends Component {
             <div className={styles.UseCasesList}>
                 <Row gutter={16}>
 
-                    <Col span={8} >
-                        <UseCaseCard />
-                    </Col>
-
-                    <Col span={8} >
-                        <UseCaseCard />
-                    </Col>
-
-                    <Col span={8} >
-                        <UseCaseCard />
-                    </Col>
-
-                    <Col span={8} >
-                        <UseCaseCard />
-                    </Col>
-
-                    <Col span={8} >
-                        <UseCaseCard />
-                    </Col>
-
-                    <Col span={8} >
-                        <UseCaseCard />
-                    </Col>
+                   {
+                    this.props.useCases.map((useCase, index) => {
+                        return (
+                            <Col span={8} >
+                                <UseCaseCard key={index} {...useCase} />
+                            </Col>
+                        )           
+                    })
+                   }
                 </Row>
             </div>
            
@@ -39,4 +26,18 @@ class UseCasesList extends Component {
     }
 }
 
-export default UseCasesList;
+const mapStateToProps = state => {
+    return {
+        useCases: state.useCases,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetch: (sensorName, value) => {
+          
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UseCasesList);
