@@ -1,15 +1,27 @@
 import React from 'react';
-import { Button, Card } from 'antd';
+import { Button, Card, Icon } from 'antd';
 import styles from './UseCaseCard.module.scss'
+const { Meta } = Card;
 
-const UseCaseCard = () => {
+const UseCaseCard = (props) => {
+    console.log(props)
     return (
         <div className={styles.UseCaseCard}>
-                <Card title="Case Title" bordered={true}>
-                Improved own provided blessing may peculiar domestic. Sight house has sex never. No visited raising gravity outward s...
-                <div></div>
-                <Button type="primary" block className={styles.Button}>Start</Button>
-                </Card>
+                {props.isLoading ? (
+                    <Card bordered={true} loading={true}></Card>
+                ) : (
+                    <Card
+                    hoverable
+                    bordered={true}
+                    style={{ width: 270}}
+                    bodyStyle= {{ width: 270, minHeight: 180 }}
+                    cover={<img alt="example" src={`/images/${props.image}`} />}
+                    actions={[<Icon type="experiment" theme="twoTone" style={{fontSize:'22px'}}/>]}
+                    >
+                        <Meta title={props.name} description={props.shortDesc}/>
+                        
+                    </Card>
+                )}
         </div>
     )
 }

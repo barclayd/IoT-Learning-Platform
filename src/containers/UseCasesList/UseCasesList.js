@@ -18,23 +18,12 @@ class UseCasesList extends Component {
         return (
             <div className={styles.UseCasesList}>
                 <Row gutter={16}>
-
                    {
-                    this.props.useCases.map((useCase, index) => {
-                        const isLoading = this.props.loading;
-                        if(isLoading) {
-                            return (
-                            <Col span={8} >
-                                <UseCaseCard key={index} loading={isLoading}/>
-                            </Col>
-                            )
-                        }
-                        return (
-                            <Col span={8} >
-                                <UseCaseCard key={index} {...useCase} />
-                            </Col>
-                        )   
-                    })
+                    this.props.useCases.map((useCase, index) => 
+                        <Col key={index} span={8} >
+                            <UseCaseCard isLoading={this.props.loading} {...useCase} />
+                        </Col>
+                    )
                    }
                 </Row>
             </div>
