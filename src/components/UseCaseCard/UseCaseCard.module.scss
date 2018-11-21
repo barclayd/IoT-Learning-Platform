@@ -1,15 +1,15 @@
 @import "../../styles/base/settings";
 
+.UseCaseCard {
+  margin: 1.2rem;
+  padding: 10px;
+}
 
 .Button {
-  margin-bottom: $s-size;
+  margin-top: 20px;
 }
 
-.UseCaseCard {
-  border: 1px solid $light-blue;
-  margin: $s-size;
-  padding: 0 $m-size;
-}
+
 
 .Logo
 .Title {
