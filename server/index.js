@@ -1,6 +1,7 @@
 // import {retrieveData, sendSensorData, getTemperatures} from './models/temperatureData';
 const io = require('socket.io')();
-const {sendSensorData, getTemperatures, retrieveData} = require('./models/temperatureData');
+const {getTemperatures, retrieveData} = require('./models/temperatureData');
+const useCaseData = require('./data/useCases');
 
 
 io.on('connection', (client) => {
@@ -9,6 +10,10 @@ io.on('connection', (client) => {
         setInterval(() => {
             client.emit('tempData', getTemperatures());
         }, 2000)
+    });
+    client.on('sendUseCases', () => {
+        console.log('Client has requested use cases data');
+        client.emit('useCaseData', useCaseData);
     });
 });
 
