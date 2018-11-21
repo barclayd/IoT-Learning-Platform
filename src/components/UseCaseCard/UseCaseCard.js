@@ -13,9 +13,9 @@ const UseCaseCard = (props) => {
                     <Card
                     hoverable
                     bordered={true}
-                    style={{ width: 270}}
-                    bodyStyle= {{ width: 270, minHeight: 180 }}
-                    cover={<img alt="example" src={`/images/${props.image}`} />}
+                    style={{ width: 300}}
+                    bodyStyle= {{ minHeight: 150 }}
+                    cover={<img height='250px' alt="example" src={`/images/${props.image}`} />}
                     actions={[<Icon type="experiment" theme="twoTone" style={{fontSize:'22px'}}/>]}
                     >
                         <Meta title={props.name} description={props.shortDesc}/>
