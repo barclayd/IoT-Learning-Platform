@@ -1,12 +1,12 @@
 const sensorsData = require('../data/sensorData.json');
 const dateformat = require('dateformat');
 const axios = require('../axios-instance');
+const {getArudinoData} = require('./arduinoData');
 
 const getRandomTemperature = (min, max) => {
     return ((Math.random() * max) + min).toFixed(1);
 };
 
-console.log(getRandomTemperature(4.5, 6));
 
 const getTemperatures = () => {
     let temperatures = {};
@@ -36,6 +36,18 @@ const retrieveData = () => {
         });
 };
 
+const retrieveArduinodata = () => {
+    let tempData;
+    axios.get('/temp.json')
+        .then(response => {
+            console.log(response.data);
+            tempData = response.data;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 const sendSensorData = () => {
     const dateRecorded = dateformat(new Date(), "h:MM:ss TT");
     axios.post('/test.json', getTemperatures())
@@ -47,8 +59,21 @@ const sendSensorData = () => {
         })
 };
 
+const sendArduinoData = () => {
+    const dateRecorded = dateformat(new Date(), "h:MM:ss TT");
+    axios.post('/temp.json', getArudinoData())
+        .then(response => {
+            console.log(`Arduino data successfully sent to Firebase at ${dateRecorded}`);
+        })
+        .catch(error => {
+            console.log('An error occurred');
+        })
+};
+
 module.exports = {
     retrieveData,
     sendSensorData,
+    sendArduinoData,
+    retrieveArduinodata,
     getTemperatures
 };
