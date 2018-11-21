@@ -11,7 +11,9 @@ class TempChart extends Component {
             publishKey: 'pub-c-67816538-99a5-4a55-9f12-9916633d6a37'
         });
         this.pubnub.init(this);
+        
     }
+
 
     componentDidMount(){
         this.interval = setInterval(() => 
@@ -19,17 +21,15 @@ class TempChart extends Component {
                 channel: 'channel1',
                 message : {
                     eon : {
-                        'Fridge 1' : Math.round(Math.random() * 5)
+                        'Fridge 1' : this.props.temp.fridgeTemp
                         }
                     }
-                }), 1000
+                }), 2000
             ) 
     }
-    
 
     
     render() {
-        
         return(
             <Chart
             pubnub={this.pubnub}
