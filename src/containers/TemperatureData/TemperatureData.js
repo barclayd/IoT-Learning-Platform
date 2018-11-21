@@ -9,7 +9,7 @@ class TemperatureData extends Component {
 
     componentDidMount() {
         this.props.onFetchLiveData();
-        
+
     }
 
 
@@ -22,7 +22,7 @@ class TemperatureData extends Component {
                 return <p key={record}>{record}: {this.props.tempData[record]}</p>
             });
         }
-        
+
 
         return (
             <div>
@@ -30,7 +30,7 @@ class TemperatureData extends Component {
                 {temp}
                 <TempChart  temp={this.props.tempData}/>
                 <HistoricTemperature />
-                
+
             </div>
         );
     }
@@ -38,7 +38,9 @@ class TemperatureData extends Component {
 
 const mapStateToProps = state => {
     return {
-        tempData: state.liveData.data
+        tempData: state.liveData.data,
+        loading: state.liveData.loading,
+        error: state.liveData.error
     }
 };
 

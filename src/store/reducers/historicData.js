@@ -3,21 +3,31 @@ import {updateObject} from "../utility";
 
 const initialState = {
     data: [],
-    loading: false
+    loading: false,
+    error: false
 };
 
 const dataFetchSuccess = (state, action) => {
     return updateObject(state, {
         data: action.historicData,
-        loading: false
+        loading: false,
+        error: false
+    })
+};
+
+const dataFetchFailed = (state, action) => {
+    return updateObject(state, {
+        data: action.historicData,
+        loading: false,
+        error: action.error
     })
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case(actionTypes.FETCH_DATA_START): return updateObject(state, {loading: true});
+        case(actionTypes.FETCH_DATA_START): return updateObject(state, {loading: true, error: false});
         case(actionTypes.FETCH_DATA_SUCCESS): return dataFetchSuccess(state, action);
-        case(actionTypes.FETCH_DATA_FAILED): return updateObject(state, {loading: false});
+        case(actionTypes.FETCH_DATA_FAILED): return dataFetchFailed(state, action);
         default: return state;
     }
 };
