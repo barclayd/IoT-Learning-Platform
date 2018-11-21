@@ -13,7 +13,9 @@ class HistoricTemperatures extends Component {
     render() {
 
         let historicTemp;
-        console.log(this.props.historicData);
+        if(this.props.error) {
+            historicTemp = null;
+        }
         if(this.props.historicData) {
             historicTemp = (this.props.historicData).map((record) => {
                 return <p key={(record.timeRecorded)}>
@@ -35,7 +37,9 @@ class HistoricTemperatures extends Component {
 
 const mapStateToProps = state => {
     return {
-        historicData: state.historicData.data
+        historicData: state.historicData.data,
+        loading: state.historicData.loading,
+        error: state.historicData.error
     }
 };
 
