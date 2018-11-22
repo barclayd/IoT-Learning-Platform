@@ -1,5 +1,5 @@
 export {
-    fetchData
+    fetchData, fetchDataStart, fetchDataFailed, fetchDataSuccess
 } from './historicData';
 
 export {
