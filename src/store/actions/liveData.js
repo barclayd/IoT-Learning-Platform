@@ -26,8 +26,11 @@ export const fetchLiveDataStart = () => {
 export const fetchLiveData = () => {
     return dispatch => {
         dispatch(fetchLiveDataStart());
-            getTempData((err, data) => {
-                dispatch(fetchLiveDataSuccess(data));
-            })
+        getTempData((err, data) => {
+            dispatch(fetchLiveDataSuccess(data));
+        })
     }
+    // return {
+    //     type: actionTypes.INIT_FETCH_LIVE_DATA
+    // }
 };

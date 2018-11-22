@@ -29,4 +29,7 @@ export const fetchUseCase = () => {
             dispatch(fetchUseCaseSuccess(data));
         })
     }
+    // return {
+    //     type: actionTypes.INIT_FETCH_USECASE
+    // }
 };
