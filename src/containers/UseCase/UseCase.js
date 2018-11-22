@@ -3,7 +3,7 @@ import styles from './UseCase.module.scss';
 import { Row, Col } from 'antd';
 import { Menu, Icon } from 'antd';
 import {Link} from 'react-router-dom';
-
+import UseCaseRouter from '../../routers/UseCaseRouter';
 
 class UseCase extends React.Component {
 
@@ -14,7 +14,6 @@ class UseCase extends React.Component {
     render() {
         
         return (
-            
             <div className={styles.UseCase}>
                 <Row gutter={15} >
                     <Col span={6}>
@@ -42,7 +41,11 @@ class UseCase extends React.Component {
 
                     <Col span={18}>
                         <div className={styles.Content}>
-                           Content Here
+                           Content Here 
+                           
+                            <UseCaseRouter url={this.props.match.url}/>
+
+                           
                         </div>
                     </Col>
                 </Row>
