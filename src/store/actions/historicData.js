@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../shared/axios-instance';
 
 export const fetchDataSuccess = (data) => {
     return {
@@ -22,21 +21,7 @@ export const fetchDataStart = () => {
 };
 
 export const fetchData = () => {
-    return dispatch => {
-        dispatch(fetchDataStart());
-        axios.get('/test.json')
-            .then(response => {
-                const fetchedData = [];
-                for (let key in response.data) {
-                    fetchedData.push({
-                        ...response.data[key],
-                        id: key
-                    });
-                }
-                dispatch(fetchDataSuccess(fetchedData));
-            })
-            .catch(err => {
-                dispatch(fetchDataFailed(err))
-            })
+    return {
+        type: actionTypes.INIT_FETCH_DATA
     }
 };

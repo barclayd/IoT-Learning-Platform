@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import {watchHistoricData} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
 import useCaseReducer from './store/reducers/useCaseData';
@@ -19,11 +21,14 @@ const rootReducer = combineReducers({
     useCaseData: useCaseReducer
 });
 
+const sagaMiddleware = createSagaMiddleware();
+
 // const composeEnhancers = process.env.NODE_ENV ==='development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, sagaMiddleware)));
 
+sagaMiddleware.run(watchHistoricData);
 
 const app = (
     <Provider store={store}>
