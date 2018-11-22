@@ -3,9 +3,13 @@ export {
 } from './historicData';
 
 export {
-    fetchLiveData
+    fetchLiveData, fetchLiveDataFailed, fetchLiveDataStart, fetchLiveDataSuccess
 } from './liveData';
 
 export {
-    fetchUseCase
+    fetchUseCase, fetchUseCaseFailed, fetchUseCaseStart, fetchUseCaseSuccess
 } from './useCaseData';
+
+export {
+    fetchArduinoData, fetchArduinoDataFailed, fetchArduinoDataStart, fetchArduinoDataSuccess
+} from './arduinoData'

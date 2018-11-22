@@ -8,17 +8,19 @@ import * as serviceWorker from './serviceWorker';
 import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import {watchHistoricData} from "./store/sagas";
+import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
 import useCaseReducer from './store/reducers/useCaseData';
+import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
 
 const rootReducer = combineReducers({
     historicData: historicDataReducer,
     liveData: liveDataReducer,
-    useCaseData: useCaseReducer
+    useCaseData: useCaseReducer,
+    arduinoData: arduinoDataReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -29,6 +31,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, sagaMiddleware)));
 
 sagaMiddleware.run(watchHistoricData);
+sagaMiddleware.run(watchLiveData);
+sagaMiddleware.run(watchUseCaseData);
+sagaMiddleware.run(watchArduinoData);
+
 
 const app = (
     <Provider store={store}>
