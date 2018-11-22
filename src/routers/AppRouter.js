@@ -1,20 +1,21 @@
 import React from 'react';
-import {BrowserRouter, Switch} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import NavBar from '../components/Navbar/Navbar';
+import UseCase from '../containers/UseCase/UseCase'
+import UseCasesList from '../containers/UseCasesList/UseCasesList'
 
 const AppRouter = () => (
-    <Provider>
         <BrowserRouter>
         <div>
-            <NavBar />
-
             <Switch>
-
+                 <Route path="/usecases/:id" component={UseCase} />
+                 <Route path="/" component={UseCasesList}/>
             </Switch>
+
         </div>
         </BrowserRouter>
-    </Provider>
+    
+    
 );
 
 export default AppRouter;

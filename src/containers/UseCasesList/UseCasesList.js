@@ -4,6 +4,8 @@ import styles from './UseCasesList.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import { Row, Col } from 'antd';
+import {Link} from 'react-router-dom';
+
 
 class UseCasesList extends Component {
 
@@ -21,7 +23,9 @@ class UseCasesList extends Component {
                    {
                     this.props.useCases.map((useCase, index) => 
                         <Col key={index} span={8} >
+                        <Link to={"/usecases/" + (index +1)}> 
                             <UseCaseCard isLoading={this.props.loading} {...useCase} />
+                        </Link>
                         </Col>
                     )
                    }
