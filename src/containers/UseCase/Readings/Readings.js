@@ -1,13 +1,13 @@
 import React from 'react'
-import styles from './Information.module.scss';
+import styles from './Readings.module.scss';
 
 
-const Information = (props) => {
+const Readings = (props) => {
     return (
        <div className={styles.Information}>
-       
+       <h1>Readings</h1>
        </div>
     );
 };
 
-export default Information;
+export default Readings;

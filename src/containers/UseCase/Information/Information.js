@@ -1,13 +1,13 @@
 import React from 'react'
-import styles from './Connections.module.scss';
+import styles from './Information.module.scss';
 
 
-const Connections = (props) => {
+const Information = (props) => {
     return (
-       <div className={styles.Connections}>
-       
+       <div className={styles.Information}>
+       <h1>Information</h1>
        </div>
     );
 };
 
-export default Connections;
+export default Information;
