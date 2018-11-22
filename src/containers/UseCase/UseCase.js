@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './UseCase.module.scss';
 import { Row, Col } from 'antd';
 import { Menu, Icon } from 'antd';
+import {Link} from 'react-router-dom';
 
 
 class UseCase extends React.Component {
@@ -11,7 +12,9 @@ class UseCase extends React.Component {
     }
 
     render() {
+        
         return (
+            
             <div className={styles.UseCase}>
                 <Row gutter={15} >
                     <Col span={6}>
@@ -19,19 +22,19 @@ class UseCase extends React.Component {
                             <Menu onClick={this.navLinkOnClick} style={{fontSize: '24px'}} mode="inline">
                                 
                                 <Menu.Item key="info">
-                                    <span><Icon type="notification" /><span>Information</span></span>
+                                    <Link to={this.props.match.url + "/Information"}><span><Icon type="notification" /><span>Information</span></span></Link>
                                 </Menu.Item>
                             
                                 <Menu.Item key="link">
-                                    <span><Icon type="link" /><span>Connections</span></span>
+                                    <Link to={this.props.match.url + "/Connections"}><span><Icon type="link" /><span>Connections</span></span></Link>
                                 </Menu.Item>
 
                                 <Menu.Item key="readings">
-                                    <span><Icon type="dot-chart" /><span>Readings</span></span>
+                                    <Link to={this.props.match.url + "/Readings"}><span><Icon type="dot-chart" /><span>Readings</span></span></Link>
                                 </Menu.Item>
 
                                 <Menu.Item key="historic-data">
-                                    <span><Icon type="pie-chart" /><span>Historic Data</span></span>
+                                    <Link to={this.props.match.url + "/HistoricData"}><span><Icon type="pie-chart" /><span>Historic Data</span></span></Link>
                                 </Menu.Item>
                             </Menu>
                         </div>
