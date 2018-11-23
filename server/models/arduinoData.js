@@ -10,20 +10,19 @@ const logStream = fs.createWriteStream('log.txt', {'flags': 'a'});
 const getArudinoData = () => {
     let temperature = {};
     board.on('ready', () => {
-        const thermometer = new five.Thermometer({
+        const multi = new five.Multi({
             controller: 'DHT11_I2C_NANO_BACKPACK'
         });
 
-        thermometer.on("change", () => {
-            const currentTemp = (`${this.celsius}°C`);
-            // Arduino output
-            console.log(currentTemp);
+        multi.on("change", () => {
+            const currentTemp = (`${this.thermometer.celsius}°C`);
+            console.log("  celsius           : ", this.thermometer.celsius);
             temperature['fridgeTemp'] = Number.parseFloat(currentTemp);
         });
 
         // writes all new temperature data to a log.txt file
-        thermometer.on("data", () => {
-            logStream.write(new Date().toLocaleString() + ' - ' + this.celsius + '°C\n');
+        multi.on("data", () => {
+            logStream.write(new Date().toLocaleString() + ' - ' + this.thermometer.celsius + '°C\n');
         })
     });
     return temperature;
