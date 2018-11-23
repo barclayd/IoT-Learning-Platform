@@ -21,11 +21,11 @@ const composeEmail = (subject, body) => {
     // Send the composed email
     transporter.sendMail(mailOptions, function (err, info) {
         if(err)
-            console.log(err)
+            console.log(err);
         else
             console.log(info);
     });
-}
+};
 
 module.exports = {
     composeEmail

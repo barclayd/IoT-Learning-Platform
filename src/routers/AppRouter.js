@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 // import {Provider} from 'react-redux';
-import UseCase from '../containers/UseCase/UseCase'
+import UseCase from '../components/UseCase/UseCase'
 import UseCasesList from '../containers/UseCasesList/UseCasesList'
 
 const AppRouter = () => (
@@ -14,8 +14,8 @@ const AppRouter = () => (
 
         </div>
         </BrowserRouter>
-    
-    
+
+
 );
 
 export default AppRouter;
