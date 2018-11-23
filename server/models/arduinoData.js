@@ -11,12 +11,13 @@ const getArudinoData = () => {
     let temperature = {};
     board.on('ready', () => {
         const thermometer = new five.Thermometer({
-            controller: 'DS18B20',
-            pin: 2
+            controller: 'DHT11_I2C_NANO_BACKPACK'
         });
 
         thermometer.on("change", () => {
             const currentTemp = (`${this.celsius}°C`);
+            // Arduino output
+            console.log(currentTemp);
             temperature['fridgeTemp'] = Number.parseFloat(currentTemp);
         });
 
