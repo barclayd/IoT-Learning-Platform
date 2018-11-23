@@ -4,7 +4,7 @@ import styles from './UseCaseCard.module.scss'
 const { Meta } = Card;
 
 const UseCaseCard = (props) => {
-    console.log(props)
+    console.log(props);
     return (
         <div className={styles.UseCaseCard}>
                 {props.isLoading ? (
@@ -19,7 +19,7 @@ const UseCaseCard = (props) => {
                     actions={[<Icon type="experiment" theme="twoTone" style={{fontSize:'22px'}}/>]}
                     >
                         <Meta title={props.name} description={props.shortDesc}/>
-                        
+
                     </Card>
                 )}
         </div>
