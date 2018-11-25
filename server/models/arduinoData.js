@@ -3,30 +3,29 @@ const fs = require('fs');
 const board = new five.Board();
 const logStream = fs.createWriteStream('log.txt', {'flags': 'a'});
 
-// http://johnny-five.io/examples/temperature-tmp36/
+// reference: http://johnny-five.io/examples/temperature-ds18b20/
 
-// for Breadboard for "Thermometer - TMP36"
+// for Breadboard for "Thermometer - DS18B20"
 
 const getArudinoData = () => {
-    let temperature = {};
-    board.on('ready', () => {
-        const thermometer = new five.Thermometer({
-            controller: 'TMP36',
-            pin: 'A0'
+    const five = require('johnny-five');
+
+    const board = new five.Board();
+
+    board.on('ready', ()=>{
+
+        const temp = new five.Thermometer({
+            pin: 'A0',
+            controller: 'TMP36'
         });
 
-        thermometer.on("change", () => {
-            const currentTemp = (`${this.celsius}°C`);
-            console.log(currentTemp);
-            temperature['fridgeTemp'] = Number.parseFloat(currentTemp);
+        temp.on('change', ()=>{
+            var tempF = temp.fahrenheit;
+            console.log('Temperature: ', tempF);
         });
 
         // writes all new temperature data to a log.txt file
-        thermometer.on("data", () => {
-            logStream.write(new Date().toLocaleString() + ' - ' + this.celsius + '°C\n');
-        })
     });
-    return temperature;
 };
 
 board.on('exit', function() {
