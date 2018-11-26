@@ -3,20 +3,68 @@ import {connect} from 'react-redux';
 import {Bar, Line, Pie} from 'react-chartjs-2';
 import * as actions from "../../store/actions";
 
+
+
 class Charts extends Component {
 
     componentDidMount() {
         this.props.onFetchData();
     }
 
+
     render() {
-        console.log(this.props.data);
-        const fridgeTemps = [];
-        const datesRecorded = [];
+        let fridgeTemps = [];
+        let datesRecorded = [];
+        const compareData = {};
         for(let record in this.props.data) {
             fridgeTemps.push(this.props.data[record].fridgeTemp);
-            datesRecorded.push((this.props.data[record].dateRecorded).slice(0, -4));
+            datesRecorded.push((this.props.data[record].dateRecorded).slice(0, -5));
         }
+
+        console.log(datesRecorded);
+
+        const averageDayCalculator = () => {
+            const count = datesRecorded =>
+                datesRecorded.reduce((a, b) =>
+                    Object.assign(a, {[b]: (a[b] || 0) + 1}), {});
+
+           const duplicates = (count(datesRecorded));
+
+           for(let item in duplicates){
+               if(duplicates[item] < 2) {
+                   delete duplicates[item];
+               }
+           }
+            console.log(duplicates);
+
+           console.log(fridgeTemps);
+
+           let dayTotal = 0;
+           let countTotal = 0;
+           const calculatedData = {};
+            for(let record in this.props.data) {
+                if(Object.keys(duplicates).toString() === ((this.props.data[record].dateRecorded).slice(0, -5))) {
+                    dayTotal += this.props.data[record].fridgeTemp;
+                    countTotal ++;
+                } else {
+                    calculatedData[this.props.data[record].dateRecorded] = this.props.data[record].fridgeTemp
+                }
+            }
+
+
+
+           // remove key-pair values with size less than 2
+
+            // make an average of
+
+           // for(let record in datesRecorded){
+           //      if(record === Object.keys(datesRecorded));
+           // }
+        };
+
+        averageDayCalculator();
+        console.log(this.props.data);
+
 
         const chartData = {
           // labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -25,7 +73,7 @@ class Charts extends Component {
                 {
                     label: 'Fridge Temperature',
                     data: fridgeTemps,
-                    backgroundColor: ['#003B46', '#07575B', '#66A5AD', '#C4DFE6', '#021C1E', '004445', '#2C7873']
+                    backgroundColor: '#2C7873'
                 }
             ]
         };

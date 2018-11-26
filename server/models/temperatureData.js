@@ -9,7 +9,7 @@ const getRandomTemperature = (min, max) => {
     return ((Math.random() * max) + min).toFixed(1);
 };
 
-const temperaturRange = {min: 2, max: 8}
+const temperatureRange = {min: 2, max: 8};
 
 const getTemperatures = () => {
     let temperatures = {};
@@ -23,7 +23,7 @@ const getTemperatures = () => {
         temperatures['timeRecorded'] = timeRecorded;
         temperatures['dateRecorded'] = dateRecorded;
         // temperatures[sensorsData[record].data.timeRecorded] = sensorsData[record].data['fridgeTemp'];
-        if (temperatures['fridgeTemp'] < temperaturRange.min || temperatures['fridgeTemp'] > temperaturRange.max) {
+        if (temperatures['fridgeTemp'] < temperatureRange.min || temperatures['fridgeTemp'] > temperatureRange.max) {
             composeEmail("Warning Email", `<p>Fridge has reached a critical level ${temperatures['fridgeTemp']}</p>`)
         }
     }
