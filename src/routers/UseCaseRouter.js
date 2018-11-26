@@ -12,8 +12,8 @@ const UseCaseRouter = (props) => {
 
             <Switch>
                 <Route exact path={props.url + "/"} component={Info} />
-                <Route exact path={props.url + "/information"} component={Info} />
-                <Route exact path={props.url + "/connections"}  component={Conn}/>
+                <Route path={props.url + "/information"} component={Info} />
+                <Route path={props.url + "/connections"}  component={Conn}/>
                 <Route path={props.url + "/readings"}  component={Read}/>
                 <Route path={props.url + "/historicData"}  component={Hist}/>
             </Switch>

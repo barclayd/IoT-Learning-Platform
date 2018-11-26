@@ -2,35 +2,39 @@ const five = require('johnny-five');
 const fs = require('fs');
 const board = new five.Board();
 const logStream = fs.createWriteStream('log.txt', {'flags': 'a'});
+var pin = 2;
 
-// reference: http://johnny-five.io/examples/temperature-ds18b20/
+// http://johnny-five.io/examples/temperature-tmp36/
 
-// for Breadboard for "Thermometer - DS18B20"
+// for Breadboard for "Thermometer - TMP36"
 
 const getArudinoData = () => {
-    let temperature = {};
-    board.on('ready', () => {
-        const multi = new five.Multi({
-            controller: 'DHT11_I2C_NANO_BACKPACK'
-        });
+    console.log(1)
 
-        multi.on("change", () => {
-            const currentTemp = (`${this.thermometer.celsius}°C`);
-            console.log("  celsius           : ", this.thermometer.celsius);
-            temperature['fridgeTemp'] = Number.parseFloat(currentTemp);
-        });
-
-        // writes all new temperature data to a log.txt file
-        multi.on("data", () => {
-            logStream.write(new Date().toLocaleString() + ' - ' + this.thermometer.celsius + '°C\n');
-        })
+    board.on("connect", function(event) {
+        console.log("Arduino Connected!");
     });
-    return temperature;
-};
 
-board.on('exit', function() {
-    logStream.end('=======================================================\n');
-});
+    board.on("ready", function() {
+        var temperature = new five.Thermometer({
+          controller: "TMP36",
+          pin: "A0",
+          freq: 2000
+        });
+      
+        temperature.on("data", function() {
+            console.log(this.celsius + "°C", this.fahrenheit + "°F");
+            return {success: true, message: "temp data is here!", data: this.celsius};
+        });
+    });
+   
+    board.on("fail", function(event) {
+        console.log("Fail message: %s", event.message);
+        return {success: false, message: event.message, data: null};
+    });
+
+
+};
 
 module.exports = {
     getArudinoData

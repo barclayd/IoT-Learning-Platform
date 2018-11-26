@@ -8,7 +8,7 @@ class TemperatureData extends Component {
 
 
     componentDidMount() {
-        this.props.onFetchLiveData();
+        this.props.onFetchArduinoData();
 
     }
 
@@ -38,15 +38,15 @@ class TemperatureData extends Component {
 
 const mapStateToProps = state => {
     return {
-        tempData: state.liveData.data,
-        loading: state.liveData.loading,
-        error: state.liveData.error
+        data: state.arduinoData.data,
+        loading: state.arduinoData.loading,
+        error: state.arduinoData.error
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchLiveData: () => dispatch(actions.fetchLiveData())
+        onFetchArduinoData: () => dispatch(actions.fetchArduinoData())
     }
 };
 

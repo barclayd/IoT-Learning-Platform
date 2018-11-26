@@ -26,6 +26,10 @@
 #include <Servo.h>
 #include <Wire.h>
 #include <Firmata.h>
+#include <dht.h>
+
+#define DHT11PIN  7
+dht1wire DHT(DHT11PIN, dht::DHT11);
 
 #define I2C_WRITE                   B00000000
 #define I2C_READ                    B00001000
