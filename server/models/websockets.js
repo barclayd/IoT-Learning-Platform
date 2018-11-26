@@ -19,10 +19,11 @@ const sendDataUsingWebsockets = () => {
             console.log('Client has requested use cases data');
             client.emit('useCaseData', useCaseData);
         });
-        client.on('sendArduinoData', () => {
+        client.on('connectToArduinoData', () => {
             console.log('Client has requested use cases data');
             client.emit('arduinoData', getArudinoData());
         });
+
     });
 };
 

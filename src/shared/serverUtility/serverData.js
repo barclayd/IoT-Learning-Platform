@@ -13,7 +13,7 @@ function getUseCaseData(cb) {
 
 function getArduinoData(cb) {
     socket.on('arduinoData', data => cb(null, data));
-    socket.emit('sendArduinoData', 1000);
+    socket.emit('connectToArduinoData', 1000);
 }
 
 export {

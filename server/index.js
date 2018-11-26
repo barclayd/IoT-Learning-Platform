@@ -12,4 +12,4 @@ sendDataUsingWebsockets();
 // send test email
 // composeEmail("Test Email", `<p>Warning: fridge has reached a critical level of 50C</p>`)
 
-getArudinoData();
+// getArudinoData();
