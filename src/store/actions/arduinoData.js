@@ -27,6 +27,7 @@ export const fetchArduinoData = () => {
     return dispatch => {
         dispatch(fetchArduinoDataStart());
         getArduinoData((err, data) => {
+            
             dispatch(fetchArduinoDataSuccess(data));
         })
     }
