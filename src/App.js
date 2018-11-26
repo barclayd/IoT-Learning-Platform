@@ -8,6 +8,10 @@ const asyncData = asyncComponent(() => {
     return import('./containers/TemperatureData/TemperatureData');
 });
 
+const asyncCharts = asyncComponent(() => {
+    return import('./components/Charts/Charts');
+});
+
 class App extends Component {
 
     render() {
@@ -15,6 +19,7 @@ class App extends Component {
     return (
       <div className="App">
           <Route path='/test' exact  component={asyncData}/>
+          <Route path='/charts' exact  component={asyncCharts}/>
           <Layout>
         </Layout>
       </div>
