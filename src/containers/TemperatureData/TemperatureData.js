@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import HistoricTemperature from '../HistoricData/HistoricTemperatures';
 import TempChart from '../Charts/TempChart';
-import { Button } from 'antd';
+import { Button, notification} from 'antd';
 
 
 class TemperatureData extends Component {
@@ -14,8 +14,24 @@ class TemperatureData extends Component {
 
     }
 
+    openSuccessNotification = () => {
+        notification['success']({
+          message: 'Connection Succeeded',
+          description: 'Arduino connected successfully. You should see real data displayed in the graph.',
+        });
+    };
+
+    openErrorNotification = () => {
+        notification['error']({
+          message: 'Connection Failed',
+          description: 'Sorry, we could not find an Arduino. Please try again!',
+        });
+    };
+      
+   
 
     render() {
+
         let temp;
         if(this.props.tempData) {
             // console.log(this.props.tempData);
