@@ -7,7 +7,7 @@ import Hist from '../components/UseCase/HistoricData/HistoricData'
 
 
 const UseCaseRouter = (props) => {
-    console.log(props.url + "/information")
+    console.log(props.url + "/information");
     return (
 
             <Switch>

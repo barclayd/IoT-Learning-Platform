@@ -25,6 +25,12 @@ class TemperatureData extends Component {
                 return <p key={record}>{record}: {this.props.data[record]}</p>
             });
         }
+        let returnObject;
+        if (this.props.error === false && this.props.data === null) {
+            returnObject = <p>Please connect Arduino!</p>
+        } else {
+            returnObject = <TempChart  temp={this.props.data}/>
+        }
 
 
         return (
@@ -34,7 +40,7 @@ class TemperatureData extends Component {
                 <Button type="primary" loading={this.props.loading} onClick={this.props.onFetchArduinoData}>
                     Reconnect
                 </Button>
-                <TempChart  temp={this.props.data}/>
+                {returnObject}
                 <HistoricTemperature />
 
             </div>
