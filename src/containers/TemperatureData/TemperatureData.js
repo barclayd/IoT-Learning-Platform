@@ -53,7 +53,7 @@ class TemperatureData extends Component {
 
         return (
             <div>
-                {/*<Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>*/}
+                {/*<Button type="primary" loading={this.props.loading} onClick={() => window.location.reload())}>*/}
                     {/*Reconnect*/}
                 {/*</Button>*/}
                 {this.props.data ? <h1>Live Readings</h1> : null}
