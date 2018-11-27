@@ -6,13 +6,13 @@ import UseCasesList from '../containers/UseCasesList/UseCasesList'
 
 const AppRouter = (props) => {
     return (
-        <div>
+        <React.Fragment>
             <Switch>
                 <Route exact path="/" component={UseCasesList}/>
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
             </Switch>
-            
-        </div>
+
+        </React.Fragment>
 )};
 
 export default AppRouter;
