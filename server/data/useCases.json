@@ -6,7 +6,8 @@
     "shortDesc": "Check the live temperature of fridges in University Hospital, Cardiff",
     "longDesc": "Check the live temperature of fridges in University Hospital, Cardiff",
     "image": "nhsfridge.jpg",
-    "arduino": "tmp36.jpg"
+    "arduino": "tmp36.jpg",
+    "arduinoName": "TMP36"
     },
     {
     "name": "Bath Motion Sensor",
@@ -15,7 +16,8 @@
     "shortDesc": "Detects if you slip under the water when in the bath",
     "longDesc": "Detects if you slip under the water when in the bath",
     "image": "bathmotion.jpg",
-    "arduino": "tmp36.jpg"
+    "arduino": "motionsensor.png",
+    "arduinoName": "Motion Sensor"
     },
     {
     "name": "Water Composition",
@@ -24,6 +26,7 @@
     "shortDesc": "Check for contamination in the River Cynon by analysing composition of the chemicals in the water",
     "longDesc": "Check for contamination in the River Cynon by analysing composition of the chemicals in the water",
     "image": "watercomposition.jpg",
-    "arduino": "tmp36.jpg"
+    "arduino": "tmp36.jpg",
+    "arduinoName": "TMP36"
     }
 ]

@@ -7,7 +7,7 @@ const Connections = (props) => {
     return (
        <div className={styles.Connections}>
        <h1>Connections</h1>
-       <p>Breadboard for "Thermometer - TMP36"</p>
+       <p>{props.useCaseData.arduinoName}</p>
         <img alt="arduino" src={"/images/" + props.useCaseData.arduino} />
        
        </div>
