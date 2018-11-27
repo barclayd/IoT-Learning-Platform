@@ -17,7 +17,7 @@ class TempChart extends Component {
 
 
     componentDidMount(){
-
+        document.title = 'Live Temperature Charts';
         this.interval = setInterval(() =>
             this.pubnub.publish({
                 channel: 'channel1',
@@ -39,6 +39,7 @@ class TempChart extends Component {
             type={'spline'}
             limit= {5}
             history={true}
+            aria-label={'Real time data graph'}
             />
         )
 }

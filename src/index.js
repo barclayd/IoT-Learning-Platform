@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
+import a11y from 'react-a11y';
 import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
@@ -15,6 +16,16 @@ import useCaseReducer from './store/reducers/useCaseData';
 import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
+
+
+
+a11y(React, ReactDOM, {
+        rules: {
+            'img-uses-alt': 'warn',
+            'redundant-alt': ['warn', ['image', 'photo', 'foto', 'bild']]
+        }
+    }
+);
 
 const rootReducer = combineReducers({
     historicData: historicDataReducer,

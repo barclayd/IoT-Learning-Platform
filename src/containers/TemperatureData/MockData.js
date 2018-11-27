@@ -8,6 +8,7 @@ class TemperatureData extends Component {
 
 
     componentDidMount() {
+        document.title = 'Mock Live Data';
         this.props.onFetchLiveData();
 
     }
@@ -25,13 +26,12 @@ class TemperatureData extends Component {
 
 
         return (
-            <div>
+            <React.Fragment>
                 {this.props.tempData ? <h1>Live Data </h1> : null}
                 {temp}
-                <MockChart  temp={this.props.tempData}/>
+                <MockChart  temp={this.props.tempData} aria-label={'Mock data chart'}/>
                 <HistoricTemperature />
-
-            </div>
+            </React.Fragment>
         );
     }
 }
