@@ -1,42 +1,66 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import HistoricTemperature from '../HistoricData/HistoricTemperatures';
+import { Alert } from 'antd';
 import TempChart from '../Charts/TempChart';
-import { Button } from 'antd';
+import { Button, notification} from 'antd';
 
 
 class TemperatureData extends Component {
 
 
     componentDidMount() {
+        document.title = 'Live Data Charts';
         this.props.onFetchArduinoData();
 
     }
 
+    openSuccessNotification = () => {
+        notification['success']({
+          message: 'Connection Succeeded',
+          description: 'Arduino connected successfully. You should see real data displayed in the graph.',
+        });
+    };
+
+    openErrorNotification = () => {
+        notification['error']({
+          message: 'Connection Failed',
+          description: 'Sorry, we could not find an Arduino. Please try again!',
+        });
+    };
+
+    fetchArduinoDataAsync = () => {
+        this.props.onFetchArduinoData()
+    };
+
 
     render() {
+        console.log(this.props.data);
         let temp;
-        if(this.props.tempData) {
+        if(this.props.data) {
             // console.log(this.props.tempData);
-            temp = Object.keys(this.props.tempData).map((record) => {
+            temp = Object.keys(this.props.data).map((record) => {
                 // console.log(record);
-                return <p key={record}>{record}: {this.props.tempData[record]}</p>
+                return <p key={record}>{record}: {this.props.data[record]}</p>
             });
+        }
+        let returnObject;
+        if (this.props.data.success) {
+            returnObject = <TempChart  temp={this.props.data.data} aria-label={'Live real time temperature graph'}/>
+        } else {
+            returnObject = <Alert type='error' banner={false} message={'Please connect the Arduino!'} closeable={true} showIcon={true} aria-label={'Please connect Arduino error banner'}> </Alert>
         }
 
 
         return (
-            <div>
-                {this.props.tempData ? <h1>Live Data </h1> : null}
-                {temp}
-                <Button type="primary" loading={this.props.loading} onClick={this.props.onFetchArduinoData}>
-                    Reconnect
-                </Button>
-                <TempChart  temp={this.props.tempData}/>
-                <HistoricTemperature />
-                
-            </div>
+            <React.Fragment>
+                {/*<Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>*/}
+                    {/*Reconnect*/}
+                {/*</Button>*/}
+                {this.props.data ? <h1>Live Readings</h1> : null}
+                {/*{temp}*/}
+                {returnObject}
+            </React.Fragment>
         );
     }
 }

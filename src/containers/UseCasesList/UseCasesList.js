@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 class UseCasesList extends Component {
 
     componentDidMount() {
+        document.title = 'Use Cases';
         this.props.onFetchUseCase();
     }
 
@@ -21,17 +22,17 @@ class UseCasesList extends Component {
             <div className={styles.UseCasesList}>
                 <Row gutter={16}>
                    {
-                    this.props.useCases.map((useCase, index) => 
+                    this.props.useCases.map((useCase, index) =>
                         <Col key={index} span={8} >
-                        <Link to={"/usecases/" + (index +1)}> 
-                            <UseCaseCard isLoading={this.props.loading} {...useCase} />
+                        <Link to={"/usecases/" + (index +1)}>
+                            <UseCaseCard isLoading={this.props.loading} {...useCase} aria-label={'Use case cards list'}/>
                         </Link>
                         </Col>
                     )
                    }
                 </Row>
             </div>
-           
+
         )
     }
 }
