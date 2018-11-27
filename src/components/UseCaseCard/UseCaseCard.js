@@ -4,7 +4,6 @@ import styles from './UseCaseCard.module.scss'
 const { Meta } = Card;
 
 const UseCaseCard = (props) => {
-    console.log(props);
     return (
         <div className={styles.UseCaseCard}>
                 {props.isLoading ? (

@@ -4,23 +4,29 @@
     "key": "nhsfridgetemp",
     "id": "1",
     "shortDesc": "Check the live temperature of fridges in University Hospital, Cardiff",
-    "longDesc": "",
-    "image": "nhsfridge.jpg"
+    "longDesc": "Check the live temperature of fridges in University Hospital, Cardiff",
+    "image": "nhsfridge.jpg",
+    "arduino": "tmp36.jpg",
+    "arduinoName": "TMP36"
     },
     {
     "name": "Bath Motion Sensor",
     "key": "bathmotion",
     "id": "2",
     "shortDesc": "Detects if you slip under the water when in the bath",
-    "longDesc": "",
-    "image": "bathmotion.jpg"
+    "longDesc": "Detects if you slip under the water when in the bath",
+    "image": "bathmotion.jpg",
+    "arduino": "motionsensor.png",
+    "arduinoName": "Motion Sensor"
     },
     {
     "name": "Water Composition",
     "key": "watercomposition",
     "id": "3",
     "shortDesc": "Check for contamination in the River Cynon by analysing composition of the chemicals in the water",
-    "longDesc": "",
-    "image": "watercomposition.jpg"
+    "longDesc": "Check for contamination in the River Cynon by analysing composition of the chemicals in the water",
+    "image": "watercomposition.jpg",
+    "arduino": "tmp36.jpg",
+    "arduinoName": "TMP36"
     }
 ]

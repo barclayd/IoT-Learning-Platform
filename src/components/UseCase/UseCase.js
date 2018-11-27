@@ -4,14 +4,25 @@ import { Row, Col } from 'antd';
 import { Menu, Icon } from 'antd';
 import {Link} from 'react-router-dom';
 import UseCaseRouter from '../../routers/UseCaseRouter';
+import {connect} from 'react-redux';
 
 
 class UseCase extends React.Component {
-
+    
     navLinkOnClick = (e) => {
         console.log('Link clicked',e);
+        
     };
+
     render() {
+        const useCases = this.props.useCases;
+        let useCase;
+        for(var i = 0; i < useCases.length; i++){
+            if(useCases[i].id === this.props.match.params.id){
+                useCase = useCases[i];
+            }
+        }
+        console.log(useCase);
         return (
             <div aria-label={'Use Cases'} className={styles.UseCase}>
                 <Row gutter={15} >
@@ -40,7 +51,7 @@ class UseCase extends React.Component {
 
                     <Col span={18}>
                         <div className={styles.Content}>
-                            <UseCaseRouter url={this.props.match.url}/>
+                            <UseCaseRouter url={this.props.match.url} useCase={useCase}/>
                         </div>
                     </Col>
                 </Row>
@@ -50,4 +61,12 @@ class UseCase extends React.Component {
     }
 }
 
-export default UseCase;
+const mapStateToProps = state => {
+    return {
+        useCases: state.useCaseData.useCases,
+    }
+};
+
+
+
+export default connect(mapStateToProps)(UseCase);

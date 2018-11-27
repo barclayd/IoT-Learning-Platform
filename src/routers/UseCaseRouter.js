@@ -7,15 +7,16 @@ import Hist from '../components/UseCase/HistoricData/HistoricData'
 
 
 const UseCaseRouter = (props) => {
-    console.log(props.url + "/information");
+    let useCase = props.useCase
+    console.log(useCase);
     return (
 
             <Switch>
-                <Route exact path={props.url + "/"} component={Info} />
-                <Route path={props.url + "/information"} component={Info} />
-                <Route path={props.url + "/connections"}  component={Conn}/>
-                <Route path={props.url + "/readings"}  component={Read}/>
-                <Route path={props.url + "/historicData"}  component={Hist}/>
+                <Route exact path={"/usecases/:id"} render={props => <Info useCaseData={useCase} {...props} />} />
+                <Route path={"/usecases/:id/information"} render={props => <Info useCaseData={useCase} {...props} />} />
+                <Route path={"/usecases/:id/connections"}  render={props => <Conn useCaseData={useCase} {...props} />}/>
+                <Route path={"/usecases/:id/readings"}  render={props => <Read {...props} />}/>
+                <Route path={"/usecases/:id/historicData"}  render={props => <Hist {...props} />}/>
             </Switch>
 
 )};
