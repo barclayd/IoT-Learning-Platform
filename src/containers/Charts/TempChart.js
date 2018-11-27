@@ -24,9 +24,7 @@ class TempChart extends Component {
                 message : {
                     eon : {
                         'Fridge 1' : this.props.temp.toFixed(1)
-                        },
-                    history:true,
-                    limit: 5,
+                        }
                     }
                 }), 2000
             )
@@ -40,6 +38,7 @@ class TempChart extends Component {
             channels = {['channel1']}
             type={'spline'}
             limit= {5}
+            history={true}
             />
         )
 }
