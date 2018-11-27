@@ -15,7 +15,7 @@ const UseCaseCard = (props) => {
                     bordered={true}
                     style={{ width: 300}}
                     bodyStyle= {{ minHeight: 150 }}
-                    cover={<img height='250px' alt="example" src={`/images/${props.image}`} />}
+                    cover={<img height='250px' alt={props.imageDesc} src={`/images/${props.image}`} />}
                     actions={[<Icon type="experiment" theme="twoTone" style={{fontSize:'22px'}}/>]}
                     >
                         <Meta title={props.name} description={props.shortDesc}/>
