@@ -17,6 +17,7 @@ class MockChart extends Component {
 
 
     componentDidMount(){
+        document.title = 'Mock Data Charts';
         this.interval = setInterval(() =>
             this.pubnub.publish({
                 channel: 'channel1',
@@ -37,6 +38,7 @@ class MockChart extends Component {
                 channels = {['channel1']}
                 type={'spline'}
                 limit= {5}
+                aria-label={'Real time data chart'}
             />
         )
     }

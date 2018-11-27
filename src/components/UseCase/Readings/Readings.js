@@ -6,9 +6,9 @@ import TemperatureData from '../../../containers/TemperatureData/TemperatureData
 const Readings = (props) => {
     return (
        <div className={styles.Information}>
-           <div>
+           <React.Fragment>
                <TemperatureData />
-           </div>
+           </React.Fragment>
        </div>
     );
 };

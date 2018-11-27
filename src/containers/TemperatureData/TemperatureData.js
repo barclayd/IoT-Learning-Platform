@@ -10,6 +10,7 @@ class TemperatureData extends Component {
 
 
     componentDidMount() {
+        document.title = 'Live Data Charts';
         this.props.onFetchArduinoData();
 
     }
@@ -45,21 +46,21 @@ class TemperatureData extends Component {
         }
         let returnObject;
         if (this.props.data.success) {
-            returnObject = <TempChart  temp={this.props.data.data}/>
+            returnObject = <TempChart  temp={this.props.data.data} aria-label={'Live real time temperature graph'}/>
         } else {
-            returnObject = <Alert type='error' banner={false} message={'Please connect the Arduino!'} closeable={true} showIcon={true}> </Alert>
+            returnObject = <Alert type='error' banner={false} message={'Please connect the Arduino!'} closeable={true} showIcon={true} aria-label={'Please connect Arduino error banner'}> </Alert>
         }
 
 
         return (
-            <div>
+            <React.Fragment>
                 {/*<Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>*/}
                     {/*Reconnect*/}
                 {/*</Button>*/}
                 {this.props.data ? <h1>Live Readings</h1> : null}
                 {/*{temp}*/}
                 {returnObject}
-            </div>
+            </React.Fragment>
         );
     }
 }
