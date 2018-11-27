@@ -10,7 +10,7 @@ const asyncData = asyncComponent(() => {
 });
 
 const asyncCharts = asyncComponent(() => {
-    return import('./components/Charts/Charts');
+    return import('./containers/Charts/HistoricCharts');
 });
 
 class App extends Component {
