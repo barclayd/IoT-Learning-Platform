@@ -1,7 +1,7 @@
 const sensorsData = require('../data/sensorData.json');
 const dateformat = require('dateformat');
 const axios = require('../axios-instance');
-const {getArudinoData} = require('./arduinoData');
+const {getArduinoData} = require('./arduinoData');
 const {composeEmail} = require('./emailService');
 
 
@@ -67,7 +67,7 @@ const sendSensorData = () => {
 
 const sendArduinoData = () => {
     const dateRecorded = dateformat(new Date(), "h:MM:ss TT");
-    axios.post('/temp.json', getArudinoData())
+    axios.post('/temp.json', getArduinoData())
         .then(response => {
             console.log(`Arduino data successfully sent to Firebase at ${dateRecorded}`);
         })

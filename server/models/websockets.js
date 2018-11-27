@@ -1,6 +1,6 @@
 const io = require('socket.io')();
 const {getTemperatures} = require('./temperatureData');
-const {getArudinoData} = require('./arduinoData');
+const {getArduinoData} = require('./arduinoData');
 const useCaseData = require('../data/useCases');
 
 const port = 8000;
@@ -19,10 +19,10 @@ const sendDataUsingWebsockets = () => {
             console.log('Client has requested use cases data');
             client.emit('useCaseData', useCaseData);
         });
-        client.on('connectToArduinoData', () => {
-            console.log('Client has requested use cases data');
-            client.emit('arduinoData', getArudinoData());
-        });
+        // client.on('connectToArduinoData', () => {
+        //     console.log('Client has requested use cases data');
+        //     client.emit('arduinoData', getArduinoData());
+        // });
 
     });
 };
