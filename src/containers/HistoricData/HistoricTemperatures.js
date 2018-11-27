@@ -26,6 +26,7 @@ class HistoricTemperatures extends Component {
             });
         }
 
+
         return (
             <div className="data">
                 <h3>Loaded historic data from Firebase: </h3>
