@@ -1,8 +1,8 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 // import {Provider} from 'react-redux';
-import UseCase from '../components/UseCase/UseCase'
-import UseCasesList from '../containers/UseCasesList/UseCasesList'
+import UseCase from '../components/UseCase/UseCase';
+import UseCasesList from '../containers/UseCasesList/UseCasesList';
 
 const AppRouter = (props) => {
     return (
