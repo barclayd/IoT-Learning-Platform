@@ -27,7 +27,10 @@ class TemperatureData extends Component {
           description: 'Sorry, we could not find an Arduino. Please try again!',
         });
     };
-      
+    
+    fetchArduinoDataAsync = () => {
+        this.props.onFetchArduinoData().then()
+    }
    
 
     render() {
@@ -46,7 +49,7 @@ class TemperatureData extends Component {
             <div>
                 {this.props.tempData ? <h1>Live Data </h1> : null}
                 {temp}
-                <Button type="primary" loading={this.props.loading} onClick={this.props.onFetchArduinoData}>
+                <Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>
                     Reconnect
                 </Button>
                 <TempChart  temp={this.props.tempData}/>
