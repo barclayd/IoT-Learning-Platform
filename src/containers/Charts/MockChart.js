@@ -3,7 +3,7 @@ import PubNubReact from 'pubnub-react';
 import Chart from 'eon-react';
 
 
-class TempChart extends Component {
+class MockChart extends Component {
     constructor(props){
         super(props);
 
@@ -17,30 +17,29 @@ class TempChart extends Component {
 
 
     componentDidMount(){
-
         this.interval = setInterval(() =>
             this.pubnub.publish({
                 channel: 'channel1',
                 message : {
                     eon : {
-                        'Fridge 1' : this.props.temp.toFixed(1)
-                        }
+                        'Fridge 1' : this.props.temp.fridgeTemp
                     }
-                }), 2000
-            )
+                }
+            }), 2000
+        )
     }
 
 
     render() {
         return(
             <Chart
-            pubnub={this.pubnub}
-            channels = {['channel1']}
-            type={'spline'}
-            limit= {5}
+                pubnub={this.pubnub}
+                channels = {['channel1']}
+                type={'spline'}
+                limit= {5}
             />
         )
-}
+    }
 }
 
-export default TempChart
+export default MockChart
