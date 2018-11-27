@@ -20,7 +20,7 @@ class TemperatureData extends Component {
             // console.log(this.props.tempData);
             temp = Object.keys(this.props.tempData).map((record) => {
                 // console.log(record);
-                return <p key={record}>{record}: {this.props.tempData[record]}</p>
+                return <p key={record} aria-label={'Live temperature data'}>{record}: {this.props.tempData[record]}</p>
             });
         }
 
