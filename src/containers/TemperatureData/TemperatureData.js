@@ -27,11 +27,11 @@ class TemperatureData extends Component {
           description: 'Sorry, we could not find an Arduino. Please try again!',
         });
     };
-    
+
     fetchArduinoDataAsync = () => {
         this.props.onFetchArduinoData()
-    }
-   
+    };
+
 
     render() {
         console.log(this.props.data);
@@ -44,10 +44,10 @@ class TemperatureData extends Component {
             });
         }
         let returnObject;
-        if (this.props.error  || !(this.props.data || this.props.data.success)) {
-            returnObject = <p>Please connect Arduino!</p>
-        } else {
+        if (this.props.data.success) {
             returnObject = <TempChart  temp={this.props.data.data}/>
+        } else {
+            returnObject = <p>Please connect Arduino!</p>
         }
 
 
