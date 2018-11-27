@@ -17,12 +17,21 @@ class TempChart extends Component {
 
 
     componentDidMount(){
+
+        let tempData;
+        if(this.props.temp == null) {
+            setInterval(() => {
+                tempData = (Math.random() * 20) + 16;
+            }, 2000);
+        } else {
+            tempData = this.props.temp;
+        }
         this.interval = setInterval(() =>
             this.pubnub.publish({
                 channel: 'channel1',
                 message : {
                     eon : {
-                        'Fridge 1' : this.props.temp.fridgeTemp
+                        'Fridge 1' : tempData.toFixed(1)
                         }
                     }
                 }), 2000

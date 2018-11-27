@@ -34,27 +34,33 @@ class TemperatureData extends Component {
    
 
     render() {
-
+        console.log(this.props.data);
         let temp;
-        if(this.props.tempData) {
+        if(this.props.data) {
             // console.log(this.props.tempData);
-            temp = Object.keys(this.props.tempData).map((record) => {
+            temp = Object.keys(this.props.data).map((record) => {
                 // console.log(record);
-                return <p key={record}>{record}: {this.props.tempData[record]}</p>
+                return <p key={record}>{record}: {this.props.data[record]}</p>
             });
+        }
+        let returnObject;
+        if (this.props.error === false && this.props.data === null) {
+            returnObject = <p>Please connect Arduino!</p>
+        } else {
+            returnObject = <TempChart  temp={this.props.data}/>
         }
 
 
         return (
             <div>
-                {this.props.tempData ? <h1>Live Data </h1> : null}
+                {this.props.data ? <h1>Live Data </h1> : null}
                 {temp}
                 <Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>
                     Reconnect
                 </Button>
-                <TempChart  temp={this.props.tempData}/>
+                {returnObject}
                 <HistoricTemperature />
-                
+
             </div>
         );
     }
@@ -62,7 +68,7 @@ class TemperatureData extends Component {
 
 const mapStateToProps = state => {
     return {
-        data: state.arduinoData.data,
+        data: state.arduinoData.data.temp,
         loading: state.arduinoData.loading,
         error: state.arduinoData.error
     }
