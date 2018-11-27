@@ -10,10 +10,10 @@ export const fetchArduinoDataSuccess = (data) => {
     };
 };
 
-export const fetchArduinoDataFailed = (error) => {
+export const fetchArduinoDataFailed = (data) => {
     return {
         type: actionTypes.FETCH_ARDUINO_DATA_FAILED,
-        error: error
+        data: data
     };
 };
 
@@ -26,9 +26,12 @@ export const fetchArduinoDataStart = () => {
 export const fetchArduinoData = () => {
     return dispatch => {
         dispatch(fetchArduinoDataStart());
-        getArduinoData((err, data) => {
-
-            dispatch(fetchArduinoDataSuccess(data));
+        getArduinoData((data) => {
+            if(!(data.success|| data)) {
+                dispatch(fetchArduinoDataFailed(data));
+            } else {
+                dispatch(fetchArduinoDataSuccess(data));
+            }
         })
     }
     // return {
