@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import HistoricTemperature from '../HistoricData/HistoricTemperatures';
+import { Alert } from 'antd';
 import TempChart from '../Charts/TempChart';
 import { Button, notification} from 'antd';
 
@@ -47,20 +47,18 @@ class TemperatureData extends Component {
         if (this.props.data.success) {
             returnObject = <TempChart  temp={this.props.data.data}/>
         } else {
-            returnObject = <p>Please connect Arduino!</p>
+            returnObject = <Alert type='error' banner={false} message={'Please connect the Arduino!'} closeable={true} showIcon={true}> </Alert>
         }
 
 
         return (
             <div>
-                {this.props.data ? <h1>Live Data </h1> : null}
-                {temp}
-                <Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>
-                    Reconnect
-                </Button>
+                {/*<Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>*/}
+                    {/*Reconnect*/}
+                {/*</Button>*/}
+                {this.props.data ? <h1>Live Readings</h1> : null}
+                {/*{temp}*/}
                 {returnObject}
-                <HistoricTemperature />
-
             </div>
         );
     }

@@ -40,11 +40,7 @@ class UseCase extends React.Component {
 
                     <Col span={18}>
                         <div className={styles.Content}>
-                           Content Here
-
                             <UseCaseRouter url={this.props.match.url}/>
-
-
                         </div>
                     </Col>
                 </Row>
