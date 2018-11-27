@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import HistoricTemperature from '../HistoricData/HistoricTemperatures';
 import TempChart from '../Charts/TempChart';
+import { Button } from 'antd';
+
 
 class TemperatureData extends Component {
 
@@ -28,9 +30,12 @@ class TemperatureData extends Component {
             <div>
                 {this.props.tempData ? <h1>Live Data </h1> : null}
                 {temp}
+                <Button type="primary" loading={this.props.loading} onClick={this.props.onFetchArduinoData}>
+                    Reconnect
+                </Button>
                 <TempChart  temp={this.props.tempData}/>
                 <HistoricTemperature />
-
+                
             </div>
         );
     }
