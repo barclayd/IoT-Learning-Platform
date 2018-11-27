@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Icon } from 'antd';
+import { Card, Icon } from 'antd';
 import styles from './UseCaseCard.module.scss'
 const { Meta } = Card;
 

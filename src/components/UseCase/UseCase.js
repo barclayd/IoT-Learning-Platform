@@ -5,14 +5,13 @@ import { Menu, Icon } from 'antd';
 import {Link} from 'react-router-dom';
 import UseCaseRouter from '../../routers/UseCaseRouter';
 
+
 class UseCase extends React.Component {
 
     navLinkOnClick = (e) => {
-        console.log('Link clicked',e)
+        console.log('Link clicked',e);
     };
-
     render() {
-
         return (
             <div className={styles.UseCase}>
                 <Row gutter={15} >
