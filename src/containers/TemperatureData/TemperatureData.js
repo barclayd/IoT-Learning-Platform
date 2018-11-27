@@ -29,7 +29,7 @@ class TemperatureData extends Component {
     };
     
     fetchArduinoDataAsync = () => {
-        this.props.onFetchArduinoData().then()
+        this.props.onFetchArduinoData()
     }
    
 
@@ -44,10 +44,10 @@ class TemperatureData extends Component {
             });
         }
         let returnObject;
-        if (this.props.error === false && this.props.data === null) {
+        if (this.props.error  || !(this.props.data || this.props.data.success)) {
             returnObject = <p>Please connect Arduino!</p>
         } else {
-            returnObject = <TempChart  temp={this.props.data}/>
+            returnObject = <TempChart  temp={this.props.data.data}/>
         }
 
 
@@ -68,7 +68,7 @@ class TemperatureData extends Component {
 
 const mapStateToProps = state => {
     return {
-        data: state.arduinoData.data.temp,
+        data: state.arduinoData.data,
         loading: state.arduinoData.loading,
         error: state.arduinoData.error
     }
