@@ -11,13 +11,7 @@ function getUseCaseData(cb) {
     socket.emit('sendUseCases', 1000);
 }
 
-function getArduinoData(cb) {
-    socket.on('arduinoData', data => cb(null, data));
-    socket.emit('connectToArduinoData', 1000);
-}
-
 export {
     getTempData,
-    getUseCaseData,
-    getArduinoData
+    getUseCaseData
 };

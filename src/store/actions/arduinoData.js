@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-import {getArduinoData} from "../../shared/serverUtility/serverData";
+import {getArduinoData} from "../../shared/serverUtility/arduinoData";
 
 
 export const fetchArduinoDataSuccess = (data) => {
@@ -27,7 +27,7 @@ export const fetchArduinoData = () => {
     return dispatch => {
         dispatch(fetchArduinoDataStart());
         getArduinoData((err, data) => {
-            
+
             dispatch(fetchArduinoDataSuccess(data));
         })
     }

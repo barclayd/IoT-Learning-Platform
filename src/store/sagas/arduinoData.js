@@ -1,6 +1,6 @@
 import {put} from 'redux-saga/effects';
 import * as actions from '../actions/index';
-import {getArduinoData} from "../../shared/serverUtility/serverData";
+import {getArduinoData} from "../../shared/serverUtility/arduinoData";
 
 export function* fetchArduinoDataSaga (action) {
     yield put(actions.fetchArduinoDataStart());
