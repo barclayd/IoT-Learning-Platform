@@ -7,6 +7,7 @@ import './HistoricTemperature.css';
 class HistoricTemperatures extends Component {
 
     componentDidMount() {
+        document.title = 'Historic Temperature Data';
         this.props.onFetchData();
     }
 
@@ -18,13 +19,14 @@ class HistoricTemperatures extends Component {
         }
         if(this.props.historicData) {
             historicTemp = (this.props.historicData).map((record) => {
-                return <p key={(record.timeRecorded)}>
+                return <p key={(record.timeRecorded)} aria-label={'Historic data from Firebase'}>
                     <strong>{record.dateRecorded}</strong> |
                     {record.timeRecorded} |
                     <strong style={{color: 'red'}}>{record.fridgeTemp.toFixed(1)}</strong>
                 </p>
             });
         }
+
 
         return (
             <div className="data">

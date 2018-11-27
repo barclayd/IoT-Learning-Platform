@@ -4,20 +4,16 @@ import Model from '../../components/Model/Model';
 import AppRouter from '../../routers/AppRouter';
 
 
-class Layout extends React.Component {
-    state= {};
+const layout = (props) => {
+    return (
+        <React.Fragment>
+            <Toolbar/>
+            <Model>
+                <AppRouter/>
+                {/*<UseCase/>*/}
+            </Model>
+        </React.Fragment>
+    );
+};
 
-    render () {
-        return (
-            <>
-                <Toolbar />
-                <Model>
-                    <AppRouter />
-                    {/*<UseCase/>*/}
-                </Model>
-            </>
-        );
-    }
-}
-
-export default Layout;
+export default layout;

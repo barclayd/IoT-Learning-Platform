@@ -5,9 +5,10 @@ import * as actions from "../../store/actions";
 
 
 
-class Charts extends Component {
+class HistoricCharts extends Component {
 
     componentDidMount() {
+        document.title = 'Historic Data Charts';
         this.props.onFetchData();
     }
 
@@ -84,6 +85,7 @@ class Charts extends Component {
                 data={chartData}
                 width={200}
                 height={200}
+                aria-label={'Bar Chart'}
                 options={{
                     title: {
                         display: true,
@@ -96,6 +98,7 @@ class Charts extends Component {
                     }
                 }}/>
                 <Line
+                aria-label={'Pie chart'}
                 data={chartData}
                 width={200}
                 height={200}
@@ -109,6 +112,7 @@ class Charts extends Component {
                     data={chartData}
                     width={200}
                     height={200}
+                    aria-label={'Pie Chart'}
                     options={{
                         legend: {
                             display: true,
@@ -134,4 +138,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Charts);
+export default connect(mapStateToProps, mapDispatchToProps)(HistoricCharts);
