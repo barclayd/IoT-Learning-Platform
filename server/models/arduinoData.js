@@ -31,12 +31,15 @@ const getArduinoData = async () => {
 
         await temperature.on("data", async function () {
             await console.log(temperature.celsius.toFixed(1) + "°C", temperature.fahrenheit + "°F");
-            const dateRecorded = dateformat(new Date(), "h:MM:ss TT");
-            obj = {success: true, message: "temp data is here!", data: this.celsius, 'dateRecorded': dateRecorded};
+            // const dateRecorded = dateformat(new Date(), "h:MM:ss TT");
+            obj = {success: true, message: "temp data is here!", data: this.celsius};
             io.on('connection', (client) => {
                 client.on('connectToArduinoData', () => {
+                    let dateRecorded;
                     console.log('Client has requested arduino temp data');
                     setInterval(() => {
+                        dateRecorded = dateformat(new Date(), "h:MM:ss TT");
+                        obj = {...obj, 'dateRecorded': dateRecorded};
                         client.emit('arduinoData', (obj));
                     }, 2000);
                 });
