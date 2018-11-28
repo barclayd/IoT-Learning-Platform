@@ -41,7 +41,7 @@ class TemperatureData extends Component {
             // console.log(this.props.tempData);
             temp = Object.keys(this.props.data).map((record) => {
                 // console.log(record);
-                return <p key={record}>{record}: {this.props.data[record]}</p>
+                return <p key={record} aria-label={'Live temperature data'}>{record}: {this.props.data[record]}</p>
             });
         }
         let returnObject;
@@ -54,7 +54,7 @@ class TemperatureData extends Component {
 
         return (
             <React.Fragment>
-                {/*<Button type="primary" loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>*/}
+                {/*<Button type="primary" aria-label={'Button to refresh data on reconnection'} loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>*/}
                     {/*Reconnect*/}
                 {/*</Button>*/}
                 {this.props.data ? <h1>Live Readings</h1> : null}
