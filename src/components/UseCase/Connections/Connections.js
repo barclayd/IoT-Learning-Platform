@@ -7,8 +7,19 @@ const Connections = (props) => {
     return (
        <div className={styles.Connections}>
        <h1>Connections</h1>
+       <p>{props.useCaseData.arduinoName}</p>
+        <img alt="arduino" src={"/images/" + props.useCaseData.arduino} aria-label={ props.useCaseData.arduino} />
+
        </div>
     );
 };
+
+// const mapStateToProps = state => {
+//     return {
+//         useCases: state.useCaseData.useCases,
+//     }
+// };
+
+
 
 export default Connections;

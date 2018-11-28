@@ -22,7 +22,7 @@ import "./styles/styles.scss";
 a11y(React, ReactDOM, {
         rules: {
             'img-uses-alt': 'warn',
-            'redundant-alt': ['warn', ['image', 'photo', 'foto', 'bild']]
+            'img-redundant-alt': ['warn', ['image', 'photo', 'foto', 'bild']]
         }
     }
 );
