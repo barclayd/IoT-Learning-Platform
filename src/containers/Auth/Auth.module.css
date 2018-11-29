@@ -21,8 +21,9 @@
 
 .errorMessage {
     color: #D8000C;
+    align-content: center;
     background-color: #FFD2D2;
     margin: 10px 0;
-    padding:12px;
+    padding: auto;
     box-shadow:1px 1px 3px #888;
 }

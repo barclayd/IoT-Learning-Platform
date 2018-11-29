@@ -7,7 +7,6 @@ import {withRouter} from "react-router-dom";
 
 
 const Toolbar = (props) => {
-    console.log(props);
     const userAuthenticatedCheck = () => {
         console.log('This check was called');
         let path;
@@ -15,6 +14,16 @@ const Toolbar = (props) => {
         console.log(path);
         props.history.push(path);
     };
+
+ const styleUsername = (email) => {
+     const accountType = email.split('@').pop();
+     const communityName = email.substr(0, email.indexOf('@'));
+     const titleDisplayName = communityName.split(' ').map((letter) => {
+         return letter.replace(communityName[0], communityName[0].toUpperCase());
+     });
+     console.log(communityName);
+     return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
+ };
 
     return (
         <header className={styles.Header}>
@@ -45,7 +54,7 @@ const Toolbar = (props) => {
                             </div>
                             <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <p aria-label={'username'}>Howdy, {localStorage.getItem("email") ? localStorage.getItem("email") : `Guest`}</p>
+                                <p aria-label={'username'}>Howdy, {localStorage.getItem("email") ? styleUsername(localStorage.getItem("email")) : `Guest`}</p>
                             </div>
                         </div>
                     </Col>
