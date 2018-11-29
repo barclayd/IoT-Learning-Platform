@@ -13,6 +13,7 @@ import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData} fr
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
 import useCaseReducer from './store/reducers/useCaseData';
+import authReducer from './store/reducers/auth';
 import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
     historicData: historicDataReducer,
     liveData: liveDataReducer,
     useCaseData: useCaseReducer,
-    arduinoData: arduinoDataReducer
+    arduinoData: arduinoDataReducer,
+    auth: authReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
