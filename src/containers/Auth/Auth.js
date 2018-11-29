@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
-import {Input, Button} from 'antd';
+import {Input, Button, Checkbox} from 'antd';
 import * as actions from '../../store/actions/index';
+import * as classes from './Auth.module.css';
 
 
 class Auth extends Component {
@@ -72,7 +73,7 @@ class Auth extends Component {
 
     render() {
         let form = (
-            <React.Fragment>
+            <div style={{padding: '10px'}}>
             <Input
                 placeholder={this.state.controls.email.elementConfig.placeholder}
                 type={this.state.controls.email.elementConfig.type}
@@ -83,12 +84,15 @@ class Auth extends Component {
                 type={this.state.controls.password.elementConfig.type}
                 size='large'
                 onChange={(e) => this.inputChangedHandler(e, 'password')}/>
-            </React.Fragment>
+            </div>
         );
 
         if(this.props.loading) {
             // ant.d spinner goes here
         }
+
+        let communityLogin;
+        communityLogin = this.state.isSignup ? <p>Community Account <Checkbox value='Community account'/></p> : null;
 
         const errorMessageLookUp = {
             'INVALID_EMAIL': 'Email is not registered to an account',
@@ -118,15 +122,16 @@ class Auth extends Component {
         clickable = (this.state.controls.password.value.length > 5 && this.state.controls.email.value.length > 5);
 
         return (
-            <div>
+            <div className={classes.Auth}>
                 {authRedirect}
                 {errorMessage}
                 {this.state.isSignup ? <h2>SIGN UP</h2> : <h2>SIGN IN</h2>}
-                <form onSubmit={this.submitHandler}>
+                <form onSubmit={this.submitHandler} className={classes.Form}>
                     {form}
+                    {communityLogin}
                     <Button type='primary' htmlType='submit' disabled={!clickable} size='large'>SUBMIT</Button>
                 </form>
-                <Button type='danger' onClick={this.switchAuthModeHandler} size='large'>SWITCH TO {this.state.isSignup ? 'SIGN-IN' : ' SIGN-UP'}</Button>
+                <Button type='danger' onClick={this.switchAuthModeHandler} size='large'>{this.state.isSignup ? 'SWITCH TO SIGN-IN' : 'SWITCH TO SIGN-UP'}</Button>
             </div>
         )
     }
