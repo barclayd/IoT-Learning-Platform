@@ -35,11 +35,13 @@ const getArduinoData = async () => {
             obj = {success: true, message: "temp data is here!", data: this.celsius};
             io.on('connection', (client) => {
                 client.on('connectToArduinoData', () => {
+                    let timeRecorded;
                     let dateRecorded;
                     console.log('Client has requested arduino temp data');
                     setInterval(() => {
-                        dateRecorded = dateformat(new Date(), "h:MM:ss TT");
-                        obj = {...obj, 'dateRecorded': dateRecorded};
+                        timeRecorded = dateformat(new Date(), "h:MM:ss TT");
+                        dateRecorded = dateformat(new Date(), "mmmm dS yyyy");
+                        obj = {...obj, 'timeRecorded': timeRecorded, 'dateRecorded': dateRecorded};
                         client.emit('arduinoData', (obj));
                     }, 2000);
                 });
