@@ -2,10 +2,19 @@ import React from 'react'
 import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
 import {connect} from 'react-redux'
+import {withRouter} from "react-router-dom";
 // import { NavLink } from 'react-router-dom'
 
 
 const Toolbar = (props) => {
+    console.log(props);
+    const userAuthenticatedCheck = () => {
+        console.log('This check was called');
+        let path;
+        path = localStorage.getItem("email") !== null ?  '/logout' : '/login';
+        console.log(path);
+        props.history.push(path);
+    };
 
     return (
         <header className={styles.Header}>
@@ -34,7 +43,7 @@ const Toolbar = (props) => {
                                 <Icon style={{ fontSize: '18px'}} type="bell" aria-label={'notification icon'}/>
                                 <Icon  style={{ fontSize: '18px', marginLeft: '25px'}} type="search" aria-label={'search field'} />
                             </div>
-                            <div className={styles.Info}>
+                            <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
                                 <p aria-label={'username'}>Howdy, {localStorage.getItem("email") ? localStorage.getItem("email") : `Guest`}</p>
                             </div>
@@ -43,7 +52,6 @@ const Toolbar = (props) => {
                 </Row>
             </nav>
         </header>
-
     );
 };
 
@@ -53,4 +61,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(Toolbar);
+export default withRouter(connect(mapStateToProps)(Toolbar));
