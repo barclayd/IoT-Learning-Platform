@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
+import {Input, Button} from 'antd';
 import * as actions from '../../store/actions/index';
 
 
@@ -36,15 +37,10 @@ class Auth extends Component {
                 touched: false
             }
         },
-        formIsValid: false,
-        isSignup: false
+        isSignup: false,
+        clickable: false
     };
 
-    componentDidMount() {
-        if(!this.props.buildingBurger && this.props.authRedirect !== '/') {
-            this.props.onSetAuthRedirectPath('/');
-        }
-    };
 
     switchAuthModeHandler = () => {
         this.setState(prevState => {
@@ -54,19 +50,19 @@ class Auth extends Component {
         });
     };
 
-    inputChangedHandler = (event, controlName) => {
+    inputChangedHandler = (event, formItem ) => {
 
-        // const updatedControls = updateObject(this.state.controls, {
-        //     [controlName]: updateObject(this.state.controls[controlName], {
-        //         value: event.target.value,
-        //         valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
-        //         touched: true
-        //     })
-        // });
+        const updatedControls = updateObject(this.state.controls, {
+            [formItem]: updateObject(this.state.controls[formItem], {
+                value: event.target.value,
+                // valid: checkValidity(event.target.value, this.state.controls[controlName].validation),
+                touched: true
+            })
+        });
 
-        // this.setState({
-        //     controls: updatedControls
-        // })
+        this.setState({
+            controls: updatedControls
+        });
     };
 
     submitHandler = (event) => {
@@ -75,25 +71,21 @@ class Auth extends Component {
     };
 
     render() {
-        const formElementsArray = [];
-        for(let key in this.state.controls) {
-            formElementsArray.push({
-                id: key,
-                config: this.state.controls[key]
-            });
-        }
+        let form = (
+            <React.Fragment>
+            <Input
+                placeholder={this.state.controls.email.elementConfig.placeholder}
+                type={this.state.controls.email.elementConfig.type}
+                size='large'
+                onChange={(e) => this.inputChangedHandler(e, 'email')}/>
+            <Input
+                placeholder={this.state.controls.password.elementConfig.placeholder}
+                type={this.state.controls.password.elementConfig.type}
+                size='large'
+                onChange={(e) => this.inputChangedHandler(e, 'password')}/>
+            </React.Fragment>
+        );
 
-        // let form = formElementsArray.map(formElement => (
-            {/*<Input*/}
-                {/*key={formElement.id}*/}
-                {/*elementType={formElement.config.elementType}*/}
-                {/*elementConfig={formElement.config.elementConfig}*/}
-                {/*value={formElement.config.value}*/}
-                {/*invalid={!formElement.config.valid}*/}
-                {/*shouldValidate={formElement.config.validation}*/}
-                {/*touched={formElement.config.touched}*/}
-                {/*changed={(event) => this.inputChangedHandler(event, formElement.id)} />*/}
-        // ));
         if(this.props.loading) {
             // ant.d spinner goes here
         }
@@ -122,16 +114,19 @@ class Auth extends Component {
         //     authRedirect = <Redirect to={this.props.authRedirect}/>
         // }
 
+        let clickable;
+        clickable = (this.state.controls.password.value.length > 5 && this.state.controls.email.value.length > 5);
+
         return (
             <div>
                 {authRedirect}
                 {errorMessage}
                 {this.state.isSignup ? <h2>SIGN UP</h2> : <h2>SIGN IN</h2>}
                 <form onSubmit={this.submitHandler}>
-                    {/*{form}*/}
-                    {/*<Button btnType='Success'>SUBMIT</Button>*/}
+                    {form}
+                    <Button type='primary' htmlType='submit' disabled={!clickable} size='large'>SUBMIT</Button>
                 </form>
-                {/*<Button btnType='Danger' clicked={this.switchAuthModeHandler}>SWITCH TO {this.state.isSignup ? 'SIGN-IN' : 'SIGN-UP'}</Button>*/}
+                <Button type='danger' onClick={this.switchAuthModeHandler} size='large'>SWITCH TO {this.state.isSignup ? 'SIGN-IN' : ' SIGN-UP'}</Button>
             </div>
         )
     }
