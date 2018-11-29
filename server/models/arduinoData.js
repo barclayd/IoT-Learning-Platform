@@ -24,7 +24,7 @@ const getArduinoData = async () => {
 
     board.on("ready", async function() {
         const temperature = new five.Thermometer({
-            controller: "TMP36",
+            controller: "LM35",
             pin: "A0",
             freq: 2000
         });
