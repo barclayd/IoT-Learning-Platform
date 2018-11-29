@@ -9,21 +9,22 @@ import {connect} from 'react-redux';
 const AppRouter = (props) => {
     let routes = (
         <Switch>
-            <Route exact path="/" component={UseCasesList}/>
+            <Route exact path="/"/>
             <Route exact path="/login" component={Auth}/>
             <Route exact path="/logout" component={Logout}/>
             <Redirect to='/'/>
         </Switch>
     );
 
-    if(props.isAuthenticated){
+    if(props.isAuthenticated || localStorage.getItem("email") !== null){
         routes =
             <Switch>
-                <Route exact path="/" component={UseCasesList}/>
+                <Route exact path="/"/>
+                <Route exact path="/usecases" component={UseCasesList}/>
                 <Route exact path="/login" component={Auth}/>
                 <Route exact path='/logout' component={Logout} />
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
-                <Redirect to='/'/>
+                <Redirect to='/usecases'/>
             </Switch>
     }
 

@@ -7,7 +7,7 @@ import Hist from '../components/UseCase/HistoricData/HistoricData'
 
 
 const UseCaseRouter = (props) => {
-    let useCase = props.useCase
+    let useCase = props.useCase;
     console.log(useCase);
     return (
 
