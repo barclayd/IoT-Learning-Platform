@@ -9,7 +9,7 @@ import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import a11y from 'react-a11y';
-import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData} from "./store/sagas";
+import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData, watchAuth} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
 import useCaseReducer from './store/reducers/useCaseData';
@@ -47,6 +47,7 @@ sagaMiddleware.run(watchHistoricData);
 sagaMiddleware.run(watchLiveData);
 sagaMiddleware.run(watchUseCaseData);
 sagaMiddleware.run(watchArduinoData);
+sagaMiddleware.run(watchAuth);
 
 
 const app = (
