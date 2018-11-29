@@ -19,7 +19,7 @@ class UseCasesList extends Component {
         console.log(this.props.useCases);
 
         return (
-            <div className={styles.UseCasesList}>
+            <div className={styles.UseCasesList} aria-label={`Select a use case`}>
                 <Row gutter={16}>
                    {
                     this.props.useCases.map((useCase, index) =>
