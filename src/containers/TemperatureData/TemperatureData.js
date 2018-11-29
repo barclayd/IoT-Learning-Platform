@@ -53,10 +53,11 @@ class TemperatureData extends Component {
             returnObject = <TempChart  temp={this.props.data.data} aria-label={'Live real time temperature graph'}/>
         } else {
             returnObject = (<>
-                    <Button type="primary" aria-label={'Button to refresh data on reconnection'} loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>
-                    Reconnect
-                    </Button>
+                    
                     <Alert type='error' banner={false} message={'Please connect the Arduino!'} closeable={true} showIcon={true} aria-label={'Please connect Arduino error banner'}> </Alert>
+                    <Button type="primary" style={{marginTop: '15px'}} aria-label={'Button to refresh data on reconnection'}  loading={this.props.loading} onClick={this.fetchArduinoDataAsync}>
+                        Reconnect
+                    </Button>
                 </>
                 );
         }
