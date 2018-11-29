@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
 import {connect} from 'react-redux'
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 // import { NavLink } from 'react-router-dom'
 
 
@@ -25,21 +25,22 @@ const Toolbar = (props) => {
      return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
  };
 
+ const logout = <Link to='/logout'>logout?</Link>;
     return (
         <header className={styles.Header}>
             <nav className={styles.Nav}>
                 <Row type="flex" justify="start" align="middle">
                     <Col span={3}>
                         <div className={styles.Logo}>
-                            <a href="/usecases" aria-label={'logo'}>LOGO</a>
+                            <Link to='/' aria-label={'Logo'}>LOGO</Link>
                         </div>
                     </Col>
 
                     <Col span={8}>
                         <div className={styles.Links}>
                             <ul>
-                                <li aria-label={'Link to User Cases'}><a href='/usecases'>User Cases</a></li>
-                                <li aria-label={'Link to Documentation'}><a href='/usecases'>Documentation</a></li>
+                                <li aria-label={'Link to User Cases'}><Link to='/usecases'>Usecases</Link></li>
+                                <li aria-label={'Link to Documentation'}><Link to='/documentation'>Documentation</Link></li>
                                 <li aria-label={'Link to About'}><a href='/'>About</a></li>
                             </ul>
                         </div>
@@ -54,7 +55,7 @@ const Toolbar = (props) => {
                             </div>
                             <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <p aria-label={'username'} style={{fontStyle: 'italic'}}>{localStorage.getItem("email") ? styleUsername(localStorage.getItem("email")) : 'Login'}</p>
+                                <p aria-label={'username'} style={{fontStyle: 'italic'}}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : 'Login'}</p>
                             </div>
                         </div>
                     </Col>

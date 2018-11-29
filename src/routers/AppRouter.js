@@ -23,7 +23,7 @@ const AppRouter = (props) => {
                 <Route exact path="/login" component={Auth}/>
                 <Route exact path='/logout' component={Logout} />
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
-                <Redirect to='/usecases'/>
+                <Redirect to='/usecases' component={UseCasesList}/>
             </Switch>
     }
 
