@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
+import {Switch, Route, withRouter, Redirect, Link} from 'react-router-dom';
 import UseCase from '../components/UseCase/UseCase';
 import UseCasesList from '../containers/UseCasesList/UseCasesList';
 import Auth from "../containers/Auth/Auth";
@@ -9,17 +9,16 @@ import {connect} from 'react-redux';
 const AppRouter = (props) => {
     let routes = (
         <Switch>
-            <Route exact path="/"/>
+            <Route exact path="/" render={() => <p> Please <Link to='/login'>login</Link> to access the website</p>}/>
             <Route exact path="/login" component={Auth}/>
             <Route exact path="/logout" component={Logout}/>
-            <Redirect to='/'/>
+            <Route exact path="/" render={() => <p> Please <Link to='/login'>login</Link> to access the website</p>}/>
         </Switch>
     );
 
     if(props.isAuthenticated || localStorage.getItem("email") !== null){
         routes =
             <Switch>
-                <Route exact path="/"/>
                 <Route exact path="/usecases" component={UseCasesList}/>
                 <Route exact path="/login" component={Auth}/>
                 <Route exact path='/logout' component={Logout} />
