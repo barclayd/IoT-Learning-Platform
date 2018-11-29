@@ -7,7 +7,7 @@ const initialState = {
     error: null,
     loading: false,
     email: null,
-    authRedirect: '/'
+    authRedirect: '/usecases'
 };
 
 const authStart = (state, action) => {

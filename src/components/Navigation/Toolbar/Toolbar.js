@@ -31,15 +31,15 @@ const Toolbar = (props) => {
                 <Row type="flex" justify="start" align="middle">
                     <Col span={3}>
                         <div className={styles.Logo}>
-                            <a href="/" aria-label={'logo'}>LOGO</a>
+                            <a href="/usecases" aria-label={'logo'}>LOGO</a>
                         </div>
                     </Col>
 
                     <Col span={8}>
                         <div className={styles.Links}>
                             <ul>
-                                <li aria-label={'Link to User Cases'}><a href='/'>User Cases</a></li>
-                                <li aria-label={'Link to Documentation'}><a href='/'>Documentation</a></li>
+                                <li aria-label={'Link to User Cases'}><a href='/usecases'>User Cases</a></li>
+                                <li aria-label={'Link to Documentation'}><a href='/usecases'>Documentation</a></li>
                                 <li aria-label={'Link to About'}><a href='/'>About</a></li>
                             </ul>
                         </div>
@@ -54,7 +54,7 @@ const Toolbar = (props) => {
                             </div>
                             <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <p aria-label={'username'}>Howdy, {localStorage.getItem("email") ? styleUsername(localStorage.getItem("email")) : `Guest`}</p>
+                                <p aria-label={'username'} style={{fontStyle: 'italic'}}>{localStorage.getItem("email") ? styleUsername(localStorage.getItem("email")) : 'Login'}</p>
                             </div>
                         </div>
                     </Col>

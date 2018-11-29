@@ -1,6 +1,5 @@
 import { delay } from "redux-saga";
 import { put, call } from "redux-saga/effects";
-import {Redirect} from "react-router-dom";
 import axios from "axios";
 
 import * as actions from "../actions/index";
