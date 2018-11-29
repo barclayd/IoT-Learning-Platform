@@ -6,6 +6,7 @@ const initialState = {
     userId: null,
     error: null,
     loading: false,
+    email: null,
     authRedirect: '/'
 };
 
@@ -20,6 +21,7 @@ const authSuccess = (state, action) => {
     return updateObject(state, {
         token: action.token,
         userId: action.userId,
+        email: action.email,
         error: null,
         loading: false
     });

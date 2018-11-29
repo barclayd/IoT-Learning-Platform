@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
+import {connect} from 'react-redux'
 // import { NavLink } from 'react-router-dom'
 
 
 const Toolbar = (props) => {
+
     return (
         <header className={styles.Header}>
             <nav className={styles.Nav}>
@@ -34,7 +36,7 @@ const Toolbar = (props) => {
                             </div>
                             <div className={styles.Info}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <p aria-label={'username'}>Patrick Morrow</p>
+                                <p aria-label={'username'}>Howdy, {localStorage.getItem("email") ? localStorage.getItem("email") : `Guest`}</p>
                             </div>
                         </div>
                     </Col>
@@ -45,4 +47,10 @@ const Toolbar = (props) => {
     );
 };
 
-export default Toolbar;
+const mapStateToProps = state => {
+    return {
+        email: state.auth.email
+    }
+};
+
+export default connect(mapStateToProps)(Toolbar);

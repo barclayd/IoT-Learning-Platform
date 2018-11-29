@@ -9,6 +9,7 @@ export function* logoutSaga(action) {
     yield call([localStorage, 'removeItem'],'token');
     yield call([localStorage, 'removeItem'],'expirationDate');
     yield call([localStorage, 'removeItem'],'userId');
+    yield call([localStorage, 'removeItem'],'email');
     yield put(actions.logoutSucceed());
 }
 
@@ -37,10 +38,11 @@ export function* authUserSaga(action) {
             new Date().getTime() + response.data.expiresIn * 1000
         );
         yield localStorage.setItem("token", response.data.idToken);
+        yield localStorage.setItem("email", response.data.email);
         yield localStorage.setItem("expirationDate", expirationDate);
         yield localStorage.setItem("userId", response.data.localId);
         yield put(
-            actions.authSuccess(response.data.idToken, response.data.localId)
+            actions.authSuccess(response.data.idToken, response.data.localId, response.data.email)
         );
         yield put(actions.checkAuthTimeout(response.data.expiresIn));
     } catch (error) {
