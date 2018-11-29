@@ -8,7 +8,8 @@
     "image": "nhsfridge.jpg",
     "imageDesc": "A fridge image",
     "arduino": "tmp36.jpg",
-    "arduinoName": "TMP36"
+    "arduinoName": "LM35",
+    "arduinoDesc": "The LM35 series are precision integrated-circuit temperature devices with an output voltage linearly-proportional to the Centigrade temperature. The LM35 device has an advantage over linear temperature sensors calibrated in Kelvin, as the user is not required to subtract a large constant voltage from the output to obtain convenient Centigrade scaling. The LM35 device does not require any external calibration or trimming to provide typical accuracies of ±¼°C at room temperature and ±¾°C over a full −55°C to 150°C temperature range."
     },
     {
     "name": "Bath Motion Sensor",
@@ -19,7 +20,8 @@
     "image": "bathmotion.jpg",
     "imageDesc": "A fridge image",
     "arduino": "motionsensor.png",
-    "arduinoName": "Motion Sensor"
+    "arduinoName": "Motion Sensor",
+    "arduinoDesc": "Then connect the arduino to your PC/laptop"
     },
     {
     "name": "Water Composition",
@@ -30,6 +32,7 @@
     "image": "watercomposition.jpg",
     "imageDesc": "A fridge image",
     "arduino": "tmp36.jpg",
-    "arduinoName": "TMP36"
+    "arduinoName": "TMP36",
+    "arduinoDesc": "Then connect the arduino to your PC/laptop"
     }
 ]
