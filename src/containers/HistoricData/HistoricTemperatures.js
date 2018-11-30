@@ -22,7 +22,7 @@ class HistoricTemperatures extends Component {
                 return <p key={(record.timeRecorded)} aria-label={'Historic data from Firebase'}>
                     <strong>{record.dateRecorded}</strong> |
                     {record.timeRecorded} |
-                    <strong style={{color: 'red'}}>{record.fridgeTemp.toFixed(1)}</strong>
+                    <strong style={{color: 'red'}}>{record.data.toFixed(1)}</strong>
                 </p>
             });
         }
