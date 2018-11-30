@@ -9,7 +9,7 @@ const axios = require('../axios-instance');
 
 // for Breadboard for "Thermometer - TMP36"
 
-const temperatureRange = {min: 2, max: 24};
+const temperatureRange = {min: 2, max: 22};
 
 let obj = {};
 
