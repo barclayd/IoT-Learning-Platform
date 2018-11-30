@@ -1,20 +1,42 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
-// import {Provider} from 'react-redux';
+import {Switch, Route, withRouter, Redirect, Link} from 'react-router-dom';
 import UseCase from '../components/UseCase/UseCase';
 import UseCasesList from '../containers/UseCasesList/UseCasesList';
 import Auth from "../containers/Auth/Auth";
+import Logout from '../containers/Auth/Logout/Logout';
+import {connect} from 'react-redux';
 
 const AppRouter = (props) => {
+    let routes = (
+        <Switch>
+            <Route exact path="/" render={() => <p> Please <Link to='/login'>login</Link> to access the website</p>}/>
+            <Route exact path="/login" component={Auth}/>
+            <Route exact path="/logout" component={Logout}/>
+            <Route exact path="/" render={() => <p> Please <Link to='/login'>login</Link> to access the website</p>}/>
+        </Switch>
+    );
+
+    if(props.isAuthenticated || localStorage.getItem("email") !== null){
+        routes =
+            <Switch>
+                <Route exact path="/usecases" component={UseCasesList}/>
+                <Route exact path="/login" component={Auth}/>
+                <Route exact path='/logout' component={Logout} />
+                <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
+                <Redirect to='/usecases' component={UseCasesList}/>
+            </Switch>
+    }
+
     return (
         <React.Fragment>
-            <Switch>
-                <Route exact path="/" component={UseCasesList}/>
-                <Route exact path="/login" component={Auth}/>
-                <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
-            </Switch>
-
+            {routes}
         </React.Fragment>
 )};
 
-export default AppRouter;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+};
+
+export default withRouter(connect(mapStateToProps)(AppRouter));
