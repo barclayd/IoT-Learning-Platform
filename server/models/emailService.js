@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 const composeEmail = (subject, body) => {
     const mailOptions  = {
         from: 'IoT Team 1', // sender address
-        to: 'test.test@gmail.com', // list of receivers, put your email if you want to test it ;)
+        to: 'julaidan.faisal@gmail.com', // list of receivers, put your email if you want to test it ;)
         subject: subject, // Subject line
         html: body// plain text body
     };
