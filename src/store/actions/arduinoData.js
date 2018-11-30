@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 
 import {getArduinoData} from "../../shared/serverUtility/arduinoData";
+import {connectToArduino} from "../../shared/serverUtility/serverData";
+
 
 
 export const fetchArduinoDataSuccess = (data) => {
@@ -26,7 +28,7 @@ export const fetchArduinoDataStart = () => {
 export const fetchArduinoData = () => {
     return dispatch => {
         dispatch(fetchArduinoDataStart());
-        getArduinoData((data) => {
+        connectToArduino((data) => {
             if(!data.data || data.success === false) {
                 dispatch(fetchArduinoDataFailed());
             } else {
