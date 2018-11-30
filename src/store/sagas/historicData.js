@@ -6,7 +6,7 @@ import * as actions from '../actions/index';
 export function* fetchDataSaga(action) {
     yield put(actions.fetchDataStart());
     try {
-        const response = yield axios.get('/test.json');
+        const response = yield axios.get('/temp.json');
         const fetchedData = [];
         for (let key in response.data) {
             fetchedData.push({

@@ -18,7 +18,7 @@ class HistoricCharts extends Component {
         let datesRecorded = [];
         const compareData = {};
         for(let record in this.props.data) {
-            fridgeTemps.push(this.props.data[record].fridgeTemp);
+            fridgeTemps.push(this.props.data[record].data);
             datesRecorded.push((this.props.data[record].dateRecorded).slice(0, -5));
         }
 
@@ -108,17 +108,17 @@ class HistoricCharts extends Component {
                         position: 'bottom'
                     }
                 }}/>
-                <Pie
-                    data={chartData}
-                    width={200}
-                    height={200}
-                    aria-label={'Pie Chart'}
-                    options={{
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        }
-                    }}/>
+                {/*<Pie*/}
+                    {/*data={chartData}*/}
+                    {/*width={200}*/}
+                    {/*height={200}*/}
+                    {/*aria-label={'Pie Chart'}*/}
+                    {/*options={{*/}
+                        {/*legend: {*/}
+                            {/*display: true,*/}
+                            {/*position: 'bottom'*/}
+                        {/*}*/}
+                    {/*}}/>*/}
             </React.Fragment>
 
 
