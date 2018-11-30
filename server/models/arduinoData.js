@@ -27,7 +27,7 @@ const sendArduinoData = (client) => {
                 const temperature = new five.Thermometer({
                     controller: "TMP36",
                     pin: "A0",
-                    freq: 2000
+                    freq: 4000
                 });
                 temperature.on("data", function () {
                     // await console.log(temperature.celsius.toFixed(1) + "°C", temperature.fahrenheit + "°F");
