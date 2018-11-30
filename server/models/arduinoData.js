@@ -4,11 +4,12 @@ const {composeEmail} = require('./emailService');
 const axios = require('../axios-instance');
 
 
+
 // http://johnny-five.io/examples/temperature-tmp36/
 
 // for Breadboard for "Thermometer - TMP36"
 
-const temperatureRange = {min: 2, max: 25};
+const temperatureRange = {min: 2, max: 24};
 
 let obj = {};
 

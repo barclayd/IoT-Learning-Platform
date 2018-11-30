@@ -8,7 +8,7 @@ const Connections = (props) => {
        <div className={styles.Connections}>
        <h1>Connections</h1>
        <p>The breadboard for {props.useCaseData.arduinoName}</p>
-       <img alt="arduino" src={"/images/" + props.useCaseData.arduino} width="650px" aria-label={ props.useCaseData.arduino} />
+       <img className={styles.ArduinoImg} alt="arduino" src={"/images/" + props.useCaseData.arduino} width="650px" aria-label={ props.useCaseData.arduino} />
        <p>{props.useCaseData.arduinoDesc}</p>
        </div>
     );
