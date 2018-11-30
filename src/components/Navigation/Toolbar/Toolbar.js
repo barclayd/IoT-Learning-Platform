@@ -25,14 +25,15 @@ const Toolbar = (props) => {
      return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
  };
 
- const logout = <Link to='/logout'>logout?</Link>;
+    const login = <Link to='/logout'>Login</Link>;
+    const logout = <Link to='/logout'>logout?</Link>;
     return (
         <header className={styles.Header}>
             <nav className={styles.Nav}>
                 <Row type="flex" justify="start" align="middle">
                     <Col span={3}>
                         <div className={styles.Logo}>
-                            <Link to='/' aria-label={'Logo'}>LOGO</Link>
+                            <Link to='/' aria-label={'Logo'}><img alt='Logo' aria-label='Logo' src='/images/logo.png'/></Link>
                         </div>
                     </Col>
 
@@ -55,7 +56,7 @@ const Toolbar = (props) => {
                             </div>
                             <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <p aria-label={'username'} style={{fontStyle: 'italic'}}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : 'Login'}</p>
+                                <p aria-label={'username'} style={{fontStyle: 'italic'}}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</p>
                             </div>
                         </div>
                     </Col>

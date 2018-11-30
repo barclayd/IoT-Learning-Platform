@@ -29,7 +29,7 @@ class TemperatureData extends Component {
             <React.Fragment>
                 {this.props.tempData ? <h1>Live Data </h1> : null}
                 {temp}
-                <MockChart  temp={this.props.tempData} aria-label={'Mock data chart'}/>
+                <MockChart temp={this.props.tempData} aria-label={'Mock data chart'}/>
                 <HistoricTemperature />
             </React.Fragment>
         );
