@@ -8,10 +8,8 @@ import {Link, withRouter} from "react-router-dom";
 
 const Toolbar = (props) => {
     const userAuthenticatedCheck = () => {
-        console.log('This check was called');
         let path;
         path = localStorage.getItem("email") !== null ?  '/logout' : '/login';
-        console.log(path);
         props.history.push(path);
     };
 
@@ -56,7 +54,7 @@ const Toolbar = (props) => {
                             </div>
                             <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
                                 <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <p aria-label={'username'} style={{fontStyle: 'italic'}}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</p>
+                                <div className={styles.login} aria-label={'username'}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
                             </div>
                         </div>
                     </Col>

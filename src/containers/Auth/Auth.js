@@ -48,7 +48,6 @@ class Auth extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props.isAuthenticated);
         if(this.props.isAuthenticated || localStorage.getItem("email") !== null) {
             // this.props.onSetAuthRedirectPath('/');
             this.props.history.push('/');
@@ -119,8 +118,8 @@ class Auth extends Component {
                 type={this.state.controls.email.elementConfig.type}
                 size='large'
                 onChange={(e) => this.inputChangedHandler(e, 'email')}/>
-        };
-        console.log(this.state.communityName);
+        }
+
         let form = (
             <div style={{padding: '10px'}}>
                 {user}
@@ -160,7 +159,6 @@ class Auth extends Component {
         }
 
         let clickable;
-        console.log(this.state.community);
         if (this.state.community){
             clickable = (this.state.controls.password.value.length > 5 && this.state.communityName !== null);
         } else {
