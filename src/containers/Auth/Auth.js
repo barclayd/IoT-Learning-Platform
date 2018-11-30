@@ -3,7 +3,7 @@ import {updateObject} from "../../store/utility";
 import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {Redirect} from "react-router-dom";
-import {Input, Button, Checkbox, Select, Spin} from 'antd';
+import {Input, Button, Checkbox, Select, Spin, Alert} from 'antd';
 import * as actions from '../../store/actions/index';
 import * as classes from './Auth.module.css';
 const Option = Select.Option;
@@ -103,8 +103,15 @@ class Auth extends Component {
 
         if(this.state.community) {
             user = <Select allowClear={true} defaultValue='Newport' showSearch={true} onSelect={(value) => this.handleSelection(value)}>
+                <Option value='Aberdare'>Aberdare</Option>
                 <Option value='Newport'>Newport</Option>
                 <Option value='Rhonnda'>Rhonnda Cynon Taff</Option>
+                <Option value='Monmouth'>Monmouth</Option>
+                <Option value='Merthyr'>Merthyr Tydfil</Option>
+                <Option value='Cardiff'>Cardiff</Option>
+                <Option value='PortTalbot' disabled>Port Talbot</Option>
+                <Option value='ValeofGlamorgan' disabled>Vale of Glamorgan</Option>
+                <Option value='Swansea' disabled>Swansea</Option>
             </Select>
         } else {
             user =  <Input
@@ -140,11 +147,11 @@ class Auth extends Component {
 
         let errorMessage = null;
         if (this.props.error) {
-            errorMessage = (
-                <div className={classes.errorMessage}>
-                    <p>{errorMessageLookUp[this.props.error.message.toString()]}</p>
-                </div>
-            )
+            errorMessage = <Alert type='error' message='Login attempt unsuccessful' description={errorMessageLookUp[this.props.error.message.toString()]} showIcon />;
+                {/*<div className={classes.errorMessage}>*/}
+                    {/*<p>{errorMessageLookUp[this.props.error.message.toString()]}</p>*/}
+                {/*</div>*/}
+
         }
 
         let authRedirect = null;
@@ -164,15 +171,15 @@ class Auth extends Component {
         loading = this.props.loading ? <Spin size='large' /> :
             <form onSubmit={this.submitHandler} className={classes.Form}>
             {form}
-            <Button type='primary' htmlType='submit' disabled={!clickable} size='large'>SUBMIT</Button>
+                <Button type="primary" style={{marginTop: '15px'}} htmlType='submit' disabled={!clickable} size='large' aria-label={'Submit login form'}>SUBMIT</Button>
             </form>;
 
         return (
             <div className={classes.Auth}>
                 {authRedirect}
-                {errorMessage}
                 {this.state.isSignup ? <h2>SIGN UP</h2> : <h2>SIGN IN</h2>}
                 {communityLogin}
+                {errorMessage}
                 {loading}
                 <Button type='danger' onClick={this.switchAuthModeHandler} size='large'>{this.state.isSignup ? 'SWITCH TO SIGN-IN' : 'SWITCH TO SIGN-UP'}</Button>
             </div>
