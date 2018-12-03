@@ -17,9 +17,9 @@ class UseCase extends React.Component {
     render() {
         const useCases = this.props.useCases;
             let useCase;
-            for (let i = 0; i < useCases.length; i++) {
-                if (useCases[i].id === this.props.match.params.id) {
-                    useCase = useCases[i];
+            for (let i = 1; i < useCases.length; i++) {
+                if (useCases[(i-1)].id === this.props.match.params.id) {
+                    useCase = useCases[(i-1)];
                 }
             }
             console.log(useCase);
@@ -48,6 +48,10 @@ class UseCase extends React.Component {
                                     <Menu.Item key="historic-data">
                                         <Link to={this.props.match.url + "/historicData"}><span><Icon type="pie-chart"
                                                                                                       aria-label={'Link to Historic Data'}/><span>Historic Data</span></span></Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="settings">
+                                        <Link to={this.props.match.url + "/settings"}><span><Icon type="setting"
+                                                                                                      aria-label={'Link to Settings'}/><span>Settings</span></span></Link>
                                     </Menu.Item>
                                 </Menu>
                             </div>

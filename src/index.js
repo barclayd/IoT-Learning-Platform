@@ -9,7 +9,7 @@ import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import a11y from 'react-a11y';
-import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData, watchAuth, watchUseCaseDataFirebase} from "./store/sagas";
+import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
 import useCaseReducer from './store/reducers/useCaseData';
@@ -38,7 +38,7 @@ const rootReducer = combineReducers({
     arduinoData: arduinoDataReducer,
     auth: authReducer,
     useCaseFirebase: useCaseFirebaseReducer,
-    usersFirebase: usersFirebaseReducer
+    users: usersFirebaseReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -54,6 +54,7 @@ sagaMiddleware.run(watchUseCaseData);
 sagaMiddleware.run(watchArduinoData);
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchUseCaseDataFirebase);
+sagaMiddleware.run(watchUsersDataFirebase);
 
 
 const app = (

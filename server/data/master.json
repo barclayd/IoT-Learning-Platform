@@ -18,13 +18,15 @@
         "kwLX0IevWZMyQmhESLU4CMGj2gO2"
       ]
     },
-    "sensors": {
-      "temperature": {
-        "model": "TMP36",
-        "minValue": "2",
-        "maxValue": "25"
+    "sensors":
+    [
+      {
+        "sensorName": "temperature",
+        "sensorComponent": "TMP36",
+        "minValue": "18",
+        "maxValue": "23"
       }
-    },
+    ],
     "email": {
       "senders": "test.test@gmail.com",
       "subject": "Warning Email",
@@ -50,17 +52,19 @@
           "kwLX0IevWZMyQmhESLU4CMGj2gO2"
         ]
       },
-      "sensors": {
-        "temperature": {
-          "model": "TMP36",
-          "minValue": "2",
-          "maxValue": "25"
+      "sensors":
+      [
+        {
+          "sensorName": "motion",
+          "sensorComponent": "IRA-S230ST01",
+          "minValue": "40",
+          "maxValue": "80"
         }
-      },
+      ],
       "email": {
         "senders": "test.test@gmail.com",
-        "subject": "Warning Email",
-        "body": "Fridge has reached a critical level"
+        "subject": "MAYDAY",
+        "body": "A slip in the bath has been detected. Please act urgently. Call 999"
       }
     },
     {
@@ -82,17 +86,19 @@
           "l5AExuLCwlOwevsTCBI8f27q3Vt1"
         ]
       },
-      "sensors": {
-        "temperature": {
-          "model": "",
-          "minValue": "2",
-          "maxValue": "25"
-        }
-      },
+      "sensors":
+        [
+          {
+            "sensorName": "Turbidity Sensor",
+            "sensorComponent": "SEN0189",
+            "minValue": "40",
+            "maxValue": "80"
+          }
+        ],
       "email": {
         "senders": "test.test@gmail.com",
-        "subject": "Warning Email",
-        "body": "Fridge has reached a critical level"
+        "subject": "DANGER!",
+        "body": "Water is contaminated and is no longer safe"
       }
     }
   ],
