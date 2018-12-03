@@ -11,7 +11,7 @@ class UseCasesList extends Component {
 
     componentDidMount() {
         document.title = 'Use Cases';
-        this.props.onFetchUseCase();
+        this.props.onFetchUseCaseData();
     }
 
     render() {
@@ -40,15 +40,15 @@ class UseCasesList extends Component {
 
 const mapStateToProps = state => {
     return {
-        useCases: state.useCaseData.useCases,
-        error: state.useCaseData.error,
-        loading: state.useCaseData.loading
+        useCases: state.useCaseFirebase.data,
+        error: state.useCaseFirebase.error,
+        loading: state.useCaseFirebase.loading
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUseCase: () => dispatch(actions.fetchUseCase())
+        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData())
     }
 };
 
