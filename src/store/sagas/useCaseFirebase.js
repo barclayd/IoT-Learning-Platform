@@ -14,8 +14,8 @@ export function* fetchUseCaseDataSaga(action) {
                 id: key
             });
         }
-        yield put(actions.fetchUseCaseSuccess(fetchedData));
+        yield put(actions.fetchUseCaseDataSuccess(fetchedData));
     } catch (error) {
-        yield put(actions.fetchUseCaseFailed(error));
+        yield put(actions.fetchUseCaseDataFailed(error));
     }
 }

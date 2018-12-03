@@ -15,7 +15,7 @@ export {
 } from './arduinoData'
 
 export {
-    auth, logout, setAuthRedirectPath, authCheckState, logoutSucceed, authStart, authSuccess, authFail, checkAuthTimeout
+    auth, logout, setAuthRedirectPath, authCheckState, logoutSucceed, authStart, authSuccess, authFail, checkAuthTimeout, checkAuthRole
 } from './auth'
 
 export {

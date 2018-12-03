@@ -1,6 +1,6 @@
 import { delay } from "redux-saga";
 import { put, call } from "redux-saga/effects";
-import axios from "axios";
+import axios from "../../shared/axios-instance";
 
 import * as actions from "../actions/index";
 
@@ -10,6 +10,7 @@ export function* logoutSaga(action) {
     yield call([localStorage, 'removeItem'],'expirationDate');
     yield call([localStorage, 'removeItem'],'userId');
     yield call([localStorage, 'removeItem'],'email');
+    yield call([localStorage, 'removeItem'],'role');
     yield put(actions.logoutSucceed());
 }
 
@@ -47,6 +48,27 @@ export function* authUserSaga(action) {
         yield put(actions.checkAuthTimeout(response.data.expiresIn));
     } catch (error) {
         yield put(actions.authFail(error.response.data.error));
+    }
+
+    // get user role
+    try {
+        const response = yield axios.get('/users.json');
+        const fetchedData = [];
+        let role;
+        for (let key in response.data) {
+            fetchedData.push({
+                ...response.data[key],
+                id: key
+            });
+            if(fetchedData[key].userUUID === localStorage.getItem("userId")) {
+                role = fetchedData[key].role;
+                yield localStorage.setItem("role", role);
+            }
+        }
+        yield put(actions.checkAuthRole(role));
+    } catch (error) {
+        // yield put(actions.fetchUseCaseFailed(error));
+        console.log(error);
     }
 }
 

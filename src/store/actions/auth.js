@@ -41,6 +41,14 @@ export const checkAuthTimeout = expirationTime => {
     };
 };
 
+export const checkAuthRole = role => {
+    return {
+        type: actionTypes.AUTH_ROLE,
+        role: role
+    };
+};
+
+
 export const auth = (email, password, isSignup) => {
     return {
         type: actionTypes.AUTH_USER,
