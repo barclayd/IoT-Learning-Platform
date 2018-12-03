@@ -17,19 +17,33 @@ class UseCasesList extends Component {
     render() {
 
         console.log(this.props.useCases);
+        let useCases = this.props.useCases.map((useCase, index) => {
+                    if(useCase.access.listedUsers.includes(localStorage.getItem("userId"))) {
+                        return <Col key={index} span={8} >
+                            <Link to={"/usecases/" + (index +1)}>
+                                <UseCaseCard isLoading={this.props.loading} {...useCase} aria-label={'Use case cards list'}/>
+                            </Link>
+                        </Col>
+                    } else {
+                        return null
+                    }
+            }
+        );
+
+        console.log(useCases);
+
+        function arrayIsEmpty(currentArray) {
+            return currentArray === null;
+        }
+
+        const printedUseCases = (useCases.every(arrayIsEmpty)) ? <p>No use cases are currently linked to your account. Please contact your trainer.</p> : useCases;
+
+
 
         return (
             <div className={styles.UseCasesList} aria-label={`Select a use case`}>
                 <Row gutter={16}>
-                   {
-                    this.props.useCases.map((useCase, index) =>
-                        <Col key={index} span={8} >
-                        <Link to={"/usecases/" + (index +1)}>
-                            <UseCaseCard isLoading={this.props.loading} {...useCase} aria-label={'Use case cards list'}/>
-                        </Link>
-                        </Col>
-                    )
-                   }
+                    {printedUseCases}
                 </Row>
             </div>
 
@@ -42,7 +56,8 @@ const mapStateToProps = state => {
     return {
         useCases: state.useCaseFirebase.data,
         error: state.useCaseFirebase.error,
-        loading: state.useCaseFirebase.loading
+        loading: state.useCaseFirebase.loading,
+        userId: state.auth.userId
     }
 };
 
