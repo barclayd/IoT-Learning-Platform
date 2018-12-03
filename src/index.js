@@ -15,6 +15,8 @@ import liveDataReducer from './store/reducers/liveData';
 import useCaseReducer from './store/reducers/useCaseData';
 import authReducer from './store/reducers/auth';
 import useCaseFirebaseReducer from './store/reducers/useCaseFirebase';
+import usersFirebaseReducer from './store/reducers/usersFirebase';
+
 import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
@@ -35,7 +37,8 @@ const rootReducer = combineReducers({
     useCaseData: useCaseReducer,
     arduinoData: arduinoDataReducer,
     auth: authReducer,
-    useCaseFirebase: useCaseFirebaseReducer
+    useCaseFirebase: useCaseFirebaseReducer,
+    usersFirebase: usersFirebaseReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();

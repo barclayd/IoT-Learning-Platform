@@ -21,3 +21,7 @@ export {
 export {
     fetchUseCaseData, fetchUseCaseDataFailed, fetchUseCaseDataStart, fetchUseCaseDataSuccess
 } from './useCaseFirebase'
+
+export {
+    fetchUsersData, fetchUsersDataFailed, fetchUsersDataStart, fetchUsersDataSuccess
+} from './usersFirebase'

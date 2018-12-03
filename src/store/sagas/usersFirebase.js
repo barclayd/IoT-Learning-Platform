@@ -3,10 +3,10 @@ import axios from '../../shared/axios-instance';
 
 import * as actions from '../actions/index';
 
-export function* fetchUseCaseDataSaga(action) {
-    yield put(actions.fetchUseCaseDataStart());
+export function* fetchUsersDataSaga(action) {
+    yield put(actions.fetchUsersDataStart);
     try {
-        const response = yield axios.get('/useCases.json');
+        const response = yield axios.get('/users.json');
         const fetchedData = [];
         for (let key in response.data) {
             fetchedData.push({
@@ -14,8 +14,8 @@ export function* fetchUseCaseDataSaga(action) {
                 id: key
             });
         }
-        yield put(actions.fetchUseCaseSuccess(fetchedData));
+        yield put(actions.fetchUsersDataSuccess(fetchedData));
     } catch (error) {
-        yield put(actions.fetchUseCaseFailed(error));
+        yield put(actions.fetchUsersDataFailed(error));
     }
 }
