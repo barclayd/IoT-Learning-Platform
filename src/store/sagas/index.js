@@ -4,6 +4,7 @@ import {fetchDataSaga} from './historicData';
 import {fetchLiveDataSaga} from './liveData';
 import {fetchUseCaseSaga} from "./useCaseData";
 import {fetchArduinoDataSaga} from './arduinoData';
+import {fetchUseCaseDataSaga} from './useCaseFirebase'
 import {checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, logoutSaga} from './auth';
 
 export function* watchAuth() {
@@ -17,7 +18,7 @@ export function* watchAuth() {
 }
 
 export function* watchHistoricData() {
-    yield takeEvery(actionTypes.INIT_FETCH_DATA, fetchDataSaga);
+    yield takeEvery(actionTypes.INIT_FETCH_HISTORIC_DATA, fetchDataSaga);
 }
 
 export function* watchLiveData() {
@@ -30,4 +31,8 @@ export function* watchUseCaseData() {
 
 export function* watchArduinoData() {
     yield takeEvery(actionTypes.INIT_FETCH_ARDUINO_DATA, fetchArduinoDataSaga);
+}
+
+export function* watchUseCaseDataFirebase() {
+    yield takeEvery(actionTypes.INIT_FETCH_USECASE_DATA, fetchUseCaseDataSaga);
 }
