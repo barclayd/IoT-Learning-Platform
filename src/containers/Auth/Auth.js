@@ -3,7 +3,7 @@ import {updateObject} from "../../store/utility";
 import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {Redirect} from "react-router-dom";
-import {Input, Button, Checkbox, Select, Spin, Alert} from 'antd';
+import {Input, Button, Checkbox, Select, Spin, Alert, Icon} from 'antd';
 import * as actions from '../../store/actions/index';
 import * as classes from './Auth.module.css';
 const Option = Select.Option;
@@ -116,6 +116,7 @@ class Auth extends Component {
             user =  <Input
                 placeholder={this.state.controls.email.elementConfig.placeholder}
                 type={this.state.controls.email.elementConfig.type}
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 size='large'
                 onChange={(e) => this.inputChangedHandler(e, 'email')}/>
         }
@@ -127,6 +128,7 @@ class Auth extends Component {
                 placeholder={this.state.controls.password.elementConfig.placeholder}
                 type={this.state.controls.password.elementConfig.type}
                 size='large'
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 onChange={(e) => this.inputChangedHandler(e, 'password')}/>
             </div>
         );
@@ -179,6 +181,9 @@ class Auth extends Component {
                 {communityLogin}
                 {errorMessage}
                 {loading}
+                <br />
+                <a className="login-form-forgot" href="">Forgot password</a>
+                <br />
                 <Button type='danger' onClick={this.switchAuthModeHandler} size='large'>{this.state.isSignup ? 'SWITCH TO SIGN-IN' : 'SWITCH TO SIGN-UP'}</Button>
             </div>
         )
