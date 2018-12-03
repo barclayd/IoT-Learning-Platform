@@ -1,0 +1,180 @@
+{
+  "useCases": [{
+    "name": "NHS Fridge Temperature",
+    "key": "nhsfridgetemp",
+    "id": "1",
+    "shortDesc": "Check the live temperature of fridges in University Hospital, Cardiff",
+    "longDesc": "If you leave the fridge door open, heat is merely recycled from the room into the refrigerator, then back into the room. A net room temperature increase would result from the heat of the motor that would be constantly running to move energy around in a circle. This makes precious, double-blind research drugs at great risk of becoming spoilt and along with other medical equipment, all of which are vitally important for application to patients within hospitals whose lives depend on the application of working drugs and medicines.",
+    "image": "nhsfridge.jpg",
+    "imageDesc": "A fridge image",
+    "arduino": "tmp36.jpg",
+    "arduinoName": "LM35",
+    "arduinoDesc": "The LM35 series are precision integrated-circuit temperature devices with an output voltage linearly-proportional to the Centigrade temperature. The LM35 device has an advantage over linear temperature sensors calibrated in Kelvin, as the user is not required to subtract a large constant voltage from the output to obtain convenient Centigrade scaling. The LM35 device does not require any external calibration or trimming to provide typical accuracies of ±¼°C at room temperature and ±¾°C over a full −55°C to 150°C temperature range.",
+    "access": {
+      "student": true,
+      "trainer": true,
+      "community": false,
+      "listedUsers": [
+        "kwLX0IevWZMyQmhESLU4CMGj2gO2"
+      ]
+    },
+    "sensors": {
+      "temperature": {
+        "model": "TMP36",
+        "minValue": "2",
+        "maxValue": "25"
+      }
+    },
+    "email": {
+      "senders": "test.test@gmail.com",
+      "subject": "Warning Email",
+      "body": "Fridge has reached a critical level"
+    }
+  },
+    {
+      "name": "Bath Motion Sensor",
+      "key": "bathmotion",
+      "id": "2",
+      "shortDesc": "Detect if you slip under the water when in the bath",
+      "longDesc": "Problem: Proprioception. Autism can mess with your sense of balance and your ability to feel what your body is doing. If you aren’t sure of your balance, standing in a slippery tub is scary.",
+      "image": "bathmotion.jpg",
+      "imageDesc": "A fridge image",
+      "arduino": "motionsensor.png",
+      "arduinoName": "Motion Sensor",
+      "arduinoDesc": "Then connect the arduino to your PC/laptop",
+      "access": {
+        "student": false,
+        "trainer": true,
+        "community": false,
+        "listedUsers": [
+          "kwLX0IevWZMyQmhESLU4CMGj2gO2"
+        ]
+      },
+      "sensors": {
+        "temperature": {
+          "model": "TMP36",
+          "minValue": "2",
+          "maxValue": "25"
+        }
+      },
+      "email": {
+        "senders": "test.test@gmail.com",
+        "subject": "Warning Email",
+        "body": "Fridge has reached a critical level"
+      }
+    },
+    {
+      "name": "Water Composition",
+      "key": "watercomposition",
+      "id": "3",
+      "shortDesc": "Check for contamination in the River Cynon by analysing composition of the chemicals in the water",
+      "longDesc": "Water pollution is the contamination of water bodies, usually as a result of human activities. Water bodies include for example lakes, rivers, oceans, aquifers and groundwater. Water pollution results when contaminants are introduced into the natural environment.",
+      "image": "watercomposition.jpg",
+      "imageDesc": "A fridge image",
+      "arduino": "tmp36.jpg",
+      "arduinoName": "TMP36",
+      "arduinoDesc": "Then connect the arduino to your PC/laptop",
+      "access": {
+        "student": false,
+        "trainer": false,
+        "community": true,
+        "listedUsers": [
+          "l5AExuLCwlOwevsTCBI8f27q3Vt1"
+        ]
+      },
+      "sensors": {
+        "temperature": {
+          "model": "",
+          "minValue": "2",
+          "maxValue": "25"
+        }
+      },
+      "email": {
+        "senders": "test.test@gmail.com",
+        "subject": "Warning Email",
+        "body": "Fridge has reached a critical level"
+      }
+    }
+  ],
+  "users": [{
+    "name": "Peter Trott",
+    "email": "t@t.com",
+    "userUUID": "kwLX0IevWZMyQmhESLU4CMGj2gO2",
+    "accountCreatedDate": "28th November 2018",
+    "profileImage": "kwLX0IevWZMyQmhESLU4CMGj2gO2.jpg",
+    "roles": {
+      "apprentice": false,
+      "trainer": true,
+      "community": false
+    }
+  },
+    {
+      "name": "Newport Community",
+      "email": "newport@gov.uk",
+      "userUUID": "l5AExuLCwlOwevsTCBI8f27q3Vt1",
+      "accountCreatedDate": "29th November 2018",
+      "profileImage": "l5AExuLCwlOwevsTCBI8f27q3Vt1.jpg",
+      "roles": {
+        "apprentice": false,
+        "trainer": false,
+        "community": true
+      }
+    },
+    {
+      "name": "Rhonnda Community",
+      "email": "rhonnda@gov.uk",
+      "userUUID": "qB0dbGthCDZwRhcNVRdAnslEXES2",
+      "accountCreatedDate": "29th November 2018",
+      "profileImage": "qB0dbGthCDZwRhcNVRdAnslEXES2.jpg",
+      "roles": {
+        "apprentice": false,
+        "trainer": false,
+        "community": true
+      }
+    }
+  ],
+  "temp": {
+    "-LSZrxLH_ixiD0ykHAsA": {
+      "data": 21,
+      "dateRecorded": "November 30th 2018",
+      "message": "temp data is here!",
+      "success": true,
+      "timeRecorded": "1:47:29 PM"
+    },
+    "-LSZryJrWy9Pe4KAMMG9": {
+      "data": 21,
+      "dateRecorded": "November 30th 2018",
+      "message": "temp data is here!",
+      "success": true,
+      "timeRecorded": "1:47:33 PM"
+    },
+    "-LSZrzIN8ojC7T-WPE_V": {
+      "data": 21,
+      "dateRecorded": "November 30th 2018",
+      "message": "temp data is here!",
+      "success": true,
+      "timeRecorded": "1:47:37 PM"
+    },
+    "-LSZs-H2mmQsInnKW2rl": {
+      "data": 21,
+      "dateRecorded": "November 30th 2018",
+      "message": "temp data is here!",
+      "success": true,
+      "timeRecorded": "1:47:41 PM"
+    },
+    "-LSZs0FWpR24G_4om4R4": {
+      "data": 21,
+      "dateRecorded": "November 30th 2018",
+      "message": "temp data is here!",
+      "success": true,
+      "timeRecorded": "1:47:45 PM"
+    },
+    "-LSZs1E9EijzNqaNwweo": {
+      "data": 21,
+      "dateRecorded": "November 30th 2018",
+      "message": "temp data is here!",
+      "success": true,
+      "timeRecorded": "1:47:49 PM"
+    }
+  }
+}
