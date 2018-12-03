@@ -18,6 +18,7 @@ class UseCasesList extends Component {
 
         console.log(this.props.useCases);
         let useCases = this.props.useCases.map((useCase, index) => {
+                    console.log(useCase.access.listedUsers);
                     if(useCase.access.listedUsers.includes(localStorage.getItem("userId"))) {
                         return <Col key={index} span={8} >
                             <Link to={"/usecases/" + (index +1)}>
@@ -30,11 +31,7 @@ class UseCasesList extends Component {
             }
         );
 
-        console.log(useCases);
-
-        function arrayIsEmpty(currentArray) {
-            return currentArray === null;
-        }
+        const arrayIsEmpty = currentArray => currentArray === null;
 
         const printedUseCases = (useCases.every(arrayIsEmpty)) ? <p>No use cases are currently linked to your account. Please contact your trainer.</p> : useCases;
 

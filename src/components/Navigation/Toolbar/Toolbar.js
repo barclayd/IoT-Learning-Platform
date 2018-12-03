@@ -25,6 +25,9 @@ const Toolbar = (props) => {
 
     const login = <Link to='/logout'>Login</Link>;
     const logout = <Link to='/logout'>logout?</Link>;
+
+    const admin = (localStorage.getItem('role') === 'Trainer' || props.role === 'Trainer')  ? <li  aria-label={'Link to Admin Area'}><a style={{color:'red'}} href='/admin-area'>Admin Area</a></li> : null;
+
     return (
         <header className={styles.Header}>
             <nav className={styles.Nav}>
@@ -43,7 +46,7 @@ const Toolbar = (props) => {
                                 <li aria-label={'Link to User Cases'}><Link to='/usecases'>Usecases</Link></li>
                                 <li aria-label={'Link to Documentation'}><Link to='/documentation'>Documentation</Link></li>
                                 <li aria-label={'Link to About'}><a href='/'>About</a></li>
-                                <li  aria-label={'Link to Admin Area'}><a style={{color:'red'}} href='/admin-area'>Admin Area</a></li>
+                                {admin}
                             </ul>
                         </div>
                     </Col>
@@ -69,7 +72,8 @@ const Toolbar = (props) => {
 
 const mapStateToProps = state => {
     return {
-        email: state.auth.email
+        email: state.auth.email,
+        role: state.auth.role
     }
 };
 
