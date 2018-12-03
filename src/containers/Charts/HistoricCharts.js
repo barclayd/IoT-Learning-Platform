@@ -72,6 +72,7 @@ class HistoricCharts extends Component {
             labels: datesRecorded,
             datasets: [
                 {
+                    // arr.slice(Math.max(arr.length - 5, 1))
                     label: 'Fridge Temperature',
                     data: fridgeTemps,
                     backgroundColor: '#2C7873'

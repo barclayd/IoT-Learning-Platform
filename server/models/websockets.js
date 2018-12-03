@@ -26,7 +26,7 @@ const initWebsocket = () => {
         // });
 
     });
-}
+};
 
 
 const sendDataUsingWebsockets = () => {
@@ -52,5 +52,5 @@ const sendDataUsingWebsockets = () => {
 module.exports = {
     initWebsocket,
     sendDataUsingWebsockets
-    
+
 };

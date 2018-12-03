@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { Alert } from 'antd';
+import { Alert, InputNumber} from 'antd';
 import TempChart from '../Charts/TempChart';
 import styles from './TemperatureData.module.scss'
 
 import { Button, notification, Spin} from 'antd';
+import {updateObject} from "../../store/utility";
 
 
 class TemperatureData extends Component {
 
+    state = {
+        minValue: 20,
+        maxValue: 30
+    };
 
     componentDidMount() {
         document.title = 'Live Data Charts';
@@ -35,9 +40,21 @@ class TemperatureData extends Component {
         this.props.onFetchArduinoData()
     };
 
+    inputMinChangedHandler = (event, name) => {
+        console.log(name);
+        this.setState({
+            minValue: event
+        });
+    };
+
+    inputMaxChangedHandler = (event) => {
+        this.setState({
+            maxValue: event
+        });
+    };
 
     render() {
-        console.log(this.props.data);
+        console.log(this.state.minValue, this.state.maxValue);
         let temp;
         if(this.props.data) {
             // console.log(this.props.tempData);
@@ -62,12 +79,15 @@ class TemperatureData extends Component {
                 );
         }
 
+        let customMinTemp = <InputNumber name='minValue' min={0} max={30} step={0.5} value={this.state.minValue} onChange={(e) => this.inputMinChangedHandler(e, this.name)} />;
+        let customMaxTemp = <InputNumber name='maxValue' min={0} max={30} step={0.5} value={this.state.maxValue} onChange={(e) => this.inputMaxChangedHandler(e)} />;
 
         return (
             <React.Fragment>
 
                 {this.props.data ? <h1>Live Readings</h1> : null}
-
+                {customMinTemp}
+                {customMaxTemp}
                 {/*{temp}*/}
                 {returnObject}
             </React.Fragment>
