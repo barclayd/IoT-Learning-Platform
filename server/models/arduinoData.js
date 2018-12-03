@@ -23,7 +23,7 @@ const sendArduinoData = (client) => {
             console.log("Arduino Connected!");
 
             board.on("ready", function() {
-            
+
                 const temperature = new five.Thermometer({
                     controller: "TMP36",
                     pin: "A0",
@@ -38,11 +38,9 @@ const sendArduinoData = (client) => {
                             timeRecorded: dateformat(new Date(), "h:MM:ss TT"),
                             dateRecorded: dateRecorded
                         };
-                    console.log(obj)
+                    console.log(obj);
                     client.emit('arduinoData', (obj));
-        
-        
-                   
+
                     axios.post('/temp.json', obj)
                         .then(response => {
                             console.log(`Sensor data successfully sent to Firebase at ${dateRecorded}`);
@@ -56,15 +54,15 @@ const sendArduinoData = (client) => {
                 });
             });
         });
-    
-       
-    
+
+
+
         board.on("fail", function(event) {
                 console.log("Fail message: %s", event.message);
                 obj = {success: false, message: event.message, data: null};
                 client.emit('arduinoData', (obj));
         });
-    
+
         board.on("exit", function() {
             console.log("Exit board");
         });
@@ -74,7 +72,7 @@ const sendArduinoData = (client) => {
         obj = {success: false, message: "No connected device found", data: null};
         client.emit('arduinoData', (obj));
     }
-    
+
 };
 
 

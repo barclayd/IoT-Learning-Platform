@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Peter Trott",
+    "email": "t@t.com",
+    "userUUID": "kwLX0IevWZMyQmhESLU4CMGj2gO2",
+    "accountCreatedDate": "28th November 2018",
+    "profileImage": "kwLX0IevWZMyQmhESLU4CMGj2gO2.jpg",
+    "roles": {
+      "apprentice": false,
+      "trainer": true,
+      "community": false
+    }
+  },
+  {
+    "name": "Newport Community",
+    "email": "newport@gov.uk",
+    "userUUID": "l5AExuLCwlOwevsTCBI8f27q3Vt1",
+    "accountCreatedDate": "29th November 2018",
+    "profileImage": "l5AExuLCwlOwevsTCBI8f27q3Vt1.jpg",
+    "roles": {
+      "apprentice": false,
+      "trainer": false,
+      "community": true
+    }
+  },
+  {
+    "name": "Rhonnda Community",
+    "email": "rhonnda@gov.uk",
+    "userUUID": "qB0dbGthCDZwRhcNVRdAnslEXES2",
+    "accountCreatedDate": "29th November 2018",
+    "profileImage": "qB0dbGthCDZwRhcNVRdAnslEXES2.jpg",
+    "roles": {
+      "apprentice": false,
+      "trainer": false,
+      "community": true
+    }
+  }
+]
