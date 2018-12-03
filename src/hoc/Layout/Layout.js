@@ -10,7 +10,6 @@ const layout = (props) => {
             <Toolbar/>
             <Model>
                 <AppRouter/>
-                {/*<UseCase/>*/}
             </Model>
         </React.Fragment>
     );

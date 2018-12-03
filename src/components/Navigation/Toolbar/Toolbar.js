@@ -43,6 +43,7 @@ const Toolbar = (props) => {
                                 <li aria-label={'Link to User Cases'}><Link to='/usecases'>Usecases</Link></li>
                                 <li aria-label={'Link to Documentation'}><Link to='/documentation'>Documentation</Link></li>
                                 <li aria-label={'Link to About'}><a href='/'>About</a></li>
+                                <li  aria-label={'Link to Admin Area'}><a style={{color:'red'}} href='/admin-area'>Admin Area</a></li>
                             </ul>
                         </div>
                     </Col>
