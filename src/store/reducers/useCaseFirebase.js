@@ -25,6 +25,7 @@ const dataFetchFailed = (state, action) => {
 
 const dataUpdateSuccess = (state, action) => {
     return updateObject(state, {
+        data: action.data,
         loading: false,
         error: false
     })
