@@ -20,6 +20,16 @@ export function* fetchUseCaseDataSaga(action) {
     }
 }
 
+export function* submitSettingsSaga(action) {
+    yield put(actions.submitSettingsStart());
+    try {
+        const response = yield axios.patch(`/useCases/${action.useCaseId}.json`, action.data);
+        yield put(actions.submitSettingsSuccess(response.data.name, action.data))
+    } catch (error) {
+        yield put(actions.submitSettingsFail(error))
+    }
+}
+
 
 export function* updateUseCaseSaga (action) {
     yield put(actions.updateUseCaseDataStart());

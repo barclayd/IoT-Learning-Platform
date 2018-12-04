@@ -1,10 +1,10 @@
-import {takeEvery, all} from 'redux-saga/effects';
+import {takeEvery, all, takeLatest} from 'redux-saga/effects';
 import * as actionTypes from '../actions/actionTypes';
 import {fetchDataSaga} from './historicData';
 import {fetchLiveDataSaga} from './liveData';
 import {fetchUseCaseSaga} from "./useCaseData";
 import {fetchArduinoDataSaga} from './arduinoData';
-import {fetchUseCaseDataSaga, updateUseCaseSaga} from './useCaseFirebase'
+import {fetchUseCaseDataSaga, updateUseCaseSaga, submitSettingsSaga} from './useCaseFirebase'
 import {fetchUsersDataSaga} from './usersFirebase';
 
 import {checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, logoutSaga} from './auth';
@@ -37,6 +37,7 @@ export function* watchArduinoData() {
 
 export function* watchUseCaseDataFirebase() {
     yield takeEvery(actionTypes.INIT_FETCH_USECASE_DATA, fetchUseCaseDataSaga);
+    yield takeLatest(actionTypes.INIT_SUBMIT_SETTINGS, submitSettingsSaga);
 }
 
 export function* watchUsersDataFirebase() {

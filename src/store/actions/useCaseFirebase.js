@@ -26,6 +26,40 @@ export const fetchUseCaseData = () => {
     }
 };
 
+export const submitSettingsSuccess = (data) => {
+    return {
+        type: actionTypes.SUBMIT_SETTINGS_SUCCESS,
+        data: data
+    };
+};
+
+export const submitSettingsFail = (error) => {
+    return {
+        type: actionTypes.SUBMIT_SETTINGS_FAIL,
+        error: error
+    };
+};
+
+export const submitSettingsStart = () => {
+    return {
+        type: actionTypes.SUBMIT_SETTINGS_START
+    }
+};
+
+export const submitSettingsInit = () => {
+    return {
+        type: actionTypes.SUBMIT_SETTINGS_INIT
+    }
+};
+
+export const submitSettings = (useCaseId, data) => {
+    return {
+        type: actionTypes.INIT_SUBMIT_SETTINGS,
+        data: data,
+        useCaseId: useCaseId
+    }
+};
+
 
 export const updateUseCaseDataSuccess = (data) => {
     return {

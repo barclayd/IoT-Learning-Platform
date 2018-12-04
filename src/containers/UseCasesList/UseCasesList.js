@@ -18,15 +18,18 @@ class UseCasesList extends Component {
 
         console.log(this.props.useCases);
         let useCases = this.props.useCases.map((useCase, index) => {
-                    console.log(useCase.access.listedUsers);
-                    if(useCase.access.listedUsers.includes(localStorage.getItem("userId")) || useCase.access.listedUsers.includes(this.props.userId)) {
-                        return <Col key={index} span={8} >
-                            <Link to={"/usecases/" + (index)}>
-                                <UseCaseCard isLoading={this.props.loading} {...useCase} aria-label={'Use case cards list'}/>
-                            </Link>
-                        </Col>
-                    } else {
-                        return null
+                    // console.log(useCase.access.listedUsers);
+                    // console.log(useCase);
+                    if(useCase.access.listedUsers !== null) {
+                        if(useCase.access.listedUsers.includes(localStorage.getItem("userId")) || (useCase.access.listedUsers.includes(this.props.userId))) {
+                            return <Col key={index} span={8} >
+                                <Link to={"/usecases/" + (index)}>
+                                    <UseCaseCard isLoading={this.props.loading} {...useCase} aria-label={'Use case cards list'}/>
+                                </Link>
+                            </Col>
+                        } else {
+                            return null
+                        }
                     }
             }
         );
