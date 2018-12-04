@@ -13,7 +13,7 @@ class TemperatureData extends Component {
 
     state = {
         minValue: 20,
-        maxValue: 30
+        maxValue: 25
     };
 
     componentDidMount() {

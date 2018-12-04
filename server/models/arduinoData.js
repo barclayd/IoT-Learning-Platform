@@ -3,8 +3,6 @@ const dateformat = require('dateformat');
 const {composeEmail} = require('./emailService');
 const axios = require('../axios-instance');
 
-
-
 // http://johnny-five.io/examples/temperature-tmp36/
 
 // for Breadboard for "Thermometer - TMP36"
@@ -25,7 +23,7 @@ const sendArduinoData = (client) => {
             board.on("ready", function() {
 
                 const temperature = new five.Thermometer({
-                    controller: "TMP36",
+                    controller: "LM35", //LM35 or TMP36
                     pin: "A0",
                     freq: 4000
                 });
@@ -38,7 +36,7 @@ const sendArduinoData = (client) => {
                             timeRecorded: dateformat(new Date(), "h:MM:ss TT"),
                             dateRecorded: dateRecorded
                         };
-                    console.log(obj);
+                    // console.log(obj);
                     client.emit('arduinoData', (obj));
 
                     axios.post('/temp.json', obj)
@@ -49,6 +47,7 @@ const sendArduinoData = (client) => {
                             console.log('An error occurred');
                         });
                     if (this.celsius < temperatureRange.min || this.celsius > temperatureRange.max) {
+                        console.log("email sent")
                         composeEmail("Warning Email", `<p>Fridge has reached a critical level ${this.celsius}</p>`)
                     }
                 });
