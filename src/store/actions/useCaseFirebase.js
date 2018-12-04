@@ -27,9 +27,10 @@ export const fetchUseCaseData = () => {
 };
 
 
-export const updateUseCaseDataSuccess = () => {
+export const updateUseCaseDataSuccess = (data) => {
     return {
         type: actionTypes.UPDATE_USECASE_SUCCESS,
+        data
     };
 };
 

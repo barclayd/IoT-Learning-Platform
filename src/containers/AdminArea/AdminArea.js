@@ -11,7 +11,7 @@ const Option = Select.Option;
 class AdminArea extends Component {
 
    state = {
-       useCases: []
+       useCases: null
    }
 
     componentDidMount() {
@@ -46,12 +46,15 @@ class AdminArea extends Component {
     render() {
 
         
-        const {useCases, users} = this.props;
-
-        return (
-            <div className={styles.AdminArea}>
-                <h2>Use Cases Permitted Users</h2>
-                {useCases.map((useCase, index) => {
+        const {useCases} = this.state
+        let content = (<div> No Use Cases</div>);
+        console.log(useCases);
+        if (useCases){
+            content = 
+            (
+                <div>
+                {Object.keys(useCases).map((useCaseKey, index) => {
+                    const useCase = useCases[useCaseKey];
                     const useCaseUsersIDs = this.getUseCaseUsers(useCase).map(user => user.userUUID)
                     return (
                     <div className={styles.UseCase} key={index}>
@@ -60,10 +63,10 @@ class AdminArea extends Component {
                             mode="multiple"
                             style={{ width: '100%' }}
                             placeholder="Please select"
-                            defaultValue={useCaseUsersIDs}
+                            value={useCaseUsersIDs}
                             onChange={(value) => this.handleUserSelected(useCase, value)}
                         >
-                            {users.map((user, index) => {
+                            {this.props.users.map((user, index) => {
                                 return (<Option value={user.userUUID} key={index}>{user.email}</Option>)
                             })}
                         </Select>
@@ -71,7 +74,15 @@ class AdminArea extends Component {
                 })}
                 <Button className={styles.saveBtn} onClick={this.handleUseCasesSave}type="primary" loading={this.props.useCasesLoading}>
                     Save
-              </Button>
+                </Button>
+                </div>
+            )
+           
+        }
+        return (
+            <div className={styles.AdminArea}>
+                <h2>Use Cases Permitted Users</h2>
+                {content}
             </div>
 
         )

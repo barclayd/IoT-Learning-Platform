@@ -24,9 +24,8 @@ export function* fetchUseCaseDataSaga(action) {
 export function* updateUseCaseSaga (action) {
     yield put(actions.updateUseCaseDataStart());
     try {
-        console.log(action.data);
         const response = yield axios.put('/useCases.json', action.data);
-        yield put(actions.updateUseCaseDataSuccess())
+        yield put(actions.updateUseCaseDataSuccess(response.data))
     } catch (error){
         yield put(actions.updateUseCaseDataFailed(error));
     }
