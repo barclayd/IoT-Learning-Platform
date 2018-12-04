@@ -20,7 +20,6 @@ const AppRouter = (props) => {
     if(props.isAuthenticated || localStorage.getItem("email") !== null){
         routes =
             <Switch>
-                <Route exact path="/admin-area" component={AdminArea}/>
                 <Route exact path="/usecases" component={UseCasesList}/>
                 <Route exact path="/login" component={Auth}/>
                 <Route exact path='/logout' component={Logout} />
@@ -29,6 +28,17 @@ const AppRouter = (props) => {
             </Switch>
     }
 
+    if(props.isAuthenticated && localStorage.getItem("role") === 'Trainer') {
+        routes =
+            <Switch>
+                <Route exact path="/admin-area" component={AdminArea}/>
+                <Route exact path="/usecases" component={UseCasesList}/>
+                <Route exact path="/login" component={Auth}/>
+                <Route exact path='/logout' component={Logout}/>
+                <Route path="/usecases/:id" render={props => <UseCase {...props} />}/>
+                <Redirect to='/usecases' component={UseCasesList}/>
+            </Switch>
+    }
     return (
         <React.Fragment>
             {routes}

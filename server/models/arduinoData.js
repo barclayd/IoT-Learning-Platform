@@ -2,23 +2,17 @@ const io = require('./websockets');
 const dateformat = require('dateformat');
 const {composeEmail} = require('./emailService');
 const axios = require('../axios-instance');
-const {minValue, maxValue, getSensorData} = require('./sensorsService');
+const {getSensorData} = require('./sensorsService');
 
-// http://johnny-five.io/examples/temperature-tmp36/
 
-// for Breadboard for "Thermometer - TMP36"
-
-console.log(getSensorData());
-
-const temperatureRange = {min: minValue, max: maxValue};
-console.log(temperatureRange);
 let obj = {};
 
-// console.log("email sent");
-// composeEmail("Warning Email", `<p>Fridge has reached a critical level ${this.celsius}</p>`);
+let temperatureRange;
+getSensorData().then((data) => {
+   temperatureRange = data;
+});
 
 const sendArduinoData = (client) => {
-
     try {
         const five = require('johnny-five');
         const board = new five.Board();
