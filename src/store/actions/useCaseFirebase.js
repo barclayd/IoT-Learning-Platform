@@ -25,3 +25,30 @@ export const fetchUseCaseData = () => {
         type: actionTypes.INIT_FETCH_USECASE_DATA
     }
 };
+
+
+export const updateUseCaseDataSuccess = () => {
+    return {
+        type: actionTypes.UPDATE_USECASE_SUCCESS,
+    };
+};
+
+export const updateUseCaseDataFailed = (error) => {
+    return {
+        type: actionTypes.UPDATE_USECASE_FAILED,
+        error: error
+    };
+};
+
+export const updateUseCaseDataStart = () => {
+    return {
+        type: actionTypes.UPDATE_USECASE_START
+    }
+};
+
+export const updateUseCaseData = (data) => {
+    return {
+        type: actionTypes.INIT_UPDATE_USECASE,
+        data: data
+    }
+};

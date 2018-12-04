@@ -19,9 +19,10 @@ export {
 } from './auth'
 
 export {
-    fetchUseCaseData, fetchUseCaseDataFailed, fetchUseCaseDataStart, fetchUseCaseDataSuccess
+    fetchUseCaseData, fetchUseCaseDataFailed, fetchUseCaseDataStart, fetchUseCaseDataSuccess,
+    updateUseCaseData, updateUseCaseDataFailed, updateUseCaseDataStart, updateUseCaseDataSuccess
 } from './useCaseFirebase'
 
 export {
-    fetchUsersData, fetchUsersDataFailed, fetchUsersDataStart, fetchUsersDataSuccess
+    fetchUsersData, fetchUsersDataFailed, fetchUsersDataStart, fetchUsersDataSuccess,
 } from './usersFirebase'
