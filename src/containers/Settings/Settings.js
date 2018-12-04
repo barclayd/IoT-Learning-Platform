@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {List, Avatar, Skeleton, Button} from "antd";
+import {Form, Input, Col, Select, Cascader, InputNumber, Button} from "antd";
 import * as actions from "../../store/actions";
+import FormItem from "antd/lib/form/FormItem";
 
 class Settings extends Component {
 
@@ -11,6 +12,20 @@ class Settings extends Component {
 
 
     render() {
+        const FormItem = Form.Item;
+        const Option = Select.Option;
+
+        const formItemLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 5 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 12 },
+            },
+        };
+
         let sensors = [];
         let emails = {};
 
@@ -26,55 +41,42 @@ class Settings extends Component {
             }
         });
 
-        console.log(sensors);
-        const helq = {...sensors[0]};
-        console.log(Object.keys(helq));
-        // console.log(Object.keys(sensors['temperature']));
-        // console.log(Object.keys(sensors[0]));
-
-        const hello = (this.props.data.email !== null) ?
-            <List
-                className='settings'
-                itemLayout='horizontal'
-                dataSource = {Object.keys(emails)}
-                renderItem = { item => (
-                    <List.Item actions={[<a>edit</a>, <a>more</a>]}>
-                        <Skeleton avatar title={false} active>
-                            <List.Item title={item} description={'Change setting for this sensor'}/>
-                            <div>content</div>
-                        </Skeleton>
-                    </List.Item>
-                    )}
-                /> :
-            <p> This didn't work </p>;
-
-            let emailSettings = Object.keys(emails).map((email) => {
-                return <p key={email}>{email} : {emails[email]} {}</p>
-            });
-
-            // let sensorsSettings = sensors.map((sensor) => {
-            // console.log(sensor);
-            // let shallowCopy = {...sensors[sensor]};
-            // console.log(shallowCopy);
-            // return Object.keys(shallowCopy).map((setting) => {
-            //     return <p key={setting}>{setting} : {shallowCopy[setting]}</p>
-            //     })
-            // });
+        let emailSettings = Object.keys(emails).map((email) => {
+            return <FormItem {...formItemLayout} key={email} label={email}> <Input defaultValue={emails[email]} /> </FormItem>
+        });
 
         let sensorsSettings = sensors.map((sensor) => {
             return Object.keys(sensor).map((setting) => {
-                return <p key={setting}>{setting} : {sensor[setting]}</p>
+                console.log(parseInt(sensor[setting]));
+                if(parseInt(sensor[setting]) !== undefined) {
+                    return (<span key={setting}>
+                        <FormItem {...formItemLayout} label={setting}>
+                            <InputNumber defaultValue={sensor[setting]} style={{ width: '65%', marginRight: '3%' }}/>
+                             <Select style={{ width: '32%' }}>
+                                <Option value='celsius'>°C</Option>
+                                <Option value='fahrenheit'>°F</Option>
+                            </Select>
+                        </FormItem>
+                    </span>)
+                } else {
+                    return <FormItem {...formItemLayout} key={setting} label={setting}> <Input defaultValue={sensor[setting]} style={{ width: '100%' }}/> </FormItem>
+                }
             });
         });
+
+        let button = <Button type="primary" htmlType="submit">Submit</Button>;
+
 
 
         return (
             <React.Fragment>
-                {hello}
                 <h2>Email Settings </h2>
+                <Form>
                 {emailSettings}
                 <h2>Sensor Settings </h2>
                 {sensorsSettings}
+                {button}
+                </Form>
 
             </React.Fragment>
         )
