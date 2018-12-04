@@ -6,10 +6,47 @@ import FormItem from "antd/lib/form/FormItem";
 
 class Settings extends Component {
 
+    state = {
+      sensorName: 'temperature',
+        changedSensor: false,
+        sensorComponent: ''
+    };
+
     componentWillMount() {
                 this.props.onFetchUseCaseData();
     }
 
+
+    getSensorName = (event) => {
+        console.log(event);
+        this.setState({
+            sensorName: event,
+            changedSensor: true
+        });
+
+    };
+
+    getSensorComponent = (event) => {
+        console.log(event);
+        this.setState({
+            sensorComponent: event,
+            changedSensor: false
+        });
+
+    };
+
+    changeSetting = (setting) => {
+        console.log(setting);
+        if (this.state.changedSensor) {
+            this.setState({
+                changedSensor: false
+            });
+            return null;
+        } else {
+            // return setting;
+            return setting;
+        }
+    };
 
     render() {
         const FormItem = Form.Item;
@@ -28,6 +65,7 @@ class Settings extends Component {
 
         let sensors = [];
         let emails = {};
+        console.log(this.state.changedSensor);
 
         let settings = this.props.data.forEach((useCase) => {
             if (useCase.id === this.props.id) {
@@ -42,13 +80,12 @@ class Settings extends Component {
         });
 
         let emailSettings = Object.keys(emails).map((email) => {
-            console.log(email);
             switch (email) {
                         case('senders'):
                             return <FormItem {...formItemLayout} key={email} label={email}>
                                 {/*<Input defaultValue={emails[email]} />*/}
                                 <Select mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]}>
-                                    <Option value='default'>{emails[email]}</Option>
+                                    <Option value={emails[email]}>{emails[email]}</Option>
                                     <Option value='email1'>test@gmail.com</Option>
                                     <Option value='fahrenheit'>peter.trott@gmail.com</Option>
                                 </Select>
@@ -76,12 +113,43 @@ class Settings extends Component {
                         case('sensorName'):
                             return (
                                 <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                <Select defaultValue={sensor[setting]}>
+                                <Select defaultValue={sensor[setting]} onChange={(e) => this.getSensorName(e)}>
                                     <Option value={sensor[setting]}>{sensor[setting]}</Option>
                                     <Option value='motion'>Motion Sensor</Option>
                                 </Select>
                             </FormItem>);
-                        default:
+                        case('sensorComponent'):
+                            switch(this.state.sensorName) {
+                                case('motion') :
+                                    return (
+                                        <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
+                                            {/*<Select defaultValue={this.changeSetting(sensor[setting])}*/}
+                                            <Select value={this.state.sensorComponent}
+                                                    onChange={(e) => this.getSensorComponent(e)}>
+                                                <Option value='motion'>Motion Sensor</Option>
+                                            </Select>
+                                        </FormItem>);
+                                case('temperature') :
+                                    return (
+                                        <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
+                                            <Select value={this.state.sensorComponent ? this.state.sensorComponent : this.changeSetting(sensor[setting])}
+                                                    onChange={(e) => this.getSensorComponent(e)}>
+                                            {/*<Select defaultValue={sensor[setting]}*/}
+                                                    {/*onChange={(e) => this.getSensorName(e)}>*/}
+                                                <Option value={sensor[setting]}>{sensor[setting]}</Option>
+                                            </Select>
+                                        </FormItem>);
+                                default:
+                                    return (
+                                        <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
+                                            <Select defaultValue={sensor[setting]}
+                                                    onChange={(e) => this.getSensorName(e)}>
+                                                <Option value={sensor[setting]}>{sensor[setting]}</Option>
+                                                <Option value='motion'>Motion Sensor</Option>
+                                            </Select>
+                                        </FormItem>);
+                            }
+                            default:
                             return <FormItem {...formItemLayout} key={setting} label={setting}> <Input
                                 defaultValue={sensor[setting]} style={{width: '100%'}}/>
                             </FormItem>
