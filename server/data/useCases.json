@@ -26,7 +26,7 @@
       }
     },
     "email": {
-      "senders": "test.test@gmail.com",
+      "senders": "nsa.team1.iot@gmail.com",
       "subject": "Warning Email",
       "body": "Fridge has reached a critical level"
     }
@@ -59,7 +59,7 @@
         }
       },
       "email": {
-        "senders": "test.test@gmail.com",
+        "senders": "nsa.team1.iot@gmail.com",
         "subject": "Warning Email",
         "body": "Fridge has reached a critical level"
       }
