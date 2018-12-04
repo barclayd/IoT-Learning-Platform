@@ -7,9 +7,7 @@ import {updateObject} from '../../store/utility';
 
 class Settings extends Component {
 
-    state = {
-        changedSensor: false
-    };
+    state = {};
 
     componentDidMount() {
                 this.props.onFetchUseCaseData();
@@ -19,10 +17,9 @@ class Settings extends Component {
         if(!nextProps.loading) {
             nextProps.data.forEach((useCase) => {
                 if (useCase.id === this.props.id) {
-                    console.log('local id: ', this.props.id, 'firebaseId: ', useCase.id );
-                    for(let sensor in useCase.sensors) {
+                    for(let sensor in useCase.sensorsData) {
                         this.setState({
-                            sensors: useCase.sensors[sensor],
+                            sensors: useCase.sensorsData[sensor],
                             email: useCase.email
                         }, () => console.log(this.state))
                     }
@@ -31,24 +28,27 @@ class Settings extends Component {
         }
     }
 
-    printState() {
-        console.log(this.state);
+    submitSettings() {
+        let sensorsData = [];
+        sensorsData.push(this.state.sensors);
+        let email = {
+            email: {...this.state.email}
+        };
+        let mergedObject = {...email, sensorsData};
+        this.props.onSubmitSettings(this.props.id, mergedObject);
     }
 
 
     getSensorName = (settingName, settingValue) => {
-        console.log(settingName, settingValue);
         const updatedSensors = updateObject(this.state.sensors, {
             [settingName]: settingValue
         } );
         this.setState({
             sensors: updatedSensors
         });
-
     };
 
     changeEmailSetting = (settingName, settingValue) => {
-        console.log(settingName, settingValue);
 
         const updatedEmails = updateObject(this.state.email, {
             [settingName]: settingValue
@@ -60,7 +60,6 @@ class Settings extends Component {
     };
 
     changeEmailSettingOther = (settingName, settingValue) => {
-        console.log(settingValue.target.value);
         const updatedEmails = updateObject(this.state.email, {
             [settingName]: settingValue.target.value
         } );
@@ -86,15 +85,11 @@ class Settings extends Component {
 
         let sensors = [];
         let emails = {};
-        console.log(this.state.changedSensor);
 
         let settings = this.props.data.forEach((useCase) => {
             if (useCase.id === this.props.id) {
-                console.log('local id: ', this.props.id, 'firebaseId: ', useCase.id );
-                for(let sensor in useCase.sensors) {
-                    console.log(sensor);
-                    console.log(useCase.sensors[sensor]);
-                    sensors.push(useCase.sensors[sensor]);
+                for(let sensor in useCase.sensorsData) {
+                    sensors.push(useCase.sensorsData[sensor]);
                 }
                 emails = {...useCase.email};
             }
@@ -104,9 +99,8 @@ class Settings extends Component {
             switch (email) {
                         case('senders'):
                             return <FormItem {...formItemLayout} key={email} label={email}>
-                                {/*<Input defaultValue={emails[email]} />*/}
-                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]} onChange={(e) => this.changeEmailSetting(email, e)}>
-                                    <Option value={emails[email]}>{emails[email]}</Option>
+                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' value={this.state.email.senders} onChange={(e) => this.changeEmailSetting(email, e)}>
+                                <Option value={this.state.email.senders[0]} key={Math.random()}>{emails[email]}</Option>
                                     <Option value='test@gmail.com'>test@gmail.com</Option>
                                     <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
                                 </Select>
@@ -178,7 +172,7 @@ class Settings extends Component {
         });
 
 
-        let button = <Button type="primary" htmlType="submit" onClick={() => this.printState()}>Submit</Button>;
+        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()}>Submit</Button>;
 
 
 
@@ -206,7 +200,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData())
+        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
+        onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings))
     }
 };
 
