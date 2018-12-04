@@ -99,8 +99,8 @@ class Settings extends Component {
             switch (email) {
                         case('senders'):
                             return <FormItem {...formItemLayout} key={email} label={email}>
-                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' value={this.state.email.senders} onChange={(e) => this.changeEmailSetting(email, e)}>
-                                <Option value={this.state.email.senders[0]} key={Math.random()}>{emails[email]}</Option>
+                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' value={emails[email]} onChange={(e) => this.changeEmailSetting(email, e)}>
+                                <Option value={emails[email]} key={Math.random()}>{emails[email]}</Option>
                                     <Option value='test@gmail.com'>test@gmail.com</Option>
                                     <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
                                 </Select>

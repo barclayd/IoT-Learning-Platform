@@ -19,7 +19,6 @@ const Toolbar = (props) => {
      const titleDisplayName = communityName.split(' ').map((letter) => {
          return letter.replace(communityName[0], communityName[0].toUpperCase());
      });
-     console.log(communityName);
      return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
  };
 
