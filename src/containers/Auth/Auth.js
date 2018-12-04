@@ -149,10 +149,6 @@ class Auth extends Component {
         let errorMessage = null;
         if (this.props.error) {
             errorMessage = <Alert type='error' message='Login attempt unsuccessful' description={errorMessageLookUp[this.props.error.message.toString()]} showIcon />;
-                {/*<div className={classes.errorMessage}>*/}
-                    {/*<p>{errorMessageLookUp[this.props.error.message.toString()]}</p>*/}
-                {/*</div>*/}
-
         }
 
         let authRedirect = null;

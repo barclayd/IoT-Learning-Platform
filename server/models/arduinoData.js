@@ -3,8 +3,6 @@ const dateformat = require('dateformat');
 const {composeEmail} = require('./emailService');
 const axios = require('../axios-instance');
 
-
-
 // http://johnny-five.io/examples/temperature-tmp36/
 
 // for Breadboard for "Thermometer - TMP36"
