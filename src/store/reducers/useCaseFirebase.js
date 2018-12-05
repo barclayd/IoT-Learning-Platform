@@ -38,6 +38,14 @@ const dataUpdateFailed = (state, action) => {
     })
 };
 
+const submitSettingsSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: false,
+        saved: true
+    })
+};
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case(actionTypes.FETCH_USECASE_DATA_START): return updateObject(state, {loading: true, error: false});
@@ -48,7 +56,7 @@ const reducer = (state = initialState, action) => {
         case(actionTypes.UPDATE_USECASE_FAILED): return dataUpdateFailed(state, action);
         case(actionTypes.INIT_SUBMIT_SETTINGS): return updateObject(state, {saved: false});
         case(actionTypes.SUBMIT_SETTINGS_START): return updateObject(state, {loading: true});
-        case(actionTypes.SUBMIT_SETTINGS_SUCCESS): return updateObject(state, {loading: false, error: false, saved: true});
+        case(actionTypes.SUBMIT_SETTINGS_SUCCESS): return submitSettingsSuccess(state, {loading: false, error: false, saved: true});
         case(actionTypes.SUBMIT_SETTINGS_FAIL): return updateObject(state, {loading: false});
         default: return state;
     }
