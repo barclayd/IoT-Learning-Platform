@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Col, Select, Cascader, InputNumber, Button} from "antd";
+import {Form, Input, Col, Select, Cascader, InputNumber, Button, notification} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {updateObject} from '../../store/utility';
 
 class Settings extends Component {
 
-    state = {};
 
     componentDidMount() {
                 this.props.onFetchUseCaseData();
@@ -20,13 +19,21 @@ class Settings extends Component {
                     for(let sensor in useCase.sensorsData) {
                         this.setState({
                             sensors: useCase.sensorsData[sensor],
-                            email: useCase.email
+                            email: useCase.email,
+                            name: useCase.name
                         }, () => console.log(this.state))
                     }
                 }
             });
         }
     }
+
+    openNotificationWithIcon = (type) => {
+        notification[type]({
+            message: 'Settings successfully saved!',
+            description: `The settings have been successfully updated for ${this.state.name}`,
+        });
+    };
 
     submitSettings() {
         let sensorsData = [];
@@ -36,6 +43,9 @@ class Settings extends Component {
         };
         let mergedObject = {...email, sensorsData};
         this.props.onSubmitSettings(this.props.id, mergedObject);
+        if(this.props.saved) {
+            this.openNotificationWithIcon('success');
+        }
     }
 
 
@@ -172,8 +182,7 @@ class Settings extends Component {
         });
 
 
-        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()}>Submit</Button>;
-
+        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
 
 
         return (
@@ -185,7 +194,6 @@ class Settings extends Component {
                 {sensorsSettings}
                 {button}
                 </Form>
-
             </React.Fragment>
         )
     }
@@ -194,7 +202,8 @@ class Settings extends Component {
 const mapStateToProps = state => {
     return {
         data: state.useCaseFirebase.data,
-        loading: state.useCaseFirebase.loading
+        loading: state.useCaseFirebase.loading,
+        saved: state.useCaseFirebase.saved
     }
 };
 
