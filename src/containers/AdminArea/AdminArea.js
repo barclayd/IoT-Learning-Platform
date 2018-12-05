@@ -19,43 +19,42 @@ class AdminArea extends Component {
       this.props.onFetchUseCases();
     }
 
-    componentWillReceiveProps(nexProps) {
-        if(!nexProps.useCasesLoading) {
-            this.setState({useCases: nexProps.useCases}, ()=> console.log(this.state))
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.useCasesLoading) {
+            this.setState({useCases: nextProps.useCases}, ()=> console.log(this.state))
         }
     }
 
     handleUserSelected = (useCase, ids) =>{
         const useCases = {...this.state.useCases};
         const useCaseIndex = Object.keys(useCases).findIndex((key)=> key === useCase.id)
-        useCases[useCaseIndex] = {...useCase, 
+        useCases[useCaseIndex] = {...useCase,
             access: {...useCase.access, listedUsers:ids},
-        }
+        };
         this.setState({useCases});
-    }
+    };
 
     getUseCaseUsers = (useCase) => {
-        const users = this.props.users.filter(user => useCase.access.listedUsers.includes(user.userUUID));
-        return users;
-    }
+        return this.props.users.filter(user => useCase.access.listedUsers.includes(user.userUUID));
+    };
 
     handleUseCasesSave = () => {
         this.props.onUpdateUseCase(this.state.useCases);
-    }
+    };
 
     render() {
 
-        
+
         const {useCases} = this.state
         let content = (<div> No Use Cases</div>);
         console.log(useCases);
         if (useCases){
-            content = 
+            content =
             (
                 <div>
                 {Object.keys(useCases).map((useCaseKey, index) => {
                     const useCase = useCases[useCaseKey];
-                    const useCaseUsersIDs = this.getUseCaseUsers(useCase).map(user => user.userUUID)
+                    const useCaseUsersIDs = this.getUseCaseUsers(useCase).map(user => user.userUUID);
                     return (
                     <div className={styles.UseCase} key={index}>
                         <h3>{useCase.name}</h3>
@@ -77,7 +76,7 @@ class AdminArea extends Component {
                 </Button>
                 </div>
             )
-           
+
         }
         return (
             <div className={styles.AdminArea}>
@@ -93,7 +92,7 @@ class AdminArea extends Component {
 const mapStateToProps = state => {
     const {users, useCaseFirebase} = state
     return {
-       users: users.users, 
+       users: users.users,
        useCases: useCaseFirebase.data,
        useCasesLoading: useCaseFirebase.loading
     }

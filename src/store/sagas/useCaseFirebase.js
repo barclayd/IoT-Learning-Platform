@@ -24,7 +24,7 @@ export function* submitSettingsSaga(action) {
     yield put(actions.submitSettingsStart());
     try {
         const response = yield axios.patch(`/useCases/${action.useCaseId}.json`, action.data);
-        yield put(actions.submitSettingsSuccess(response.data.name, action.data))
+        yield put(actions.submitSettingsSuccess(action.data))
     } catch (error) {
         yield put(actions.submitSettingsFail(error))
     }

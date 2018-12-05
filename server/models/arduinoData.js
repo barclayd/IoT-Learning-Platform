@@ -57,6 +57,7 @@ const sendArduinoData = (client) => {
 
         board.on("fail", function(event) {
                 console.log("Fail message: %s", event.message);
+                console.log(temperatureRange);
                 obj = {success: false, message: event.message, data: null};
                 client.emit('arduinoData', (obj));
         });

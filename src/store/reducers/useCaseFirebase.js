@@ -4,7 +4,8 @@ import {updateObject} from "../utility";
 const initialState = {
     data: [],
     loading: false,
-    error: false
+    error: false,
+    saved: true
 };
 
 const dataFetchSuccess = (state, action) => {
@@ -30,7 +31,6 @@ const dataUpdateSuccess = (state, action) => {
         error: false
     })
 };
-
 const dataUpdateFailed = (state, action) => {
     return updateObject(state, {
         loading: false,
@@ -46,6 +46,10 @@ const reducer = (state = initialState, action) => {
         case(actionTypes.UPDATE_USECASE_START): return updateObject(state, {loading: true, error: false});
         case(actionTypes.UPDATE_USECASE_SUCCESS): return dataUpdateSuccess(state, action);
         case(actionTypes.UPDATE_USECASE_FAILED): return dataUpdateFailed(state, action);
+        case(actionTypes.INIT_SUBMIT_SETTINGS): return updateObject(state, {saved: false});
+        case(actionTypes.SUBMIT_SETTINGS_START): return updateObject(state, {loading: true});
+        case(actionTypes.SUBMIT_SETTINGS_SUCCESS): return updateObject(state, {loading: false, error: false, saved: true});
+        case(actionTypes.SUBMIT_SETTINGS_FAIL): return updateObject(state, {loading: false});
         default: return state;
     }
 };
