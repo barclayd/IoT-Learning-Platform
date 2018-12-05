@@ -28,7 +28,7 @@ const AppRouter = (props) => {
             </Switch>
     }
 
-    if(props.isAuthenticated && localStorage.getItem("role") === 'Trainer') {
+    if(props.isAuthenticated || localStorage.getItem("role") === 'Trainer') {
         routes =
             <Switch>
                 <Route exact path="/admin-area" component={AdminArea}/>
