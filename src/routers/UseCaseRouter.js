@@ -9,7 +9,7 @@ import Settings from '../components/UseCase/Settings/Settings';
 
 const UseCaseRouter = (props) => {
     let useCase = props.useCase;
-    console.log(useCase);
+    console.log(props);
     return (
 
             <Switch>
