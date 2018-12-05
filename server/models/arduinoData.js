@@ -1,7 +1,7 @@
 const io = require('./websockets');
 const dateformat = require('dateformat');
 const {composeEmail} = require('./emailService');
-const axios = require('../axios-instance');
+const axios = require('../../src/shared/axios-instance');
 const {getSensorData} = require('./sensorsService');
 
 

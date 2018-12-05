@@ -105,11 +105,20 @@ class Settings extends Component {
             }
         });
 
+        const emailConfig = (email) => {
+            if (this.state === null) {
+                return email
+            } else {
+                return this.state.email.senders;
+            }
+        };
+
+
         let emailSettings = Object.keys(emails).map((email) => {
             switch (email) {
                         case('senders'):
                             return <FormItem {...formItemLayout} key={email} label={email}>
-                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]} value={this.state.email.senders} onChange={(e) => this.changeEmailSetting(email, e)}>
+                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]} value={emailConfig(emails[email])} onChange={(e) => this.changeEmailSetting(email, e)}>
                                 <Option value={emails[email]} key={Math.random()}>{emails[email]}</Option>
                                     <Option value='test@gmail.com'>test@gmail.com</Option>
                                     <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
@@ -144,7 +153,9 @@ class Settings extends Component {
                                 </Select>
                             </FormItem>);
                         case('sensorComponent'):
-                            switch(this.state.sensorName) {
+                            console.log(sensor.sensorName);
+                            // switch(this.state.sensors.sensorName) {
+                            switch(sensor.sensorName) {
                                 case('motion') :
                                     return (
                                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
@@ -187,6 +198,7 @@ class Settings extends Component {
 
         return (
             <React.Fragment>
+                {settings}
                 <h2>Email Settings </h2>
                 <Form>
                 {emailSettings}
