@@ -160,7 +160,7 @@ class Settings extends Component {
                                     return (
                                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
                                             {/*<Select defaultValue={this.changeSetting(sensor[setting])}*/}
-                                            <Select value={this.state.sensorComponent}
+                                            <Select value={sensor.sensorComponent}
                                                     onChange={(e) => this.getSensorName(setting, e)}>
                                                 <Option value='motion'>Motion Sensor</Option>
                                             </Select>
