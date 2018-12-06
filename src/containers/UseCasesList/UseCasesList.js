@@ -42,7 +42,7 @@ class UseCasesList extends Component {
                 <Row gutter={16}>
                     {printedUseCases}
                 </Row>
-                <AddNewUseCase />
+                <AddNewUseCase id={this.props.useCases.length} />
             </div>
 
         )
