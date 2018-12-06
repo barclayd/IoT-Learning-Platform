@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const axios = require('../../src/shared/axios-instance');
+const axios = require('../axios-instance');
 
 
 // Configure the email

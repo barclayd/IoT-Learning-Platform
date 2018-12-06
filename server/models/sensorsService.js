@@ -1,4 +1,4 @@
-const axios = require('../../src/shared/axios-instance');
+const axios = require('../axios-instance');
 
 
 
