@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio} from "antd";
+import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, notification} from "antd";
 import classes from './AddNewUseCase.module.scss';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
@@ -47,21 +47,11 @@ class AddNewUseCase extends Component {
         let mergedAgain = {...mergedObject, access};
         let finalMerge = {...mergedAgain, ...otherSettings};
 
-        this.props.onCreateNewUseCase(finalMerge);
+        this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
 
         setTimeout(() => {
             console.log(finalMerge);
         }, 500);
-
-        // this.setState({
-        //     confirmLoading: true,
-        // });
-        // setTimeout(() => {
-        //     this.setState({
-        //         visible: false,
-        //         confirmLoading: false,
-        //     });
-        // }, 2000);
     };
 
     handleCancel = () => {
@@ -111,6 +101,13 @@ class AddNewUseCase extends Component {
         });
     };
 
+    openNotificationWithIcon = (type) => {
+        notification[type]({
+            message: 'Settings successfully saved!',
+            description: `The settings have been successfully updated for ${this.state.name}`,
+        });
+    };
+
     render () {
 
         const FormItem = Form.Item;
@@ -132,6 +129,8 @@ class AddNewUseCase extends Component {
 
         otherSettings.id = parseInt(this.props.id);
         otherSettings.key = this.state.form.name.toLowerCase();
+
+
 
         let numberSensors = this.state.numberSensors.map(sensor => {
             return (
@@ -216,14 +215,19 @@ class AddNewUseCase extends Component {
         const { visible, confirmLoading } = this.state;
 
         let successRedirect = null;
-        if(this.props.success) {
-            successRedirect = <Redirect to='/usecases'/>
+        // let notification = null;
+        // if(this.props.success) {
+        //     notification = this.openNotificationWithIcon('success');
+        // }
+        if(this.props.success){
+            successRedirect = <Redirect to={`/usecases/${this.props.id}/settings`}/>
         }
 
 
         return (
            <React.Fragment>
                {successRedirect}
+               {/*{notification}*/}
                <button className={classes.Button} onClick={this.showModal}>
                {localStorage.getItem("role") === 'Trainer' ? addNewUseCaseCard : null}
                </button>
@@ -250,7 +254,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateNewUseCase: (updateObject) => dispatch(actions.createUseCase(updateObject))
+        onCreateNewUseCase: (id, updateObject) => dispatch(actions.createUseCase(id, updateObject))
     }
 };
 

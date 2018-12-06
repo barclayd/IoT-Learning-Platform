@@ -2,13 +2,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Form, Input, Col, Select, Cascader, InputNumber, Button, notification} from "antd";
 import * as actions from "../../store/actions";
+import {withRouter} from "react-router-dom";
 import FormItem from "antd/lib/form/FormItem";
 import {updateObject} from '../../store/utility';
 
 class Settings extends Component {
 
+    state = {
+        justLanded: true
+    };
 
     componentDidMount() {
+        console.log(this.props);
                 this.props.onFetchUseCaseData();
     }
 
@@ -28,10 +33,17 @@ class Settings extends Component {
         }
     }
 
-    openNotificationWithIcon = (type) => {
+    savedSettingsNotification = (type) => {
         notification[type]({
             message: 'Settings successfully saved!',
             description: `The settings have been successfully updated for ${this.state.name}`,
+        });
+    };
+
+    openNewUseCaseNotification = (type) => {
+        notification[type]({
+            message: 'New Use Case Created!',
+            description: `A new use case has been created. You can update the settings in greater detail here`,
         });
     };
 
@@ -44,7 +56,7 @@ class Settings extends Component {
         let mergedObject = {...email, sensorsData};
         this.props.onSubmitSettings(this.props.id, mergedObject);
         if(this.props.saved) {
-            this.openNotificationWithIcon('success');
+            this.savedSettingsNotification('success');
         }
     }
 
@@ -105,13 +117,7 @@ class Settings extends Component {
             }
         });
 
-        const emailConfig = (email) => {
-            if (this.state === null) {
-                return email
-            } else {
-                return this.state.email.senders;
-            }
-        };
+        const emailConfig = (email) => (email);
 
 
         let emailSettings = Object.keys(emails).map((email) => {
@@ -192,9 +198,17 @@ class Settings extends Component {
 
         let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
 
+        let notification = null;
+        if(this.props.success && this.state.justLanded) {
+            notification = this.openNewUseCaseNotification('info');
+            this.setState({
+                justLanded: false
+            })
+        }
 
         return (
             <React.Fragment>
+                {notification}
                 {settings}
                 <h2>Email Settings </h2>
                 <Form>
@@ -212,7 +226,8 @@ const mapStateToProps = state => {
     return {
         data: state.useCaseFirebase.data,
         loading: state.useCaseFirebase.loading,
-        saved: state.useCaseFirebase.saved
+        saved: state.useCaseFirebase.saved,
+        success: state.createUseCase.success
     }
 };
 
@@ -224,4 +239,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Settings));

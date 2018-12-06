@@ -10,8 +10,10 @@ import {connect} from 'react-redux';
 class UseCase extends React.Component {
 
     render() {
+        console.log(this.props);
         const useCases = this.props.useCases;
             let useCase;
+            console.log(this.props.useCases.length);
             for (let i = 0; i < useCases.length; i++) {
                 if (useCases[(i)].id === this.props.match.params.id) {
                     useCase = useCases[(i)];
