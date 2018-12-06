@@ -21,7 +21,7 @@ class Settings extends Component {
                             sensors: useCase.sensorsData[sensor],
                             email: useCase.email,
                             name: useCase.name
-                        }, () => console.log(this.state))
+                        })
                     }
                 }
             });
@@ -153,13 +153,10 @@ class Settings extends Component {
                                 </Select>
                             </FormItem>);
                         case('sensorComponent'):
-                            console.log(sensor.sensorName);
-                            // switch(this.state.sensors.sensorName) {
                             switch(sensor.sensorName) {
                                 case('motion') :
                                     return (
                                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                            {/*<Select defaultValue={this.changeSetting(sensor[setting])}*/}
                                             <Select value={sensor.sensorComponent}
                                                     onChange={(e) => this.getSensorName(setting, e)}>
                                                 <Option value='motion'>Motion Sensor</Option>

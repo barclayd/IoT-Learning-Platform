@@ -31,7 +31,6 @@ const AppRouter = (props) => {
     );
 
     if(localStorage.getItem("email") !== null){
-        console.log(localStorage.getItem("email"));
         routes =
             <Switch>
                 <Route exact path="/usecases" component={UseCasesList}/>

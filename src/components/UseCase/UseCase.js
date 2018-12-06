@@ -9,11 +9,6 @@ import {connect} from 'react-redux';
 
 class UseCase extends React.Component {
 
-    navLinkOnClick = (e) => {
-        console.log('Link clicked', e);
-
-    };
-
     render() {
         const useCases = this.props.useCases;
             let useCase;
@@ -22,7 +17,6 @@ class UseCase extends React.Component {
                     useCase = useCases[(i)];
                 }
             }
-            console.log(useCase);
             return (
                 <div aria-label={'Use Cases'} className={styles.UseCase}>
                     <Row gutter={15}>

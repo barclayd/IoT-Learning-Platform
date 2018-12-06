@@ -24,8 +24,6 @@ export function* submitSettingsSaga(action) {
     yield put(actions.submitSettingsStart());
     try {
         const response = yield axios.patch(`/useCases/${action.useCaseId}.json`, action.data);
-        console.log(response.data);
-        console.log(response);
         yield put(actions.submitSettingsSuccess(response.data));
         try {
             const response = yield axios.get('/useCases.json');
