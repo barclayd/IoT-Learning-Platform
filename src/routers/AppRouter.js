@@ -17,18 +17,21 @@ const asyncAdmin = asyncComponent(() => {
     return import('../containers/AdminArea/AdminArea');
 });
 
+const defaultMessage = <p> Please <Link to='/login'>login</Link> to access the website</p>;
 
 const AppRouter = (props) => {
     let routes = (
         <Switch>
-            <Route exact path="/" render={() => <p> Please <Link to='/login'>login</Link> to access the website</p>}/>
+            <Route exact path="/" render={() => defaultMessage}/>
             <Route exact path="/login" component={asyncLogin}/>
             <Route exact path="/logout" component={asyncLogout}/>
-            <Route exact path="/" render={() => <p> Please <Link to='/login'>login</Link> to access the website</p>}/>
+            <Route exact path="/" render={() => defaultMessage}/>
+            <Redirect to="/" render={() => defaultMessage}/>
         </Switch>
     );
 
-    if(props.isAuthenticated || localStorage.getItem("email") !== null){
+    if(localStorage.getItem("email") !== null){
+        console.log(localStorage.getItem("email"));
         routes =
             <Switch>
                 <Route exact path="/usecases" component={UseCasesList}/>
@@ -39,7 +42,7 @@ const AppRouter = (props) => {
             </Switch>
     }
 
-    if(props.isAuthenticated || localStorage.getItem("role") === 'Trainer') {
+    if(localStorage.getItem("role") === 'Trainer') {
         routes =
             <Switch>
                 <Route exact path="/admin-area" component={asyncAdmin}/>
