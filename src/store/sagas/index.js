@@ -5,6 +5,7 @@ import {fetchLiveDataSaga} from './liveData';
 import {fetchArduinoDataSaga} from './arduinoData';
 import {fetchUseCaseDataSaga, updateUseCaseSaga, submitSettingsSaga} from './useCaseFirebase'
 import {fetchUsersDataSaga} from './usersFirebase';
+import {createUseCaseSaga} from './createUseCase';
 
 import {checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, logoutSaga} from './auth';
 
@@ -41,4 +42,8 @@ export function* watchUsersDataFirebase() {
 
 export function* watchUpdateUseCaseData() {
     yield takeEvery(actionTypes.INIT_UPDATE_USECASE, updateUseCaseSaga);
+}
+
+export function* watchCreateUseCase() {
+    yield takeLatest(actionTypes.INIT_CREATE_USECASE, createUseCaseSaga);
 }
