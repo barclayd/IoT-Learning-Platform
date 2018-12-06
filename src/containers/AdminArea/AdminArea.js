@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import styles from './AdminArea.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { Row, Col } from 'antd';
-import {Link} from 'react-router-dom';
 import { Select, Button} from 'antd';
 
 const Option = Select.Option;
@@ -12,7 +10,7 @@ class AdminArea extends Component {
 
    state = {
        useCases: null
-   }
+   };
 
     componentDidMount() {
       this.props.onFetchUsers();
@@ -21,7 +19,7 @@ class AdminArea extends Component {
 
     componentWillReceiveProps(nextProps) {
         if(!nextProps.useCasesLoading) {
-            this.setState({useCases: nextProps.useCases}, ()=> console.log(this.state))
+            this.setState({useCases: nextProps.useCases})
         }
     }
 
@@ -45,9 +43,8 @@ class AdminArea extends Component {
     render() {
 
 
-        const {useCases} = this.state
+        const {useCases} = this.state;
         let content = (<div> No Use Cases</div>);
-        console.log(useCases);
         if (useCases){
             content =
             (

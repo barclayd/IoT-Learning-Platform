@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import styles from './Model.module.scss'
+import styles from './Modal.module.scss'
 
-class Model extends Component {
+class Modal extends Component {
     render() {
         return (
             <main role="main" className={styles.Model}>
@@ -11,4 +11,4 @@ class Model extends Component {
     }
 }
 
-export default Model;
+export default Modal;
