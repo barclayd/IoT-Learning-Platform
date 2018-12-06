@@ -1,16 +1,20 @@
 const io = require('./websockets');
 const dateformat = require('dateformat');
 const {composeEmail} = require('./emailService');
-const axios = require('../../src/shared/axios-instance');
+const axios = require('../axios-instance');
 const {getSensorData} = require('./sensorsService');
 
 
 let obj = {};
 
 let temperatureRange;
-getSensorData().then((data) => {
-   temperatureRange = data;
-});
+setInterval(() => {
+    getSensorData().then((data) => {
+        temperatureRange = data;
+    });
+}, 5000);
+
+
 
 const sendArduinoData = (client) => {
     try {

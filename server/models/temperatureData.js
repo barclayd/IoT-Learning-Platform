@@ -1,6 +1,6 @@
 const sensorsData = require('../data/sensorData.json');
 const dateformat = require('dateformat');
-const axios = require('../../src/shared/axios-instance');
+const axios = require('../axios-instance');
 const {getArduinoData} = require('./arduinoData');
 const {composeEmail} = require('./emailService');
 
