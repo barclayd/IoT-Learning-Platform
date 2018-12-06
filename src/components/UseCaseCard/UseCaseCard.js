@@ -19,7 +19,7 @@ const UseCaseCard = (props) => {
                     aria-label={`Use case card, Use case name is ${props.name}, Use case description is ${props.shortDesc}`}
                 >
                     <div aria-label={`Use case name: ${props.name}, Use case description: ${props.shortDesc}`}>
-                        <Meta title={props.name} description={props.shortDesc} aria-label={`Use case name: ${props.name}, Use case description: ${props.shortDesc}`}/>
+                        <Meta style={{textAlign: 'center'}} title={props.name} description={props.shortDesc} aria-label={`Use case name: ${props.name}, Use case description: ${props.shortDesc}`}/>
                     </div>
                 </Card>
             )}
