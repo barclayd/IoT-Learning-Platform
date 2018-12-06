@@ -9,10 +9,9 @@ import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import a11y from 'react-a11y';
-import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase, watchUpdateUseCaseData} from "./store/sagas";
+import {watchHistoricData, watchLiveData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase, watchUpdateUseCaseData} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
-import useCaseReducer from './store/reducers/useCaseData';
 import authReducer from './store/reducers/auth';
 import useCaseFirebaseReducer from './store/reducers/useCaseFirebase';
 import usersFirebaseReducer from './store/reducers/usersFirebase';
@@ -34,7 +33,6 @@ a11y(React, ReactDOM, {
 const rootReducer = combineReducers({
     historicData: historicDataReducer,
     liveData: liveDataReducer,
-    useCaseData: useCaseReducer,
     arduinoData: arduinoDataReducer,
     auth: authReducer,
     useCaseFirebase: useCaseFirebaseReducer,
@@ -51,7 +49,6 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, s
 
 sagaMiddleware.run(watchHistoricData);
 sagaMiddleware.run(watchLiveData);
-sagaMiddleware.run(watchUseCaseData);
 sagaMiddleware.run(watchArduinoData);
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchUseCaseDataFirebase);

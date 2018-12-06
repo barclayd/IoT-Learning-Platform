@@ -7,10 +7,6 @@ export {
 } from './liveData';
 
 export {
-    fetchUseCase, fetchUseCaseFailed, fetchUseCaseStart, fetchUseCaseSuccess
-} from './useCaseData';
-
-export {
     fetchArduinoData, fetchArduinoDataFailed, fetchArduinoDataStart, fetchArduinoDataSuccess
 } from './arduinoData'
 
