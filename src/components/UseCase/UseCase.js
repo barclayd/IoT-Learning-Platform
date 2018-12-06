@@ -17,9 +17,9 @@ class UseCase extends React.Component {
     render() {
         const useCases = this.props.useCases;
             let useCase;
-            for (let i = 1; i < useCases.length; i++) {
-                if (useCases[(i-1)].id === this.props.match.params.id) {
-                    useCase = useCases[(i-1)];
+            for (let i = 0; i < useCases.length; i++) {
+                if (useCases[(i)].id === this.props.match.params.id) {
+                    useCase = useCases[(i)];
                 }
             }
             console.log(useCase);
@@ -71,11 +71,8 @@ class UseCase extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        // useCases: state.useCaseData.useCases,
         useCases: state.useCaseFirebase.data
     }
 };
-
-
 
 export default connect(mapStateToProps)(UseCase);

@@ -3,8 +3,6 @@ import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
 import {connect} from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
-// import { NavLink } from 'react-router-dom'
-
 
 const Toolbar = (props) => {
     const userAuthenticatedCheck = () => {

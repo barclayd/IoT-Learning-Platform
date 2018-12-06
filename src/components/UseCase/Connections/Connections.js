@@ -14,12 +14,4 @@ const Connections = (props) => {
     );
 };
 
-// const mapStateToProps = state => {
-//     return {
-//         useCases: state.useCaseData.useCases,
-//     }
-// };
-
-
-
 export default Connections;
