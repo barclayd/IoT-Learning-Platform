@@ -26,9 +26,10 @@ export const createUseCaseInit = () => {
     }
 };
 
-export const createUseCase = (data) => {
+export const createUseCase = (id, data) => {
     return {
         type: actionTypes.INIT_CREATE_USECASE,
+        id: id,
         data: data
     }
 };
