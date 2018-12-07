@@ -227,7 +227,6 @@ const mapDispatchToProps = dispatch => {
         onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
         onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings)),
         onFetchSensors: () => dispatch(actions.fetchSensorsData())
-
     }
 };
 

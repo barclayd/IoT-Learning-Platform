@@ -34,3 +34,7 @@ export {
 export {
     createUserSuccess, createUserFail
 } from './createUser'
+
+export {
+    updateProfileSuccess, updateProfile, updateProfileFailed, updateProfileStart
+} from './userProfile'
