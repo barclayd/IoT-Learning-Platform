@@ -43,7 +43,7 @@ class UseCasesList extends Component {
                 <Row gutter={16}>
                     {printedUseCases}
                     <Col span={8} key={Math.random()}>
-                    <AddNewUseCase id={this.props.useCases.length} users={this.props.users} />
+                        <AddNewUseCase id={this.props.useCases.length} users={this.props.users}/>
                     </Col>
                 </Row>
             </div>
