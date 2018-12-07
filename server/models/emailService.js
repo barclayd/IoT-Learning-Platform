@@ -5,7 +5,7 @@ const axios = require('../axios-instance');
 
 // Configure the email
 const transporter = nodemailer.createTransport(
-    
+
     {
     service: 'gmail',
     auth: {

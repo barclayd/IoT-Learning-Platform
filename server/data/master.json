@@ -18,7 +18,7 @@
         "kwLX0IevWZMyQmhESLU4CMGj2gO2"
       ]
     },
-    "sensors":
+    "sensorsData":
     [
       {
         "sensorName": "temperature",
@@ -52,7 +52,7 @@
           "kwLX0IevWZMyQmhESLU4CMGj2gO2"
         ]
       },
-      "sensors":
+      "sensorsData":
       [
         {
           "sensorName": "motion",
@@ -86,7 +86,7 @@
           "l5AExuLCwlOwevsTCBI8f27q3Vt1"
         ]
       },
-      "sensors":
+      "sensorsData":
         [
           {
             "sensorName": "Turbidity Sensor",

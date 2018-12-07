@@ -1,6 +1,6 @@
 import React from 'react';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
-import Model from '../../components/Model/Model';
+import Modal from '../../components/Modal/Modal';
 import AppRouter from '../../routers/AppRouter';
 
 
@@ -8,9 +8,9 @@ const layout = (props) => {
     return (
         <React.Fragment>
             <Toolbar/>
-            <Model>
+            <Modal>
                 <AppRouter/>
-            </Model>
+            </Modal>
         </React.Fragment>
     );
 };

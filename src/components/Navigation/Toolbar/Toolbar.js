@@ -3,8 +3,6 @@ import styles from './Toolbar.module.scss';
 import { Row, Col, Icon, Avatar} from 'antd';
 import {connect} from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
-// import { NavLink } from 'react-router-dom'
-
 
 const Toolbar = (props) => {
     const userAuthenticatedCheck = () => {
@@ -19,7 +17,6 @@ const Toolbar = (props) => {
      const titleDisplayName = communityName.split(' ').map((letter) => {
          return letter.replace(communityName[0], communityName[0].toUpperCase());
      });
-     console.log(communityName);
      return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
  };
 
@@ -43,9 +40,9 @@ const Toolbar = (props) => {
                     <Col span={8}>
                         <div className={styles.Links}>
                             <ul>
-                                <li aria-label={'Link to User Cases'}><Link to='/usecases'>Usecases</Link></li>
+                                <li aria-label={'Link to User Cases'}><a href='/'>Usecases</a></li>
                                 <li aria-label={'Link to Documentation'}><Link to='/documentation'>Documentation</Link></li>
-                                <li aria-label={'Link to About'}><a href='/'>About</a></li>
+                                <li aria-label={'Link to About'}><Link to='/about'>About</Link></li>
                                 {admin}
                             </ul>
                         </div>

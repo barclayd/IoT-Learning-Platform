@@ -9,13 +9,13 @@ import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import a11y from 'react-a11y';
-import {watchHistoricData, watchLiveData, watchUseCaseData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase} from "./store/sagas";
+import {watchHistoricData, watchLiveData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase, watchUpdateUseCaseData, watchCreateUseCase} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
-import useCaseReducer from './store/reducers/useCaseData';
 import authReducer from './store/reducers/auth';
 import useCaseFirebaseReducer from './store/reducers/useCaseFirebase';
 import usersFirebaseReducer from './store/reducers/usersFirebase';
+import createUseCaseReducer from './store/reducers/createUseCase';
 
 import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
@@ -34,15 +34,16 @@ a11y(React, ReactDOM, {
 const rootReducer = combineReducers({
     historicData: historicDataReducer,
     liveData: liveDataReducer,
-    useCaseData: useCaseReducer,
     arduinoData: arduinoDataReducer,
     auth: authReducer,
     useCaseFirebase: useCaseFirebaseReducer,
-    users: usersFirebaseReducer
+    users: usersFirebaseReducer,
+    createUseCase: createUseCaseReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();
 
+// enable line below to hide redux chrome tools when in production
 // const composeEnhancers = process.env.NODE_ENV ==='development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -50,11 +51,12 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, s
 
 sagaMiddleware.run(watchHistoricData);
 sagaMiddleware.run(watchLiveData);
-sagaMiddleware.run(watchUseCaseData);
 sagaMiddleware.run(watchArduinoData);
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchUseCaseDataFirebase);
 sagaMiddleware.run(watchUsersDataFirebase);
+sagaMiddleware.run(watchUpdateUseCaseData);
+sagaMiddleware.run(watchCreateUseCase);
 
 
 const app = (
