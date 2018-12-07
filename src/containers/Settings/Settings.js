@@ -24,7 +24,9 @@ class Settings extends Component {
                         this.setState({
                             sensors: useCase.sensorsData[sensor],
                             email: useCase.email,
-                            name: useCase.name
+                            name: useCase.name,
+                            shortDesc: useCase.shortDesc,
+                            longDesc: useCase.longDesc
                         })
                     }
                 }
@@ -52,8 +54,10 @@ class Settings extends Component {
         let email = {
             email: {...this.state.email}
         };
+        let useCaseData = {'name': this.state.name, 'shortDesc': this.state.shortDesc, 'longDesc': this.state.longDesc};
         let mergedObject = {...email, sensorsData};
-        this.props.onSubmitSettings(this.props.id, mergedObject);
+        let finalMerge = {...mergedObject, ...useCaseData};
+        this.props.onSubmitSettings(this.props.id, finalMerge);
         if(this.props.saved) {
             this.savedSettingsNotification('success');
         }
@@ -89,6 +93,13 @@ class Settings extends Component {
         })
     };
 
+    changeUseCaseDetails= (settingName, settingValue) => {
+        const newValue = settingValue.target.value;
+        this.setState({
+            [settingName]: newValue
+        });
+    };
+
     render() {
         const { TextArea } = Input;
 
@@ -119,6 +130,21 @@ class Settings extends Component {
         });
 
         const emailConfig = (email) => (email);
+
+        let useCaseDetails = (
+                <React.Fragment>
+                 <FormItem {...formItemLayout} key='name' label='Name'>
+                     <Input defaultValue={this.state.name} onChange={(e) => this.changeUseCaseDetails('name', e)}/>
+                 </FormItem>
+                <FormItem {...formItemLayout} key='shortDesc' label='Summary'>
+                    <Input defaultValue={this.state.shortDesc} onChange={(e) => this.changeUseCaseDetails('shortDesc', e)}/>
+                </FormItem>
+                <FormItem {...formItemLayout} key='longDesc' label='Long Description'>
+                    <TextArea value={this.state.longDesc} onChange={(e) => this.changeUseCaseDetails('longDesc', e)}/>
+                </FormItem>
+                </React.Fragment>
+
+    );
 
 
         let emailSettings = Object.keys(emails).map((email) => {
@@ -200,6 +226,8 @@ class Settings extends Component {
             <React.Fragment>
                 {notification}
                 {settings}
+                <h2>General Settings</h2>
+                {useCaseDetails}
                 <h2>Email Settings </h2>
                 <Form>
                 {emailSettings}
