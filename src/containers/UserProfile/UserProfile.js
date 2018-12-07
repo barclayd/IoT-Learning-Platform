@@ -97,14 +97,21 @@ class UserProfile extends Component {
         const userRole = this.props.users.map((user, index) => {
             if(user.userUUID === userId && (localStorage.getItem('role') === 'Trainer')) {
                 return (
-                    <FormItem {...formItemLayout} label='Role'>
+                    <FormItem {...formItemLayout} label='Account Type'>
                         <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value="Apprentice">Apprentice</RadioButton>
                             <RadioButton value="Trainer">Trainer</RadioButton>
                             <RadioButton value="Community">Community</RadioButton>
                         </RadioGroup>
                     </FormItem>
-                )}});
+                )} else if (user.userUUID === userId && (localStorage.getItem('role') === 'Apprentice' || localStorage.getItem('role') === 'Community')){
+                return (
+                    <FormItem {...formItemLayout} label='Account Type'>
+                        <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
+                            <RadioButton value={user.role}>{user.role}</RadioButton>
+                        </RadioGroup>
+                    </FormItem>)
+            }});
 
         let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
 

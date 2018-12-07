@@ -76,7 +76,7 @@ export function* authUserSaga(action) {
 
     let newUser = {
         'accountCreatedDate': dateRecorded,
-        'email': localStorage.getItem("email"),
+        'email': action.email,
         'name': action.name,
         profileImage: '',
         role: 'Apprentice',
