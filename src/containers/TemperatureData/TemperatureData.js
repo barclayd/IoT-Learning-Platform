@@ -18,7 +18,8 @@ class TemperatureData extends Component {
 
     componentDidMount() {
         document.title = 'Live Data Charts';
-        this.props.onFetchArduinoData();
+        console.log(this.props.ID);
+        this.props.onFetchArduinoData(this.props.ID);
 
     }
 
@@ -37,7 +38,7 @@ class TemperatureData extends Component {
     };
 
     fetchArduinoDataAsync = () => {
-        this.props.onFetchArduinoData()
+        this.props.onFetchArduinoData(this.props.ID)
     };
 
     inputMinChangedHandler = (event, name) => {
@@ -105,7 +106,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchArduinoData: () => dispatch(actions.fetchArduinoData())
+        onFetchArduinoData: (useCaseID) => dispatch(actions.fetchArduinoData(useCaseID))
     }
 };
 
