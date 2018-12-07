@@ -6,6 +6,7 @@ import {fetchArduinoDataSaga} from './arduinoData';
 import {fetchUseCaseDataSaga, updateUseCaseSaga, submitSettingsSaga} from './useCaseFirebase'
 import {fetchUsersDataSaga} from './usersFirebase';
 import {createUseCaseSaga} from './createUseCase';
+import {fetchSensorsDataSaga} from './sensorsFirebase'
 
 import {checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, logoutSaga} from './auth';
 
@@ -46,4 +47,8 @@ export function* watchUpdateUseCaseData() {
 
 export function* watchCreateUseCase() {
     yield takeLatest(actionTypes.INIT_CREATE_USECASE, createUseCaseSaga);
+}
+
+export function* watchSensorsData() {
+    yield takeLatest(actionTypes.INIT_FETCH_SENSORS_DATA, fetchSensorsDataSaga);
 }
