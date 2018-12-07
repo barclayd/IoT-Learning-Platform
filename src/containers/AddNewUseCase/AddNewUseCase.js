@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, notification} from "antd";
+import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, notification, Avatar} from "antd";
 import classes from './AddNewUseCase.module.scss';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
@@ -197,28 +197,18 @@ class AddNewUseCase extends Component {
         if(this.props.loading) {
             addNewUseCaseCard = <Card bordered={true} loading={true} aria-label={'Use case card is loading'}></Card>
         } else {
-            addNewUseCaseCard = <Card
-                hoverable
-                bordered={true}
-                style={{ width: 300}}
-                bodyStyle= {{ minHeight: 150}}
-                cover={<img height='150px' alt='add new usecase' src='/images/add-new.png' />}
-                actions={[<Icon type="check-circle" theme="twoTone" style={{fontSize:'22px'}} aria-label={'experiment icon'}/>]}
-                aria-label={`Use case card, Use case name is add new use case card, Use case description is click here to add a new use case`}
-            >
-                <div>
+            addNewUseCaseCard =
+                    <Card style={{marginTop: '100px'}} actions={[<Icon type="check-circle" theme="twoTone" style={{fontSize:'22px'}} aria-label={'experiment icon'}/>]}>
+
+                        <Avatar style={{height: '100px', width: '100px'}} src='/images/add-new.png' />
                     <Meta style={{textAlign: 'center'}} title='Add a New Use Case' description='Click on this card to add a new use case. Here you can set all properties for a new use case' aria-label='Add a new usecase card'/>
-                </div>
-            </Card>
+
+                    </Card>
         }
 
         const { visible, confirmLoading } = this.state;
 
         let successRedirect = null;
-        // let notification = null;
-        // if(this.props.success) {
-        //     notification = this.openNotificationWithIcon('success');
-        // }
         if(this.props.success){
             successRedirect = <Redirect to={`/usecases/${this.props.id}/settings`}/>
         }
