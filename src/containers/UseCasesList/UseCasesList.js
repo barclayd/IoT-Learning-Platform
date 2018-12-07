@@ -15,9 +15,11 @@ class UseCasesList extends Component {
         document.title = 'Use Cases';
         this.props.onFetchUseCaseData();
         this.props.onFetchUsers();
+        this.props.onFetchSensors();
     }
 
     render() {
+        console.log(this.props.sensors);
         let useCases = this.props.useCases.map((useCase, index) => {
                 if(useCase.access.listedUsers !== null) {
                     if(useCase.access.listedUsers.includes(localStorage.getItem("userId")) || (useCase.access.listedUsers.includes(this.props.userId))) {
@@ -59,7 +61,8 @@ const mapStateToProps = state => {
         error: state.useCaseFirebase.error,
         loading: state.useCaseFirebase.loading,
         userId: state.auth.userId,
-        users: state.users.users
+        users: state.users.users,
+        sensors: state.sensors.sensors
     }
 };
 
@@ -67,6 +70,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
         onFetchUsers: () => dispatch(actions.fetchUsersData()),
+        onFetchSensors: () => dispatch(actions.fetchSensorsData())
     }
 };
 
