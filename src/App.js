@@ -9,6 +9,7 @@ class App extends Component {
 
     componentDidMount() {
         this.props.onTryAutoSignIn();
+        console.log("App re-render")
     }
 
     render() {
