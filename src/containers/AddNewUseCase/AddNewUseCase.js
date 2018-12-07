@@ -49,9 +49,6 @@ class AddNewUseCase extends Component {
 
         this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
 
-        setTimeout(() => {
-            console.log(finalMerge);
-        }, 500);
     };
 
     handleCancel = () => {
@@ -76,10 +73,6 @@ class AddNewUseCase extends Component {
         this.setState({
             form: updatedForm
         });
-
-        setTimeout(() => {
-            console.log(this.state);
-        }, 500);
     };
 
     radioButtonForm = (value) => {
@@ -101,12 +94,6 @@ class AddNewUseCase extends Component {
         });
     };
 
-    openNotificationWithIcon = (type) => {
-        notification[type]({
-            message: 'Settings successfully saved!',
-            description: `The settings have been successfully updated for ${this.state.name}`,
-        });
-    };
 
     render () {
 
@@ -172,12 +159,18 @@ class AddNewUseCase extends Component {
                     <InputNumber style={{width: '50%'}} onChange={(e) => this.updateFormNumber('numberSensors', e)}/>
                 </FormItem>
                 {numberSensors}
-                <FormItem {...formItemLayout} label='Image for Use Case'>
+                <FormItem {...formItemLayout} label='Use Case Image'>
                     <Upload name="logo" action="/upload.do" listType="picture" onChange={(e) => this.updateForm('image', e)}>
                         <Button>
                             <Icon type="upload" /> Click to upload
                         </Button>
                     </Upload>
+                </FormItem>
+                <FormItem {...formItemLayout} label='Select image instead'>
+                    <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('image', e)}>
+                        <Option value='add-new.png'>Road</Option>
+                        <Option value='beach.jpg'>Beach</Option>
+                    </Select>
                 </FormItem>
                 <FormItem {...formItemLayout} label='Image Description' >
                     <Input style={{width: '100%'}} onChange={(e) => this.updateForm('imageDesc', e)}/>
@@ -198,10 +191,10 @@ class AddNewUseCase extends Component {
             addNewUseCaseCard = <Card bordered={true} loading={true} aria-label={'Use case card is loading'}></Card>
         } else {
             addNewUseCaseCard =
-                    <Card style={{marginTop: '100px'}} actions={[<Icon type="check-circle" theme="twoTone" style={{fontSize:'22px'}} aria-label={'experiment icon'}/>]}>
-
+                    <Card style={{marginTop: '100px', marginLeft: '50px'}}>
                         <Avatar style={{height: '100px', width: '100px'}} src='/images/add-new.png' />
-                    <Meta style={{textAlign: 'center'}} title='Add a New Use Case' description='Click on this card to add a new use case. Here you can set all properties for a new use case' aria-label='Add a new usecase card'/>
+                        <br />
+                    <Meta style={{textAlign: 'center', marginTop: '25px'}} title='Add a New Use Case' aria-label='Click on this card to add a new use case. Here you can set all properties for a new use case'/>
 
                     </Card>
         }
