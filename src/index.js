@@ -17,6 +17,7 @@ import useCaseFirebaseReducer from './store/reducers/useCaseFirebase';
 import usersFirebaseReducer from './store/reducers/usersFirebase';
 import createUseCaseReducer from './store/reducers/createUseCase';
 import sensorsFirebaseReducer from './store/reducers/sensorsFirebase';
+import createUserReducer from './store/reducers/createUser';
 
 import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
     useCaseFirebase: useCaseFirebaseReducer,
     users: usersFirebaseReducer,
     createUseCase: createUseCaseReducer,
-    sensors: sensorsFirebaseReducer
+    sensors: sensorsFirebaseReducer,
+    createUser: createUserReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();

@@ -48,6 +48,7 @@ class Auth extends Component {
     };
 
     componentDidMount() {
+        this.props.onFetchUsers();
         if(this.props.isAuthenticated || localStorage.getItem("email") !== null) {
             // this.props.onSetAuthRedirectPath('/');
             this.props.history.push('/');
@@ -87,7 +88,7 @@ class Auth extends Component {
     submitHandler = (event) => {
         event.preventDefault();
         if(!this.state.community) {
-            this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+            this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup, this.props.id);
         } else {
             const communityAddress = `${this.state.communityName}@gov.uk`;
             this.props.onAuth(communityAddress, this.state.controls.password.value, this.state.isSignup);
@@ -99,7 +100,6 @@ class Auth extends Component {
 
     render() {
         let user;
-
         if(this.state.community) {
             user = <Select allowClear={true} defaultValue='Newport' showSearch={true} onSelect={(value) => this.handleSelection(value)}>
                 <Option value='Aberdare'>Aberdare</Option>
@@ -153,6 +153,8 @@ class Auth extends Component {
         }
 
         let authRedirect = null;
+        // if(this.props.isAuthenticated && this.state.isSignup) {
+        //     authRedirect = <Redirect to='/profile'/>
         if(this.props.isAuthenticated) {
             authRedirect = <Redirect to={this.props.authRedirect}/>
         }
@@ -192,14 +194,17 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
-        authRedirect: state.auth.authRedirect
+        authRedirect: state.auth.authRedirect,
+        id: state.users.users.length,
+        newUserCreate: state.createUser.success
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
-        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
+        onAuth: (email, password, isSignup, id) => dispatch(actions.auth(email, password, isSignup, id)),
+        onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
+        onFetchUsers: () => dispatch(actions.fetchUsersData())
     }
 };
 
