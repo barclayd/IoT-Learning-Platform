@@ -19,6 +19,7 @@ const otherSettings = {
 
 class AddNewUseCase extends Component {
 
+
     state = {
         visible: false,
         confirmLoading: false,
@@ -202,8 +203,9 @@ class AddNewUseCase extends Component {
                 <FormItem {...formItemLayout} label='Permitted Users'>
                     <p style={{lineHeight: '1.7em'}}>Enter the name/email of all users you wish to grant access to the use case</p>
                     <Select style={{width: '125%'}} mode='multiple' placeholder='Select users' onChange={(e) => this.accessListForm('listedUsers', e)}>
-                        <Option value='test@gmail.com'>test@gmail.com</Option>
-                        <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
+                        {this.props.users.map((user, index) => {
+                            return (<Option value={user.userUUID} key={index}>{user.email}</Option>)
+                        })}
                     </Select>
                 </FormItem>
             </React.Fragment>
@@ -254,13 +256,13 @@ class AddNewUseCase extends Component {
 
 const mapStateToProps = state => {
     return {
-        success: state.createUseCase.success
+        success: state.createUseCase.success,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCreateNewUseCase: (id, updateObject) => dispatch(actions.createUseCase(id, updateObject))
+        onCreateNewUseCase: (id, updateObject) => dispatch(actions.createUseCase(id, updateObject)),
     }
 };
 
