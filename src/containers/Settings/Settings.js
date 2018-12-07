@@ -12,8 +12,8 @@ class Settings extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
-                this.props.onFetchUseCaseData();
+         this.props.onFetchUseCaseData();
+         this.props.onFetchSensors();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -150,41 +150,31 @@ class Settings extends Component {
                 } else {
                     switch (setting) {
                         case('sensorName'):
+                            console.log(this.props.sensorsList);
                             return (
-                                <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                <Select defaultValue={sensor[setting]} onChange={(e) => this.getSensorName(setting, e)}>
-                                    <Option value={sensor[setting]}>{sensor[setting]}</Option>
-                                    <Option value='motion sensor'>Motion Sensor</Option>
+                                <FormItem {...formItemLayout} label={'Sensor Type'} key={sensor[setting]}>
+                                <Select defaultValue={sensor[setting]} placeholder='Select a sensor type' onChange={(e) => this.getSensorName(setting, e)}>
+                                    {this.props.sensorsList.map((sensor, index) => {
+                                        return (<Option value={sensor.sensorName} key={index}>{sensor.sensorName} </Option>)
+                                    })}
                                 </Select>
                             </FormItem>);
+
                         case('sensorComponent'):
-                            switch(sensor.sensorName) {
-                                case('motion') :
                                     return (
-                                        <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                            <Select value={sensor.sensorComponent}
+                                        <FormItem {...formItemLayout} label={'Sensor Component'} key={sensor[setting]}>
+                                            <Select defaultValue={sensor[setting]} placeholder='Please select a sensor component'
                                                     onChange={(e) => this.getSensorName(setting, e)}>
-                                                <Option value='motion'>Motion Sensor</Option>
+                                                {this.props.sensorsList.map((sensor, index) => {
+                                                    if(sensor.sensorName === this.state.sensors.sensorName) {
+                                                        return sensor.sensorComponents.map((cmp, index) => {
+                                                            return (<Option value={cmp} key={index}>{cmp}</Option>)
+                                                        })
+                                                    }
+                                                })}
                                             </Select>
                                         </FormItem>);
-                                case('temperature') :
-                                    return (
-                                        <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                            <Select defaultValue={(sensor[setting])}
-                                                    onChange={(e) => this.getSensorName(setting, e)}>
-                                                <Option value={sensor[setting]}>{sensor[setting]}</Option>
-                                            </Select>
-                                        </FormItem>);
-                                default:
-                                    return (
-                                        <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                            <Select defaultValue={sensor[setting]}
-                                                    onChange={(e) => this.getSensorName(setting, e)}>
-                                                <Option value={sensor[setting]}>{sensor[setting]}</Option>
-                                                <Option value='motion'>Motion Sensor</Option>
-                                            </Select>
-                                        </FormItem>);
-                            }
+
                             default:
                             return <FormItem {...formItemLayout} key={setting} label={setting}> <Input
                                 defaultValue={sensor[setting]} style={{width: '100%'}}/>
@@ -226,14 +216,17 @@ const mapStateToProps = state => {
         data: state.useCaseFirebase.data,
         loading: state.useCaseFirebase.loading,
         saved: state.useCaseFirebase.saved,
-        success: state.createUseCase.success
+        success: state.createUseCase.success,
+        sensorsList: state.sensors.sensors
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
-        onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings))
+        onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings)),
+        onFetchSensors: () => dispatch(actions.fetchSensorsData())
+
     }
 };
 
