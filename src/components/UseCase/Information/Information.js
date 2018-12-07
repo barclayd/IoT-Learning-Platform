@@ -3,7 +3,6 @@ import styles from './Information.module.scss';
 
 
 const Information = (props) => {
-    
     return (
        <div className={styles.Information}>
        <h1>Information</h1>

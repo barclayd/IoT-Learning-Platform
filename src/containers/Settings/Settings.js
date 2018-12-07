@@ -1,51 +1,92 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Col, Select, Cascader, InputNumber, Button} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
+import {updateObject} from '../../store/utility';
 
 class Settings extends Component {
 
     state = {
-      sensorName: 'temperature',
-        changedSensor: false,
-        sensorComponent: ''
+        justLanded: true
     };
 
-    componentWillMount() {
+    componentDidMount() {
+        console.log(this.props);
                 this.props.onFetchUseCaseData();
     }
 
-
-    getSensorName = (event) => {
-        console.log(event);
-        this.setState({
-            sensorName: event,
-            changedSensor: true
-        });
-
-    };
-
-    getSensorComponent = (event) => {
-        console.log(event);
-        this.setState({
-            sensorComponent: event,
-            changedSensor: false
-        });
-
-    };
-
-    changeSetting = (setting) => {
-        console.log(setting);
-        if (this.state.changedSensor) {
-            this.setState({
-                changedSensor: false
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.loading) {
+            nextProps.data.forEach((useCase) => {
+                if (useCase.id === this.props.id) {
+                    for(let sensor in useCase.sensorsData) {
+                        this.setState({
+                            sensors: useCase.sensorsData[sensor],
+                            email: useCase.email,
+                            name: useCase.name
+                        })
+                    }
+                }
             });
-            return null;
-        } else {
-            // return setting;
-            return setting;
         }
+    }
+
+    savedSettingsNotification = (type) => {
+        notification[type]({
+            message: 'Settings successfully saved!',
+            description: `The settings have been successfully updated for ${this.state.name}`,
+        });
+    };
+
+    openNewUseCaseNotification = (type) => {
+        notification[type]({
+            message: 'New Use Case Created!',
+            description: `A new use case has been created. You can update the settings in greater detail here`,
+        });
+    };
+
+    submitSettings() {
+        let sensorsData = [];
+        sensorsData.push(this.state.sensors);
+        let email = {
+            email: {...this.state.email}
+        };
+        let mergedObject = {...email, sensorsData};
+        this.props.onSubmitSettings(this.props.id, mergedObject);
+        if(this.props.saved) {
+            this.savedSettingsNotification('success');
+        }
+    }
+
+
+    getSensorName = (settingName, settingValue) => {
+        const updatedSensors = updateObject(this.state.sensors, {
+            [settingName]: settingValue
+        } );
+        this.setState({
+            sensors: updatedSensors
+        });
+    };
+
+    changeEmailSetting = (settingName, settingValue) => {
+
+        const updatedEmails = updateObject(this.state.email, {
+            [settingName]: settingValue
+        } );
+
+      this.setState({
+          email: updatedEmails
+      })
+    };
+
+    changeEmailSettingOther = (settingName, settingValue) => {
+        const updatedEmails = updateObject(this.state.email, {
+            [settingName]: settingValue.target.value
+        } );
+        this.setState({
+            email: updatedEmails
+        })
     };
 
     render() {
@@ -65,33 +106,31 @@ class Settings extends Component {
 
         let sensors = [];
         let emails = {};
-        console.log(this.state.changedSensor);
 
         let settings = this.props.data.forEach((useCase) => {
             if (useCase.id === this.props.id) {
-                console.log('local id: ', this.props.id, 'firebaseId: ', useCase.id );
-                for(let sensor in useCase.sensors) {
-                    console.log(sensor);
-                    console.log(useCase.sensors[sensor]);
-                    sensors.push(useCase.sensors[sensor]);
+                for(let sensor in useCase.sensorsData) {
+                    sensors.push(useCase.sensorsData[sensor]);
                 }
                 emails = {...useCase.email};
             }
         });
 
+        const emailConfig = (email) => (email);
+
+
         let emailSettings = Object.keys(emails).map((email) => {
             switch (email) {
                         case('senders'):
                             return <FormItem {...formItemLayout} key={email} label={email}>
-                                {/*<Input defaultValue={emails[email]} />*/}
-                                <Select mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]}>
-                                    <Option value={emails[email]}>{emails[email]}</Option>
-                                    <Option value='email1'>test@gmail.com</Option>
-                                    <Option value='fahrenheit'>peter.trott@gmail.com</Option>
+                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]} value={emailConfig(emails[email])} onChange={(e) => this.changeEmailSetting(email, e)}>
+                                <Option value={emails[email]} key={Math.random()}>{emails[email]}</Option>
+                                    <Option value='test@gmail.com'>test@gmail.com</Option>
+                                    <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
                                 </Select>
                             </FormItem>;
                         default:
-                            return <FormItem {...formItemLayout} key={email} label={email}> <Input defaultValue={emails[email]} /> </FormItem>
+                            return <FormItem {...formItemLayout} key={email} label={email}> <Input defaultValue={emails[email]} onChange={(e) => this.changeEmailSettingOther(email, e)}/> </FormItem>
 
             }
         });
@@ -101,7 +140,7 @@ class Settings extends Component {
                 if(!isNaN(parseInt(sensor[setting]))) {
                     return (
                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                            <InputNumber defaultValue={sensor[setting]} style={{ width: '65%', marginRight: '3%' }}/>
+                            <InputNumber defaultValue={sensor[setting]} style={{ width: '65%', marginRight: '3%' }}  onChange={(e) => this.getSensorName(setting, e)}/>
                             <Select style={{ width: '32%' }} defaultValue='celsius'>
                                 <Option value='celsius'>°C</Option>
                                 <Option value='fahrenheit'>°F</Option>
@@ -113,29 +152,26 @@ class Settings extends Component {
                         case('sensorName'):
                             return (
                                 <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                <Select defaultValue={sensor[setting]} onChange={(e) => this.getSensorName(e)}>
+                                <Select defaultValue={sensor[setting]} onChange={(e) => this.getSensorName(setting, e)}>
                                     <Option value={sensor[setting]}>{sensor[setting]}</Option>
-                                    <Option value='motion'>Motion Sensor</Option>
+                                    <Option value='motion sensor'>Motion Sensor</Option>
                                 </Select>
                             </FormItem>);
                         case('sensorComponent'):
-                            switch(this.state.sensorName) {
+                            switch(sensor.sensorName) {
                                 case('motion') :
                                     return (
                                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                            {/*<Select defaultValue={this.changeSetting(sensor[setting])}*/}
-                                            <Select value={this.state.sensorComponent}
-                                                    onChange={(e) => this.getSensorComponent(e)}>
+                                            <Select value={sensor.sensorComponent}
+                                                    onChange={(e) => this.getSensorName(setting, e)}>
                                                 <Option value='motion'>Motion Sensor</Option>
                                             </Select>
                                         </FormItem>);
                                 case('temperature') :
                                     return (
                                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
-                                            <Select value={this.state.sensorComponent ? this.state.sensorComponent : this.changeSetting(sensor[setting])}
-                                                    onChange={(e) => this.getSensorComponent(e)}>
-                                            {/*<Select defaultValue={sensor[setting]}*/}
-                                                    {/*onChange={(e) => this.getSensorName(e)}>*/}
+                                            <Select defaultValue={(sensor[setting])}
+                                                    onChange={(e) => this.getSensorName(setting, e)}>
                                                 <Option value={sensor[setting]}>{sensor[setting]}</Option>
                                             </Select>
                                         </FormItem>);
@@ -143,7 +179,7 @@ class Settings extends Component {
                                     return (
                                         <FormItem {...formItemLayout} label={setting} key={sensor[setting]}>
                                             <Select defaultValue={sensor[setting]}
-                                                    onChange={(e) => this.getSensorName(e)}>
+                                                    onChange={(e) => this.getSensorName(setting, e)}>
                                                 <Option value={sensor[setting]}>{sensor[setting]}</Option>
                                                 <Option value='motion'>Motion Sensor</Option>
                                             </Select>
@@ -159,12 +195,20 @@ class Settings extends Component {
         });
 
 
-        let button = <Button type="primary" htmlType="submit">Submit</Button>;
+        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
 
-
+        let notification = null;
+        if(this.props.success && this.state.justLanded) {
+            notification = this.openNewUseCaseNotification('info');
+            this.setState({
+                justLanded: false
+            })
+        }
 
         return (
             <React.Fragment>
+                {notification}
+                {settings}
                 <h2>Email Settings </h2>
                 <Form>
                 {emailSettings}
@@ -172,7 +216,6 @@ class Settings extends Component {
                 {sensorsSettings}
                 {button}
                 </Form>
-
             </React.Fragment>
         )
     }
@@ -180,13 +223,17 @@ class Settings extends Component {
 
 const mapStateToProps = state => {
     return {
-        data: state.useCaseFirebase.data
+        data: state.useCaseFirebase.data,
+        loading: state.useCaseFirebase.loading,
+        saved: state.useCaseFirebase.saved,
+        success: state.createUseCase.success
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData())
+        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
+        onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings))
     }
 };
 

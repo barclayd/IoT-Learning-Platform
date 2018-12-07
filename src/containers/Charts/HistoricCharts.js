@@ -22,8 +22,6 @@ class HistoricCharts extends Component {
             datesRecorded.push((this.props.data[record].dateRecorded).slice(0, -5));
         }
 
-        console.log(datesRecorded);
-
         const averageDayCalculator = () => {
             const count = datesRecorded =>
                 datesRecorded.reduce((a, b) =>
@@ -36,9 +34,6 @@ class HistoricCharts extends Component {
                    delete duplicates[item];
                }
            }
-            console.log(duplicates);
-
-           console.log(fridgeTemps);
 
            let dayTotal = 0;
            let countTotal = 0;
@@ -51,21 +46,9 @@ class HistoricCharts extends Component {
                     calculatedData[this.props.data[record].dateRecorded] = this.props.data[record].fridgeTemp
                 }
             }
-
-
-
-           // remove key-pair values with size less than 2
-
-            // make an average of
-
-           // for(let record in datesRecorded){
-           //      if(record === Object.keys(datesRecorded));
-           // }
         };
 
         averageDayCalculator();
-        console.log(this.props.data);
-
 
         const chartData = {
           // labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -109,17 +92,6 @@ class HistoricCharts extends Component {
                         position: 'bottom'
                     }
                 }}/>
-                {/*<Pie*/}
-                    {/*data={chartData}*/}
-                    {/*width={200}*/}
-                    {/*height={200}*/}
-                    {/*aria-label={'Pie Chart'}*/}
-                    {/*options={{*/}
-                        {/*legend: {*/}
-                            {/*display: true,*/}
-                            {/*position: 'bottom'*/}
-                        {/*}*/}
-                    {/*}}/>*/}
             </React.Fragment>
 
 
