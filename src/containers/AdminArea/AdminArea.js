@@ -87,7 +87,7 @@ class AdminArea extends Component {
 
 
 const mapStateToProps = state => {
-    const {users, useCaseFirebase} = state
+    const {users, useCaseFirebase} = state;
     return {
        users: users.users,
        useCases: useCaseFirebase.data,
