@@ -10,11 +10,12 @@ io.listen(8001);
 
 console.log('listening on port ', port);
 
+
 const initWebsocket = () => {
     io.on('connection', (client) => {
-        client.on('connectToArduino', (clientId) => {
-            console.log('Client has requested Arduino connection');
-            sendArduinoData(client);
+        client.on('connectToArduino', (useCaseID) => {
+            console.log('Client has requested Arduino connection' + useCaseID);
+            sendArduinoData(client, useCaseID);
         });
         client.on('sendUseCases', () => {
             console.log('Client has requested use cases data');
@@ -24,7 +25,6 @@ const initWebsocket = () => {
         //     console.log('Client has requested use cases data');
         //     client.emit('arduinoData', getArduinoData());
         // });
-
     });
 };
 
@@ -43,7 +43,8 @@ const sendDataUsingWebsockets = () => {
         });
         // client.on('connectToArduinoData', () => {
         //     console.log('Client has requested use cases data');
-        //     client.emit('arduinoData', getArduinoData());
+        //    
+         client.emit('arduinoData', getArduinoData());
         // });
 
     });
@@ -52,5 +53,4 @@ const sendDataUsingWebsockets = () => {
 module.exports = {
     initWebsocket,
     sendDataUsingWebsockets
-
 };

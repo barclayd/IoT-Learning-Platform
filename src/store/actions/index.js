@@ -26,3 +26,7 @@ export {
 export {
     createUseCaseFail, createUseCaseInit, createUseCase, createUseCaseStart, createUseCaseSuccess
 } from './createUseCase'
+
+export {
+    fetchSensorsData, fetchSensorsDataFailed, fetchSensorsDataStart, fetchSensorsDataSuccess
+} from './sensorsFirebase'
