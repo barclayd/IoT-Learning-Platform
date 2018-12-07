@@ -87,6 +87,9 @@ class UserProfile extends Component {
                                 <Option value='beach.jpg'>Beach</Option>
                             </Select>
                         </FormItem>
+                        <FormItem {...formItemLayout} label={'Account held since'} key={index+3}>
+                            <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
+                        </FormItem>
                     </React.Fragment>
                 )
             }

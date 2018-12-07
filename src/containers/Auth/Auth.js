@@ -26,6 +26,20 @@ class Auth extends Component {
                 valid: false,
                 touched: false
             },
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'name'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
             password: {
                 elementType: 'input',
                 elementConfig: {
@@ -87,11 +101,12 @@ class Auth extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
+        console.log(this.state.controls.name.value);
         if(!this.state.community) {
-            this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup, this.props.id);
+            this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup, this.props.id, this.state.controls.name.value);
         } else {
             const communityAddress = `${this.state.communityName}@gov.uk`;
-            this.props.onAuth(communityAddress, this.state.controls.password.value, this.state.isSignup);
+            this.props.onAuth(communityAddress, this.state.controls.password.value, this.state.isSignup, this.props.id);
         }
         if(this.props.isAuthenticated) {
             this.props.history.push('/');
@@ -120,9 +135,17 @@ class Auth extends Component {
                 size='large'
                 onChange={(e) => this.inputChangedHandler(e, 'email')}/>
         }
+        let name;
+        name =  <Input
+            placeholder={this.state.controls.name.elementConfig.placeholder}
+            type={this.state.controls.name.elementConfig.type}
+            prefix={<Icon type="smile" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            size='large'
+            onChange={(e) => this.inputChangedHandler(e, 'name')}/>;
 
         let form = (
             <div style={{padding: '10px'}}>
+                {this.state.isSignup ? name : null}
                 {user}
             <Input
                 placeholder={this.state.controls.password.elementConfig.placeholder}
@@ -202,7 +225,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password, isSignup, id) => dispatch(actions.auth(email, password, isSignup, id)),
+        onAuth: (email, password, isSignup, id, name) => dispatch(actions.auth(email, password, isSignup, id, name)),
         onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
         onFetchUsers: () => dispatch(actions.fetchUsersData())
     }
