@@ -204,7 +204,7 @@ class AddNewUseCase extends Component {
                     <p style={{lineHeight: '1.7em'}}>Enter the name/email of all users you wish to grant access to the use case</p>
                     <Select style={{width: '125%'}} mode='multiple' placeholder='Select users' onChange={(e) => this.accessListForm('listedUsers', e)}>
                         {this.props.users.map((user, index) => {
-                            return (<Option value={user.userUUID} key={index}>{user.email}</Option>)
+                            return (<Option value={user.userUUID} key={index}>{user.name}</Option>)
                         })}
                     </Select>
                 </FormItem>
