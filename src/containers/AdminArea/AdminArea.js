@@ -63,7 +63,7 @@ class AdminArea extends Component {
                             onChange={(value) => this.handleUserSelected(useCase, value)}
                         >
                             {this.props.users.map((user, index) => {
-                                return (<Option value={user.userUUID} key={index}>{user.email}</Option>)
+                                return (<Option value={user.userUUID} key={index}>{user.name}</Option>)
                             })}
                         </Select>
                     </div>);

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Temperature",
+    "sensorName": "Temperature Sensor",
+    "sensorComponents": ["TMP36","LM35", "DS18B20", "DHT11_I2C_NANO_BACKPACK"]
+  },
+  {
+    "name": "Motion",
+    "sensorName": "Motion Sensor",
+    "sensorComponents": ["HC-SR501","GP2Y0D805Z0F", "GP2Y0D810Z0F", "GP2Y0A60SZLF"]
+  },
+  {
+    "name": "Temperature",
+    "sensorName": "Temperature Sensor",
+    "sensorComponents": ["TMP36","LM35", "DS18B20", "DHT11_I2C_NANO_BACKPACK"]
+  },
+  {
+    "name": "Hygrometers",
+    "sensorName": "Hygrometers Sensor",
+    "sensorComponents": ["BME280","HTU21D", "HIH6130", "TH02"]
+  },
+  {
+    "name": "Barometers",
+    "sensorName": "Barometer Sensor",
+    "sensorComponents": ["BME280","HTU21D", "HIH6130", "TH02"]
+  },
+  {
+    "name": "Light",
+    "sensorName": "Light Sensor",
+    "sensorComponents": ["TSL2561","EV3", "NXT"]
+  },
+  {
+    "name": "Accelerometers",
+    "sensorName": "Accelerometer Sensor",
+    "sensorComponents": ["ADXL335","ADXL362", "LIS344AL"]
+  }
+]
