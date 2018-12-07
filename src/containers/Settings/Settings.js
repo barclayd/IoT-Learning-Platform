@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Col, Select, Cascader, InputNumber, Button, notification} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification} from "antd";
 import * as actions from "../../store/actions";
-import {withRouter} from "react-router-dom";
 import FormItem from "antd/lib/form/FormItem";
 import {updateObject} from '../../store/utility';
 
@@ -239,4 +238,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Settings));
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

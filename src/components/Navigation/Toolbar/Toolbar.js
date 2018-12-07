@@ -40,9 +40,9 @@ const Toolbar = (props) => {
                     <Col span={8}>
                         <div className={styles.Links}>
                             <ul>
-                                <li aria-label={'Link to User Cases'}><Link to='/usecases'>Usecases</Link></li>
+                                <li aria-label={'Link to User Cases'}><a href='/'>Usecases</a></li>
                                 <li aria-label={'Link to Documentation'}><Link to='/documentation'>Documentation</Link></li>
-                                <li aria-label={'Link to About'}><a href='/'>About</a></li>
+                                <li aria-label={'Link to About'}><Link to='/about'>About</Link></li>
                                 {admin}
                             </ul>
                         </div>
