@@ -22,7 +22,8 @@ class UseCase extends React.Component {
                     useCase = useCases[(i-1)];
                 }
             }
-            console.log(useCase);
+
+            
             return (
                 <div aria-label={'Use Cases'} className={styles.UseCase}>
                     <Row gutter={15}>

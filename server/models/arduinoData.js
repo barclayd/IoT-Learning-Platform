@@ -1,4 +1,3 @@
-const io = require('./websockets');
 const dateformat = require('dateformat');
 const {composeEmail} = require('./emailService');
 const axios = require('../axios-instance');
@@ -12,7 +11,7 @@ const temperatureRange = {min: 2, max: 22};
 let obj = {};
 
 
-const sendArduinoData = (client) => {
+const sendArduinoData = (client, getUseCaseID) => {
 
     try {
         const five = require('johnny-five');
@@ -23,7 +22,7 @@ const sendArduinoData = (client) => {
             board.on("ready", function() {
 
                 const temperature = new five.Thermometer({
-                    controller: "LM35", //LM35 or TMP36
+                    controller: "TMP36", //LM35 or TMP36
                     pin: "A0",
                     freq: 4000
                 });
@@ -47,8 +46,8 @@ const sendArduinoData = (client) => {
                             console.log('An error occurred');
                         });
                     if (this.celsius < temperatureRange.min || this.celsius > temperatureRange.max) {
-                        console.log("email sent")
-                        composeEmail("Warning Email", `<p>Fridge has reached a critical level ${this.celsius}</p>`)
+                        console.log("email sent");
+                        composeEmail(getUseCaseID);
                     }
                 });
             });

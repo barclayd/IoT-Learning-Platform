@@ -25,16 +25,17 @@ export const fetchArduinoDataStart = () => {
     }
 };
 
-export const fetchArduinoData = () => {
+export const fetchArduinoData = (useCaseID) => {
     return dispatch => {
         dispatch(fetchArduinoDataStart());
+        console.log(useCaseID);
         connectToArduino((data) => {
             if(!data.data || data.success === false) {
                 dispatch(fetchArduinoDataFailed());
             } else {
                 dispatch(fetchArduinoDataSuccess(data));
             }
-            });
+            }, useCaseID);
     }
     // return {
     //     type: actionTypes.INIT_FETCH_ARDUINO_DATA
