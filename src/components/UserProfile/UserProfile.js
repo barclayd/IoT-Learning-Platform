@@ -25,6 +25,15 @@ class UserProfile extends Component {
         });
     };
 
+    updateFormNumber = (settingName, settingValue) => {
+        const updatedForm = updateObject(this.state.user, {
+            [settingName]: settingValue
+        } );
+        this.setState({
+            user: updatedForm
+        });
+    };
+
     radioButtonForm = (value) => {
         const setting = value.target.value;
         const updatedForm = updateObject(this.state.user, {
@@ -61,10 +70,9 @@ class UserProfile extends Component {
         let userId = localStorage.getItem("userId");
         let userName;
         let userEmail;
-        const thisUsers = this.props.users.map((user, index) => {
+        const userDetails = this.props.users.map((user, index) => {
             if(user.userUUID === userId) {
                 [userName, userEmail] = [user.name, user.email];
-                console.log(user);
                 return (
                     <React.Fragment>
                     <FormItem {...formItemLayout} label={'User Name'} key={index}>
@@ -73,20 +81,27 @@ class UserProfile extends Component {
                     <FormItem {...formItemLayout} label={'User Email'} key={index+1}>
                         <p style={{width: '100%'}}>{user.email}</p>
                      </FormItem>
-                        <FormItem {...formItemLayout} label='Role'>
-                            <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
-                                <RadioButton value="Apprentice">Apprentice</RadioButton>
-                                <RadioButton value="Trainer">Trainer</RadioButton>
-                                <RadioButton value="Community">Community</RadioButton>
-                            </RadioGroup>
-                        </FormItem>
                         <FormItem {...formItemLayout} label={'Profile Picture'} key={index+2}>
-                            <Input defaultValue={user.profileImage} style={{width: '100%'}} onChange={(e) => this.updateForm('profileImage', e)}/>
+                            <Select defaultValue={user.profileImage} style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('profileImage', e)}>
+                                <Option value='road.jpg'>Road</Option>
+                                <Option value='beach.jpg'>Beach</Option>
+                            </Select>
                         </FormItem>
                     </React.Fragment>
                 )
             }
         });
+        const userRole = this.props.users.map((user, index) => {
+            if(user.userUUID === userId && (localStorage.getItem('role') === 'Trainer')) {
+                return (
+                    <FormItem {...formItemLayout} label='Role'>
+                        <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
+                            <RadioButton value="Apprentice">Apprentice</RadioButton>
+                            <RadioButton value="Trainer">Trainer</RadioButton>
+                            <RadioButton value="Community">Community</RadioButton>
+                        </RadioGroup>
+                    </FormItem>
+                )}});
 
         let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
 
@@ -94,8 +109,9 @@ class UserProfile extends Component {
         return (
         <React.Fragment>
             <h1>User Profile</h1>
-            <h3>Welcome, {userName !== null ? userName : 'User'}</h3>
-            {thisUsers}
+            <h3>Welcome, {userName !== null ? userName : localStorage.getItem('email')}</h3>
+            {userDetails}
+            {userRole}
             {button}
         </React.Fragment>
     )
