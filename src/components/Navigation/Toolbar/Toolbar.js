@@ -20,10 +20,19 @@ const Toolbar = (props) => {
      return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
  };
 
+    const styleAvatar = (email) => {
+        if(email !== null) {
+            const letter = email.charAt(0).toUpperCase();
+            return <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{letter}</Avatar>
+        } else {
+            return  <Avatar size={28} icon="user" aria-label={'avatar picture'} />
+        }
+    };
+
     const login = <Link to='/logout'>Login</Link>;
     const logout = <Link to='/logout'>logout?</Link>;
 
-    const admin = (localStorage.getItem('role') === 'Trainer' || props.role === 'Trainer')  ? <li  aria-label={'Link to Admin Area'}><a style={{color:'red'}} href='/admin-area'>Admin Area</a></li> : null;
+    const admin = (localStorage.getItem('role') === 'Trainer' || props.role === 'Trainer')  ? <li  aria-label={'Link to Admin Area'}><a style={{color:'red', border: '3px dashed #ccc', padding: '10px', textAlign: 'center' }} href='/admin-area'>Admin Area</a></li> : null;
 
     return (
         <header className={styles.Header}>
@@ -32,8 +41,6 @@ const Toolbar = (props) => {
                     <Col span={3}>
                         <div className={styles.Logo}>
                             <Link to='/' aria-label={'Logo'}><img alt='Logo' aria-label='Logo' style={{height: '45px', width: '45px'}} src='/images/logo.png'/></Link>
-                            {/*<Link to='/' aria-label={'Logo'}>LOGO</Link>*/}
-
                         </div>
                     </Col>
 
@@ -48,18 +55,19 @@ const Toolbar = (props) => {
                         </div>
                     </Col>
 
-
                     <Col span={7} offset={5} >
                         <div className={styles.User}>
                             <div className={styles.Actions}>
                                 <Icon style={{ fontSize: '18px'}} type="bell" aria-label={'notification icon'}/>
                                 <Icon  style={{ fontSize: '18px', marginLeft: '25px'}} type="search" aria-label={'search field'} />
                             </div>
-                            <div className={styles.Info}>
-                               <Link to='/profile'> <Avatar size={28} icon="user" aria-label={'avatar picture'}></Avatar></Link>
+                            <div className={styles.Info} style={{cursor: 'pointer'}}>
+                                <Link to='/profile'>{styleAvatar(localStorage.getItem("email"))}</Link>
+                                <br />
                                 <div onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
-                                    <div className={styles.login} aria-label={'username'}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
+                                    <div style={{padding: '10px'}} className={styles.login} aria-label={'username'}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
                                 </div>
+                                <br />
                                 </div>
                         </div>
                     </Col>
