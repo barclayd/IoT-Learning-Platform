@@ -1,6 +1,5 @@
 const {sendDataUsingWebsockets, initWebsocket} = require('./models/websockets');
 const {sendTempDataToFirebase, retrieveDataFromFirebase} = require('./models/firebase');
-const {composeEmail} = require('./models/emailService');
 const {getArduinoData, sendArduinoData} = require('./models/arduinoData');
 
 // sends randomly generated mock data and Arudino data to client using websockets
