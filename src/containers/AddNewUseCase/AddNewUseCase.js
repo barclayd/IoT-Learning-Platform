@@ -27,7 +27,7 @@ class AddNewUseCase extends Component {
         numberSensors: [1],
         form: {
             name: '',
-            image: 'new-image.jpg'
+            image: 'road.jpg'
         },
         listedUsers: [localStorage.getItem("userId")]
     };
@@ -185,7 +185,7 @@ class AddNewUseCase extends Component {
                 </FormItem>
                 <FormItem {...formItemLayout} label='Select image instead'>
                     <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('image', e)}>
-                        <Option value='add-new.png'>Road</Option>
+                        <Option value='road.jpg'>Road</Option>
                         <Option value='beach.jpg'>Beach</Option>
                     </Select>
                 </FormItem>
@@ -204,7 +204,7 @@ class AddNewUseCase extends Component {
                     <p style={{lineHeight: '1.7em'}}>Enter the name/email of all users you wish to grant access to the use case</p>
                     <Select style={{width: '125%'}} mode='multiple' placeholder='Select users' onChange={(e) => this.accessListForm('listedUsers', e)}>
                         {this.props.users.map((user, index) => {
-                            return (<Option value={user.userUUID} key={index}>{user.email}</Option>)
+                            return (<Option value={user.userUUID} key={index}>{user.name}</Option>)
                         })}
                     </Select>
                 </FormItem>
