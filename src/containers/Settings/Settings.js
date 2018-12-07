@@ -90,6 +90,8 @@ class Settings extends Component {
     };
 
     render() {
+        const { TextArea } = Input;
+
         const FormItem = Form.Item;
         const Option = Select.Option;
 
@@ -130,7 +132,7 @@ class Settings extends Component {
                                 </Select>
                             </FormItem>;
                         default:
-                            return <FormItem {...formItemLayout} key={email} label={email}> <Input defaultValue={emails[email]} onChange={(e) => this.changeEmailSettingOther(email, e)}/> </FormItem>
+                            return <FormItem {...formItemLayout} key={email} label={email}> <TextArea defaultValue={emails[email]} onChange={(e) => this.changeEmailSettingOther(email, e)}/> </FormItem>
 
             }
         });
@@ -150,7 +152,6 @@ class Settings extends Component {
                 } else {
                     switch (setting) {
                         case('sensorName'):
-                            console.log(this.props.sensorsList);
                             return (
                                 <FormItem {...formItemLayout} label={'Sensor Type'} key={sensor[setting]}>
                                 <Select defaultValue={sensor[setting]} placeholder='Select a sensor type' onChange={(e) => this.getSensorName(setting, e)}>

@@ -55,10 +55,12 @@ const Toolbar = (props) => {
                                 <Icon style={{ fontSize: '18px'}} type="bell" aria-label={'notification icon'}/>
                                 <Icon  style={{ fontSize: '18px', marginLeft: '25px'}} type="search" aria-label={'search field'} />
                             </div>
-                            <div className={styles.Info} onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
-                                <Avatar size={28} icon="user" aria-label={'avatar picture'}/>
-                                <div className={styles.login} aria-label={'username'}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
-                            </div>
+                            <div className={styles.Info}>
+                               <Link to='/profile'> <Avatar size={28} icon="user" aria-label={'avatar picture'}></Avatar></Link>
+                                <div onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
+                                    <div className={styles.login} aria-label={'username'}>{localStorage.getItem("email") ? <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
+                                </div>
+                                </div>
                         </div>
                     </Col>
                 </Row>
