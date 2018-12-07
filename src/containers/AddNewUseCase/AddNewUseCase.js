@@ -85,6 +85,16 @@ class AddNewUseCase extends Component {
         });
     };
 
+    accessListForm = (settingName, settingValue) => {
+        const updatedForm = updateObject(this.state.access, {
+            [settingName]: settingValue
+        } );
+        this.setState({
+            access: updatedForm
+        });
+    };
+
+
     updateSensorDataForm = (settingName, settingValue) => {
         const updatedForm = updateObject(this.state.sensorsData, {
             [settingName]: settingValue
@@ -173,7 +183,7 @@ class AddNewUseCase extends Component {
                     </Select>
                 </FormItem>
                 <FormItem {...formItemLayout} label='Image Description' >
-                    <Input style={{width: '100%'}} onChange={(e) => this.updateForm('imageDesc', e)}/>
+                    <Input style={{width: '100%'}} placeholder='Image description' onChange={(e) => this.updateForm('imageDesc', e)}/>
                 </FormItem>
                 <FormItem {...formItemLayout} label='Access to Use Cases'>
                     <p style={{lineHeight: '1.7em'}}>This can be configured further, after creation, in Admin Area</p>
@@ -182,6 +192,13 @@ class AddNewUseCase extends Component {
                         <RadioButton value="Trainer">Trainers</RadioButton>
                         <RadioButton value="Community">Communities</RadioButton>
                     </RadioGroup>
+                </FormItem>
+                <FormItem {...formItemLayout} label='Permitted Users'>
+                    <p style={{lineHeight: '1.7em'}}>Enter the name/email of all users you wish to grant access to the use case</p>
+                    <Select style={{width: '125%'}} mode='multiple' placeholder='Select users' onChange={(e) => this.accessListForm('listedUsers', e)}>
+                        <Option value='test@gmail.com'>test@gmail.com</Option>
+                        <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
+                    </Select>
                 </FormItem>
             </React.Fragment>
         );
@@ -194,7 +211,7 @@ class AddNewUseCase extends Component {
                     <Card style={{marginTop: '100px', marginLeft: '50px', border: 'none'}}>
                         <Avatar style={{height: '100px', width: '100px'}} src='/images/add-new.png' />
                         <br />
-                    <Meta style={{textAlign: 'center', marginTop: '25px'}} title='Add a new Use Case' aria-label='Click on this card to add a new use case. Here you can set all properties for a new use case'/>
+                    <Meta style={{textAlign: 'center', marginTop: '25px'}} title='Add a New Use Case' aria-label='Click on this card to add a new use case. Here you can set all properties for a new use case'/>
 
                     </Card>
         }
