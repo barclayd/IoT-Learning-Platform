@@ -41,8 +41,10 @@ class UseCasesList extends Component {
             <div className={styles.UseCasesList} aria-label={`Select a use case`}>
                 <Row gutter={16}>
                     {printedUseCases}
+                    <Col span={8} >
+                    <AddNewUseCase id={this.props.useCases.length} />
+                    </Col>
                 </Row>
-                <AddNewUseCase id={this.props.useCases.length} />
             </div>
 
         )
