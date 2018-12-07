@@ -27,7 +27,8 @@ class AddNewUseCase extends Component {
         form: {
             name: '',
             image: 'new-image.jpg'
-        }
+        },
+        listedUsers: [localStorage.getItem("userId")]
     };
 
     showModal = () => {
@@ -39,13 +40,21 @@ class AddNewUseCase extends Component {
     handleSubmit = () => {
 
         let sensorsData = [];
+        let uniqueUsers;
+
         sensorsData.push(this.state.sensorsData);
         let form = {...this.state.form};
         let mergedObject = {...form, sensorsData};
         let access = {...this.state.access};
-        access.listedUsers = [localStorage.getItem("userId")];
+        uniqueUsers = this.state.listedUsers.filter((item, pos) => {
+            return this.state.listedUsers.indexOf(item) == pos;
+        });
+        access.listedUsers = uniqueUsers;
         let mergedAgain = {...mergedObject, access};
         let finalMerge = {...mergedAgain, ...otherSettings};
+
+
+        // console.log(finalMerge);
 
         this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
 
@@ -86,11 +95,8 @@ class AddNewUseCase extends Component {
     };
 
     accessListForm = (settingName, settingValue) => {
-        const updatedForm = updateObject(this.state.access, {
-            [settingName]: settingValue
-        } );
         this.setState({
-            access: updatedForm
+            listedUsers: this.state.listedUsers.concat(settingValue)
         });
     };
 
