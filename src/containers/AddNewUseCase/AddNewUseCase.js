@@ -27,7 +27,7 @@ class AddNewUseCase extends Component {
         numberSensors: [1],
         form: {
             name: '',
-            image: 'new-image.jpg'
+            image: 'road.jpg'
         },
         listedUsers: [localStorage.getItem("userId")]
     };
@@ -185,7 +185,7 @@ class AddNewUseCase extends Component {
                 </FormItem>
                 <FormItem {...formItemLayout} label='Select image instead'>
                     <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('image', e)}>
-                        <Option value='add-new.png'>Road</Option>
+                        <Option value='road.jpg'>Road</Option>
                         <Option value='beach.jpg'>Beach</Option>
                     </Select>
                 </FormItem>

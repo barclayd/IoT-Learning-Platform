@@ -133,6 +133,7 @@ class Auth extends Component {
             </div>
         );
 
+
         let communityLogin;
         communityLogin = !this.state.isSignup ? <p>Community Account <Checkbox onClick={() => this.setState({community: !this.state.community})} value='Community account'/></p> : null;
 

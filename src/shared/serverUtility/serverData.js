@@ -2,10 +2,10 @@ import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:8000');
 
 
-function connectToArduino(cb) {
+function connectToArduino(cb, useCaseID) {
     console.log('connect to arduino data');
     socket.removeListener('arduinoData');
-    socket.emit('connectToArduino' , socket.id);
+    socket.emit('connectToArduino' , useCaseID);
     socket.on('arduinoData', data => cb(data));
 }
 

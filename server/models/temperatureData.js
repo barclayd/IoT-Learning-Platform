@@ -42,7 +42,7 @@ const retrieveData = () => {
         });
 };
 
-const retrieveArduinodata = () => {
+const retrieveArduinoData = () => {
     let tempData;
     axios.get('/temp.json')
         .then(response => {
@@ -80,6 +80,6 @@ module.exports = {
     retrieveData,
     sendSensorData,
     sendArduinoData,
-    retrieveArduinodata,
+    retrieveArduinoData,
     getTemperatures
 };
