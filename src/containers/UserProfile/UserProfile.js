@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
-import {Form, Input, Select, Radio, Button} from "antd";
+import {Form, Input, Select, Radio, Button, notification} from "antd";
 import {updateObject} from "../../store/utility";
+
+let id;
 
 class UserProfile extends Component {
 
@@ -44,8 +46,21 @@ class UserProfile extends Component {
         });
     };
 
+    savedSettingsNotification = (type) => {
+        notification[type]({
+            message: 'Settings successfully saved!',
+            description: `Your profile has been successfully updated`,
+        });
+    };
+
+
     submitSettings() {
         console.log(this.state.user);
+        let updateObject = {...this.state.user};
+        this.props.onUpdateProfile(updateObject, id);
+        if(this.props.saved) {
+            this.savedSettingsNotification('success');
+        }
     }
 
 
@@ -70,9 +85,10 @@ class UserProfile extends Component {
         let userId = localStorage.getItem("userId");
         let userName;
         let userEmail;
+        let found;
         const userDetails = this.props.users.map((user, index) => {
             if(user.userUUID === userId) {
-                [userName, userEmail] = [user.name, user.email];
+                [userName, userEmail, id] = [user.name, user.email, user.id];
                 return (
                     <React.Fragment>
                     <FormItem {...formItemLayout} label={'User Name'} key={index}>
@@ -113,7 +129,7 @@ class UserProfile extends Component {
                     </FormItem>)
             }});
 
-        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
+        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.updateLoading}>Submit</Button>;
 
 
         return (
@@ -130,15 +146,19 @@ class UserProfile extends Component {
 
 const mapStateToProps = state => {
     const {users} = state;
+    const {userProfile} = state;
     return {
         users: users.users,
-        loading: users.loading
+        loading: users.loading,
+        updateLoading: userProfile.loading,
+        saved: userProfile.saved
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUsers: () => dispatch(actions.fetchUsersData())
+        onFetchUsers: () => dispatch(actions.fetchUsersData()),
+        onUpdateProfile: (data, id) => dispatch(actions.updateProfile(data, id))
     }
 };
 
