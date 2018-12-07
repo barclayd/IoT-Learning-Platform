@@ -30,3 +30,7 @@ export {
 export {
     fetchSensorsData, fetchSensorsDataFailed, fetchSensorsDataStart, fetchSensorsDataSuccess
 } from './sensorsFirebase'
+
+export {
+    createUserSuccess, createUserFail
+} from './createUser'

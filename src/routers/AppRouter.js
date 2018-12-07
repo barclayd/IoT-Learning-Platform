@@ -18,7 +18,7 @@ const asyncAdmin = asyncComponent(() => {
 });
 
 const asyncUserProfile = asyncComponent(() => {
-    return import('../components/UserProfile/UserProfile');
+    return import('../containers/UserProfile/UserProfile');
 });
 
 const defaultMessage = <p> Please <Link to='/login'>login</Link> to access the website</p>;
