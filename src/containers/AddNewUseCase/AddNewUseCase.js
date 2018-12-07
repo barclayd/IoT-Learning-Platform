@@ -101,6 +101,12 @@ class AddNewUseCase extends Component {
         });
     };
 
+    selectedSensor = (sensor) => {
+        this.setState({
+            selectedSensor: sensor
+        });
+        console.log(this.state.selectedSensor);
+    };
 
     updateSensorDataForm = (settingName, settingValue) => {
         const updatedForm = updateObject(this.state.sensorsData, {
@@ -113,6 +119,7 @@ class AddNewUseCase extends Component {
 
 
     render () {
+
 
         const FormItem = Form.Item;
         const Option = Select.Option;
@@ -141,18 +148,22 @@ class AddNewUseCase extends Component {
                 <React.Fragment>
                     <br />
                     <h2>{`Sensor Component ${sensor}`}</h2>
-            <FormItem {...formItemLayout} label='Sensor Type'>
-                <Select style={{width: '100%'}} placeholder='Please a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
-                    <Option value='Temperature'>Temperature</Option>
+                    <FormItem {...formItemLayout} label='Sensor Type'>
+                        <Select style={{width: '125%'}} placeholder='Select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
+                            {this.props.sensors.map((sensor, index) => {
+                                return (<Option value={sensor.sensorName} key={index}>{sensor.sensorName} </Option>)
+                            })}
+                        </Select>
+                    </FormItem>
+                    <FormItem {...formItemLayout} label='Sensor Component'>
+                        <Select style={{width: '100%'}} placeholder='Please select a sensor component' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
+                <Option value='TMP36'>TMP36</Option>
                     <Option value='Motion'>Motion</Option>
-                </Select>
-            </FormItem>
-            <FormItem {...formItemLayout} label='Sensor Component'>
-                <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
-        <Option value='TMP36'>TMP36</Option>
-            <Option value='Motion'>Motion</Option>
-            </Select>
-        </FormItem>
+                            {/*{this.props.sensors.map((sensor, index) => {*/}
+                                {/*return (<Option value={sensor.sensorComponent} key={index}>{sensor.sensorComponent}</Option>)*/}
+                            {/*})}*/}
+                    </Select>
+                </FormItem>
         <FormItem {...formItemLayout} label='Min/Max Value'>
                 <InputNumber style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
             <InputNumber style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('maxValue', e)}/>
