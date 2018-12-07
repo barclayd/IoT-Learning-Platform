@@ -191,10 +191,10 @@ class AddNewUseCase extends Component {
             addNewUseCaseCard = <Card bordered={true} loading={true} aria-label={'Use case card is loading'}></Card>
         } else {
             addNewUseCaseCard =
-                    <Card style={{marginTop: '100px', marginLeft: '50px'}}>
+                    <Card style={{marginTop: '100px', marginLeft: '50px', border: 'none'}}>
                         <Avatar style={{height: '100px', width: '100px'}} src='/images/add-new.png' />
                         <br />
-                    <Meta style={{textAlign: 'center', marginTop: '25px'}} title='Add a New Use Case' aria-label='Click on this card to add a new use case. Here you can set all properties for a new use case'/>
+                    <Meta style={{textAlign: 'center', marginTop: '25px'}} title='Add a new Use Case' aria-label='Click on this card to add a new use case. Here you can set all properties for a new use case'/>
 
                     </Card>
         }
