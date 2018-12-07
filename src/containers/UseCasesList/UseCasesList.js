@@ -14,6 +14,7 @@ class UseCasesList extends Component {
     componentDidMount() {
         document.title = 'Use Cases';
         this.props.onFetchUseCaseData();
+        this.props.onFetchUsers();
     }
 
     render() {
@@ -42,7 +43,7 @@ class UseCasesList extends Component {
                 <Row gutter={16}>
                     {printedUseCases}
                     <Col span={8} key={Math.random()}>
-                    <AddNewUseCase id={this.props.useCases.length} />
+                    <AddNewUseCase id={this.props.useCases.length} users={this.props.users} />
                     </Col>
                 </Row>
             </div>
@@ -57,13 +58,15 @@ const mapStateToProps = state => {
         useCases: state.useCaseFirebase.data,
         error: state.useCaseFirebase.error,
         loading: state.useCaseFirebase.loading,
-        userId: state.auth.userId
+        userId: state.auth.userId,
+        users: state.users.users
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData())
+        onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
+        onFetchUsers: () => dispatch(actions.fetchUsersData()),
     }
 };
 
