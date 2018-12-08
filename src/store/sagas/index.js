@@ -7,6 +7,7 @@ import {fetchUseCaseDataSaga, updateUseCaseSaga, submitSettingsSaga} from './use
 import {fetchUsersDataSaga} from './usersFirebase';
 import {createUseCaseSaga} from './createUseCase';
 import {fetchSensorsDataSaga} from './sensorsFirebase'
+import {updateProfileSaga} from './userProfile';
 
 import {checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, logoutSaga} from './auth';
 
@@ -51,4 +52,8 @@ export function* watchCreateUseCase() {
 
 export function* watchSensorsData() {
     yield takeLatest(actionTypes.INIT_FETCH_SENSORS_DATA, fetchSensorsDataSaga);
+}
+
+export function* watchUpdateProfile() {
+    yield takeLatest(actionTypes.INIT_UPDATE_PROFILE, updateProfileSaga);
 }
