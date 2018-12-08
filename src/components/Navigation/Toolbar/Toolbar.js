@@ -32,7 +32,7 @@ const Toolbar = (props) => {
     const login = <Link to='/logout'>Login</Link>;
     const logout = <Link to='/logout'>logout?</Link>;
 
-    const admin = (localStorage.getItem('role') === 'Trainer' || props.role === 'Trainer')  ? <li  aria-label={'Link to Admin Area'}><a style={{color:'red', border: '3px dashed #ccc', padding: '10px', textAlign: 'center' }} href='/admin-area'>Admin Area</a></li> : null;
+    const admin = (localStorage.getItem('role') === 'Trainer' || props.role === 'Trainer')  ? <li  aria-label={'Link to Admin Area'}><Link style={{color:'red', border: '3px dashed #ccc', padding: '10px', textAlign: 'center' }} to='/admin-area'>Admin Area</Link></li> : null;
 
     return (
         <header className={styles.Header}>

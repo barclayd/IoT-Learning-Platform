@@ -50,7 +50,7 @@ const AppRouter = (props) => {
         routes =
             <Switch>
                 <Route exact path='/profile' component={asyncUserProfile}/>
-                <Route exact path="/admin-area" component={asyncAdmin}/>
+                <Route path="/admin-area" component={asyncAdmin}/>
                 <Route exact path="/usecases" component={UseCasesList}/>
                 <Route exact path="/login" component={asyncLogin}/>
                 <Route exact path='/logout' component={asyncLogout}/>

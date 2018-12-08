@@ -10,10 +10,8 @@ import {connect} from 'react-redux';
 class UseCase extends React.Component {
 
     render() {
-        console.log(this.props);
         const useCases = this.props.useCases;
             let useCase;
-            console.log(this.props.useCases.length);
             for (let i = 0; i < useCases.length; i++) {
                 if (useCases[(i)].id === this.props.match.params.id) {
                     useCase = useCases[(i)];
@@ -26,7 +24,7 @@ class UseCase extends React.Component {
                     <Row gutter={15}>
                         <Col span={6}>
                             <div className={styles.Sider}>
-                                <Menu onClick={this.navLinkOnClick} style={{fontSize: '24px'}} mode="inline">
+                                <Menu style={{fontSize: '24px'}} mode="inline">
 
                                     <Menu.Item key="info">
                                         <Link to={this.props.match.url + "/information"}><span><Icon type="notification"
