@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styles from './AdminArea.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { Select, Button} from 'antd';
+import {Select, Button, notification} from 'antd';
 
 const Option = Select.Option;
 
@@ -36,8 +36,18 @@ class AdminArea extends Component {
         return this.props.users.filter(user => useCase.access.listedUsers.includes(user.userUUID));
     };
 
+    savedSettingsNotification = (type) => {
+        notification[type]({
+            message: 'Use ase permissions saved!',
+            description: `The changes to use case permissions have been successfully updated`,
+        });
+    };
+
     handleUseCasesSave = () => {
         this.props.onUpdateUseCase(this.state.useCases);
+        if(this.props.saved){
+            this.savedSettingsNotification('success');
+        }
     };
 
     render() {
@@ -87,11 +97,12 @@ class AdminArea extends Component {
 
 
 const mapStateToProps = state => {
-    const {users, useCaseFirebase} = state
+    const {users, useCaseFirebase} = state;
     return {
        users: users.users,
        useCases: useCaseFirebase.data,
-       useCasesLoading: useCaseFirebase.loading
+        loading: useCaseFirebase.loading,
+        saved: useCaseFirebase.saved
     }
 };
 

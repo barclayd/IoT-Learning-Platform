@@ -1,5 +1,6 @@
 import { delay } from "redux-saga";
 import { put, call } from "redux-saga/effects";
+import dateformat from 'dateformat';
 import axios from "../../shared/axios-instance";
 
 import * as actions from "../actions/index";
@@ -70,6 +71,28 @@ export function* authUserSaga(action) {
         // yield put(actions.fetchUseCaseFailed(error));
         console.log(error);
     }
+
+    const dateRecorded = dateformat(new Date(), "mmmm dS yyyy");
+
+    let newUser = {
+        'accountCreatedDate': dateRecorded,
+        'email': action.email,
+        'name': action.name,
+        profileImage: '',
+        role: 'Apprentice',
+        userUUID: localStorage.getItem("userId")
+    };
+    console.log(newUser);
+
+    if(action.isSignup){
+        try {
+            const response = yield axios.patch(`/users/${action.id}.json`, newUser);
+            yield put(actions.createUserSuccess(response.name, action.data))
+        } catch (error) {
+            yield put(actions.createUserFail(error))
+        }
+    }
+
 }
 
 export function* authCheckStateSaga(action) {

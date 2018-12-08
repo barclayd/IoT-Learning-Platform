@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, notification, Avatar} from "antd";
+import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, Avatar} from "antd";
 import classes from './AddNewUseCase.module.scss';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
@@ -29,7 +29,11 @@ class AddNewUseCase extends Component {
             name: '',
             image: 'road.jpg'
         },
-        listedUsers: [localStorage.getItem("userId")]
+        listedUsers: [localStorage.getItem("userId")],
+        sensor: null,
+        sensorsData: {
+            sensorName: ''
+        }
     };
 
     showModal = () => {
@@ -101,6 +105,12 @@ class AddNewUseCase extends Component {
         });
     };
 
+    selectedSensor = (sensor) => {
+        this.setState({
+            selectedSensor: sensor
+        });
+        console.log(this.state.selectedSensor);
+    };
 
     updateSensorDataForm = (settingName, settingValue) => {
         const updatedForm = updateObject(this.state.sensorsData, {
@@ -113,6 +123,7 @@ class AddNewUseCase extends Component {
 
 
     render () {
+
 
         const FormItem = Form.Item;
         const Option = Select.Option;
@@ -134,25 +145,35 @@ class AddNewUseCase extends Component {
         otherSettings.id = parseInt(this.props.id);
         otherSettings.key = this.state.form.name.toLowerCase();
 
+        let currentSensor;
 
+        currentSensor = this.props.sensors[0];
+        console.log(currentSensor);
 
         let numberSensors = this.state.numberSensors.map(sensor => {
             return (
                 <React.Fragment>
                     <br />
                     <h2>{`Sensor Component ${sensor}`}</h2>
-            <FormItem {...formItemLayout} label='Sensor Type'>
-                <Select style={{width: '100%'}} placeholder='Please a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
-                    <Option value='Temperature'>Temperature</Option>
-                    <Option value='Motion'>Motion</Option>
-                </Select>
-            </FormItem>
-            <FormItem {...formItemLayout} label='Sensor Component'>
-                <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
-        <Option value='TMP36'>TMP36</Option>
-            <Option value='Motion'>Motion</Option>
-            </Select>
-        </FormItem>
+                    <FormItem {...formItemLayout} label='Sensor Type'>
+                        <Select style={{width: '125%'}} placeholder='Select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
+                            {this.props.sensors.map((sensor, index) => {
+                                currentSensor = sensor;
+                                return (<Option value={sensor.sensorName} key={index}>{sensor.sensorName} </Option>)
+                            })}
+                        </Select>
+                    </FormItem>
+                    <FormItem {...formItemLayout} label='Sensor Component'>
+                        <Select style={{width: '100%'}} placeholder='Please select a sensor component' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
+                             {this.props.sensors.map((sensor, index) => {
+                                 if(sensor.sensorName === this.state.sensorsData.sensorName) {
+                                     return sensor.sensorComponents.map((cmp, index) => {
+                                         return (<Option value={cmp} key={index}>{cmp}</Option>)
+                                     })
+                                 }
+                            })}
+                    </Select>
+                </FormItem>
         <FormItem {...formItemLayout} label='Min/Max Value'>
                 <InputNumber style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
             <InputNumber style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('maxValue', e)}/>
