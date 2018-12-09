@@ -6,6 +6,8 @@ import {updateObject} from "../../store/utility";
 import {Menu, Icon, Row, Col,  notification} from 'antd';
 import {Link, Switch, Route} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
+import Users from './Users/Users';
+import Sensors from './Sensors/Sensors';
 
 const key = 'updatable';
 class AdminArea extends Component {
@@ -84,23 +86,29 @@ class AdminArea extends Component {
                     <Row gutter={15}>
                         <Col span={6}>
                             <div className={styles.Sider}>
-                                <Menu  onClick={this.onMenuItemClicked} selectedKeys={['useCasesController']} style={{fontSize: '24px'}} mode="inline">
+                                <Menu  onClick={this.onMenuItemClicked} style={{fontSize: '24px'}} mode="inline">
 
                                     <Menu.Item key="useCasesController">
                                         <Link to="/admin-area"><span><Icon type="lock" aria-label={'Link to Information'}/>
                                             <span>Use Cases Controller</span></span>
                                         </Link>
                                     </Menu.Item>
-
-
+                                    <Menu.Item key="sensors">
+                                        <Link to="/sensors"><span><Icon type="line-chart" aria-label={'Link to Information'}/>
+                                            <span>Sensors</span></span>
+                                        </Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="users">
+                                        <Link to="/users"><span><Icon type="team" aria-label={'Link to Information'}/>
+                                            <span>Users</span></span>
+                                        </Link>
+                                    </Menu.Item>
                                 </Menu>
                             </div>
                         </Col>
 
                         <Col span={18}>
                             <div className={styles.Content}>
-
-
 
                                  <Switch>
                                     <Route path="/admin-area"
@@ -112,10 +120,28 @@ class AdminArea extends Component {
                                         handleUseCasePermissionsChanged={this.handleUseCasePermissionsChanged}
                                         handleUseCasesSave={this.handleUseCasesSave}
                                         deletedUseCaseNotification = {this.deletedUseCaseNotification}
-                                     />}
-
-                                    />
-                                </Switch>
+                                     />} />
+                                    <Route path="/sensors"
+                                           render={ props => <Sensors
+                                               useCases={this.state.useCases}
+                                               users={users}
+                                               updateUseCase={this.updateUseCase}
+                                               getUseCaseUsers={this.getUseCaseUsers}
+                                               handleUseCasePermissionsChanged={this.handleUseCasePermissionsChanged}
+                                               handleUseCasesSave={this.handleUseCasesSave}
+                                               deletedUseCaseNotification = {this.deletedUseCaseNotification}
+                                           />} />
+                                     <Route path="/users"
+                                            render={ props => <Users
+                                                useCases={this.state.useCases}
+                                                users={users}
+                                                updateUseCase={this.updateUseCase}
+                                                getUseCaseUsers={this.getUseCaseUsers}
+                                                handleUseCasePermissionsChanged={this.handleUseCasePermissionsChanged}
+                                                handleUseCasesSave={this.handleUseCasesSave}
+                                                deletedUseCaseNotification = {this.deletedUseCaseNotification}
+                                            />} />
+                            </Switch>
                             </div>
                         </Col>
                     </Row>
