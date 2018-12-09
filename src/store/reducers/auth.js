@@ -7,7 +7,7 @@ const initialState = {
     error: null,
     loading: false,
     email: null,
-    authRedirect: '/usecases',
+    authRedirect: '/dashboard',
     role: ''
 };
 

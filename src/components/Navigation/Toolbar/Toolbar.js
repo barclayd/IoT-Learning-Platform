@@ -40,14 +40,14 @@ const Toolbar = (props) => {
                 <Row type="flex" justify="start" align="middle">
                     <Col span={3}>
                         <div className={styles.Logo}>
-                            <Link exact to='/' aria-label={'Logo'}><img alt='Logo' aria-label='Logo' style={{height: '45px', width: '45px'}} src='/images/logo.png'/></Link>
+                            <Link to='/dashboard' aria-label={'Logo'}><img alt='Logo' aria-label='Logo' style={{height: '45px', width: '45px'}} src='/images/logo.png'/></Link>
                         </div>
                     </Col>
 
                     <Col span={8}>
                         <div className={styles.Links}>
                             <ul>
-                                <li aria-label={'Link to User Cases'}><Link to='/usecases'>Usecases</Link></li>
+                                <li aria-label={'Link to User Cases'}><a href='/dashboard'>Usecases</a></li>
                                 <li aria-label={'Link to Documentation'}><Link to='/documentation'>Documentation</Link></li>
                                 <li aria-label={'Link to About'}><Link to='/about'>About</Link></li>
                                 {admin}

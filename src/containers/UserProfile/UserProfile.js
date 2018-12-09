@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
-import {Form, Input, Select, Radio, Button, notification} from "antd";
+import {Form, Input, Select, Radio, Button, notification, Tabs} from "antd";
 import {updateObject} from "../../store/utility";
 
 let id;
+const TabPane = Tabs.TabPane;
 
 class UserProfile extends Component {
 
@@ -90,7 +91,7 @@ class UserProfile extends Component {
             if(user.userUUID === userId) {
                 [userName, userEmail, id] = [user.name, user.email, user.id];
                 return (
-                    <React.Fragment>
+                    <div>
                     <FormItem {...formItemLayout} label={'User Name'} key={index}>
                         <Input defaultValue={user.name} style={{width: '100%'}} onChange={(e) => this.updateForm('name', e)}/>
                     </FormItem>
@@ -106,14 +107,14 @@ class UserProfile extends Component {
                         <FormItem {...formItemLayout} label={'Account held since'} key={index+3}>
                             <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
                         </FormItem>
-                    </React.Fragment>
+                    </div>
                 )
             }
         });
         const userRole = this.props.users.map((user, index) => {
             if(user.userUUID === userId && (localStorage.getItem('role') === 'Trainer')) {
                 return (
-                    <FormItem {...formItemLayout} label='Account Type'>
+                    <FormItem {...formItemLayout} label='Account Type' key={user.uuid}>
                         <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value="Apprentice">Apprentice</RadioButton>
                             <RadioButton value="Trainer">Trainer</RadioButton>
@@ -136,9 +137,14 @@ class UserProfile extends Component {
         <React.Fragment>
             <h1>User Profile</h1>
             <h3>Welcome, {userName !== null ? userName : localStorage.getItem('email')}</h3>
-            {userDetails}
+            <Tabs defaultActiveKey='1' tabPosition='top' tabBarExtraContent={button}>
+                <TabPane tab="User Details" key="1">
+                    {userDetails}
+                </TabPane>
+            <TabPane tab="Account Role" key="4">
             {userRole}
-            {button}
+            </TabPane>
+            </Tabs>
         </React.Fragment>
     )
     }

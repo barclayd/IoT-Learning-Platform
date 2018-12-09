@@ -5,13 +5,17 @@ import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {Redirect} from "react-router-dom";
 import {updateObject} from '../../store/utility';
+import classes from './Settings.module.css';
 
 let deleteRedirect;
 
 class Settings extends Component {
 
     state = {
-        justLanded: true
+        justLanded: true,
+        sensors: {
+            sensorName: ''
+        }
     };
 
     componentDidMount() {
@@ -52,7 +56,6 @@ class Settings extends Component {
     };
 
     onChangeTab = (key) => {
-        console.log(key);
         this.setState({
             tab: key
         })
@@ -184,6 +187,8 @@ class Settings extends Component {
 
             }
         });
+        let sensorType;
+        let sensorComponent;
 
         let sensorsSettings = sensors.map((sensor) => {
             return Object.keys(sensor).map((setting) => {
@@ -200,7 +205,7 @@ class Settings extends Component {
                 } else {
                     switch (setting) {
                         case('sensorName'):
-                            return (
+                            sensorType = (
                                 <FormItem {...formItemLayout} label={'Sensor Type'} key={sensor[setting]}>
                                 <Select defaultValue={sensor[setting]} placeholder='Select a sensor type' onChange={(e) => this.getSensorName(setting, e)}>
                                     {this.props.sensorsList.map((sensor, index) => {
@@ -208,9 +213,9 @@ class Settings extends Component {
                                     })}
                                 </Select>
                             </FormItem>);
-
+                            return null;
                         case('sensorComponent'):
-                                    return (
+                                    sensorComponent = (
                                         <FormItem {...formItemLayout} label={'Sensor Component'} key={sensor[setting]}>
                                             <Select defaultValue={sensor[setting]} placeholder='Please select a sensor component'
                                                     onChange={(e) => this.getSensorName(setting, e)}>
@@ -223,7 +228,7 @@ class Settings extends Component {
                                                 })}
                                             </Select>
                                         </FormItem>);
-
+                                        return null;
                             default:
                             return <FormItem {...formItemLayout} key={setting} label={setting}> <Input
                                 defaultValue={sensor[setting]} style={{width: '100%'}}/>
@@ -248,8 +253,7 @@ class Settings extends Component {
         if(this.state.name !== null) {
             deleteUsecase =
                 <Popconfirm title={`Are you sure delete ${this.state.name} use case?`} onConfirm={this.confirmDelete} onCancel={this.cancelDelete} okText="Yes" cancelText="No">
-                    <br />
-                    <Button type="danger" htmlType="submit" loading={this.props.loading}>DELETE</Button>
+                    <Button type="danger" htmlType="submit" loading={this.props.loading} style={{backgroundColor: '#f5222d', color: '#f5f5f5'}}>DELETE</Button>
                 </Popconfirm>
         }
 
@@ -259,7 +263,7 @@ class Settings extends Component {
                 {deleteRedirect}
                 {notification}
                 {settings}
-                <Tabs type='card' onChange={this.onChangeTab}>
+                <Tabs type='card' onChange={this.onChangeTab} tabBarExtraContent={this.state.tab !== 'delete' ? button : deleteUsecase}>
                 <TabPane tab="General Information" key="general">
                     <h2>General Settings</h2>
                     {useCaseDetails}
@@ -273,15 +277,16 @@ class Settings extends Component {
                     <TabPane tab="Sensor Settings" key="sensor">
                     <h2>Sensor Settings </h2>
                         <Form>
+                            {sensorType}
+                            {sensorComponent}
                     {sensorsSettings}
                         </Form>
                     </TabPane>
                     {localStorage.getItem("role") === 'Trainer' ? <TabPane tab="Delete" key="delete">
                         <h2>Delete the {this.state.name} Use Case</h2>
-                        {deleteUsecase}
+                        <p>This will remove all information relating to the Use Case</p>
                     </TabPane> : null}
                 </Tabs>
-                {this.state.tab !== 'delete' ? button : null}
             </React.Fragment>
         )
     }

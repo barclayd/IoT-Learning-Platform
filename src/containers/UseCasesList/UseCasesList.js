@@ -19,7 +19,6 @@ class UseCasesList extends Component {
     }
 
     render() {
-        console.log(this.props.sensors);
         let useCases = this.props.useCases.map((useCase, index) => {
                 if(useCase.access.listedUsers !== null) {
                     if(useCase.access.listedUsers.includes(localStorage.getItem("userId")) || (useCase.access.listedUsers.includes(this.props.userId))) {
