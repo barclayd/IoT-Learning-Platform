@@ -109,7 +109,6 @@ class AddNewUseCase extends Component {
         this.setState({
             selectedSensor: sensor
         });
-        console.log(this.state.selectedSensor);
     };
 
     updateSensorDataForm = (settingName, settingValue) => {
@@ -148,7 +147,6 @@ class AddNewUseCase extends Component {
         let currentSensor;
 
         currentSensor = this.props.sensors[0];
-        console.log(currentSensor);
 
         let numberSensors = this.state.numberSensors.map(sensor => {
             return (

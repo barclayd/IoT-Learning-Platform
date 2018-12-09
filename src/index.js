@@ -9,7 +9,7 @@ import 'normalize.css/normalize.css';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import a11y from 'react-a11y';
-import {watchHistoricData, watchLiveData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase, watchUpdateUseCaseData, watchCreateUseCase, watchSensorsData, watchUpdateProfile} from "./store/sagas";
+import {watchHistoricData, watchLiveData, watchArduinoData, watchAuth, watchUseCaseDataFirebase, watchUsersDataFirebase, watchUpdateUseCaseData, watchCreateUseCase, watchSensorsData, watchUpdateProfile, watchDeleteUseCase} from "./store/sagas";
 import historicDataReducer from './store/reducers/historicData';
 import liveDataReducer from './store/reducers/liveData';
 import authReducer from './store/reducers/auth';
@@ -22,6 +22,7 @@ import userProfileReducer from './store/reducers/userProfile';
 import arduinoDataReducer from './store/reducers/arduinoData';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import "./styles/styles.scss";
+import {deleteUseCaseSaga} from "./store/sagas/useCaseFirebase";
 
 
 
@@ -64,6 +65,7 @@ sagaMiddleware.run(watchUpdateUseCaseData);
 sagaMiddleware.run(watchCreateUseCase);
 sagaMiddleware.run(watchSensorsData);
 sagaMiddleware.run(watchUpdateProfile);
+sagaMiddleware.run(watchDeleteUseCase);
 
 const app = (
     <Provider store={store}>

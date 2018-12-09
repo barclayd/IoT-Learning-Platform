@@ -87,3 +87,31 @@ export const updateUseCaseData = (data) => {
         data: data
     }
 };
+
+export const deleteUseCaseSuccess = (useCase) => {
+    return {
+        type: actionTypes.DELETE_USECASE_SUCCESS,
+        useCase: useCase
+    };
+};
+
+export const deleteUseCaseFailed = (error) => {
+    return {
+        type: actionTypes.DELETE_USECASE_FAIL,
+        error: error
+    };
+};
+
+export const deleteUseCaseStart = () => {
+    return {
+        type: actionTypes.DELETE_USECASE_START
+    }
+};
+
+export const deleteUseCase = (id, useCase) => {
+    return {
+        type: actionTypes.INIT_DELETE_USECASE,
+        id: id,
+        useCase: useCase
+    }
+};

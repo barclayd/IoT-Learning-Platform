@@ -53,3 +53,32 @@ export function* updateUseCaseSaga (action) {
         yield put(actions.updateUseCaseDataFailed(error));
     }
 }
+
+export function* deleteUseCaseSaga (action) {
+    yield put(actions.deleteUseCaseStart());
+    try {
+        const response = yield axios.delete(`/useCases/${action.id}.json`);
+        console.log(response);
+        yield put(actions.deleteUseCaseSuccess(action.useCase))
+        try {
+            yield put(actions.fetchUseCaseDataStart());
+            try {
+                const response = yield axios.get('/useCases.json');
+                const fetchedData = [];
+                for (let key in response.data) {
+                    fetchedData.push({
+                        ...response.data[key],
+                        id: key
+                    });
+                }
+                yield put(actions.fetchUseCaseDataSuccess(fetchedData));
+            } catch (error) {
+                yield put(actions.fetchUseCaseDataFailed(error));
+            }
+        } catch (error) {
+            yield put(actions.fetchUseCaseDataFailed(error));
+        }
+    } catch (error){
+        yield put(actions.deleteUseCaseFailed(error));
+    }
+}

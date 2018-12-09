@@ -16,7 +16,7 @@ export {
 
 export {
     fetchUseCaseData, fetchUseCaseDataFailed, fetchUseCaseDataStart, fetchUseCaseDataSuccess, submitSettingsSuccess, submitSettings, submitSettingsFail, submitSettingsInit, submitSettingsStart,
-    updateUseCaseData, updateUseCaseDataFailed, updateUseCaseDataStart, updateUseCaseDataSuccess
+    updateUseCaseData, updateUseCaseDataFailed, updateUseCaseDataStart, updateUseCaseDataSuccess, deleteUseCase, deleteUseCaseFailed, deleteUseCaseStart, deleteUseCaseSuccess
 } from './useCaseFirebase'
 
 export {
