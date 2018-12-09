@@ -21,6 +21,7 @@ class Settings extends Component {
     componentDidMount() {
          this.props.onFetchUseCaseData();
          this.props.onFetchSensors();
+         this.props.onFetchUsers();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -31,11 +32,13 @@ class Settings extends Component {
                         this.setState({
                             sensors: useCase.sensorsData[sensor],
                             email: useCase.email,
+                            senders: useCase.email.senders,
                             name: useCase.name,
                             shortDesc: useCase.shortDesc,
                             longDesc: useCase.longDesc,
                             image: useCase.image,
-                            imageDesc: useCase.imageDesc
+                            imageDesc: useCase.imageDesc,
+                            listedUsers: useCase.access.listedUsers
                         })
                     }
                 }
@@ -61,6 +64,11 @@ class Settings extends Component {
         this.setState({
             tab: key
         })
+    };
+
+    getUseCaseUsers = (useCase) => {
+        return this.props.users
+            .filter(user => useCase.access.listedUsers.includes(user.userUUID));
     };
 
     submitSettings() {
@@ -152,6 +160,7 @@ class Settings extends Component {
 
         let sensors = [];
         let emails = {};
+        let listedUsers = [];
 
         let settings = this.props.data.forEach((useCase) => {
             if (useCase.id === this.props.id) {
@@ -159,6 +168,7 @@ class Settings extends Component {
                     sensors.push(useCase.sensorsData[sensor]);
                 }
                 emails = {...useCase.email};
+                listedUsers = useCase.access.listedUsers;
             }
         });
 
@@ -190,16 +200,15 @@ class Settings extends Component {
                 </React.Fragment>
 
     );
-
+        let users = this.props.users.filter(user => listedUsers.includes(user.userUUID));
 
         let emailSettings = Object.keys(emails).map((email) => {
             switch (email) {
                         case('senders'):
-                            return <FormItem {...formItemLayout} key={email} label={email}>
-                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={emails[email]} value={emailConfig(emails[email])} onChange={(e) => this.changeEmailSetting(email, e)}>
-                                <Option value={emails[email]} key={Math.random()}>{emails[email]}</Option>
-                                    <Option value='test@gmail.com'>test@gmail.com</Option>
-                                    <Option value='peter.trott@gmail.com'>peter.trott@gmail.com</Option>
+                            return <FormItem {...formItemLayout} key={email} label={'Recipients'}>
+                                <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={this.state.senders} onChange={(e) => this.changeEmailSetting(email, e)}>
+                                    {users.map(usr => {
+                                    return <Option value={usr.email}>{usr.name}</Option>})}
                                 </Select>
                             </FormItem>;
                         default:
@@ -319,7 +328,8 @@ const mapStateToProps = state => {
         saved: state.useCaseFirebase.saved,
         success: state.createUseCase.success,
         sensorsList: state.sensors.sensors,
-        deleted: state.useCaseFirebase.deleted
+        deleted: state.useCaseFirebase.deleted,
+        users: state.users.users,
     }
 };
 
@@ -328,7 +338,8 @@ const mapDispatchToProps = dispatch => {
         onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
         onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings)),
         onFetchSensors: () => dispatch(actions.fetchSensorsData()),
-        onDeleteUseCase: (id, useCase) => dispatch(actions.deleteUseCase(id, useCase))
+        onDeleteUseCase: (id, useCase) => dispatch(actions.deleteUseCase(id, useCase)),
+        onFetchUsers: () => dispatch(actions.fetchUsersData())
     }
 };
 

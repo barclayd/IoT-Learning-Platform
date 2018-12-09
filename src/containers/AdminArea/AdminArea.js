@@ -30,7 +30,7 @@ class AdminArea extends Component {
 
     handleUseCasePermissionsChanged = (useCase, ids) =>{
         const useCases = {...this.state.useCases};
-        const useCaseIndex = Object.keys(useCases).findIndex((key)=> key === useCase.id)
+        const useCaseIndex = Object.keys(useCases).findIndex((key)=> key === useCase.id);
         useCases[useCaseIndex] = {...useCase,
             access: {...useCase.access, listedUsers:ids},
         };
