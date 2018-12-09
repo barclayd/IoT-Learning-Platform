@@ -1,4 +1,15 @@
 @import "../../../styles/base/settings";
+*:focus {
+    outline: none
+}
+
+Button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+Button:focus {outline:0;}
+
 
 .Header {
     margin-bottom: 20px;
@@ -65,3 +76,21 @@ img {
 .User > .Info > p {
     margin-left: 10px;
 }
+
+.button {
+    border: none;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.button:focus {
+    outline: 0;
+    outline: none
+}
+
+Button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+Button:focus {outline:0;}

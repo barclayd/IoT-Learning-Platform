@@ -3,7 +3,7 @@ import UseCaseCard from "../../components/UseCaseCard/UseCaseCard";
 import styles from './UseCasesList.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {Row, Col, Card, Icon, notification} from 'antd';
+import {Row, Col, Card, Icon, notification, Drawer} from 'antd';
 import {Link} from 'react-router-dom';
 import AddNewUseCase from '../../containers/AddNewUseCase/AddNewUseCase';
 const { Meta } = Card;
