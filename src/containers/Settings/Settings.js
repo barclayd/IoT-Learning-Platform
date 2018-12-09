@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification, Tabs} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, message} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {updateObject} from '../../store/utility';
@@ -46,6 +46,13 @@ class Settings extends Component {
             message: 'New Use Case Created!',
             description: `A new use case has been created. You can update the settings in greater detail here`,
         });
+    };
+
+    onChangeTab = (key) => {
+        console.log(key);
+        this.setState({
+            tab: key
+        })
     };
 
     submitSettings() {
@@ -99,6 +106,16 @@ class Settings extends Component {
             [settingName]: newValue
         });
     };
+
+    confirm(e) {
+        console.log(e);
+        message.success('Click on Yes');
+    }
+
+    cancel(e) {
+        console.log(e);
+        message.error('Click on No');
+    }
 
     render() {
         const TabPane = Tabs.TabPane;
@@ -224,29 +241,43 @@ class Settings extends Component {
             })
         }
 
+        let deleteUsecase;
+        if(this.state.name !== null) {
+            deleteUsecase =
+                <Popconfirm title={`Are you sure delete ${this.state.name} use case?`} onConfirm={this.confirm} onCancel={this.cancel} okText="Yes" cancelText="No">
+                    <br />
+                    <Button type="danger" htmlType="submit" loading={this.props.loading}>DELETE</Button>
+                </Popconfirm>
+        }
+
+
         return (
             <React.Fragment>
                 {notification}
                 {settings}
-                <Tabs type='card'>
-                <TabPane tab="General Information" key="1">
+                <Tabs type='card' onChange={this.onChangeTab}>
+                <TabPane tab="General Information" key="general">
                     <h2>General Settings</h2>
                     {useCaseDetails}
                 </TabPane>
-                    <TabPane tab="Email Settings" key="2">
+                    <TabPane tab="Email Settings" key="email">
                     <h2>Email Settings </h2>
                     <Form>
                         {emailSettings}
                     </Form>
                     </TabPane>
-                    <TabPane tab="Email Settings" key="3">
+                    <TabPane tab="Sensor Settings" key="sensor">
                     <h2>Sensor Settings </h2>
                         <Form>
                     {sensorsSettings}
                         </Form>
                     </TabPane>
+                    <TabPane tab="Delete" key="delete">
+                        <h2>Delete the {this.state.name} Use Case</h2>
+                        {deleteUsecase}
+                    </TabPane>
                 </Tabs>
-                {button}
+                {this.state.tab !== 'delete' ? button : null}
             </React.Fragment>
         )
     }
