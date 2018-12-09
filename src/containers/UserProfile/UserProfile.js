@@ -56,7 +56,6 @@ class UserProfile extends Component {
 
 
     submitSettings() {
-        console.log(this.state.user);
         let updateObject = {...this.state.user};
         this.props.onUpdateProfile(updateObject, id);
         if(this.props.saved) {

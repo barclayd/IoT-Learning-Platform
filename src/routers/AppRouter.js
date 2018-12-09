@@ -21,6 +21,14 @@ const asyncUserProfile = asyncComponent(() => {
     return import('../containers/UserProfile/UserProfile');
 });
 
+const asyncUsers = asyncComponent(() => {
+    return import('../containers/AdminArea/Users/Users');
+});
+
+const asyncSensors = asyncComponent(() => {
+    return import('../containers/AdminArea/Sensors/Sensors');
+});
+
 const defaultMessage = <p> Please <Link to='/login'>login</Link> to access the website</p>;
 
 const AppRouter = (props) => {
@@ -55,6 +63,8 @@ const AppRouter = (props) => {
                 <Route exact path="/login" component={asyncLogin}/>
                 <Route exact path='/logout' component={asyncLogout}/>
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />}/>
+                <Route exact path="/users" component={asyncAdmin}/>
+                <Route exact path="/sensors" component={asyncAdmin}/>
                 <Redirect to='/dashboard' component={UseCasesList}/>
             </Switch>
     }
