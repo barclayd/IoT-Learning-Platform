@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, message} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
+import {Redirect} from "react-router-dom";
 import {updateObject} from '../../store/utility';
+
+let deleteRedirect;
 
 class Settings extends Component {
 
@@ -100,22 +103,22 @@ class Settings extends Component {
         })
     };
 
-    changeUseCaseDetails= (settingName, settingValue) => {
+    changeUseCaseDetails = (settingName, settingValue) => {
         const newValue = settingValue.target.value;
         this.setState({
             [settingName]: newValue
         });
     };
 
-    confirm(e) {
+    confirmDelete = (e) => {
         console.log(e);
-        message.success('Click on Yes');
-    }
+        this.props.onDeleteUseCase(this.props.id, this.state.name);
+        deleteRedirect = (this.props.saved ? <Redirect exact to='/admin-area' /> : null);
+    };
 
-    cancel(e) {
+    cancelDelete = (e) =>  {
         console.log(e);
-        message.error('Click on No');
-    }
+    };
 
     render() {
         const TabPane = Tabs.TabPane;
@@ -244,7 +247,7 @@ class Settings extends Component {
         let deleteUsecase;
         if(this.state.name !== null) {
             deleteUsecase =
-                <Popconfirm title={`Are you sure delete ${this.state.name} use case?`} onConfirm={this.confirm} onCancel={this.cancel} okText="Yes" cancelText="No">
+                <Popconfirm title={`Are you sure delete ${this.state.name} use case?`} onConfirm={this.confirmDelete} onCancel={this.cancelDelete} okText="Yes" cancelText="No">
                     <br />
                     <Button type="danger" htmlType="submit" loading={this.props.loading}>DELETE</Button>
                 </Popconfirm>
@@ -253,6 +256,7 @@ class Settings extends Component {
 
         return (
             <React.Fragment>
+                {deleteRedirect}
                 {notification}
                 {settings}
                 <Tabs type='card' onChange={this.onChangeTab}>
@@ -272,10 +276,10 @@ class Settings extends Component {
                     {sensorsSettings}
                         </Form>
                     </TabPane>
-                    <TabPane tab="Delete" key="delete">
+                    {localStorage.getItem("role") === 'Trainer' ? <TabPane tab="Delete" key="delete">
                         <h2>Delete the {this.state.name} Use Case</h2>
                         {deleteUsecase}
-                    </TabPane>
+                    </TabPane> : null}
                 </Tabs>
                 {this.state.tab !== 'delete' ? button : null}
             </React.Fragment>
@@ -289,7 +293,8 @@ const mapStateToProps = state => {
         loading: state.useCaseFirebase.loading,
         saved: state.useCaseFirebase.saved,
         success: state.createUseCase.success,
-        sensorsList: state.sensors.sensors
+        sensorsList: state.sensors.sensors,
+        deleted: state.useCaseFirebase.deleted
     }
 };
 
@@ -297,7 +302,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchUseCaseData: () => dispatch(actions.fetchUseCaseData()),
         onSubmitSettings: (useCaseId, settings) => dispatch(actions.submitSettings(useCaseId, settings)),
-        onFetchSensors: () => dispatch(actions.fetchSensorsData())
+        onFetchSensors: () => dispatch(actions.fetchSensorsData()),
+        onDeleteUseCase: (id, useCase) => dispatch(actions.deleteUseCase(id, useCase))
     }
 };
 

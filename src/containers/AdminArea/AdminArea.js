@@ -7,7 +7,7 @@ import {Menu, Icon, Row, Col,  notification} from 'antd';
 import {Link, Switch, Route} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
 
-
+const key = 'updatable';
 class AdminArea extends Component {
 
    state = {
@@ -18,6 +18,7 @@ class AdminArea extends Component {
       this.props.onFetchUsers();
       this.props.onFetchUseCases();
     }
+
 
     componentWillReceiveProps(nextProps) {
         if(!nextProps.useCasesLoading) {
@@ -39,7 +40,7 @@ class AdminArea extends Component {
             .filter(user => useCase.access.listedUsers.includes(user.userUUID));
     };
 
-    
+
     savedSettingsNotification = (type) => {
         notification[type]({
             message: 'Successful!',
@@ -65,10 +66,17 @@ class AdminArea extends Component {
 
     onMenuItemClicked = ({ item, key, keyPath }) => {
         console.log(item, key, keyPath )
-    }
+    };
+
+    deletedUseCaseNotification = (type) => {
+        notification[type]({
+            key,
+            message: 'Use Case Successfully Deleted',
+            description: `The ${this.props.lastDeletedUseCase} Use Case was successfully deleted. You can view all other remaining use cases here and make changes to them.`,
+        });
+    };
 
     render() {
-
         const {users} = this.props;
         return (
             <div className={styles.AdminArea}>
@@ -84,27 +92,28 @@ class AdminArea extends Component {
                                         </Link>
                                     </Menu.Item>
 
-                                   
+
                                 </Menu>
                             </div>
                         </Col>
 
                         <Col span={18}>
                             <div className={styles.Content}>
-                               
-                                
+
+
 
                                  <Switch>
-                                    <Route path="/admin-area" 
-                                    render={ props => <UseCasesController 
+                                    <Route path="/admin-area"
+                                    render={ props => <UseCasesController
                                         useCases={this.state.useCases}
                                         users={users}
                                         updateUseCase={this.updateUseCase}
                                         getUseCaseUsers={this.getUseCaseUsers}
                                         handleUseCasePermissionsChanged={this.handleUseCasePermissionsChanged}
                                         handleUseCasesSave={this.handleUseCasesSave}
+                                        deletedUseCaseNotification = {this.deletedUseCaseNotification}
                                      />}
-                                    
+
                                     />
                                 </Switch>
                             </div>
@@ -124,7 +133,9 @@ const mapStateToProps = state => {
         users: users.users,
         useCases: useCaseFirebase.data,
         loading: useCaseFirebase.loading,
-        saved: useCaseFirebase.saved
+        saved: useCaseFirebase.saved,
+        deleted: state.useCaseFirebase.deleted,
+        lastDeletedUseCase: state.useCaseFirebase.deletedUseCase
     }
 };
 

@@ -1,7 +1,8 @@
 
 import React from 'react';
 import styles from './UseCasesController.module.scss'
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col } from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification} from 'antd';
+import {connect} from 'react-redux';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -9,12 +10,15 @@ const Panel = Collapse.Panel;
 const { TextArea } = Input;
 
 const formItemLayout = {
-   
+
 };
 
 const UseCasesController = (props) => {
 
+
     let content = (<div> No Use Cases</div>);
+    let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
+
     if (props.useCases){
         content =
         (
@@ -53,7 +57,7 @@ const UseCasesController = (props) => {
                     </Button>
                     </div>
                     </Panel>
-                    
+
                     );
                 })}
             </Collapse>
@@ -61,10 +65,19 @@ const UseCasesController = (props) => {
     }
 
     return (
-        <div>
+        <React.Fragment>
+            {notification}
             <h2>Use Cases List</h2>
             {content}
-        </div>);
-}
+        </React.Fragment>);
+};
 
-export default UseCasesController;
+
+const mapStateToProps = state => {
+    return {
+        deleted: state.useCaseFirebase.deleted,
+        lastDeletedUseCase: state.useCaseFirebase.deletedUseCase
+    }
+};
+
+export default connect(mapStateToProps)(UseCasesController);

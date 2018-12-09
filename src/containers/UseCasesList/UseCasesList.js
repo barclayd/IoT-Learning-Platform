@@ -3,7 +3,7 @@ import UseCaseCard from "../../components/UseCaseCard/UseCaseCard";
 import styles from './UseCasesList.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {Row, Col, Card, Icon} from 'antd';
+import {Row, Col, Card, Icon, notification} from 'antd';
 import {Link} from 'react-router-dom';
 import AddNewUseCase from '../../containers/AddNewUseCase/AddNewUseCase';
 const { Meta } = Card;
@@ -62,7 +62,9 @@ const mapStateToProps = state => {
         loading: state.useCaseFirebase.loading,
         userId: state.auth.userId,
         users: state.users.users,
-        sensors: state.sensors.sensors
+        sensors: state.sensors.sensors,
+        deleted: state.useCaseFirebase.deleted,
+        lastDeletedUseCase: state.useCaseFirebase.deletedUseCase
     }
 };
 

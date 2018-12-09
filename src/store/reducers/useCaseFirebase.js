@@ -5,7 +5,9 @@ const initialState = {
     data: [],
     loading: false,
     error: false,
-    saved: true
+    saved: true,
+    deleted: false,
+    deletedUseCase: null
 };
 
 const dataFetchSuccess = (state, action) => {
@@ -48,6 +50,15 @@ const submitSettingsSuccess = (state, action) => {
     })
 };
 
+const deleteUseCaseSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: false,
+        deleted: true,
+        deletedUseCase: action.useCase
+    })
+};
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case(actionTypes.FETCH_USECASE_DATA_START): return updateObject(state, {loading: true, error: false});
@@ -60,6 +71,9 @@ const reducer = (state = initialState, action) => {
         case(actionTypes.SUBMIT_SETTINGS_START): return updateObject(state, {loading: true});
         case(actionTypes.SUBMIT_SETTINGS_SUCCESS): return submitSettingsSuccess(state, {loading: false, error: false, saved: true});
         case(actionTypes.SUBMIT_SETTINGS_FAIL): return updateObject(state, {loading: false});
+        case(actionTypes.DELETE_USECASE_START): return updateObject(state, {loading: true, error: false});
+        case(actionTypes.DELETE_USECASE_SUCCESS): return deleteUseCaseSuccess(state, action);
+        case(actionTypes.DELETE_USECASE_FAIL): return updateObject(state, {loading: false, error: true, deleted: false});
         default: return state;
     }
 };
