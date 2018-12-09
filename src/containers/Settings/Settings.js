@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {updateObject} from '../../store/utility';
@@ -101,6 +101,8 @@ class Settings extends Component {
     };
 
     render() {
+        const TabPane = Tabs.TabPane;
+
         const { TextArea } = Input;
 
         const FormItem = Form.Item;
@@ -226,15 +228,25 @@ class Settings extends Component {
             <React.Fragment>
                 {notification}
                 {settings}
-                <h2>General Settings</h2>
-                {useCaseDetails}
-                <h2>Email Settings </h2>
-                <Form>
-                {emailSettings}
-                <h2>Sensor Settings </h2>
-                {sensorsSettings}
+                <Tabs type='card'>
+                <TabPane tab="General Information" key="1">
+                    <h2>General Settings</h2>
+                    {useCaseDetails}
+                </TabPane>
+                    <TabPane tab="Email Settings" key="2">
+                    <h2>Email Settings </h2>
+                    <Form>
+                        {emailSettings}
+                    </Form>
+                    </TabPane>
+                    <TabPane tab="Email Settings" key="3">
+                    <h2>Sensor Settings </h2>
+                        <Form>
+                    {sensorsSettings}
+                        </Form>
+                    </TabPane>
+                </Tabs>
                 {button}
-                </Form>
             </React.Fragment>
         )
     }
