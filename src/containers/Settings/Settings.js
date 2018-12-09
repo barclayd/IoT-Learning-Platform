@@ -33,7 +33,9 @@ class Settings extends Component {
                             email: useCase.email,
                             name: useCase.name,
                             shortDesc: useCase.shortDesc,
-                            longDesc: useCase.longDesc
+                            longDesc: useCase.longDesc,
+                            image: useCase.image,
+                            imageDesc: useCase.imageDesc
                         })
                     }
                 }
@@ -67,7 +69,7 @@ class Settings extends Component {
         let email = {
             email: {...this.state.email}
         };
-        let useCaseData = {'name': this.state.name, 'shortDesc': this.state.shortDesc, 'longDesc': this.state.longDesc};
+        let useCaseData = {'name': this.state.name, 'shortDesc': this.state.shortDesc, 'longDesc': this.state.longDesc, 'image': this.state.image, 'imageDesc': this.state.imageDesc};
         let mergedObject = {...email, sensorsData};
         let finalMerge = {...mergedObject, ...useCaseData};
         this.props.onSubmitSettings(this.props.id, finalMerge);
@@ -110,6 +112,12 @@ class Settings extends Component {
         const newValue = settingValue.target.value;
         this.setState({
             [settingName]: newValue
+        });
+    };
+
+    changeUseCaseDetailsOther = (settingName, settingValue) => {
+        this.setState({
+            [settingName]: settingValue
         });
     };
 
@@ -167,6 +175,18 @@ class Settings extends Component {
                 <FormItem {...formItemLayout} key='longDesc' label='Long Description'>
                     <TextArea value={this.state.longDesc} onChange={(e) => this.changeUseCaseDetails('longDesc', e)}/>
                 </FormItem>
+                    <FormItem {...formItemLayout} key='image' label='Image'>
+                        <Select style={{width: '100%'}} value={this.state.image} placeholder='Please select a sensor type' onChange={(e) => this.changeUseCaseDetailsOther('image', e)}>
+                            <Option value='road.jpg'>Road</Option>
+                            <Option value='beach.jpg'>Beach</Option>
+                            <Option value='nhsfridge.jpg'>Fridge</Option>
+                            <Option value='bathmotion.jpg'>Bath</Option>
+                            <Option value='watercomposition.jpg'>Water</Option>
+                        </Select>
+                    </FormItem>
+                    <FormItem {...formItemLayout} key='imageDesc' label='Image Description'>
+                        <Input defaultValue={this.state.imageDesc} onChange={(e) => this.changeUseCaseDetails('imageDesc', e)}/>
+                    </FormItem>
                 </React.Fragment>
 
     );
