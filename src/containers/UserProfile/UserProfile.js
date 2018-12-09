@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
-import {Form, Input, Select, Radio, Button, notification, Tabs} from "antd";
+import {Form, Input, Select, Radio, Button, notification, Tabs, Divider} from "antd";
 import {updateObject} from "../../store/utility";
 
 let id;
@@ -114,7 +114,7 @@ class UserProfile extends Component {
             if(user.userUUID === userId && (localStorage.getItem('role') === 'Trainer')) {
                 return (
                     <FormItem {...formItemLayout} label='Account Type' key={user.uuid}>
-                        <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
+                        <RadioGroup defaultValue={user.role} style={{width: '125%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value="Apprentice">Apprentice</RadioButton>
                             <RadioButton value="Trainer">Trainer</RadioButton>
                             <RadioButton value="Community">Community</RadioButton>
@@ -136,7 +136,7 @@ class UserProfile extends Component {
         <React.Fragment>
             <h1>User Profile</h1>
             <h3>Welcome, {userName !== null ? userName : localStorage.getItem('email')}</h3>
-            <Tabs defaultActiveKey='1' tabPosition='top' tabBarExtraContent={button}>
+            <Tabs defaultActiveKey='1' tabPosition='left'>
                 <TabPane tab="User Details" key="1">
                     {userDetails}
                 </TabPane>
@@ -144,6 +144,8 @@ class UserProfile extends Component {
             {userRole}
             </TabPane>
             </Tabs>
+            <Divider />
+            {button}
         </React.Fragment>
     )
     }
