@@ -120,7 +120,7 @@ class UserProfile extends Component {
                             <RadioButton value="Community">Community</RadioButton>
                         </RadioGroup>
                     </FormItem>
-                )} else if (user.userUUID === userId && (localStorage.getItem('role') === 'Apprentice' || localStorage.getItem('role') === 'Community')){
+                )} else if (user.userUUID === userId && (localStorage.getItem('role') === 'Apprentice' || localStorage.getItem('role') === 'Community' || (user.role === 'Apprentice') ||  (user.role === 'Community'))){
                 return (
                     <FormItem {...formItemLayout} label='Account Type'>
                         <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>

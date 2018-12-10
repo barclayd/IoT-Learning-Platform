@@ -19,6 +19,7 @@ class AdminArea extends Component {
     componentDidMount() {
       this.props.onFetchUsers();
       this.props.onFetchUseCases();
+      this.props.onFetchSensors();
     }
 
 
@@ -28,7 +29,8 @@ class AdminArea extends Component {
             this.setState({
                 useCases: nextProps.useCases,
                 users: nextProps.users.filter(user => user.role !== 'Community'),
-                community: nextProps.users.filter(user => user.role === 'Community')
+                community: nextProps.users.filter(user => user.role === 'Community'),
+                sensors: nextProps.sensors
                 // users: nextProps.users
             })
         }
@@ -92,10 +94,7 @@ class AdminArea extends Component {
     updateForm = (settingName, settingValue, userId, user) => {
 
         const users = {...this.state.users};
-        // const userIndex = Object.keys(users).findIndex((id)=> id === userId);
         console.log(userId);
-        // console.log(userIndex);
-
         users[userId] = {...user,
             [settingName]: settingValue.target.value
         };
@@ -178,6 +177,7 @@ class AdminArea extends Component {
                                                handleUseCasePermissionsChanged={this.handleUseCasePermissionsChanged}
                                                handleUseCasesSave={this.handleUseCasesSave}
                                                deletedUseCaseNotification = {this.deletedUseCaseNotification}
+                                               sensors={this.state.sensors}
                                            />} />
                                      <Route path="/users"
                                             render={ props => <Users
@@ -215,7 +215,8 @@ const mapStateToProps = state => {
         loading: useCaseFirebase.loading,
         saved: useCaseFirebase.saved,
         deleted: state.useCaseFirebase.deleted,
-        lastDeletedUseCase: state.useCaseFirebase.deletedUseCase
+        lastDeletedUseCase: state.useCaseFirebase.deletedUseCase,
+        sensors: state.sensors.sensors
     }
 };
 
@@ -224,7 +225,8 @@ const mapDispatchToProps = dispatch => {
         onFetchUsers: () => dispatch(actions.fetchUsersData()),
         onFetchUseCases: () => dispatch(actions.fetchUseCaseData()),
         onUpdateUseCase: (newUseCases) => dispatch(actions.updateUseCaseData(newUseCases)),
-        onUpdateUsers: (data) => dispatch(actions.updateProfile(data))
+        onUpdateUsers: (data) => dispatch(actions.updateProfile(data)),
+        onFetchSensors: () => dispatch(actions.fetchSensorsData())
     }
 };
 
