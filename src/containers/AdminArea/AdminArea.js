@@ -115,10 +115,11 @@ class AdminArea extends Component {
         });
     };
 
-    updateSensors = (settingName, settingValue) => {
+    updateSensors = (settingName, settingValue, sensorId) => {
         let sensor = settingValue.target.value;
         console.log(sensor);
-        const sensorIndex = Object.keys(this.state.sensors).findIndex((key)=> key.sensorName === settingName);
+        console.log((this.state.sensors[0].sensorName));
+        const sensorIndex = Object.keys(this.state.sensors).filter((sensor) => sensor === sensorId);
         console.log(sensorIndex);
         // sensors[sensorId] = {...sensor,
         //     [settingName]: settingValue.target.value
