@@ -92,7 +92,7 @@ class UserProfile extends Component {
                 return (
                     <React.Fragment>
                         <div style={{display: 'inline-block'}}>
-                            <img style={{borderRadius: '50%', width: '200px', height: '200px', overflow: 'hidden', float: 'left', border: '1px solid #fff'}} alt={user.profileImage} src={`/images/${user.profileImage}`} />
+                            <img style={{borderRadius: '50%', width: '200px', height: '200px', overflow: 'hidden', float: 'left', border: '3px solid #fff', backgroundSize: 'cover', boxShadow: '0 6px 20px 0 rgba(0, 0, 0, 0.19)'}} alt={user.profileImage} src={`/images/${user.profileImage}`} />
                             <h3 style={{paddingLeft: '20px', paddingTop: '100px', float:'left'}}>Welcome, {userName !== null ? userName : localStorage.getItem('email')}!</h3>
                         </div>
                             <Divider/>

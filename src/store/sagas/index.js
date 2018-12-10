@@ -4,7 +4,7 @@ import {fetchDataSaga} from './historicData';
 import {fetchLiveDataSaga} from './liveData';
 import {fetchArduinoDataSaga} from './arduinoData';
 import {fetchUseCaseDataSaga, updateUseCaseSaga, submitSettingsSaga, deleteUseCaseSaga} from './useCaseFirebase'
-import {fetchUsersDataSaga} from './usersFirebase';
+import {fetchUsersDataSaga, deleteUsersSaga} from './usersFirebase';
 import {createUseCaseSaga} from './createUseCase';
 import {fetchSensorsDataSaga} from './sensorsFirebase'
 import {updateProfileSaga} from './userProfile';
@@ -60,4 +60,8 @@ export function* watchUpdateProfile() {
 
 export function* watchDeleteUseCase() {
     yield takeLatest(actionTypes.INIT_DELETE_USECASE, deleteUseCaseSaga);
+}
+
+export function* watchDeleteUsers() {
+    yield takeLatest(actionTypes.INIT_DELETE_USER, deleteUsersSaga);
 }

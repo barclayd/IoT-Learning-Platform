@@ -4,7 +4,9 @@ import {updateObject} from "../utility";
 const initialState = {
     users: [],
     loading: false,
-    error: false
+    error: false,
+    deleted: false,
+    deletedUser: ''
 };
 
 const dataFetchSuccess = (state, action) => {
@@ -23,11 +25,23 @@ const dataFetchFailed = (state, action) => {
     })
 };
 
+const deleteUserSuccess = (state, action) => {
+    return updateObject(state, {
+        loading: false,
+        error: false,
+        deleted: true,
+        deletedUser: action.userName
+    })
+};
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case(actionTypes.FETCH_USERS_DATA_START): return updateObject(state, {loading: true, error: false});
         case(actionTypes.FETCH_USERS_DATA_SUCCESS): return dataFetchSuccess(state, action);
         case(actionTypes.FETCH_USERS_DATA_FAILED): return dataFetchFailed(state, action);
+        case(actionTypes.DELETE_USER_START): return updateObject(state, {loading: true, error: false});
+        case(actionTypes.DELETE_USER_SUCCESS): return deleteUserSuccess(state, action);
+        case(actionTypes.DELETE_USER_FAIL): return dataFetchFailed(state, {loading: false, error: true});
         default: return state;
     }
 };

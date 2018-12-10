@@ -4,12 +4,13 @@ import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import {updateObject} from "../../store/utility";
 import {Menu, Icon, Row, Col,  notification} from 'antd';
-import {Link, Switch, Route} from 'react-router-dom';
+import {Link, Switch, Route, Redirect} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
 import Users from './Users/Users';
 import Sensors from './Sensors/Sensors';
 
 const key = 'updatable';
+let deleteRedirect;
 class AdminArea extends Component {
 
    state = {
@@ -30,6 +31,7 @@ class AdminArea extends Component {
                 useCases: nextProps.useCases,
                 users: nextProps.users.filter(user => user.role !== 'Community'),
                 community: nextProps.users.filter(user => user.role === 'Community'),
+                allUsers: nextProps.users,
                 sensors: nextProps.sensors
                 // users: nextProps.users
             })
@@ -124,6 +126,23 @@ class AdminArea extends Component {
         }
     };
 
+    confirmDelete = (e) => {
+        console.log(e);
+        const id = this.state.allUsers.findIndex(user => user.userUUID === e);
+        const userName = this.state.allUsers.filter(user => user.userUUID === e);
+        console.log(userName[0].name);
+        console.log(id);
+        this.props.onDeleteUsers(id, userName);
+        if(this.props.deletedUser){
+            console.log(this.props.deletedUserName);
+        }
+        // deleteRedirect = (this.props.saved ? <Redirect exact to='/admin-area' /> : null);
+    };
+
+    cancelDelete = (e) =>  {
+        console.log(e);
+    };
+
     render() {
         const {users} = this.props;
         const filteredUsers = this.props.users.filter(user => user.role !== 'Community');
@@ -194,6 +213,8 @@ class AdminArea extends Component {
                                                 name={this.state.name}
                                                 role={this.state.role}
                                                 usersUseCases={this.getUserUseCase}
+                                                confirmDelete={this.confirmDelete}
+                                                cancelDelete={this.cancelDelete}
                                             />} />
                             </Switch>
                             </div>
@@ -216,7 +237,9 @@ const mapStateToProps = state => {
         saved: useCaseFirebase.saved,
         deleted: state.useCaseFirebase.deleted,
         lastDeletedUseCase: state.useCaseFirebase.deletedUseCase,
-        sensors: state.sensors.sensors
+        sensors: state.sensors.sensors,
+        deletedUser: state.users.deleted,
+        deletedUserName: state.users.deletedUser
     }
 };
 
@@ -226,7 +249,8 @@ const mapDispatchToProps = dispatch => {
         onFetchUseCases: () => dispatch(actions.fetchUseCaseData()),
         onUpdateUseCase: (newUseCases) => dispatch(actions.updateUseCaseData(newUseCases)),
         onUpdateUsers: (data) => dispatch(actions.updateProfile(data)),
-        onFetchSensors: () => dispatch(actions.fetchSensorsData())
+        onFetchSensors: () => dispatch(actions.fetchSensorsData()),
+        onDeleteUsers: (id, userName) => dispatch(actions.deleteUser(id, userName))
     }
 };
 

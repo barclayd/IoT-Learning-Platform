@@ -197,7 +197,7 @@ class AddNewUseCase extends Component {
                 {numberSensors}
                 <FormItem {...formItemLayout} label='Use Case Image'>
                     <Upload name="logo" action="/upload.do" listType="picture" onChange={(e) => this.updateForm('image', e)}>
-                        <Button>
+                        <Button disabled>
                             <Icon type="upload" /> Click to upload
                         </Button>
                     </Upload>
