@@ -4,6 +4,7 @@ import UseCase from '../components/UseCase/UseCase';
 import UseCasesList from '../containers/UseCasesList/UseCasesList';
 import {connect} from 'react-redux';
 import asyncComponent from '../hoc/asyncComponent/asyncComponent';
+import AboutPage from '../components/About/About';
 
 const asyncLogin = asyncComponent(() => {
     return import('../containers/Auth/Auth');
@@ -52,6 +53,7 @@ const AppRouter = (props) => {
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />}/>
                 <Route exact path="/users" component={asyncAdmin}/>
                 <Route exact path="/sensors" component={asyncAdmin}/>
+                <Route exact path="/about" component={AboutPage} />
                 <Redirect to='/dashboard' component={UseCasesList}/>
             </Switch>
     }
