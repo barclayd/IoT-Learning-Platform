@@ -20,7 +20,7 @@ export {
 } from './useCaseFirebase'
 
 export {
-    fetchUsersData, fetchUsersDataFailed, fetchUsersDataStart, fetchUsersDataSuccess,
+    fetchUsersData, fetchUsersDataFailed, fetchUsersDataStart, fetchUsersDataSuccess, deleteUser, deleteUserFailed, deleteUserStart, deleteUserSuccess
 } from './usersFirebase'
 
 export {

@@ -1,5 +1,20 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Radio, Divider, List, Card} from 'antd';
+import {
+    Select,
+    Button,
+    Collapse,
+    Form,
+    Input,
+    Icon,
+    Row,
+    Col,
+    notification,
+    Radio,
+    Divider,
+    List,
+    Card,
+    Popconfirm
+} from 'antd';
 import {connect} from 'react-redux';
 import styles from "../UseCasesController/UseCasesController.module.scss";
 
@@ -61,6 +76,9 @@ const UseCasesController = (props) => {
                                     <Button className={styles.saveBtn} onClick={() => props.submitSettings()} type="primary">
                                         Save
                                     </Button>
+                                    <Popconfirm title={`Are you sure delete ${selectedUser.name}?`} onConfirm={() => props.confirmDelete(selectedUser.userUUID)} onCancel={props.cancelDelete} okText="Yes" cancelText="No">
+                                        <Button type="danger" htmlType="submit" loading={props.loading} style={{backgroundColor: '#f5222d', color: '#f5f5f5', left:'500px'}}>Remove</Button>
+                                    </Popconfirm>
                                 </div>
                             </Panel>
 
