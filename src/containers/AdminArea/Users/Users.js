@@ -15,7 +15,7 @@ const formItemLayout = {
 const UseCasesController = (props) => {
 
 
-    let content = (<div> No Use Cases</div>);
+    let content = (<div>No Users</div>);
     let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
 
     const RadioGroup = Radio.Group;
@@ -47,9 +47,7 @@ const UseCasesController = (props) => {
                                         </RadioGroup>
                                     </FormItem>
                                     <FormItem {...formItemLayout} label='Use Cases'>
-                                        <List bordered grid={{
-                                            gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3,
-                                        }}>
+                                        <List bordered size='small'>
                                         {props.usersUseCases(selectedUser).map((useCase) => {
                                             console.log(useCase);
                                             return (props.usersUseCases(selectedUser).length ? <List.Item>

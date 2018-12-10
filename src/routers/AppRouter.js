@@ -18,6 +18,9 @@ const asyncAdmin = asyncComponent(() => {
     return import('../containers/AdminArea/AdminArea');
 });
 
+const asyncUserProfile = asyncComponent(() => {
+    return import('../containers/UserProfile/UserProfile');
+});
 
 const defaultMessage = <p> Please <Link to='/login'>login</Link> to access the website</p>;
 
@@ -36,6 +39,7 @@ const AppRouter = (props) => {
         routes =
             <Switch>
                 <Route exact path="/dashboard" component={UseCasesList}/>
+                <Route exact path="/profile" component={asyncUserProfile}/>
                 <Route exact path="/login" component={asyncLogin}/>
                 <Route exact path='/logout' component={asyncLogout} />
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
