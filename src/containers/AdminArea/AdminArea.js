@@ -5,8 +5,10 @@ import * as actions from '../../store/actions/index';
 import {Menu, Icon, Row, Col,  notification} from 'antd';
 import {Link, Switch, Route} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
+import AddNewUseCase from '../AddNewUseCase/AddNewUseCase';
 import Users from './Users/Users';
 import Sensors from './Sensors/Sensors';
+import NewUseCase from './NewUseCase/NewUseCase'
 
 const key = 'updatable';
 let selectedUserName;
@@ -200,6 +202,11 @@ class AdminArea extends Component {
                                             <span>Users</span></span>
                                         </Link>
                                     </Menu.Item>
+                                    <Menu.Item key="new-use-case">
+                                        <Link to="/new-use-case"><span><Icon type="plus-circle" aria-label={'Link to Information'}/>
+                                            <span>Add a New Use Case</span></span>
+                                        </Link>
+                                    </Menu.Item>
                                 </Menu>
                             </div>
                         </Col>
@@ -247,6 +254,12 @@ class AdminArea extends Component {
                                                 usersUseCases={this.getUserUseCase}
                                                 confirmDelete={this.confirmDelete}
                                                 cancelDelete={this.cancelDelete}
+                                            />} />
+                                     <Route path="/new-use-case"
+                                            render={ props => <NewUseCase
+                                                useCases={this.props.useCases}
+                                                users={this.props.users}
+                                                sensors={this.props.sensors}
                                             />} />
                             </Switch>
                             </div>

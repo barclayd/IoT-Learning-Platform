@@ -11,7 +11,7 @@ const formItemLayout = {
 
 };
 
-const UseCasesController = (props) => {
+const Sensors = (props) => {
 
 
     let content = (<div>No Sensors</div>);
@@ -65,4 +65,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(UseCasesController);
+export default connect(mapStateToProps)(Sensors);
