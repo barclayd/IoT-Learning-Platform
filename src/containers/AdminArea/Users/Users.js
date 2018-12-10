@@ -1,6 +1,7 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Radio, Divider} from 'antd';
 import {connect} from 'react-redux';
+import styles from "../UseCasesController/UseCasesController.module.scss";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -17,40 +18,34 @@ const UseCasesController = (props) => {
     let content = (<div> No Use Cases</div>);
     let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
 
-    if (props.useCases){
+    const RadioGroup = Radio.Group;
+    const RadioButton = Radio.Button;
+
+    if (props.users){
         content =
             (
                 <Collapse accordion>
-                    {Object.keys(props.useCases).map((useCaseKey, index) => {
-                        const useCase = props.useCases[useCaseKey];
-                        const useCaseUsersIDs = props.getUseCaseUsers(useCase).map(user => user.userUUID);
+                    {Object.keys(props.users).map((user, index) => {
+                        const selectedUser = props.users[user];
                         return (
-                            <Panel header={useCase.name} key={index}>
+                            <Panel header={selectedUser.name} key={index}>
                                 <h3>Information:</h3>
                                 <div key={index}>
                                     <FormItem {...formItemLayout} label='Name'>
-                                        <Input style={{width: '100%'}} value={useCase.name} onChange={(e) => props.updateUseCase('name', e, useCase)}/>
+                                        <Input style={{width: '100%'}} value={selectedUser.name} onChange={(e) => props.updateForm('name', e, user, selectedUser)}/>
                                     </FormItem>
-                                    <FormItem {...formItemLayout} label='Summary'>
-                                        <Input style={{width: '100%'}} value={useCase.shortDesc}  onChange={(e) => props.updateUseCase('shortDesc', e, useCase)}/>
+                                    <FormItem label='Email'>
+                                        <p>{selectedUser.email}</p>
                                     </FormItem>
-                                    <FormItem {...formItemLayout} label='Description'>
-                                        <TextArea rows={4} style={{width: '100%'}} value={useCase.longDesc} onChange={(e) => props.updateUseCase('longDesc', e, useCase)}/>
+                                    <FormItem {...formItemLayout} label='Role'>
+                                        <RadioGroup defaultValue={selectedUser.role} style={{width: '125%'}} onChange={(e) => props.updateForm('role', e, user, selectedUser)}>
+                                            <RadioButton value="Apprentice">Apprentice</RadioButton>
+                                            <RadioButton value="Trainer">Trainer</RadioButton>
+                                            <RadioButton value="Community">Community</RadioButton>
+                                        </RadioGroup>
                                     </FormItem>
-                                    <h3>Users' Permissions:</h3>
-                                    <p>Manage the users who can see and access this use case</p>
-                                    <Select
-                                        mode="multiple"
-                                        style={{ width: '100%' }}
-                                        placeholder="Please select"
-                                        value={useCaseUsersIDs}
-                                        onChange={(value) => props.handleUseCasePermissionsChanged(useCase, value)}
-                                    >
-                                        {props.users.map((user, index) => {
-                                            return (<Option value={user.userUUID} key={index}>{user.name}</Option>)
-                                        })}
-                                    </Select>
-                                    <Button onClick={props.handleUseCasesSave} type="primary">
+                                    <Divider/>
+                                    <Button className={styles.saveBtn} onClick={() => props.submitSettings()} type="primary">
                                         Save
                                     </Button>
                                 </div>

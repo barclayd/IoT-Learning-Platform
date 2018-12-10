@@ -23,8 +23,13 @@ class AdminArea extends Component {
 
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         if(!nextProps.useCasesLoading) {
-            this.setState({useCases: nextProps.useCases})
+            this.setState({
+                useCases: nextProps.useCases,
+                // users: nextProps.users.filter(user => user.role !== 'Community')
+                users: nextProps.users
+            })
         }
     }
 
@@ -52,7 +57,7 @@ class AdminArea extends Component {
 
     updateUseCase = (key, event, useCase) => {
         const useCases = {...this.state.useCases};
-        const useCaseIndex = Object.keys(useCases).findIndex((key)=> key === useCase.id)
+        const useCaseIndex = Object.keys(useCases).findIndex((key)=> key === useCase.id);
         useCases[useCaseIndex] = {...useCase,
             [key]: event.target.value
         };
@@ -78,8 +83,37 @@ class AdminArea extends Component {
         });
     };
 
+    updateForm = (settingName, settingValue, userId, user) => {
+
+        const users = {...this.state.users};
+        // const userIndex = Object.keys(users).findIndex((id)=> id === userId);
+        console.log(userId);
+        // console.log(userIndex);
+
+        users[userId] = {...user,
+            [settingName]: settingValue.target.value
+        };
+
+        this.setState({
+            users
+        });
+    };
+
+
+    submitSettings = () => {
+
+        const updateObject = {...this.state.users};
+        console.log(updateObject);
+
+        this.props.onUpdateUsers(updateObject);
+        if(this.props.saved) {
+            this.savedSettingsNotification('success');
+        }
+    };
+
     render() {
         const {users} = this.props;
+        const filteredUsers = this.props.users.filter(user => user.role !== 'Community');
         return (
             <div className={styles.AdminArea}>
                 <div aria-label={'Use Cases'} className={styles.UseCase}>
@@ -134,12 +168,17 @@ class AdminArea extends Component {
                                      <Route path="/users"
                                             render={ props => <Users
                                                 useCases={this.state.useCases}
-                                                users={users}
+                                                users={this.state.users}
                                                 updateUseCase={this.updateUseCase}
                                                 getUseCaseUsers={this.getUseCaseUsers}
                                                 handleUseCasePermissionsChanged={this.handleUseCasePermissionsChanged}
                                                 handleUseCasesSave={this.handleUseCasesSave}
                                                 deletedUseCaseNotification = {this.deletedUseCaseNotification}
+                                                radioButtonForm={this.radioButtonForm}
+                                                updateForm={this.updateForm}
+                                                submitSettings={this.submitSettings}
+                                                name={this.state.name}
+                                                role={this.state.role}
                                             />} />
                             </Switch>
                             </div>
@@ -169,8 +208,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchUsers: () => dispatch(actions.fetchUsersData()),
         onFetchUseCases: () => dispatch(actions.fetchUseCaseData()),
-        onUpdateUseCase: (newUseCases) => dispatch(actions.updateUseCaseData(newUseCases))
-
+        onUpdateUseCase: (newUseCases) => dispatch(actions.updateUseCaseData(newUseCases)),
+        onUpdateUsers: (data) => dispatch(actions.updateProfile(data))
     }
 };
 

@@ -268,7 +268,7 @@ class Settings extends Component {
         });
 
 
-        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Submit</Button>;
+        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.loading}>Save</Button>;
 
         let notification = null;
         if(this.props.success && this.state.justLanded) {
