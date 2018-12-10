@@ -5,8 +5,13 @@ import axios from "../../shared/axios-instance";
 export function* updateProfileSaga(action) {
     yield put(actions.updateProfileStart());
     try {
-        const response = yield axios.patch(`/users/${action.id}.json`, action.data);
-        yield put(actions.updateProfileSuccess(response.data));
+        if(action.id !== undefined) {
+            const response = yield axios.patch(`/users/${action.id}.json`, action.data);
+            yield put(actions.updateProfileSuccess(response.data));
+        } else {
+            const response = yield axios.put('/users.json', action.data);
+            yield put(actions.updateProfileSuccess(response.data));
+        }
         try {
             const response = yield axios.get('/users.json');
             const fetchedData = [];

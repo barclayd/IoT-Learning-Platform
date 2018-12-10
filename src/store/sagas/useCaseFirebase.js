@@ -59,7 +59,7 @@ export function* deleteUseCaseSaga (action) {
     try {
         const response = yield axios.delete(`/useCases/${action.id}.json`);
         console.log(response);
-        yield put(actions.deleteUseCaseSuccess(action.useCase))
+        yield put(actions.deleteUseCaseSuccess(action.useCase));
         try {
             yield put(actions.fetchUseCaseDataStart());
             try {

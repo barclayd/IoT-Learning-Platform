@@ -1,7 +1,7 @@
 
 import React from 'react';
 import styles from './UseCasesController.module.scss'
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider} from 'antd';
 import {connect} from 'react-redux';
 
 const FormItem = Form.Item;
@@ -52,12 +52,12 @@ const UseCasesController = (props) => {
                                 return (<Option value={user.userUUID} key={index}>{user.name}</Option>)
                             })}
                         </Select>
+                            <Divider/>
                     <Button className={styles.saveBtn} onClick={props.handleUseCasesSave} type="primary">
                         Save
                     </Button>
                     </div>
                     </Panel>
-
                     );
                 })}
             </Collapse>
