@@ -51,6 +51,7 @@ class UserProfile extends Component {
         notification[type]({
             message: 'Settings successfully saved!',
             description: `Your profile has been successfully updated`,
+            duration: 1
         });
     };
 

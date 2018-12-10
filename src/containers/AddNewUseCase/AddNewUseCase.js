@@ -12,7 +12,7 @@ const otherSettings = {
     arduinoName: 'TMP36',
     email: {
         body: 'Email body',
-        senders: ['test.test@gmail.com'],
+        senders: [localStorage.getItem("email")],
         subject: 'Email subject'
     }
 };
@@ -256,7 +256,6 @@ class AddNewUseCase extends Component {
         return (
            <React.Fragment>
                {successRedirect}
-               {/*{notification}*/}
                <button className={classes.Button} onClick={this.showModal}>
                {localStorage.getItem("role") === 'Trainer' ? addNewUseCaseCard : null}
                </button>

@@ -61,6 +61,7 @@ class AdminArea extends Component {
         notification[type]({
             message: 'Settings Updated',
             description: `The changes you made have been successfully saved.`,
+            duration: 1
         });
     };
 
@@ -91,6 +92,7 @@ class AdminArea extends Component {
             key,
             message: 'Use Case Successfully Deleted',
             description: `The ${this.props.lastDeletedUseCase} Use Case was successfully deleted. You can view all other remaining use cases here and make changes to them.`,
+            duration: 1
         });
     };
 
@@ -99,6 +101,7 @@ class AdminArea extends Component {
             key,
             message: 'User Successfully Deleted',
             description: `${selectedUserName} was successfully deleted. You can view all other remaining users here and make changes to them.`,
+            duration: 1
         });
     };
 
