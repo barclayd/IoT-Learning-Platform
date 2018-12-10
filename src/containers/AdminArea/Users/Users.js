@@ -1,5 +1,5 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Radio, Divider} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Radio, Divider, List, Card} from 'antd';
 import {connect} from 'react-redux';
 import styles from "../UseCasesController/UseCasesController.module.scss";
 
@@ -45,6 +45,19 @@ const UseCasesController = (props) => {
                                             <RadioButton value="Trainer">Trainer</RadioButton>
                                             <RadioButton value="Community">Community</RadioButton>
                                         </RadioGroup>
+                                    </FormItem>
+                                    <FormItem {...formItemLayout} label='Use Cases'>
+                                        <List bordered grid={{
+                                            gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3,
+                                        }}>
+                                        {props.usersUseCases(selectedUser).map((useCase) => {
+                                            console.log(useCase);
+                                            return (props.usersUseCases(selectedUser).length ? <List.Item>
+                                                {useCase.name}
+                                            </List.Item> : <List.Item> User currently has no assigned Use Cases.</List.Item>
+                                            )
+                                        })}
+                                        </List>
                                     </FormItem>
                                     <Divider/>
                                     <Button className={styles.saveBtn} onClick={() => props.submitSettings()} type="primary">
