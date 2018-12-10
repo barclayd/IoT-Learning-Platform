@@ -29,11 +29,11 @@ const UseCasesController = (props) => {
                                 <h3>Information:</h3>
                                 <div key={index}>
                                     <FormItem {...formItemLayout} label='Name'>
-                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateUseCase('name', e)}/>
+                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateSensors('sensorName', e)}/>
                                     </FormItem>
                                     <FormItem {...formItemLayout} label='Sensor Components'>
                                     {currentSensor.sensorComponents.map((cmp) => {
-                                        return <Input style={{width: '100%'}} value={cmp}  onChange={(e) => props.updateUseCase('shortDesc', e)}/>
+                                        return <Input style={{width: '100%'}} value={cmp}  onChange={(e) => props.updateSensors('shortDesc', e)}/>
                                     })}
                                     </FormItem>
                                     <Divider />

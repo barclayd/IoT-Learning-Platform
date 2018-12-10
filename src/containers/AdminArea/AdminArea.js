@@ -73,6 +73,8 @@ class AdminArea extends Component {
         this.setState({useCases});
     };
 
+
+
     handleUseCasesSave = () => {
         this.props.onUpdateUseCase(this.state.useCases);
         if(this.props.saved){
@@ -111,6 +113,20 @@ class AdminArea extends Component {
         this.setState({
             users
         });
+    };
+
+    updateSensors = (settingName, settingValue) => {
+        let sensor = settingValue.target.value;
+        console.log(sensor);
+        const sensorIndex = Object.keys(this.state.sensors).findIndex((key)=> key.sensorName === settingName);
+        console.log(sensorIndex);
+        // sensors[sensorId] = {...sensor,
+        //     [settingName]: settingValue.target.value
+        // };
+        //
+        // this.setState({
+        //     sensors
+        // });
     };
 
 
@@ -209,6 +225,7 @@ class AdminArea extends Component {
                                                handleUseCasesSave={this.handleUseCasesSave}
                                                deletedUseCaseNotification = {this.deletedUseCaseNotification}
                                                sensors={this.state.sensors}
+                                               updateSensors={this.updateSensors}
                                            />} />
                                      <Route path="/users"
                                             render={ props => <Users
