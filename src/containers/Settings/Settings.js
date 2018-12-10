@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, Tooltip} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {Redirect} from "react-router-dom";
 import {updateObject} from '../../store/utility';
+import * as text from '../../assets/staticText';
 import classes from './Settings.module.css';
 
 let deleteRedirect;
@@ -288,7 +289,6 @@ class Settings extends Component {
                 </Popconfirm>
         }
 
-
         return (
             <React.Fragment>
                 {deleteRedirect}
@@ -297,16 +297,25 @@ class Settings extends Component {
                 <Tabs type='card' onChange={this.onChangeTab} tabBarExtraContent={this.state.tab !== 'delete' ? button : deleteUsecase}>
                 <TabPane tab="General Information" key="general">
                     <h2>General Settings</h2>
+                    <Tooltip title={text.generalHoverText}>
+                        {text.generalText}
+                    </Tooltip>
                     {useCaseDetails}
                 </TabPane>
                     <TabPane tab="Email Settings" key="email">
                     <h2>Email Settings </h2>
                     <Form>
+                        <Tooltip title={text.emailHoverText}>
+                            {text.emailText}
+                        </Tooltip>
                         {emailSettings}
                     </Form>
                     </TabPane>
                     <TabPane tab="Sensor Settings" key="sensor">
                     <h2>Sensor Settings </h2>
+                        <Tooltip title={text.sensorHoverText}>
+                            {text.sensorText}
+                        </Tooltip>
                         <Form>
                             {sensorType}
                             {sensorComponent}
