@@ -64,9 +64,9 @@ class Toolbar extends Component {
                     <Row type="flex" justify="start" align="middle">
                         <Col span={3}>
                             <div className={styles.Logo}>
-                                <Link to='/dashboard' aria-label={'Logo'}><img alt='Logo' aria-label='Logo'
+                                <a href='/dashboard'><img alt='Logo' aria-label='Logo'
                                                                                style={{height: '45px', width: '45px'}}
-                                                                               src='/images/logo.png'/></Link>
+                                                                               src='/images/logo.png'/></a>
                             </div>
                         </Col>
 

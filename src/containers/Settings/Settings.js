@@ -203,6 +203,26 @@ class Settings extends Component {
                 </React.Fragment>
 
     );
+        let useCaseApprentice = (
+            <React.Fragment>
+                <FormItem {...formItemLayout} key='name' label='Name'>
+                    <p style={{lineHeight: '20px'}}>{this.state.name}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='shortDesc' label='Summary'>
+                    <p style={{lineHeight: '20px'}}>{this.state.shortDesc}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='longDesc' label='Long Description'>
+                    <p style={{lineHeight: '20px'}}>{this.state.longDesc}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='image' label='Image'>
+                    <p>{this.state.image}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='imageDesc' label='Image Description'>
+                    <p>{this.state.imageDesc}</p>
+                </FormItem>
+            </React.Fragment>
+        );
+
         let users = this.props.users.filter(user => listedUsers.includes(user.userUUID));
 
         let emailSettings = Object.keys(emails).map((email) => {
@@ -300,7 +320,7 @@ class Settings extends Component {
                     <Tooltip title={text.generalHoverText}>
                         {text.generalText}
                     </Tooltip>
-                    {useCaseDetails}
+                    {localStorage.getItem("role") === 'Trainer' ? useCaseDetails : useCaseApprentice}
                 </TabPane>
                     <TabPane tab="Email Settings" key="email">
                     <h2>Email Settings </h2>

@@ -1,8 +1,8 @@
-
 import React from 'react';
 import styles from './UseCasesController.module.scss'
 import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider} from 'antd';
 import {connect} from 'react-redux';
+import AddNewUseCase from '../../AddNewUseCase/AddNewUseCase';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
