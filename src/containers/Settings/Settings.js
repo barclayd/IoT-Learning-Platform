@@ -50,6 +50,7 @@ class Settings extends Component {
         notification[type]({
             message: 'Settings successfully saved!',
             description: `The settings have been successfully updated for ${this.state.name}`,
+            duration: 1
         });
     };
 
@@ -57,6 +58,7 @@ class Settings extends Component {
         notification[type]({
             message: 'New Use Case Created!',
             description: `A new use case has been created. You can update the settings in greater detail here`,
+            duration: 1
         });
     };
 
