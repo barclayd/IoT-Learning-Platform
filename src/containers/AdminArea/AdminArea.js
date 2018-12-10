@@ -155,17 +155,16 @@ class AdminArea extends Component {
 
     confirmDelete = (e) => {
         console.log(e);
-        const id = this.state.allUsers.findIndex(user => user.userUUID === e);
-        const userName = this.state.allUsers.filter(user => user.userUUID === e);
+        const id = this.state.allUsers.findIndex(user => user.id === e);
+        const userName = this.state.allUsers.filter(user => user.id === e);
+
         selectedUserName = userName[0].name;
-        console.log(id);
         this.props.onDeleteUsers(id, selectedUserName);
         if(this.props.deletedUser){
             console.log('this was called');
             console.log(this.props.deletedUserName);
             this.deletedUserNotification('success');
         }
-        // deleteRedirect = (this.props.saved ? <Redirect exact to='/admin-area' /> : null);
     };
 
     cancelDelete = (e) =>  {
