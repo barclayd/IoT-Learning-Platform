@@ -31,12 +31,14 @@ class Toolbar extends Component {
         };
 
         const styleUsername = (email) => {
-            const accountType = email.split('@').pop();
-            const communityName = email.substr(0, email.indexOf('@'));
-            const titleDisplayName = communityName.split(' ').map((letter) => {
-                return letter.replace(communityName[0], communityName[0].toUpperCase());
-            });
-            return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
+            if(email !==null) {
+                const accountType = email.split('@').pop();
+                const communityName = email.substr(0, email.indexOf('@'));
+                const titleDisplayName = communityName.split(' ').map((letter) => {
+                    return letter.replace(communityName[0], communityName[0].toUpperCase());
+                });
+                return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
+            }
         };
 
         const styleAvatar = (email) => {
@@ -82,22 +84,19 @@ class Toolbar extends Component {
 
                         <Col span={7} offset={5}>
                             <div className={styles.User}>
-                                <div className={styles.Actions}>
-                                    <Icon style={{fontSize: '18px'}} type="bell" aria-label={'notification icon'}/>
-                                    <Icon style={{fontSize: '18px', marginLeft: '25px'}} type="search"
-                                          aria-label={'search field'}/>
+                                <div>
+                                    <Icon style={{marginLeft: '-115px'}} type="search"/>
+                                        <Icon style={{marginLeft: '20px', marginTop: '-15px'}} type="bell" aria-label={'notification icon'}/>
                                 </div>
-                                <div className={styles.Info} style={{cursor: 'pointer'}}>
-                                    <div onClick={() => this.showDrawer()}>{styleAvatar(localStorage.getItem("email"))}</div>
-                                    <br/>
+                                <div onClick={() => this.showDrawer()} style={{cursor: 'pointer'}}>
+                                        <div style={{marginLeft: '-45px', marginTop: '-5px'}}>{styleAvatar(localStorage.getItem("email"))}</div>
+                                </div>
                                     <div onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
-                                        <div style={{padding: '10px'}} className={styles.login}
-                                             aria-label={'username'}>{localStorage.getItem("email") ?
-                                            <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
+                                        <div style={{fontStyle: 'italic'}} aria-label={'username'}>{localStorage.getItem("email") ?
+                                            <div style={{fontStyle: 'italic'}}> {logout}</div> : login}</div>
                                     </div>
                                     <br/>
                                 </div>
-                            </div>
                         </Col>
                     </Row>
                 </nav>
