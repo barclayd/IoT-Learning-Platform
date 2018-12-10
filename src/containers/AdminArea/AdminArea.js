@@ -27,8 +27,9 @@ class AdminArea extends Component {
         if(!nextProps.useCasesLoading) {
             this.setState({
                 useCases: nextProps.useCases,
-                // users: nextProps.users.filter(user => user.role !== 'Community')
-                users: nextProps.users
+                users: nextProps.users.filter(user => user.role !== 'Community'),
+                community: nextProps.users.filter(user => user.role === 'Community')
+                // users: nextProps.users
             })
         }
     }
@@ -103,9 +104,17 @@ class AdminArea extends Component {
     submitSettings = () => {
 
         const updateObject = {...this.state.users};
-        console.log(updateObject);
+        const communitiesObject = {...this.state.community};
 
-        this.props.onUpdateUsers(updateObject);
+        console.log(Object.values(updateObject));
+        console.log(Object.values(communitiesObject));
+        let masterarray = Object.values(updateObject).concat(Object.values(communitiesObject));
+
+        console.log(masterarray);
+        // const fullObject = [...this.state.community, ...updateObject];
+        // console.log(fullObject);
+
+        this.props.onUpdateUsers(masterarray);
         if(this.props.saved) {
             this.savedSettingsNotification('success');
         }
