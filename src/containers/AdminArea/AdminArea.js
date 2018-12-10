@@ -48,6 +48,11 @@ class AdminArea extends Component {
             .filter(user => useCase.access.listedUsers.includes(user.userUUID));
     };
 
+    getUserUseCase = (user) => {
+        return this.state.useCases
+            .filter(useCase => useCase.access.listedUsers.includes(user.userUUID));
+    };
+
 
     savedSettingsNotification = (type) => {
         notification[type]({
@@ -188,6 +193,7 @@ class AdminArea extends Component {
                                                 submitSettings={this.submitSettings}
                                                 name={this.state.name}
                                                 role={this.state.role}
+                                                usersUseCases={this.getUserUseCase}
                                             />} />
                             </Switch>
                             </div>
