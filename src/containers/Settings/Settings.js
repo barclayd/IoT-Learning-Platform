@@ -317,10 +317,11 @@ class Settings extends Component {
                 <Tabs type='card' onChange={this.onChangeTab} tabBarExtraContent={this.state.tab !== 'delete' ? button : deleteUsecase}>
                 <TabPane tab="General Information" key="general">
                     <h2>General Settings</h2>
-                    <Tooltip title={text.generalHoverText}>
+                    {localStorage.getItem("role") === 'Trainer' ?
+                        <React.Fragment><Tooltip title={text.generalHoverText}>
                         {text.generalText}
                     </Tooltip>
-                    {localStorage.getItem("role") === 'Trainer' ? useCaseDetails : useCaseApprentice}
+                            {useCaseDetails} </React.Fragment> : useCaseApprentice}
                 </TabPane>
                     <TabPane tab="Email Settings" key="email">
                     <h2>Email Settings </h2>

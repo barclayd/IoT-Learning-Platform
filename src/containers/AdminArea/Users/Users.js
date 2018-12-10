@@ -44,7 +44,9 @@ const UseCasesController = (props) => {
                         const selectedUser = props.users[user];
                         console.log(selectedUser);
                         console.log(user);
-                        return (
+                        if(selectedUser.name !== undefined) {
+                            console.log(selectedUser.name);
+                            return (
                             <Panel header={selectedUser.name} key={index}>
                                 <h3>Information:</h3>
                                 <div key={index}>
@@ -63,27 +65,26 @@ const UseCasesController = (props) => {
                                     </FormItem>
                                     <FormItem {...formItemLayout} label='Use Cases'>
                                         <List bordered size='small'>
-                                        {props.usersUseCases(selectedUser).map((useCase) => {
-                                            console.log(useCase);
-                                            return (props.usersUseCases(selectedUser).length ? <List.Item>
-                                                {useCase.name}
-                                            </List.Item> : <List.Item> User currently has no assigned Use Cases.</List.Item>
-                                            )
-                                        })}
+                                            {props.usersUseCases(selectedUser).map((useCase) => {
+                                                console.log(useCase);
+                                                return (props.usersUseCases(selectedUser).length ? <List.Item>
+                                                        {useCase.name}
+                                                    </List.Item> : <List.Item> User currently has no assigned Use Cases.</List.Item>
+                                                )
+                                            })}
                                         </List>
                                     </FormItem>
                                     <Divider/>
                                     <Button className={styles.saveBtn} onClick={() => props.submitSettings()} type="primary">
                                         Save
                                     </Button>
-                                    <Popconfirm title={`Are you sure delete ${selectedUser.name}?`} onConfirm={() => props.confirmDelete(selectedUser.userUUID)} onCancel={props.cancelDelete} okText="Yes" cancelText="No">
+                                    <Popconfirm title={`Are you sure delete ${selectedUser.name}?`} onConfirm={() => props.confirmDelete(selectedUser.id)} onCancel={props.cancelDelete} okText="Yes" cancelText="No">
                                         <Button type="danger" htmlType="submit" loading={props.loading} style={{backgroundColor: '#f5222d', color: '#f5f5f5', left:'500px'}}>Remove</Button>
                                     </Popconfirm>
                                 </div>
                             </Panel>
-
-                        );
-                    })}
+                            );
+                        }})}
                 </Collapse>
             )
     }

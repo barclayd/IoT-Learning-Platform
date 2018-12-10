@@ -18,9 +18,11 @@ class Toolbar extends Component {
     };
 
     showDrawer = () => {
-        this.setState({
-            visible: true
-        });
+        if(localStorage.getItem("email") !== null) {
+            this.setState({
+                visible: true
+            });
+        }
     };
 
     render() {
@@ -51,7 +53,7 @@ class Toolbar extends Component {
         };
 
         const login = <Link to='/logout'>Login</Link>;
-        const logout = <Link to='/logout'>logout?</Link>;
+        const logout = <Link to='/logout'>Logout?</Link>;
 
         const admin = (localStorage.getItem('role') === 'Trainer' || this.props.role === 'Trainer') ?
             <li aria-label={'Link to Admin Area'}><Link

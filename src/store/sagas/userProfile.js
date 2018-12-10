@@ -21,7 +21,8 @@ export function* updateProfileSaga(action) {
                     id: key
                 });
             }
-            yield put(actions.fetchUsersDataSuccess(fetchedData));
+            const filteredFetchedData = fetchedData.filter(user => user.email !== undefined);
+            yield put(actions.fetchUsersDataSuccess(filteredFetchedData));
         } catch (error) {
             yield put(actions.fetchUsersDataFailed(error));
         }
