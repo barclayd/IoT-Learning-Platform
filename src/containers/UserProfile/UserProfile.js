@@ -90,7 +90,12 @@ class UserProfile extends Component {
             if(user.userUUID === userId) {
                 [userName, userEmail, id] = [user.name, user.email, user.id];
                 return (
-                    <div>
+                    <React.Fragment>
+                        <div style={{display: 'inline-block'}}>
+                            <img style={{borderRadius: '50%', width: '200px', height: '200px', overflow: 'hidden', float: 'left', border: '1px solid #fff'}} alt={user.profileImage} src={`/images/${user.profileImage}`} />
+                            <h3 style={{paddingLeft: '20px', paddingTop: '100px', float:'left'}}>Welcome, {userName !== null ? userName : localStorage.getItem('email')}!</h3>
+                        </div>
+                            <Divider/>
                     <FormItem {...formItemLayout} label={'User Name'} key={index}>
                         <Input defaultValue={user.name} style={{width: '100%'}} onChange={(e) => this.updateForm('name', e)}/>
                     </FormItem>
@@ -101,12 +106,14 @@ class UserProfile extends Component {
                             <Select defaultValue={user.profileImage} style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('profileImage', e)}>
                                 <Option value='road.jpg'>Road</Option>
                                 <Option value='beach.jpg'>Beach</Option>
+                                <Option value='dog.jpg'>Dog</Option>
+                                <Option value='cat.jpg'>Cat</Option>
                             </Select>
                         </FormItem>
                         <FormItem {...formItemLayout} label={'Account held since'} key={index+3}>
                             <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
                         </FormItem>
-                    </div>
+                    </React.Fragment>
                 )
             }
         });
@@ -135,7 +142,6 @@ class UserProfile extends Component {
         return (
         <React.Fragment>
             <h1>User Profile</h1>
-            <h3>Welcome, {userName !== null ? userName : localStorage.getItem('email')}</h3>
             <Tabs defaultActiveKey='1' tabPosition='left'>
                 <TabPane tab="User Details" key="1">
                     {userDetails}

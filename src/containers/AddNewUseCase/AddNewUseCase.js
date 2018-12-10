@@ -206,6 +206,8 @@ class AddNewUseCase extends Component {
                     <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('image', e)}>
                         <Option value='road.jpg'>Road</Option>
                         <Option value='beach.jpg'>Beach</Option>
+                        <Option value='dog.jpg'>Dog</Option>
+                        <Option value='cat.jpg'>Cat</Option>
                     </Select>
                 </FormItem>
                 <FormItem {...formItemLayout} label='Image Description' >
