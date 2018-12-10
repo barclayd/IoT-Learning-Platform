@@ -74,7 +74,18 @@ class UserProfile extends Component {
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
-                sm: { span: 5 },
+                sm: { span: 6 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 12 },
+            },
+        };
+
+        const longLabelLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
             },
             wrapperCol: {
                 xs: { span: 24 },
@@ -85,7 +96,6 @@ class UserProfile extends Component {
         let userId = localStorage.getItem("userId");
         let userName;
         let userEmail;
-        let found;
         const userDetails = this.props.users.map((user, index) => {
             if(user.userUUID === userId) {
                 [userName, userEmail, id] = [user.name, user.email, user.id];
@@ -96,22 +106,19 @@ class UserProfile extends Component {
                             <h3 style={{paddingLeft: '20px', paddingTop: '100px', float:'left'}}>Welcome, {userName !== null ? userName : localStorage.getItem('email')}!</h3>
                         </div>
                             <Divider/>
-                    <FormItem {...formItemLayout} label={'User Name'} key={index}>
+                    <FormItem {...longLabelLayout} label={'User Name'} key={index}>
                         <Input defaultValue={user.name} style={{width: '100%'}} onChange={(e) => this.updateForm('name', e)}/>
                     </FormItem>
-                    <FormItem {...formItemLayout} label={'User Email'} key={index+1}>
+                    <FormItem {...longLabelLayout} label={'User Email'} key={index+1}>
                         <p style={{width: '100%'}}>{user.email}</p>
                      </FormItem>
-                        <FormItem {...formItemLayout} label={'Profile Picture'} key={index+2}>
+                        <FormItem {...longLabelLayout} label={'Profile Picture'} key={index+2}>
                             <Select defaultValue={user.profileImage} style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('profileImage', e)}>
                                 <Option value='road.jpg'>Road</Option>
                                 <Option value='beach.jpg'>Beach</Option>
                                 <Option value='dog.jpg'>Dog</Option>
                                 <Option value='cat.jpg'>Cat</Option>
                             </Select>
-                        </FormItem>
-                        <FormItem {...formItemLayout} label={'Account held since'} key={index+3}>
-                            <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
                         </FormItem>
                     </React.Fragment>
                 )
@@ -136,6 +143,17 @@ class UserProfile extends Component {
                     </FormItem>)
             }});
 
+        const accountHistory = this.props.users.map((user, index) => {
+            if (user.userUUID === userId) {
+                [userName, userEmail, id] = [user.name, user.email, user.id];
+                return (
+                    <FormItem {...longLabelLayout} label={'Account held since'} key={index + 3}>
+                        <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
+                    </FormItem>
+                )
+            }
+        });
+
         let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.updateLoading}>Save</Button>;
 
 
@@ -146,9 +164,12 @@ class UserProfile extends Component {
                 <TabPane tab="User Details" key="1">
                     {userDetails}
                 </TabPane>
-            <TabPane tab="Account Role" key="4">
+            <TabPane tab="Account Role" key="2">
             {userRole}
             </TabPane>
+                <TabPane tab="Account History" key="3">
+                    {accountHistory}
+                </TabPane>
             </Tabs>
             <Divider />
             {button}
