@@ -78,7 +78,7 @@ export function* authUserSaga(action) {
         'accountCreatedDate': dateRecorded,
         'email': action.email,
         'name': action.name,
-        profileImage: '',
+        profileImage: 'cat.jpg',
         role: 'Apprentice',
         userUUID: localStorage.getItem("userId")
     };
@@ -87,7 +87,8 @@ export function* authUserSaga(action) {
     if(action.isSignup){
         try {
             const response = yield axios.patch(`/users/${action.id}.json`, newUser);
-            yield put(actions.createUserSuccess(response.name, action.data))
+            yield put(actions.createUserSuccess(response.name, action.data));
+            yield localStorage.setItem("role", newUser.role);
         } catch (error) {
             yield put(actions.createUserFail(error))
         }

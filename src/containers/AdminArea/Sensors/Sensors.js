@@ -29,7 +29,7 @@ const UseCasesController = (props) => {
                                 <h3>Information:</h3>
                                 <div key={index}>
                                     <FormItem {...formItemLayout} label='Name'>
-                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateSensors('sensorName', e)}/>
+                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateSensors('sensorName', e, index)}/>
                                     </FormItem>
                                     <FormItem {...formItemLayout} label='Sensor Components'>
                                     {currentSensor.sensorComponents.map((cmp) => {
