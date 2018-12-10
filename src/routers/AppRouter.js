@@ -43,7 +43,7 @@ const AppRouter = (props) => {
                 <Route exact path="/login" component={asyncLogin}/>
                 <Route exact path='/logout' component={asyncLogout} />
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
-                <Redirect to='/usecases' component={UseCasesList}/>
+                <Redirect to='/dashboard' component={UseCasesList}/>
             </Switch>
     }
 
@@ -57,6 +57,7 @@ const AppRouter = (props) => {
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />}/>
                 <Route exact path="/users" component={asyncAdmin}/>
                 <Route exact path="/sensors" component={asyncAdmin}/>
+                <Route exact path="/new-use-case" component={asyncAdmin}/>
                 <Route exact path="/about" component={AboutPage} />
                 <Redirect to='/dashboard' component={UseCasesList}/>
             </Switch>
