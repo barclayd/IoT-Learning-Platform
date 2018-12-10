@@ -5,7 +5,7 @@ const initialState = {
     users: [],
     loading: false,
     error: false,
-    deleted: false,
+    deleted: true,
     deletedUser: ''
 };
 
@@ -30,7 +30,7 @@ const deleteUserSuccess = (state, action) => {
         loading: false,
         error: false,
         deleted: true,
-        deletedUser: action.userName
+        deletedUser: action.data
     })
 };
 

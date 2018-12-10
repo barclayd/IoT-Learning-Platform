@@ -2,15 +2,14 @@ import React, {Component} from 'react';
 import styles from './AdminArea.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {updateObject} from "../../store/utility";
 import {Menu, Icon, Row, Col,  notification} from 'antd';
-import {Link, Switch, Route, Redirect} from 'react-router-dom';
+import {Link, Switch, Route} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
 import Users from './Users/Users';
 import Sensors from './Sensors/Sensors';
 
 const key = 'updatable';
-let deleteRedirect;
+let selectedUserName;
 class AdminArea extends Component {
 
    state = {
@@ -60,8 +59,8 @@ class AdminArea extends Component {
 
     savedSettingsNotification = (type) => {
         notification[type]({
-            message: 'Successful!',
-            description: `The changes you made has been successfully saved.`,
+            message: 'Settings Updated',
+            description: `The changes you made have been successfully saved.`,
         });
     };
 
@@ -90,6 +89,14 @@ class AdminArea extends Component {
             key,
             message: 'Use Case Successfully Deleted',
             description: `The ${this.props.lastDeletedUseCase} Use Case was successfully deleted. You can view all other remaining use cases here and make changes to them.`,
+        });
+    };
+
+    deletedUserNotification = (type) => {
+        notification[type]({
+            key,
+            message: 'User Successfully Deleted',
+            description: `${selectedUserName} was successfully deleted. You can view all other remaining users here and make changes to them.`,
         });
     };
 
@@ -130,11 +137,13 @@ class AdminArea extends Component {
         console.log(e);
         const id = this.state.allUsers.findIndex(user => user.userUUID === e);
         const userName = this.state.allUsers.filter(user => user.userUUID === e);
-        console.log(userName[0].name);
+        selectedUserName = userName[0].name;
         console.log(id);
-        this.props.onDeleteUsers(id, userName);
+        this.props.onDeleteUsers(id, selectedUserName);
         if(this.props.deletedUser){
+            console.log('this was called');
             console.log(this.props.deletedUserName);
+            this.deletedUserNotification('success');
         }
         // deleteRedirect = (this.props.saved ? <Redirect exact to='/admin-area' /> : null);
     };
@@ -144,6 +153,9 @@ class AdminArea extends Component {
     };
 
     render() {
+        console.log(this.props.deletedUser);
+        console.log(this.props.deletedUserName);
+
         const {users} = this.props;
         const filteredUsers = this.props.users.filter(user => user.role !== 'Community');
         return (
@@ -238,8 +250,8 @@ const mapStateToProps = state => {
         deleted: state.useCaseFirebase.deleted,
         lastDeletedUseCase: state.useCaseFirebase.deletedUseCase,
         sensors: state.sensors.sensors,
-        deletedUser: state.users.deleted,
-        deletedUserName: state.users.deletedUser
+        deletedUser: users.deleted,
+        deletedUserName: users.deletedUser
     }
 };
 
