@@ -27,6 +27,8 @@ const UseCasesController = (props) => {
                 <Collapse accordion>
                     {Object.keys(props.users).map((user, index) => {
                         const selectedUser = props.users[user];
+                        console.log(selectedUser);
+                        console.log(user);
                         return (
                             <Panel header={selectedUser.name} key={index}>
                                 <h3>Information:</h3>

@@ -129,7 +129,7 @@ class UserProfile extends Component {
                     </FormItem>)
             }});
 
-        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.updateLoading}>Submit</Button>;
+        let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.updateLoading}>Save</Button>;
 
 
         return (
