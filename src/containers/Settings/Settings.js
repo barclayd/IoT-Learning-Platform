@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, Tooltip} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, Tooltip, Icon} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {Redirect} from "react-router-dom";
@@ -194,6 +194,8 @@ class Settings extends Component {
                             <Option value='nhsfridge.jpg'>Fridge</Option>
                             <Option value='bathmotion.jpg'>Bath</Option>
                             <Option value='watercomposition.jpg'>Water</Option>
+                            <Option value='dog.jpg'>Dog</Option>
+                            <Option value='cat.jpg'>Cat</Option>
                         </Select>
                     </FormItem>
                     <FormItem {...formItemLayout} key='imageDesc' label='Image Description'>
@@ -308,6 +310,8 @@ class Settings extends Component {
                 </Popconfirm>
         }
 
+        const questionMarkStyle = {position: 'absolute', fontSize: '35px', right: '15px', top: '55px'};
+
         return (
             <React.Fragment>
                 {deleteRedirect}
@@ -317,24 +321,28 @@ class Settings extends Component {
                 <TabPane tab="General Information" key="general">
                     <h2>General Settings</h2>
                     {localStorage.getItem("role") === 'Trainer' ?
-                        <React.Fragment><Tooltip title={text.generalHoverText}>
+                        <React.Fragment>
                         {text.generalText}
-                    </Tooltip>
+                        <Tooltip title={text.generalHoverText}>
+                            <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
+                        </Tooltip>
                             {useCaseDetails} </React.Fragment> : useCaseApprentice}
                 </TabPane>
                     <TabPane tab="Email Settings" key="email">
                     <h2>Email Settings </h2>
                     <Form>
+                        {text.emailText}
                         <Tooltip title={text.emailHoverText}>
-                            {text.emailText}
+                            <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
                         </Tooltip>
                         {emailSettings}
                     </Form>
                     </TabPane>
                     <TabPane tab="Sensor Settings" key="sensor">
                     <h2>Sensor Settings </h2>
+                        {text.sensorText}
                         <Tooltip title={text.sensorHoverText}>
-                            {text.sensorText}
+                            <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
                         </Tooltip>
                         <Form>
                             {sensorType}
