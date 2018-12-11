@@ -110,7 +110,6 @@ class AdminArea extends Component {
     updateForm = (settingName, settingValue, userId, user) => {
 
         const users = {...this.state.users};
-        console.log(userId);
         users[userId] = {...user,
             [settingName]: settingValue.target.value
         };
@@ -141,13 +140,7 @@ class AdminArea extends Component {
         const updateObject = {...this.state.users};
         const communitiesObject = {...this.state.community};
 
-        console.log(Object.values(updateObject));
-        console.log(Object.values(communitiesObject));
         let masterarray = Object.values(updateObject).concat(Object.values(communitiesObject));
-
-        console.log(masterarray);
-        // const fullObject = [...this.state.community, ...updateObject];
-        // console.log(fullObject);
 
         this.props.onUpdateUsers(masterarray);
         if(this.props.saved) {
@@ -156,15 +149,12 @@ class AdminArea extends Component {
     };
 
     confirmDelete = (e) => {
-        console.log(e);
         const id = this.state.allUsers.findIndex(user => user.id === e);
         const userName = this.state.allUsers.filter(user => user.id === e);
 
         selectedUserName = userName[0].name;
         this.props.onDeleteUsers(id, selectedUserName);
         if(this.props.deletedUser){
-            console.log('this was called');
-            console.log(this.props.deletedUserName);
             this.deletedUserNotification('success');
         }
     };
@@ -174,9 +164,6 @@ class AdminArea extends Component {
     };
 
     render() {
-        console.log(this.props.deletedUser);
-        console.log(this.props.deletedUserName);
-
         const {users} = this.props;
         const filteredUsers = this.props.users.filter(user => user.role !== 'Community');
         return (

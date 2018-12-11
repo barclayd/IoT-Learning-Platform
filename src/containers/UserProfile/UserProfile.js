@@ -101,7 +101,7 @@ class UserProfile extends Component {
             if(user.userUUID === userId) {
                 [userName, userEmail, id] = [user.name, user.email, user.id];
                 return (
-                    <React.Fragment>
+                    <React.Fragment key={index}>
                         <div style={{display: 'inline-block'}}>
                             <img style={{borderRadius: '50%', width: '200px', height: '200px', overflow: 'hidden', float: 'left', border: '3px solid #fff', backgroundSize: 'cover', boxShadow: '0 6px 20px 0 rgba(0, 0, 0, 0.19)'}} alt={user.profileImage} src={`/images/${user.profileImage}`} />
                             <h3 style={{paddingLeft: '20px', paddingTop: '100px', float:'left'}}>Welcome, {userName !== null ? userName : localStorage.getItem('email')}!</h3>
@@ -128,7 +128,7 @@ class UserProfile extends Component {
         const userRole = this.props.users.map((user, index) => {
             if(user.userUUID === userId && (localStorage.getItem('role') === 'Trainer')) {
                 return (
-                    <FormItem {...formItemLayout} label='Account Type' key={user.uuid}>
+                    <FormItem {...formItemLayout} label='Account Type' key={index}>
                         <RadioGroup defaultValue={user.role} style={{width: '125%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value="Apprentice">Apprentice</RadioButton>
                             <RadioButton value="Trainer">Trainer</RadioButton>
