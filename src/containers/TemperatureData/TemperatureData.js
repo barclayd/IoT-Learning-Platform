@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import { Alert, InputNumber} from 'antd';
+import { Alert, InputNumber, Tooltip, Icon} from 'antd';
 import TempChart from '../Charts/TempChart';
 import styles from './TemperatureData.module.scss'
 
 import { Button, notification, Spin} from 'antd';
 import {updateObject} from "../../store/utility";
+import * as text from '../../assets/staticText';
 
 
 class TemperatureData extends Component {
@@ -61,12 +62,17 @@ class TemperatureData extends Component {
                 </React.Fragment>
                 );
         }
+        const questionMarkStyle = {position: 'absolute', fontSize: '30px', right: '30px', top: '20px'};
+
 
         return (
             <React.Fragment>
 
                 {this.props.data ? <h1>Live Readings</h1> : null}
                 {/*{temp}*/}
+                <Tooltip title={this.props.loading ? text.liveReadingsLoading : (this.props.error ? text.liveReadingsFailed : text.liveReadingsLoaded)} placement="bottom">
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                </Tooltip>
                 {returnObject}
             </React.Fragment>
         );

@@ -22,12 +22,19 @@ const usersList = <p>From here you can view all non-Community users. Edit a user
 const signIn = <p>If you are a Trainer or Apprentice, please enter your email and password to login to your account.<br/><br/>If you are logging in as a Community user, please select your community from the dropdown list and enter the generic community password. <br/><br/> Sign up for an account by clicking 'Switch to Sign-Up'</p>;
 
 
-const signUp = <p>Please enter your name, email address and password to sign up for an account. <br/><br/> Once you have signed up, your Trainer can give you access to Use Cases</p>;
+const signUp = <p>Please enter your name, email address and password to sign up for an account. <br/><br/> Once you have signed up, your Trainer can give you access to Use Cases.</p>;
 
-const toolbarLoggedIn = <p>Along the toolbar, you can access Usecases/Documentation/About pages <br /><br />Click on the circle personalised with your email first initial to access your User Profile and click Logout to sign out of the application </p>;
+const toolbarLoggedIn = <p>Along the toolbar, you can access Usecases/Documentation/About pages.<br /><br />Click on the circle personalised with your email first initial to access your User Profile and click Logout to sign out of the application.</p>;
 
-const toolbarLoggedOut = <p>Click Login/Sign Up to access the portal to sign in to your account in the application or sign up for an account</p>;
+const toolbarLoggedOut = <p>Click Login/Sign Up to access the portal to sign in to your account in the application or sign up for an account.</p>;
+
+const liveReadingsLoading = <p>The web app is currently connecting to the Arduino to build a Real Time Graph of the latest readings. Please be patient whilst the web app retrieves the data from the Arduino.<br/><br/>If you have waited for longer than 20 seconds, please try refreshing the page</p>;
+
+const liveReadingsLoaded = <p>The graph below displays the Live Readings gathered by the Arduino. These are updated and mapped on the graph every 2 seconds</p>;
+
+const liveReadingsFailed = <p>The Live Readings failed. This could be for a number of reasons. <br/><br/>Please try the following: <ul><li>• Connecting/Reconnecting the Arduino</li><li>• Refreshing the page</li><li>• Contact your Trainer</li></ul></p>;
+
 
 export {
- emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut
+ emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut, liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed
 }
