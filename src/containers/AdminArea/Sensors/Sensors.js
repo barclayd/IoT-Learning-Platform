@@ -56,7 +56,7 @@ const Sensors = (props) => {
         <React.Fragment>
             {notification}
             <h2 style={{display: 'inline'}}>Sensors</h2>
-            <Tooltip title={text.sensorHoverText}>
+            <Tooltip title={text.sensorsList}>
                 <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
             </Tooltip>
             <Divider/>

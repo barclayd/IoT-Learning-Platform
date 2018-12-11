@@ -3,9 +3,10 @@ import UseCaseCard from "../../components/UseCaseCard/UseCaseCard";
 import styles from './UseCasesList.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {Row, Col, Card, Icon, notification, Drawer} from 'antd';
+import {Row, Col, Card, Icon, notification, Drawer, Tooltip} from 'antd';
 import {Link} from 'react-router-dom';
 import AddNewUseCase from '../../containers/AddNewUseCase/AddNewUseCase';
+import * as text from "../../assets/staticText";
 const { Meta } = Card;
 
 
@@ -19,6 +20,8 @@ class UseCasesList extends Component {
     }
 
     render() {
+        const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '900px',top: '-5px'};
+
         let useCases = this.props.useCases.map((useCase, index) => {
                 if(useCase.access.listedUsers !== null) {
                     if(useCase.access.listedUsers.includes(localStorage.getItem("userId")) || (useCase.access.listedUsers.includes(this.props.userId))) {
@@ -36,7 +39,14 @@ class UseCasesList extends Component {
 
         const arrayIsEmpty = currentArray => currentArray === null;
 
-        const printedUseCases = (useCases.every(arrayIsEmpty)) ? <p>No use cases are currently linked to your account. Please contact your trainer.</p> : useCases;
+        const printedUseCases = (useCases.every(arrayIsEmpty)) ?
+            <React.Fragment>
+            <p>There are currently no Use Cases linked to your account. Your Trainer will add Use Case Accounts for you.</p>
+                <Tooltip title={text.noUseCases}>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                </Tooltip>
+            </React.Fragment>
+            : useCases;
 
 
         return (

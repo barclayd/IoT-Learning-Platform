@@ -71,7 +71,7 @@ const UseCasesController = (props) => {
         <React.Fragment>
             {notification}
             <h2 style={{display: 'inline'}}>Use Cases List</h2>
-            <Tooltip title={text.sensorHoverText} style={{display: 'block'}}>
+            <Tooltip title={text.useCaseList} style={{display: 'block'}}>
                 <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
             </Tooltip>
             <Divider/>
