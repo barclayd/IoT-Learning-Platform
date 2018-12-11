@@ -16,4 +16,4 @@ initWebsocket();
 // composeEmail("Test Email", `<p>Warning: fridge has reached a critical level of 50C</p>`)
 
 // getArduinoData();
-sendArduinoData();
+// sendArduinoData();
