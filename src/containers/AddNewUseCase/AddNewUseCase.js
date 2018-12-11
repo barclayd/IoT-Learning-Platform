@@ -206,6 +206,9 @@ class AddNewUseCase extends Component {
                         <Option value='beach.jpg'>Beach</Option>
                         <Option value='dog.jpg'>Dog</Option>
                         <Option value='cat.jpg'>Cat</Option>
+                        <Option value='nhsfridge.jpg'>Fridge</Option>
+                        <Option value='bathmotion.jpg'>Bath</Option>
+                        <Option value='watercomposition.jpg'>Water</Option>
                     </Select>
                 </FormItem>
                 <FormItem {...formItemLayout} label='Image Description' >
