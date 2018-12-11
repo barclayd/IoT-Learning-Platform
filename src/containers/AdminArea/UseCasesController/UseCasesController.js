@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './UseCasesController.module.scss'
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip} from 'antd';
 import {connect} from 'react-redux';
 import AddNewUseCase from '../../AddNewUseCase/AddNewUseCase';
+import * as text from "../../../assets/staticText";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -18,6 +19,8 @@ const UseCasesController = (props) => {
 
     let content = (<div> No Use Cases</div>);
     let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
+    const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
+
 
     if (props.useCases){
         content =
@@ -67,7 +70,11 @@ const UseCasesController = (props) => {
     return (
         <React.Fragment>
             {notification}
-            <h2>Use Cases List</h2>
+            <h2 style={{display: 'inline'}}>Use Cases List</h2>
+            <Tooltip title={text.sensorHoverText} style={{display: 'block'}}>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+            </Tooltip>
+            <Divider/>
             {content}
         </React.Fragment>);
 };
