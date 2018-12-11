@@ -34,7 +34,8 @@ const liveReadingsLoaded = <p>The graph below displays the Live Readings gathere
 
 const liveReadingsFailed = <p>The Live Readings failed. This could be for a number of reasons. <br/><br/>Please try the following: <ul><li>• Connecting/Reconnecting the Arduino</li><li>• Refreshing the page</li><li>• Contact your Trainer</li></ul></p>;
 
+const historicReadings = <p>A week's worth of historic data that has been collected over the last 7 days is displayed below<br/><br/>Data is averaged values recorded on a given day and displayed in both Bar and Line Charts to map trends over a given week.</p>;
 
 export {
- emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut, liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed
+ emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut, liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed, historicReadings
 }
