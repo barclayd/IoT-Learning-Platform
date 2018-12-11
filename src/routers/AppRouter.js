@@ -5,6 +5,7 @@ import UseCasesList from '../containers/UseCasesList/UseCasesList';
 import {connect} from 'react-redux';
 import asyncComponent from '../hoc/asyncComponent/asyncComponent';
 import AboutPage from '../components/About/About';
+import documentation from '../components/Documentation/Documentation';
 
 const asyncLogin = asyncComponent(() => {
     return import('../containers/Auth/Auth');
@@ -38,6 +39,7 @@ const AppRouter = (props) => {
     if(localStorage.getItem("email") !== null){
         routes =
             <Switch>
+                <Route exact path="/documentation" component={documentation} />
                 <Route exact path="/dashboard" component={UseCasesList}/>
                 <Route exact path="/profile" component={asyncUserProfile}/>
                 <Route exact path="/login" component={asyncLogin}/>
@@ -59,6 +61,7 @@ const AppRouter = (props) => {
                 <Route exact path="/sensors" component={asyncAdmin}/>
                 <Route exact path="/new-use-case" component={asyncAdmin}/>
                 <Route exact path="/about" component={AboutPage} />
+                <Route path="/documentation" component={documentation} />
                 <Redirect to='/dashboard' component={UseCasesList}/>
             </Switch>
     }
