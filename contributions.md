@@ -74,7 +74,7 @@ As a team we agree to work together having:
 * To be held via Teams for the rest of the week with each group member contributing by 12pm each day - communicate with other members of the team via Microsoft Teams once a day to update of progress
 * Development made on ‘Development’ branch
 * Follow and work to Agile principles as closely as possible
-* A branch per feature
+*  ~~A branch per feature.~~ Work collaboratively on Master branch
 * Pull and push regularly to minimize code conflicts
 * Update the READ.ME file on Gitlab to explain importance and use of feature specific code
 * Update the status of your work on the Scrum board (Taiga).
