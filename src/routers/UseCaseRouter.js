@@ -8,9 +8,9 @@ import Settings from '../components/UseCase/Settings/Settings';
 
 
 const UseCaseRouter = (props) => {
+    console.log(props);
     let useCase = props.useCase;
     return (
-
             <Switch>
                 <Route exact path={"/usecases/:id"} render={props => <Info useCaseData={useCase} {...props} />} />
                 <Route path={"/usecases/:id/information"} render={props => <Info useCaseData={useCase} {...props} />} />
@@ -19,7 +19,6 @@ const UseCaseRouter = (props) => {
                 <Route path={"/usecases/:id/historicData"}  render={props => <Hist useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/settings"}  render={props => <Settings useCaseData={useCase} {...props} />}/>
             </Switch>
-
 )};
 
 export default UseCaseRouter;

@@ -26,7 +26,7 @@ const sendArduinoData = (client, getUseCaseID) => {
             board.on("ready", function() {
 
                 const temperature = new five.Thermometer({
-                    controller: "TMP36", //LM35 or TMP36
+                    controller: "LM35", //LM35 or TMP36
                     pin: "A0",
                     freq: 4000
                 });
