@@ -13,10 +13,11 @@ import {
     Divider,
     List,
     Card,
-    Popconfirm
+    Popconfirm, Tooltip
 } from 'antd';
 import {connect} from 'react-redux';
 import styles from "../UseCasesController/UseCasesController.module.scss";
+import * as text from "../../../assets/staticText";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -35,6 +36,9 @@ const Users = (props) => {
 
     const RadioGroup = Radio.Group;
     const RadioButton = Radio.Button;
+
+    const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
+
 
     if (props.users){
         content =
@@ -92,7 +96,12 @@ const Users = (props) => {
     return (
         <React.Fragment>
             {notification}
-            <h2>Users</h2>
+            <h2 style={{display: 'inline'}}>Users</h2>
+            <Tooltip title={text.sensorHoverText}>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+            </Tooltip>
+            <Divider/>
+
             {content}
         </React.Fragment>);
 };

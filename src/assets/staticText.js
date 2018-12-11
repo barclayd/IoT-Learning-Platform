@@ -9,6 +9,8 @@ const sensorText = <p>Select a supported sensor type and a sensor component and 
 const generalHoverText = <p>You can make further changes to a Use Case such as altering who can access a Use Case in the Admin Area. </p>;
 const generalText = <p>Make changes to the Use Case by altering key details such as name, description and image.</p>;
 
+const newUseCase = <p>You can add a New Use Case, specifying the general settings, sensor settings and use case permissions. Once created, they can be further configured in the Use Case's Setting's tab.</p>;
+
 export {
- emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText
+ emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase
 }
