@@ -3,9 +3,10 @@ import {updateObject} from "../../store/utility";
 import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {Redirect} from "react-router-dom";
-import {Input, Button, Checkbox, Select, Spin, Alert, Icon} from 'antd';
+import {Input, Button, Checkbox, Select, Spin, Alert, Icon, Tooltip} from 'antd';
 import * as actions from '../../store/actions/index';
 import * as classes from './Auth.module.css';
+import * as text from "../../assets/staticText";
 const Option = Select.Option;
 
 
@@ -196,10 +197,25 @@ class Auth extends Component {
                 <Button type="primary" style={{marginTop: '15px'}} htmlType='submit' disabled={!clickable} size='large' aria-label={'Submit login form'}>SUBMIT</Button>
             </form>;
 
+        const questionMarkStyle = {position: 'absolute', fontSize: '35px', right: '600px',top: '150px'};
+
         return (
             <div className={classes.Auth}>
                 {authRedirect}
-                {this.state.isSignup ? <h2>SIGN UP</h2> : <h2>SIGN IN</h2>}
+                {this.state.isSignup ?
+                    <React.Fragment>
+                    <h2 style={{display: 'inline'}}>SIGN UP</h2>
+                    <Tooltip title={text.signUp}>
+                        <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    </Tooltip>
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <h2 style={{display: 'inline'}}>SIGN IN</h2>
+                    <Tooltip title={text.signIn}>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    </Tooltip>
+                    </React.Fragment>}
                 {communityLogin}
                 {errorMessage}
                 {loading}

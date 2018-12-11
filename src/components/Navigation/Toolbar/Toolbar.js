@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import styles from './Toolbar.module.scss';
-import { Row, Col, Icon, Avatar, Drawer} from 'antd';
+import {Row, Col, Icon, Avatar, Drawer, Tooltip} from 'antd';
 import {connect} from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 import UserProfile from '../../../containers/UserProfile/UserProfile'
+import * as text from "../../../assets/staticText";
 
 class Toolbar extends Component {
 
@@ -18,9 +19,11 @@ class Toolbar extends Component {
     };
 
     showDrawer = () => {
-        this.setState({
-            visible: true
-        });
+        if(localStorage.getItem("email") !== null) {
+            this.setState({
+                visible: true
+            });
+        }
     };
 
     render() {
@@ -31,12 +34,14 @@ class Toolbar extends Component {
         };
 
         const styleUsername = (email) => {
-            const accountType = email.split('@').pop();
-            const communityName = email.substr(0, email.indexOf('@'));
-            const titleDisplayName = communityName.split(' ').map((letter) => {
-                return letter.replace(communityName[0], communityName[0].toUpperCase());
-            });
-            return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
+            if(email !==null) {
+                const accountType = email.split('@').pop();
+                const communityName = email.substr(0, email.indexOf('@'));
+                const titleDisplayName = communityName.split(' ').map((letter) => {
+                    return letter.replace(communityName[0], communityName[0].toUpperCase());
+                });
+                return (accountType === 'gov.uk') ? `${titleDisplayName} Community` : email;
+            }
         };
 
         const styleAvatar = (email) => {
@@ -48,13 +53,16 @@ class Toolbar extends Component {
             }
         };
 
-        const login = <Link to='/logout'>Login</Link>;
-        const logout = <Link to='/logout'>logout?</Link>;
+        const login = <Link to='/logout'>Login / Sign Up</Link>;
+        const logout = <Link to='/logout'>Logout?</Link>;
 
         const admin = (localStorage.getItem('role') === 'Trainer' || this.props.role === 'Trainer') ?
             <li aria-label={'Link to Admin Area'}><Link
                 style={{color: 'red', border: '3px dashed #ccc', padding: '10px', textAlign: 'center'}}
                 to='/admin-area'>Admin Area</Link></li> : null;
+
+        const questionMarkStyle = {position: 'absolute', fontSize: '30px', right: '30px', top: '20px'};
+
 
         return (
             <header className={styles.Header}>
@@ -62,9 +70,9 @@ class Toolbar extends Component {
                     <Row type="flex" justify="start" align="middle">
                         <Col span={3}>
                             <div className={styles.Logo}>
-                                <Link to='/dashboard' aria-label={'Logo'}><img alt='Logo' aria-label='Logo'
+                                <a href='/dashboard'><img alt='Logo' aria-label='Logo'
                                                                                style={{height: '45px', width: '45px'}}
-                                                                               src='/images/logo.png'/></Link>
+                                                                               src='/images/logo.png'/></a>
                             </div>
                         </Col>
 
@@ -82,22 +90,19 @@ class Toolbar extends Component {
 
                         <Col span={7} offset={5}>
                             <div className={styles.User}>
-                                <div className={styles.Actions}>
-                                    <Icon style={{fontSize: '18px'}} type="bell" aria-label={'notification icon'}/>
-                                    <Icon style={{fontSize: '18px', marginLeft: '25px'}} type="search"
-                                          aria-label={'search field'}/>
+                                <div>
+                                    <Icon style={{marginLeft: '-115px'}} type="search"/>
+                                        <Icon style={{marginLeft: '20px', marginTop: '-15px'}} type="bell" aria-label={'notification icon'}/>
                                 </div>
-                                <div className={styles.Info} style={{cursor: 'pointer'}}>
-                                    <div onClick={() => this.showDrawer()}>{styleAvatar(localStorage.getItem("email"))}</div>
-                                    <br/>
+                                <div onClick={() => this.showDrawer()} style={{cursor: 'pointer'}}>
+                                        <div style={{marginLeft: '-45px', marginTop: '-5px'}}>{styleAvatar(localStorage.getItem("email"))}</div>
+                                </div>
                                     <div onClick={() => userAuthenticatedCheck()} style={{cursor: 'pointer'}}>
-                                        <div style={{padding: '10px'}} className={styles.login}
-                                             aria-label={'username'}>{localStorage.getItem("email") ?
-                                            <div>{styleUsername(localStorage.getItem("email"))}, {logout}</div> : login}</div>
+                                        <div style={{fontStyle: 'italic'}} aria-label={'username'}>{localStorage.getItem("email") ?
+                                            <div style={{fontStyle: 'italic'}}> {logout}</div> : login}</div>
                                     </div>
                                     <br/>
                                 </div>
-                            </div>
                         </Col>
                     </Row>
                 </nav>
@@ -115,6 +120,9 @@ class Toolbar extends Component {
                     }}>
                     <UserProfile/>
                 </Drawer>
+                <Tooltip title={(localStorage.getItem("email") !== null) ? text.toolbarLoggedIn : text.toolbarLoggedOut} placement="bottomLeft">
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                </Tooltip>
             </header>
 
         );

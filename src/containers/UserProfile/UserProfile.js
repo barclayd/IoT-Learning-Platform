@@ -51,6 +51,7 @@ class UserProfile extends Component {
         notification[type]({
             message: 'Settings successfully saved!',
             description: `Your profile has been successfully updated`,
+            duration: 1.5
         });
     };
 
@@ -74,7 +75,18 @@ class UserProfile extends Component {
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
-                sm: { span: 5 },
+                sm: { span: 6 },
+            },
+            wrapperCol: {
+                xs: { span: 24 },
+                sm: { span: 12 },
+            },
+        };
+
+        const longLabelLayout = {
+            labelCol: {
+                xs: { span: 24 },
+                sm: { span: 8 },
             },
             wrapperCol: {
                 xs: { span: 24 },
@@ -85,49 +97,63 @@ class UserProfile extends Component {
         let userId = localStorage.getItem("userId");
         let userName;
         let userEmail;
-        let found;
         const userDetails = this.props.users.map((user, index) => {
             if(user.userUUID === userId) {
                 [userName, userEmail, id] = [user.name, user.email, user.id];
                 return (
-                    <div>
-                    <FormItem {...formItemLayout} label={'User Name'} key={index}>
+                    <React.Fragment key={index}>
+                        <div style={{display: 'inline-block'}}>
+                            <img style={{borderRadius: '50%', width: '200px', height: '200px', overflow: 'hidden', float: 'left', border: '3px solid #fff', backgroundSize: 'cover', boxShadow: '0 6px 20px 0 rgba(0, 0, 0, 0.19)'}} alt={user.profileImage} src={`/images/${user.profileImage}`} />
+                            <h3 style={{paddingLeft: '20px', paddingTop: '100px', float:'left'}}>Welcome, {userName !== null ? userName : localStorage.getItem('email')}!</h3>
+                        </div>
+                            <Divider/>
+                    <FormItem {...longLabelLayout} label={'User Name'} key={index}>
                         <Input defaultValue={user.name} style={{width: '100%'}} onChange={(e) => this.updateForm('name', e)}/>
                     </FormItem>
-                    <FormItem {...formItemLayout} label={'User Email'} key={index+1}>
+                    <FormItem {...longLabelLayout} label={'User Email'} key={index+1}>
                         <p style={{width: '100%'}}>{user.email}</p>
                      </FormItem>
-                        <FormItem {...formItemLayout} label={'Profile Picture'} key={index+2}>
+                        <FormItem {...longLabelLayout} label={'Profile Picture'} key={index+2}>
                             <Select defaultValue={user.profileImage} style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('profileImage', e)}>
                                 <Option value='road.jpg'>Road</Option>
                                 <Option value='beach.jpg'>Beach</Option>
+                                <Option value='dog.jpg'>Dog</Option>
+                                <Option value='cat.jpg'>Cat</Option>
                             </Select>
                         </FormItem>
-                        <FormItem {...formItemLayout} label={'Account held since'} key={index+3}>
-                            <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
-                        </FormItem>
-                    </div>
+                    </React.Fragment>
                 )
             }
         });
         const userRole = this.props.users.map((user, index) => {
             if(user.userUUID === userId && (localStorage.getItem('role') === 'Trainer')) {
                 return (
-                    <FormItem {...formItemLayout} label='Account Type' key={user.uuid}>
+                    <FormItem {...formItemLayout} label='Account Type' key={index}>
                         <RadioGroup defaultValue={user.role} style={{width: '125%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value="Apprentice">Apprentice</RadioButton>
                             <RadioButton value="Trainer">Trainer</RadioButton>
                             <RadioButton value="Community">Community</RadioButton>
                         </RadioGroup>
                     </FormItem>
-                )} else if (user.userUUID === userId && (localStorage.getItem('role') === 'Apprentice' || localStorage.getItem('role') === 'Community')){
+                )} else if (user.userUUID === userId && (localStorage.getItem('role') === 'Apprentice' || localStorage.getItem('role') === 'Community' || (user.role === 'Apprentice') ||  (user.role === 'Community'))){
                 return (
-                    <FormItem {...formItemLayout} label='Account Type'>
+                    <FormItem {...formItemLayout} label='Account Type' key={index}>
                         <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value={user.role}>{user.role}</RadioButton>
                         </RadioGroup>
                     </FormItem>)
             }});
+
+        const accountHistory = this.props.users.map((user, index) => {
+            if (user.userUUID === userId) {
+                [userName, userEmail, id] = [user.name, user.email, user.id];
+                return (
+                    <FormItem {...longLabelLayout} label={'Account held since'} key={index + 3}>
+                        <p style={{width: '100%'}}>{user.accountCreatedDate}</p>
+                    </FormItem>
+                )
+            }
+        });
 
         let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.updateLoading}>Save</Button>;
 
@@ -135,14 +161,16 @@ class UserProfile extends Component {
         return (
         <React.Fragment>
             <h1>User Profile</h1>
-            <h3>Welcome, {userName !== null ? userName : localStorage.getItem('email')}</h3>
             <Tabs defaultActiveKey='1' tabPosition='left'>
                 <TabPane tab="User Details" key="1">
                     {userDetails}
                 </TabPane>
-            <TabPane tab="Account Role" key="4">
+            <TabPane tab="Account Role" key="2">
             {userRole}
             </TabPane>
+                <TabPane tab="Account History" key="3">
+                    {accountHistory}
+                </TabPane>
             </Tabs>
             <Divider />
             {button}

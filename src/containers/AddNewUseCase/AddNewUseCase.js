@@ -12,7 +12,7 @@ const otherSettings = {
     arduinoName: 'TMP36',
     email: {
         body: 'Email body',
-        senders: ['test.test@gmail.com'],
+        senders: [localStorage.getItem("email")],
         subject: 'Email subject'
     }
 };
@@ -58,8 +58,6 @@ class AddNewUseCase extends Component {
         let mergedAgain = {...mergedObject, access};
         let finalMerge = {...mergedAgain, ...otherSettings};
 
-
-        // console.log(finalMerge);
 
         this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
 
@@ -197,7 +195,7 @@ class AddNewUseCase extends Component {
                 {numberSensors}
                 <FormItem {...formItemLayout} label='Use Case Image'>
                     <Upload name="logo" action="/upload.do" listType="picture" onChange={(e) => this.updateForm('image', e)}>
-                        <Button>
+                        <Button disabled>
                             <Icon type="upload" /> Click to upload
                         </Button>
                     </Upload>
@@ -206,6 +204,11 @@ class AddNewUseCase extends Component {
                     <Select style={{width: '100%'}} placeholder='Please select a sensor type' onChange={(e) => this.updateFormNumber('image', e)}>
                         <Option value='road.jpg'>Road</Option>
                         <Option value='beach.jpg'>Beach</Option>
+                        <Option value='dog.jpg'>Dog</Option>
+                        <Option value='cat.jpg'>Cat</Option>
+                        <Option value='nhsfridge.jpg'>Fridge</Option>
+                        <Option value='bathmotion.jpg'>Bath</Option>
+                        <Option value='watercomposition.jpg'>Water</Option>
                     </Select>
                 </FormItem>
                 <FormItem {...formItemLayout} label='Image Description' >
@@ -254,7 +257,6 @@ class AddNewUseCase extends Component {
         return (
            <React.Fragment>
                {successRedirect}
-               {/*{notification}*/}
                <button className={classes.Button} onClick={this.showModal}>
                {localStorage.getItem("role") === 'Trainer' ? addNewUseCaseCard : null}
                </button>

@@ -1,6 +1,7 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip} from 'antd';
 import {connect} from 'react-redux';
+import * as text from "../../../assets/staticText";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -11,45 +12,34 @@ const formItemLayout = {
 
 };
 
-const UseCasesController = (props) => {
+const Sensors = (props) => {
 
 
-    let content = (<div> No Use Cases</div>);
+    let content = (<div>No Sensors</div>);
     let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
+    const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
 
-    if (props.useCases){
+
+    if (props.sensors){
         content =
             (
                 <Collapse accordion>
-                    {Object.keys(props.useCases).map((useCaseKey, index) => {
-                        const useCase = props.useCases[useCaseKey];
-                        const useCaseUsersIDs = props.getUseCaseUsers(useCase).map(user => user.userUUID);
+                    {Object.keys(props.sensors).map((sensor, index) => {
+                        const currentSensor = props.sensors[sensor];
+                        console.log(currentSensor);
                         return (
-                            <Panel header={useCase.name} key={index}>
+                            <Panel header={currentSensor.name} key={index}>
                                 <h3>Information:</h3>
                                 <div key={index}>
                                     <FormItem {...formItemLayout} label='Name'>
-                                        <Input style={{width: '100%'}} value={useCase.name} onChange={(e) => props.updateUseCase('name', e, useCase)}/>
+                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateSensors('sensorName', e, index)}/>
                                     </FormItem>
-                                    <FormItem {...formItemLayout} label='Summary'>
-                                        <Input style={{width: '100%'}} value={useCase.shortDesc}  onChange={(e) => props.updateUseCase('shortDesc', e, useCase)}/>
+                                    <FormItem {...formItemLayout} label='Sensor Components'>
+                                    {currentSensor.sensorComponents.map((cmp) => {
+                                        return <Input style={{width: '100%'}} value={cmp}  onChange={(e) => props.updateSensors('shortDesc', e)}/>
+                                    })}
                                     </FormItem>
-                                    <FormItem {...formItemLayout} label='Description'>
-                                        <TextArea rows={4} style={{width: '100%'}} value={useCase.longDesc} onChange={(e) => props.updateUseCase('longDesc', e, useCase)}/>
-                                    </FormItem>
-                                    <h3>Users' Permissions:</h3>
-                                    <p>Manage the users who can see and access this use case</p>
-                                    <Select
-                                        mode="multiple"
-                                        style={{ width: '100%' }}
-                                        placeholder="Please select"
-                                        value={useCaseUsersIDs}
-                                        onChange={(value) => props.handleUseCasePermissionsChanged(useCase, value)}
-                                    >
-                                        {props.users.map((user, index) => {
-                                            return (<Option value={user.userUUID} key={index}>{user.name}</Option>)
-                                        })}
-                                    </Select>
+                                    <Divider />
                                     <Button onClick={props.handleUseCasesSave} type="primary">
                                         Save
                                     </Button>
@@ -65,7 +55,11 @@ const UseCasesController = (props) => {
     return (
         <React.Fragment>
             {notification}
-            <h2>Sensors</h2>
+            <h2 style={{display: 'inline'}}>Sensors</h2>
+            <Tooltip title={text.sensorsList}>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+            </Tooltip>
+            <Divider/>
             {content}
         </React.Fragment>);
 };
@@ -78,4 +72,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps)(UseCasesController);
+export default connect(mapStateToProps)(Sensors);
