@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import styles from './AdminArea.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {Menu, Icon, Row, Col,  notification} from 'antd';
+import {Menu, Icon, Row, Col, notification, Tooltip} from 'antd';
 import {Link, Switch, Route} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
-import AddNewUseCase from '../AddNewUseCase/AddNewUseCase';
 import Users from './Users/Users';
 import Sensors from './Sensors/Sensors';
 import NewUseCase from './NewUseCase/NewUseCase'
@@ -63,7 +62,7 @@ class AdminArea extends Component {
         notification[type]({
             message: 'Settings Updated',
             description: `The changes you made have been successfully saved.`,
-            duration: 1
+            duration: 1.5
         });
     };
 
@@ -94,7 +93,7 @@ class AdminArea extends Component {
             key,
             message: 'Use Case Successfully Deleted',
             description: `The ${this.props.lastDeletedUseCase} Use Case was successfully deleted. You can view all other remaining use cases here and make changes to them.`,
-            duration: 1
+            duration: 1.5
         });
     };
 
@@ -103,7 +102,7 @@ class AdminArea extends Component {
             key,
             message: 'User Successfully Deleted',
             description: `${selectedUserName} was successfully deleted. You can view all other remaining users here and make changes to them.`,
-            duration: 1
+            duration: 1.5
         });
     };
 
@@ -173,7 +172,6 @@ class AdminArea extends Component {
                         <Col span={6}>
                             <div className={styles.Sider}>
                                 <Menu  onClick={this.onMenuItemClicked} style={{fontSize: '24px'}} mode="inline">
-
                                     <Menu.Item key="useCasesController">
                                         <Link to="/admin-area"><span><Icon type="lock" aria-label={'Link to Information'}/>
                                             <span>Use Cases Controller</span></span>

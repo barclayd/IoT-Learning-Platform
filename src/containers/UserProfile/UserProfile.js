@@ -51,7 +51,7 @@ class UserProfile extends Component {
         notification[type]({
             message: 'Settings successfully saved!',
             description: `Your profile has been successfully updated`,
-            duration: 1
+            duration: 1.5
         });
     };
 
@@ -137,7 +137,7 @@ class UserProfile extends Component {
                     </FormItem>
                 )} else if (user.userUUID === userId && (localStorage.getItem('role') === 'Apprentice' || localStorage.getItem('role') === 'Community' || (user.role === 'Apprentice') ||  (user.role === 'Community'))){
                 return (
-                    <FormItem {...formItemLayout} label='Account Type'>
+                    <FormItem {...formItemLayout} label='Account Type' key={index}>
                         <RadioGroup defaultValue={user.role} style={{width: '100%'}} onChange={(e) => this.radioButtonForm(e)}>
                             <RadioButton value={user.role}>{user.role}</RadioButton>
                         </RadioGroup>

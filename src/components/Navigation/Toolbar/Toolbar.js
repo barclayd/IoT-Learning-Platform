@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import styles from './Toolbar.module.scss';
-import { Row, Col, Icon, Avatar, Drawer} from 'antd';
+import {Row, Col, Icon, Avatar, Drawer, Tooltip} from 'antd';
 import {connect} from 'react-redux'
 import {Link, withRouter} from "react-router-dom";
 import UserProfile from '../../../containers/UserProfile/UserProfile'
+import * as text from "../../../assets/staticText";
 
 class Toolbar extends Component {
 
@@ -52,13 +53,16 @@ class Toolbar extends Component {
             }
         };
 
-        const login = <Link to='/logout'>Login</Link>;
+        const login = <Link to='/logout'>Login / Sign Up</Link>;
         const logout = <Link to='/logout'>Logout?</Link>;
 
         const admin = (localStorage.getItem('role') === 'Trainer' || this.props.role === 'Trainer') ?
             <li aria-label={'Link to Admin Area'}><Link
                 style={{color: 'red', border: '3px dashed #ccc', padding: '10px', textAlign: 'center'}}
                 to='/admin-area'>Admin Area</Link></li> : null;
+
+        const questionMarkStyle = {position: 'absolute', fontSize: '30px', right: '30px', top: '20px'};
+
 
         return (
             <header className={styles.Header}>
@@ -116,6 +120,9 @@ class Toolbar extends Component {
                     }}>
                     <UserProfile/>
                 </Drawer>
+                <Tooltip title={(localStorage.getItem("email") !== null) ? text.toolbarLoggedIn : text.toolbarLoggedOut} placement="bottomLeft">
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                </Tooltip>
             </header>
 
         );

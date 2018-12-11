@@ -1,6 +1,7 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip} from 'antd';
 import {connect} from 'react-redux';
+import * as text from "../../../assets/staticText";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -16,6 +17,8 @@ const Sensors = (props) => {
 
     let content = (<div>No Sensors</div>);
     let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
+    const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
+
 
     if (props.sensors){
         content =
@@ -52,7 +55,11 @@ const Sensors = (props) => {
     return (
         <React.Fragment>
             {notification}
-            <h2>Sensors</h2>
+            <h2 style={{display: 'inline'}}>Sensors</h2>
+            <Tooltip title={text.sensorsList}>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+            </Tooltip>
+            <Divider/>
             {content}
         </React.Fragment>);
 };

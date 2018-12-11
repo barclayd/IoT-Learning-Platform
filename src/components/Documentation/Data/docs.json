@@ -1,0 +1,69 @@
+{
+    "Get Started":
+    {
+        "title" : "Getting Started",
+        "text" : [
+            "This web-app is a learning platform for apprentices learning to use IoT(Internet of Things) which will contain real life use cases so that they can see how IoT can be applied"
+        ]
+    },
+    "Core Features":
+    {
+        "title" : "Core Features",
+        "text" : [
+            "Email Notification",
+            "Admin Area",
+            "Authentication",
+            "Use Cases"
+        ]
+    },
+    "Temperature":
+    {
+        "title" : "Temperature Sensor",
+        "text" : [
+            "The TMP36 is a low voltage, precision centigrade temperature sensor. It provides a voltage output that is linearly proportional to the Celsius temperature. We like it because it’s so easy to use: Just give the device a ground and 2.7 to 5.5 VDC and read the voltage on the Vout pin. The output voltage can be converted to temperature easily using the scale factor of 10 mV/°C.",
+            "Sensor Components",
+            "TMP36",
+            "LM35",
+            "DS18B20",
+            "DHT11_I2C_NANO_BACKPACK"
+        ]
+    },
+    "Motion":
+    {
+        "title" : "Motion Sensor",
+        "text" : [
+            "This is a motion detection sensor."
+        ]
+    },
+    "Hygrometers":
+    {
+        "title" : "Hygrometers Sensor",
+        "text" : [
+            "Hygrometers are used to measure absolute and relative humidity."
+        ]
+    },
+    "Barometers":
+    {
+        "title" : "Barometers Sensor",
+        "text" : [
+            "A baromoter is an instrument measuring atmospheric pressure, used especially in forecasting the weather and determining altitude."
+        ]
+    },
+    "Light":
+    {
+        "title" : "Light Sensor",
+        "text" : [
+            "Light sensors are used to measure ambient or direct light intensity."
+        ]
+    },
+    "Accelerometers":
+    {
+        "title" : "Accelerometers Sensor",
+        "text" : [
+            "Accelerometer is used for measuring the acceleration of a moving or vibrating body."
+        ]
+    }
+
+
+}
+
