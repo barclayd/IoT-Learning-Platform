@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions';
-import {Form, Input, Select, Radio, Button, notification, Tabs, Divider} from "antd";
+import {Form, Input, Select, Radio, Button, notification, Tabs, Divider, Tooltip, Icon} from "antd";
 import {updateObject} from "../../store/utility";
+import * as text from '../../assets/staticText';
 
 let id;
 const TabPane = Tabs.TabPane;
@@ -156,11 +157,15 @@ class UserProfile extends Component {
         });
 
         let button = <Button type="primary" htmlType="submit" onClick={() => this.submitSettings()} loading={this.props.updateLoading}>Save</Button>;
+        const questionMarkStyle = {position: 'absolute', fontSize: '30px', right: '35px', top: '90px'};
 
 
         return (
         <React.Fragment>
             <h1>User Profile</h1>
+            <Tooltip title={(localStorage.getItem('role') === 'Trainer') ? text.userProfileTrainer : text.userProfileApprentice} placement="left">
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+            </Tooltip>
             <Tabs defaultActiveKey='1' tabPosition='left'>
                 <TabPane tab="User Details" key="1">
                     {userDetails}
