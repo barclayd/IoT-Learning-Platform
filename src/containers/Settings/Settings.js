@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, Tooltip, Icon} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {Redirect} from "react-router-dom";
 import {updateObject} from '../../store/utility';
+import * as text from '../../assets/staticText';
 import classes from './Settings.module.css';
 
 let deleteRedirect;
@@ -50,6 +51,7 @@ class Settings extends Component {
         notification[type]({
             message: 'Settings successfully saved!',
             description: `The settings have been successfully updated for ${this.state.name}`,
+            duration: 1.5
         });
     };
 
@@ -57,6 +59,7 @@ class Settings extends Component {
         notification[type]({
             message: 'New Use Case Created!',
             description: `A new use case has been created. You can update the settings in greater detail here`,
+            duration: 1.5
         });
     };
 
@@ -130,7 +133,6 @@ class Settings extends Component {
     };
 
     confirmDelete = (e) => {
-        console.log(e);
         this.props.onDeleteUseCase(this.props.id, this.state.name);
         deleteRedirect = (this.props.saved ? <Redirect exact to='/admin-area' /> : null);
     };
@@ -192,6 +194,8 @@ class Settings extends Component {
                             <Option value='nhsfridge.jpg'>Fridge</Option>
                             <Option value='bathmotion.jpg'>Bath</Option>
                             <Option value='watercomposition.jpg'>Water</Option>
+                            <Option value='dog.jpg'>Dog</Option>
+                            <Option value='cat.jpg'>Cat</Option>
                         </Select>
                     </FormItem>
                     <FormItem {...formItemLayout} key='imageDesc' label='Image Description'>
@@ -200,6 +204,26 @@ class Settings extends Component {
                 </React.Fragment>
 
     );
+        let useCaseApprentice = (
+            <React.Fragment>
+                <FormItem {...formItemLayout} key='name' label='Name'>
+                    <p style={{lineHeight: '20px'}}>{this.state.name}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='shortDesc' label='Summary'>
+                    <p style={{lineHeight: '20px'}}>{this.state.shortDesc}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='longDesc' label='Long Description'>
+                    <p style={{lineHeight: '20px'}}>{this.state.longDesc}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='image' label='Image'>
+                    <p>{this.state.image}</p>
+                </FormItem>
+                <FormItem {...formItemLayout} key='imageDesc' label='Image Description'>
+                    <p>{this.state.imageDesc}</p>
+                </FormItem>
+            </React.Fragment>
+        );
+
         let users = this.props.users.filter(user => listedUsers.includes(user.userUUID));
 
         let emailSettings = Object.keys(emails).map((email) => {
@@ -286,6 +310,7 @@ class Settings extends Component {
                 </Popconfirm>
         }
 
+        const questionMarkStyle = {position: 'absolute', fontSize: '35px', right: '15px', top: '55px'};
 
         return (
             <React.Fragment>
@@ -295,16 +320,30 @@ class Settings extends Component {
                 <Tabs type='card' onChange={this.onChangeTab} tabBarExtraContent={this.state.tab !== 'delete' ? button : deleteUsecase}>
                 <TabPane tab="General Information" key="general">
                     <h2>General Settings</h2>
-                    {useCaseDetails}
+                    {localStorage.getItem("role") === 'Trainer' ?
+                        <React.Fragment>
+                        {text.generalText}
+                        <Tooltip title={text.generalHoverText}>
+                            <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
+                        </Tooltip>
+                            {useCaseDetails} </React.Fragment> : useCaseApprentice}
                 </TabPane>
                     <TabPane tab="Email Settings" key="email">
                     <h2>Email Settings </h2>
                     <Form>
+                        {text.emailText}
+                        <Tooltip title={text.emailHoverText}>
+                            <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
+                        </Tooltip>
                         {emailSettings}
                     </Form>
                     </TabPane>
                     <TabPane tab="Sensor Settings" key="sensor">
                     <h2>Sensor Settings </h2>
+                        {text.sensorText}
+                        <Tooltip title={text.sensorHoverText}>
+                            <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
+                        </Tooltip>
                         <Form>
                             {sensorType}
                             {sensorComponent}

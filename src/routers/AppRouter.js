@@ -19,8 +19,11 @@ const asyncAdmin = asyncComponent(() => {
     return import('../containers/AdminArea/AdminArea');
 });
 
+const asyncUserProfile = asyncComponent(() => {
+    return import('../containers/UserProfile/UserProfile');
+});
 
-const defaultMessage = <p> Please <Link to='/login'>login</Link> to access the website</p>;
+const defaultMessage = <p> Please <Link to='/login'>Login</Link> or <Link to='/login'>Sign Up</Link> for an account to access the website</p>;
 
 const AppRouter = (props) => {
     let routes = (
@@ -38,10 +41,11 @@ const AppRouter = (props) => {
             <Switch>
                 <Route exact path="/documentation" component={documentation} />
                 <Route exact path="/dashboard" component={UseCasesList}/>
+                <Route exact path="/profile" component={asyncUserProfile}/>
                 <Route exact path="/login" component={asyncLogin}/>
                 <Route exact path='/logout' component={asyncLogout} />
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />} />
-                <Redirect to='/usecases' component={UseCasesList}/>
+                <Redirect to='/dashboard' component={UseCasesList}/>
             </Switch>
     }
 
@@ -55,6 +59,7 @@ const AppRouter = (props) => {
                 <Route path="/usecases/:id" render={props => <UseCase {...props} />}/>
                 <Route exact path="/users" component={asyncAdmin}/>
                 <Route exact path="/sensors" component={asyncAdmin}/>
+                <Route exact path="/new-use-case" component={asyncAdmin}/>
                 <Route exact path="/about" component={AboutPage} />
                 <Route path="/documentation" component={documentation} />
                 <Redirect to='/dashboard' component={UseCasesList}/>
