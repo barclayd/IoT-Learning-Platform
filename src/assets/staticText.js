@@ -32,10 +32,18 @@ const liveReadingsLoading = <p>The web app is currently connecting to the Arduin
 
 const liveReadingsLoaded = <p>The graph below displays the Live Readings gathered by the Arduino. These are updated and mapped on the graph every 2 seconds</p>;
 
-const liveReadingsFailed = <p>The Live Readings failed. This could be for a number of reasons. <br/><br/>Please try the following: <ul><li>• Connecting/Reconnecting the Arduino</li><li>• Refreshing the page</li><li>• Contact your Trainer</li></ul></p>;
+const liveReadingsFailed = <p>The Live Readings failed. This could be for a number of reasons.<br/><br/>Please try the following: <ul><li>• Connecting/Reconnecting the Arduino</li><li>• Refreshing the page</li><li>• Contact your Trainer</li></ul></p>;
 
 const historicReadings = <p>A week's worth of historic data that has been collected over the last 7 days is displayed below<br/><br/>Data is averaged values recorded on a given day and displayed in both Bar and Line Charts to map trends over a given week.</p>;
 
+const information = <p>View all the key details about a Use Case</p>;
+const configureArduino = <p>Learn how to configure your Arduino for this Use Case </p>;
+
+const userProfileApprentice = <p>View your user details, account role and account history. <br/><br/> Here you can also change your user name and update your profile picture</p>;
+const userProfileTrainer = <p>View your user details, account role and account history. <br/><br/> Here you can also edit your user name, change your account role and update your profile picture</p>;
+
+
 export {
- emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut, liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed, historicReadings
+ emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut,
+ liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed, historicReadings, configureArduino, information, userProfileApprentice, userProfileTrainer
 }
