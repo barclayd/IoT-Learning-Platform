@@ -197,21 +197,21 @@ class Auth extends Component {
                 <Button type="primary" style={{marginTop: '15px'}} htmlType='submit' disabled={!clickable} size='large' aria-label={'Submit login form'}>SUBMIT</Button>
             </form>;
 
-        const questionMarkStyle = {position: 'absolute', fontSize: '35px', right: '600px',top: '150px'};
+        const questionMarkStyle = {fontSize: '35px',top: '150px', marginLeft: '600px'};
 
         return (
             <div className={classes.Auth}>
                 {authRedirect}
                 {this.state.isSignup ?
                     <React.Fragment>
-                    <h2 style={{display: 'inline'}}>SIGN UP</h2>
+                    <h2>SIGN UP</h2>
                     <Tooltip title={text.signUp}>
                         <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
                     </Tooltip>
                     </React.Fragment>
                     :
                     <React.Fragment>
-                        <h2 style={{display: 'inline'}}>SIGN IN</h2>
+                        <h2>SIGN IN</h2>
                     <Tooltip title={text.signIn}>
                     <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
                     </Tooltip>

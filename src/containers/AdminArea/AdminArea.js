@@ -25,7 +25,6 @@ class AdminArea extends Component {
 
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         if(!nextProps.useCasesLoading) {
             this.setState({
                 useCases: nextProps.useCases,

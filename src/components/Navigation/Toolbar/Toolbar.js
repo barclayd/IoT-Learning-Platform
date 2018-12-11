@@ -121,7 +121,7 @@ class Toolbar extends Component {
                     <UserProfile/>
                 </Drawer>
                 <Tooltip title={(localStorage.getItem("email") !== null) ? text.toolbarLoggedIn : text.toolbarLoggedOut} placement="bottomLeft">
-                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
                 </Tooltip>
             </header>
 
