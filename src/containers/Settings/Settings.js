@@ -133,7 +133,6 @@ class Settings extends Component {
     };
 
     confirmDelete = (e) => {
-        console.log(e);
         this.props.onDeleteUseCase(this.props.id, this.state.name);
         deleteRedirect = (this.props.saved ? <Redirect exact to='/admin-area' /> : null);
     };

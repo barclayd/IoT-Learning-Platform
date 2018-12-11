@@ -59,8 +59,6 @@ class AddNewUseCase extends Component {
         let finalMerge = {...mergedAgain, ...otherSettings};
 
 
-        // console.log(finalMerge);
-
         this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
 
     };
