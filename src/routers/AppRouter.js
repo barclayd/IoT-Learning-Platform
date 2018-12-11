@@ -22,7 +22,7 @@ const asyncUserProfile = asyncComponent(() => {
     return import('../containers/UserProfile/UserProfile');
 });
 
-const defaultMessage = <p> Please <Link to='/login'>login</Link> to access the website</p>;
+const defaultMessage = <p> Please <Link to='/login'>Login</Link> or <Link to='/login'>Sign Up</Link> for an account to access the website</p>;
 
 const AppRouter = (props) => {
     let routes = (

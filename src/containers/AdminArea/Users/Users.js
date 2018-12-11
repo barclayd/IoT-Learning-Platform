@@ -97,11 +97,10 @@ const Users = (props) => {
         <React.Fragment>
             {notification}
             <h2 style={{display: 'inline'}}>Users</h2>
-            <Tooltip title={text.sensorHoverText}>
+            <Tooltip title={text.usersList}>
                 <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
             </Tooltip>
             <Divider/>
-
             {content}
         </React.Fragment>);
 };
