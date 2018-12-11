@@ -5,6 +5,7 @@ import ConfigureArduino from '../components/UseCase/Connections/ConfigureArduino
 import Readings from '../components/UseCase/Readings/Readings'
 import HistoricData from '../components/UseCase/HistoricData/HistoricData'
 import Settings from '../components/UseCase/Settings/Settings';
+import Feedback from '../containers/Feedback/Feedback';
 
 
 const UseCaseRouter = (props) => {
@@ -17,6 +18,7 @@ const UseCaseRouter = (props) => {
                 <Route path={"/usecases/:id/configure-arduino"}  render={props => <ConfigureArduino useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/readings"}  render={props => <Readings useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/historicData"}  render={props => <HistoricData useCaseData={useCase} {...props} />}/>
+                <Route path={"/usecases/:id/feedback"}  render={props => <Feedback useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/settings"}  render={props => <Settings useCaseData={useCase} {...props} />}/>
             </Switch>
 )};
