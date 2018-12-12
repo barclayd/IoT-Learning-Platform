@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Connections.module.scss';
+import styles from './ConfigureArduino.module.scss';
 import {Redirect} from "react-router-dom";
 import * as text from "../../../assets/staticText";
 import {Icon, Tooltip} from "antd";
