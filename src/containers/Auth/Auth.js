@@ -206,14 +206,14 @@ class Auth extends Component {
                     <React.Fragment>
                     <h2>SIGN UP</h2>
                     <Tooltip title={text.signUp}>
-                        <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                        <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
                     </Tooltip>
                     </React.Fragment>
                     :
                     <React.Fragment>
                         <h2>SIGN IN</h2>
                     <Tooltip title={text.signIn}>
-                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
                     </Tooltip>
                     </React.Fragment>}
                 {communityLogin}
