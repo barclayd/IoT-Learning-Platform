@@ -21,7 +21,14 @@ class Feedback extends Component {
 
     state = {
         useCase: {
-            messages: ['']
+            messages: [{
+                title: "Excellent Work",
+                profileImage: "beach.jpg",
+                authorName: "Peter Trott",
+                message: "Excellent work on the Use Case",
+                rating: 5,
+                date: "11th Dec 2018"
+            }]
         },
         newMessage: {
             message: '',
@@ -31,7 +38,7 @@ class Feedback extends Component {
         messages: []
     };
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.onFetchUseCases();
         this.props.onFetchUsers();
     }
@@ -104,7 +111,6 @@ class Feedback extends Component {
             },
         };
         const FormItem = Form.Item;
-        const { TextArea } = Input;
         const useCaseMessages = [];
 
         const IconText = ({ type, text }) => (
@@ -114,7 +120,7 @@ class Feedback extends Component {
               </span>
         );
 
-        const data = this.state.useCase.messages.reverse().map((message) => {
+        const data = this.state.useCase.messages.map((message) => {
             return useCaseMessages.push(message);
         });
         const newComment = <React.Fragment>
@@ -133,37 +139,31 @@ class Feedback extends Component {
         const button = <Button type="primary" htmlType="submit" onClick={() => this.handleSubmit()} loading={this.props.messageLoading}>Post</Button>;
 
 
+          const messages = useCaseMessages.reverse().map((msg, index) => {
+              if(msg !== null) {
+                  return ( <List.Item
+                      key={index}
+                      actions={[<IconText type="clock-circle" text={` ${msg.date}`} />, <Rate allowHalf disabled value={msg.rating} />]}
+                         >
+                      <List.Item.Meta
+                          avatar={<Avatar src={`/images/${msg.profileImage}`} />}
+                          title={msg.title}
+                          description={`Trainer: ${msg.authorName}`}
+                                                        />
+                      <p style={{color: 'black', fontSize: '14px'}}>{msg.message}</p>
+                  </List.Item> )
+              }});
+
         return (
             <React.Fragment>
                 <h2>Feedback</h2>
-                <React.Fragment>
                 <List
                     loading={this.props.loading}
                     itemLayout="vertical"
                     size="small"
-                    pagination={{
-                        onChange: (page) => {
-                            console.log(page);
-                        },
-                        pageSize: 3,
-                    }}
-                    dataSource={useCaseMessages.reverse()}
-                    footer={<div><i>Feedback for {this.state.useCase.name} Use Case</i></div>}
-                    renderItem={item => (
-                        <List.Item
-                            key={item.title}
-                            actions={[<IconText type="clock-circle" text={` ${item.date}`} />, <Rate allowHalf disabled defaultValue={item.rating} />]}
-                        >
-                            <List.Item.Meta
-                                avatar={<Avatar src={`/images/${item.profileImage}`} />}
-                                title={item.title}
-                                description={item.authorName}
-                            />
-                            {item.message}
-                        </List.Item>
-                    )}
-                />
-            </React.Fragment>
+                    footer={<div><i>Feedback for {this.state.useCase.name} Use Case</i></div>}>
+                    {messages}
+                </List>
                 <Divider />
                 {localStorage.getItem('role') === 'Trainer' && !this.props.loading ?
                     <div className={classes.Comment}>
