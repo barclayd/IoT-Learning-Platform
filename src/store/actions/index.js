@@ -38,3 +38,7 @@ export {
 export {
     updateProfileSuccess, updateProfile, updateProfileFailed, updateProfileStart
 } from './userProfile'
+
+export {
+    postMessage, postMessageFailed, postMessageStart, postMessageSuccess
+} from './messages'
