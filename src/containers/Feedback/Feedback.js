@@ -44,6 +44,7 @@ class Feedback extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        id = this.props.match.params.id;
         if (!nextProps.loading) {
             this.setState({
                 useCase: nextProps.useCases[id]
@@ -76,7 +77,8 @@ class Feedback extends Component {
             'profileImage': profileImage,
             'rawDate': new Date()
         };
-      const messageObject = {...userData, ...this.state.newMessage};
+        messageId = this.state.useCase.messages.length;
+        const messageObject = {...userData, ...this.state.newMessage};
       this.props.onPostMessage(id, messageId, messageObject);
       if(this.props.savedMessage) {
           this.setState({
@@ -90,9 +92,8 @@ class Feedback extends Component {
     };
 
     render () {
-        id = this.props.match.params.id;
 
-        messageId = this.state.useCase.messages.length;
+        console.log(id);
 
         userDetails = this.props.users.map((user, index) => {
             if (user.userUUID === userId) {
@@ -120,9 +121,11 @@ class Feedback extends Component {
               </span>
         );
 
-        const data = this.state.useCase.messages.map((message) => {
-            return useCaseMessages.push(message);
-        });
+        if(this.state.useCase.messages !== undefined) {
+            this.state.useCase.messages.map((message) => {
+                return useCaseMessages.push(message);
+            });
+        }
         const newComment = <React.Fragment>
             <FormItem {...formItemLayout} label='Title'>
                 <Input style={{width: '150%'}} value={this.state.newMessage.title} onChange={(e) => this.updateForm('title', e)}/>
