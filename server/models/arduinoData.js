@@ -42,13 +42,13 @@ const sendArduinoData = (client, getUseCaseID) => {
                     // console.log(obj);
                     client.emit('arduinoData', (obj));
 
-                    axios.post('/temp.json', obj)
-                        .then(response => {
-                            console.log(`Sensor data successfully sent to Firebase at ${dateRecorded}`);
-                        })
-                        .catch(error => {
-                            console.log('An error occurred');
-                        });
+                    // axios.post('/temp.json', obj)
+                    //     .then(response => {
+                    //         console.log(`Sensor data successfully sent to Firebase at ${dateRecorded}`);
+                    //     })
+                    //     .catch(error => {
+                    //         console.log('An error occurred');
+                    //     });
                     if (this.celsius < temperatureRange.min || this.celsius > temperatureRange.max) {
                         console.log("email sent");
                         composeEmail(getUseCaseID);

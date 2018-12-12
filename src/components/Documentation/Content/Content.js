@@ -3,7 +3,7 @@ import React from 'react'
 const Content = (props) => {
     let data;
     Object.keys(props.content).forEach(function(key){
-        if(props.match.params.title === key){
+        if(props.match.params.title === props.content[key].title){
             
             data = props.content[key];
         }
@@ -11,7 +11,6 @@ const Content = (props) => {
 
     if(props.match.path === "/documentation"){
         data = props.content["Get Started"];
-
     }
     
     return(
