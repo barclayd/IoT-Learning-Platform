@@ -15,7 +15,7 @@ const getTemperatures = () => {
     let temperatures = {};
     let time = new Date();
     // format date in readable format e.g. 'November 19th 2018, 10:43:48 PM'
-    const dateRecorded = dateformat(time, "mmmm dS yyyy");
+    const dateRecorded = dateformat(time, "mmmm dS yyyy,  h:MM:ss TT");
     const timeRecorded = dateformat(time, "h:MM:ss TT");
     for (let record in sensorsData) {
         // temperatures[timeRecorded] = sensorsData[record].data['fridgeTemp'];
