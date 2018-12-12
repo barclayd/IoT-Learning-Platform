@@ -146,9 +146,9 @@ class AddNewUseCase extends Component {
 
         currentSensor = this.props.sensors[0];
 
-        let numberSensors = this.state.numberSensors.map(sensor => {
+        let numberSensors = this.state.numberSensors.map((sensor, index) => {
             return (
-                <React.Fragment>
+                <React.Fragment key={index}>
                     <br />
                     <h2>{`Sensor Component ${sensor}`}</h2>
                     <FormItem {...formItemLayout} label='Sensor Type'>
