@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Avatar, Form, Icon, List, Input, Rate, Button, Divider} from 'antd';
+import {Avatar, Form, Icon, List, Input, Rate, Button, Divider, Pagination, notification} from 'antd';
 import {connect} from "react-redux";
 import dateformat from 'dateformat';
 import * as actions from '../../store/actions/index';
@@ -21,14 +21,14 @@ class Feedback extends Component {
 
     state = {
         useCase: {
-            messages: [{
-                title: "Excellent Work",
-                profileImage: "beach.jpg",
-                authorName: "Peter Trott",
-                message: "Excellent work on the Use Case",
-                rating: 5,
-                date: "11th Dec 2018"
-            }]
+            // messages: [{
+            //     title: "",
+            //     profileImage: "beach.jpg",
+            //     authorName: "",
+            //     message: "",
+            //     rating: 5,
+            //     date: ""
+            // }]
         },
         newMessage: {
             message: '',
@@ -70,10 +70,18 @@ class Feedback extends Component {
         });
     };
 
+    messageSuccessNotification = (type) => {
+        notification[type]({
+            message: 'Message successfully posted',
+            description: `Your message has been sent and the list of feedback has updated.`,
+            duration: 1.5
+        });
+    };
+
     handleSubmit = () => {
       const userData = {
             'authorName': userName,
-            'date': dateformat(new Date(), "dS mmmm yyyy"),
+            'date': dateformat(new Date(), "mmmm dS yyyy | h:MM TT"),
             'profileImage': profileImage,
             'rawDate': new Date()
         };
@@ -87,7 +95,8 @@ class Feedback extends Component {
                   title: '',
                   rating: 2.5
               }
-          })
+          });
+          this.messageSuccessNotification('success');
       }
     };
 
@@ -164,8 +173,18 @@ class Feedback extends Component {
                     loading={this.props.loading}
                     itemLayout="vertical"
                     size="small"
+                    pagination={{
+                        onChange: (page) => {
+                            console.log(page);
+                        },
+                        pageSize: 3,
+                        defaultPageSize: 4,
+                        total: messages.length
+                    }}
+
                     footer={<div><i>Feedback for {this.state.useCase.name} Use Case</i></div>}>
                     {messages}
+
                 </List>
                 <Divider />
                 {localStorage.getItem('role') === 'Trainer' && !this.props.loading ?
