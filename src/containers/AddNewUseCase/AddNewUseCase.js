@@ -58,9 +58,12 @@ class AddNewUseCase extends Component {
         let mergedAgain = {...mergedObject, access};
         let finalMerge = {...mergedAgain, ...otherSettings};
 
-
-        this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
-
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+              console.log('Received values of form: ', values);
+              this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
+            }
+          });
     };
 
     handleCancel = () => {
@@ -127,6 +130,8 @@ class AddNewUseCase extends Component {
         const { TextArea } = Input;
         const RadioGroup = Radio.Group;
         const RadioButton = Radio.Button;
+        const { getFieldDecorator } = this.props.form;
+
 
         const formItemLayout = {
             labelCol: {
@@ -152,27 +157,42 @@ class AddNewUseCase extends Component {
                     <br />
                     <h2>{`Sensor Component ${sensor}`}</h2>
                     <FormItem {...formItemLayout} label='Sensor Type'>
-                        <Select style={{width: '125%'}} placeholder='Select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
+
+
+                        {getFieldDecorator('selectSensorType', {
+                            rules: [
+                              { required: true, message: 'Please select a sensor type!' },
+                            ],
+                          })(
+                            <Select style={{width: '125%'}} placeholder='Select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
                             {this.props.sensors.map((sensor, index) => {
                                 currentSensor = sensor;
                                 return (<Option value={sensor.sensorName} key={index}>{sensor.sensorName} </Option>)
                             })}
-                        </Select>
+                            </Select>
+                          )}   
                     </FormItem>
                     <FormItem {...formItemLayout} label='Sensor Component'>
-                        <Select style={{width: '100%'}} placeholder='Please select a sensor component' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
-                             {this.props.sensors.map((sensor, index) => {
-                                 if(sensor.sensorName === this.state.sensorsData.sensorName) {
-                                     return sensor.sensorComponents.map((cmp, index) => {
-                                         return (<Option value={cmp} key={index}>{cmp}</Option>)
-                                     })
-                                 }
-                            })}
-                    </Select>
+                    {getFieldDecorator('selectSensorType', {
+                        rules: [
+                          { required: true, message: 'Please select a sensor component' },
+                        ],
+                      })(
+                        <Select style={{width: '100%'}} placeholder='Select a sensor component' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
+                        {this.props.sensors.map((sensor, index) => {
+                            if(sensor.sensorName === this.state.sensorsData.sensorName) {
+                                return sensor.sensorComponents.map((cmp, index) => {
+                                    return (<Option value={cmp} key={index}>{cmp}</Option>)
+                                })
+                            }
+                       })}
+                   </Select>
+                      )}
+    
                 </FormItem>
         <FormItem {...formItemLayout} label='Min/Max Value'>
-                <InputNumber style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
-            <InputNumber style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('maxValue', e)}/>
+            <InputNumber  defaultValue={0} min={0} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
+            <InputNumber defaultValue={1} min={1} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('maxValue', e)}/>
             </FormItem>
                     <br />
                 </React.Fragment>
@@ -180,17 +200,32 @@ class AddNewUseCase extends Component {
 
         const newUseCaseForm = (
             <React.Fragment>
+
+           
                 <FormItem {...formItemLayout} label='Name'>
-                    <Input style={{width: '100%'}} onChange={(e) => this.updateForm('name', e)}/>
+                    {getFieldDecorator('name', {
+                        rules: [{ required: true, message: 'Please input a use case name' }],
+                      })(
+                        <Input style={{width: '100%'}} onChange={(e) => this.updateForm('name', e)}/>
+                      )}
                 </FormItem>
                 <FormItem {...formItemLayout} label='Summary'>
-                    <Input style={{width: '100%'}} onChange={(e) => this.updateForm('shortDesc', e)}/>
+
+                    {getFieldDecorator('shortDesc', {
+                        rules: [{ required: true, message: 'Please input a use case name' }],
+                      })(
+                        <Input style={{width: '100%'}} onChange={(e) => this.updateForm('shortDesc', e)}/>
+                    )}
                 </FormItem>
                 <FormItem {...formItemLayout} label='Description'>
+                {getFieldDecorator('longDesc', {
+                    rules: [{ required: true, message: 'Please input a description' }],
+                  })(
                     <TextArea rows={4} style={{width: '100%'}} onChange={(e) => this.updateForm('longDesc', e)}/>
+                )}
                 </FormItem>
                 <FormItem {...formItemLayout} label='Number of Sensors'>
-                    <InputNumber min={1} style={{width: '50%'}} onChange={(e) => this.updateFormNumber('numberSensors', e)}/>
+                    <InputNumber defaultValue={1} min={1} style={{width: '50%'}} onChange={(e) => this.updateFormNumber('numberSensors', e)}/>
                 </FormItem>
                 {numberSensors}
                 <FormItem {...formItemLayout} label='Use Case Image'>
@@ -287,4 +322,5 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewUseCase);
+const AddNewUseCaseForm = Form.create()(AddNewUseCase);
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewUseCaseForm);
