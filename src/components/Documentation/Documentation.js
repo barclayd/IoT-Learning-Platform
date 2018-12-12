@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'antd';
 import { Menu, Icon } from 'antd';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import DocRouter from '../../routers/DocumentationRouter';
 import docData from './Data/docs.json';
 
@@ -20,10 +20,10 @@ class Documentation extends Component {
                                     Object.keys(docData).map((key) => {
                                         return (
                                             <Menu.Item key={key}>
-                                                <Link to={this.props.match.url + "/" + key}>
+                                                <Link to={this.props.match.url + "/" + docData[key].title}>
                                                     <span>
                                                         <Icon type="robot" aria-label={'Link to ' + docData[key].title}/>
-                                                        <span>{key}</span>
+                                                        <span>{docData[key].title}</span>
                                                     </span>
                                                 </Link>
                                             </Menu.Item>
