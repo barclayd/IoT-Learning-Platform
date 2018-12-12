@@ -8,6 +8,7 @@ import {fetchUsersDataSaga, deleteUsersSaga} from './usersFirebase';
 import {createUseCaseSaga} from './createUseCase';
 import {fetchSensorsDataSaga} from './sensorsFirebase'
 import {updateProfileSaga} from './userProfile';
+import {postMessageSaga} from './messages'
 
 import {checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, logoutSaga} from './auth';
 
@@ -64,4 +65,8 @@ export function* watchDeleteUseCase() {
 
 export function* watchDeleteUsers() {
     yield takeLatest(actionTypes.INIT_DELETE_USER, deleteUsersSaga);
+}
+
+export function* watchMessages() {
+    yield takeLatest(actionTypes.INIT_POST_MESSAGE, postMessageSaga);
 }

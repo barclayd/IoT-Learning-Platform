@@ -9,7 +9,7 @@ import docData from './Data/docs.json';
 class Documentation extends Component {
 
     render() {
-        
+
         return(
             <div aria-label={'Documentation'}>
                 <Row gutter={15}>
@@ -22,8 +22,13 @@ class Documentation extends Component {
                                             <Menu.Item key={key}>
                                                 <Link to={this.props.match.url + "/" + docData[key].title}>
                                                     <span>
+<<<<<<< HEAD
                                                         <Icon type="robot" aria-label={'Link to ' + docData[key].title}/>
                                                         <span>{docData[key].title}</span>
+=======
+                                                        <Icon type="read" aria-label={'Link to ' + docData[key].title}/>
+                                                        <span>{key}</span>
+>>>>>>> e3b9b92db4eb3c2bee70053d2b3db25d451f768c
                                                     </span>
                                                 </Link>
                                             </Menu.Item>
@@ -36,11 +41,11 @@ class Documentation extends Component {
 
                     <Col span={18}>
                             <div>
-                                
+
                                 <DocRouter content={docData}/>
                             </div>
                         </Col>
-                    
+
                 </Row>
             </div>
         )
