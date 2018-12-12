@@ -32,8 +32,8 @@ class UseCase extends React.Component {
                                     </Menu.Item>
 
                                     <Menu.Item key="link">
-                                        <Link to={this.props.match.url + "/configure-arduino"}><span><Icon type="link"
-                                                                                                     aria-label={'Link to Configure Arduino'}/><span>Configure Your Arduino</span></span></Link>
+                                        <Link to={this.props.match.url + "/connections"}><span><Icon type="link"
+                                                                                                     aria-label={'Link to Connections'}/><span>Configure Your Arduino</span></span></Link>
                                     </Menu.Item>
 
                                     <Menu.Item key="readings">
