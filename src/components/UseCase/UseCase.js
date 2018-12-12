@@ -18,7 +18,7 @@ class UseCase extends React.Component {
                 }
             }
 
-            
+
             return (
                 <div aria-label={'Use Cases'} className={styles.UseCase}>
                     <Row gutter={15}>
@@ -33,7 +33,7 @@ class UseCase extends React.Component {
 
                                     <Menu.Item key="link">
                                         <Link to={this.props.match.url + "/connections"}><span><Icon type="link"
-                                                                                                     aria-label={'Link to Connections'}/><span>Connections</span></span></Link>
+                                                                                                     aria-label={'Link to Connections'}/><span>Configure Your Arduino</span></span></Link>
                                     </Menu.Item>
 
                                     <Menu.Item key="readings">
@@ -44,6 +44,10 @@ class UseCase extends React.Component {
                                     <Menu.Item key="historic-data">
                                         <Link to={this.props.match.url + "/historicData"}><span><Icon type="pie-chart"
                                                                                                       aria-label={'Link to Historic Data'}/><span>Historic Data</span></span></Link>
+                                    </Menu.Item>
+                                    <Menu.Item key="feedback">
+                                        <Link to={this.props.match.url + "/feedback"}><span><Icon type="message"
+                                                                                                  aria-label={'Link to Feedback'}/><span>Feedback</span></span></Link>
                                     </Menu.Item>
                                     <Menu.Item key="settings">
                                         <Link to={this.props.match.url + "/settings"}><span><Icon type="setting"
