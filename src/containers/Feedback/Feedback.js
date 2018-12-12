@@ -12,6 +12,7 @@ let userDetails;
 let userName;
 let userEmail;
 let profileImage;
+let messageId;
 
 const userId = localStorage.getItem("userId");
 
@@ -20,9 +21,14 @@ class Feedback extends Component {
 
     state = {
         useCase: {
-            messages: []
+            messages: ['']
         },
-        newMessage: {}
+        newMessage: {
+            message: '',
+            title: '',
+            rating: 2.5
+        },
+        messages: []
     };
 
     componentWillMount() {
@@ -31,10 +37,10 @@ class Feedback extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(!nextProps.loading) {
+        if (!nextProps.loading) {
             this.setState({
-                useCase: nextProps.useCases[id],
-            });
+                useCase: nextProps.useCases[id]
+            })
         }
     }
 
@@ -48,7 +54,6 @@ class Feedback extends Component {
     };
 
     updateFormValue = (settingName, settingValue) => {
-        console.log(settingValue);
         const message = updateObject(this.state.newMessage, {
             [settingName]: settingValue
         } );
@@ -61,14 +66,26 @@ class Feedback extends Component {
       const userData = {
             'authorName': userName,
             'date': dateformat(new Date(), "dS mmmm yyyy"),
-            'profileImage': profileImage
+            'profileImage': profileImage,
+            'rawDate': new Date()
         };
-      const messageObject = [{...userData, ...this.state.newMessage}];
-      console.log(messageObject);
+      const messageObject = {...userData, ...this.state.newMessage};
+      this.props.onPostMessage(id, messageId, messageObject);
+      if(this.props.savedMessage) {
+          this.setState({
+              newMessage: {
+                  message: '',
+                  title: '',
+                  rating: 2.5
+              }
+          })
+      }
     };
 
     render () {
         id = this.props.match.params.id;
+
+        messageId = this.state.useCase.messages.length;
 
         userDetails = this.props.users.map((user, index) => {
             if (user.userUUID === userId) {
@@ -97,23 +114,23 @@ class Feedback extends Component {
               </span>
         );
 
-        const data = this.state.useCase.messages.map((message) => {
+        const data = this.state.useCase.messages.reverse().map((message) => {
             return useCaseMessages.push(message);
         });
         const newComment = <React.Fragment>
             <FormItem {...formItemLayout} label='Title'>
-                <Input style={{width: '150%'}} onChange={(e) => this.updateForm('title', e)}/>
+                <Input style={{width: '150%'}} value={this.state.newMessage.title} onChange={(e) => this.updateForm('title', e)}/>
             </FormItem>
             <FormItem {...formItemLayout} label='Message' className={classes.text}>
-                <textarea rows={4}  onChange={(e) => this.updateForm('message', e)}/>
+                <textarea rows={4} value={this.state.newMessage.message} onChange={(e) => this.updateForm('message', e)}/>
             </FormItem>
             <FormItem {...formItemLayout} label='Rating' className={classes.text}>
-                <Rate allowHalf defaultValue={2.5} onChange={(e) => this.updateFormValue('rating', e)}/>
+                <Rate allowHalf defaultValue={2.5} value={this.state.newMessage.rating} onChange={(e) => this.updateFormValue('rating', e)}/>
             </FormItem>
 
         </React.Fragment>;
 
-        const button = <Button type="primary" htmlType="submit" onClick={() => this.handleSubmit()} loading={this.props.updateLoading}>Post</Button>;
+        const button = <Button type="primary" htmlType="submit" onClick={() => this.handleSubmit()} loading={this.props.messageLoading}>Post</Button>;
 
 
         return (
@@ -121,20 +138,21 @@ class Feedback extends Component {
                 <h2>Feedback</h2>
                 <React.Fragment>
                 <List
+                    loading={this.props.loading}
                     itemLayout="vertical"
                     size="small"
                     pagination={{
                         onChange: (page) => {
                             console.log(page);
                         },
-                        pageSize: 5,
+                        pageSize: 3,
                     }}
-                    dataSource={useCaseMessages}
+                    dataSource={useCaseMessages.reverse()}
                     footer={<div><i>Feedback for {this.state.useCase.name} Use Case</i></div>}
                     renderItem={item => (
                         <List.Item
                             key={item.title}
-                            actions={[<IconText type="clock-circle" text={` ${item.date}`} />, <Rate disabled defaultValue={item.rating} />]}
+                            actions={[<IconText type="clock-circle" text={` ${item.date}`} />, <Rate allowHalf disabled defaultValue={item.rating} />]}
                         >
                             <List.Item.Meta
                                 avatar={<Avatar src={`/images/${item.profileImage}`} />}
@@ -147,11 +165,13 @@ class Feedback extends Component {
                 />
             </React.Fragment>
                 <Divider />
-                <h2>Post a New Feedback</h2>
-                <div className={classes.Comment}>
-                {newComment}
-                {button}
-                </div>
+                {localStorage.getItem('role') === 'Trainer' && !this.props.loading ?
+                    <div className={classes.Comment}>
+                        <h3>Add new Feedback</h3>
+                        {newComment}
+                        {button}
+                    </div> : null
+                }
             </React.Fragment>
 
         )
@@ -164,13 +184,16 @@ const mapStateToProps = state => {
         users: state.users.users,
         loading: state.useCaseFirebase.loading,
         useCases: state.useCaseFirebase.data,
+        savedMessage: state.messages.saved,
+        messageLoading: state.messages.loading
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchUseCases: () => dispatch(actions.fetchUseCaseData()),
-        onFetchUsers: () => dispatch(actions.fetchUsersData())
+        onFetchUsers: () => dispatch(actions.fetchUsersData()),
+        onPostMessage: (useCaseId, messageId, message) => dispatch(actions.postMessage(useCaseId, messageId, message))
     }
 };
 

@@ -16,7 +16,7 @@ const Information = (props) => {
             <React.Fragment>
                 <h1>Information</h1>
                 <Tooltip title={text.information} placement="bottom">
-                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
                 </Tooltip>
                 <p>{props.useCaseData.shortDesc}</p>
                 <p>{props.useCaseData.longDesc}</p>

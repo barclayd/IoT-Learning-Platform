@@ -43,7 +43,7 @@ class UseCasesList extends Component {
             <React.Fragment>
             <p>There are currently no Use Cases linked to your account. Your Trainer will add Use Case Accounts for you.</p>
                 <Tooltip title={text.noUseCases}>
-                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
                 </Tooltip>
             </React.Fragment>
             : useCases;

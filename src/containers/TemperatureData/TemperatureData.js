@@ -71,7 +71,7 @@ class TemperatureData extends Component {
                 {this.props.data ? <h1>Live Readings</h1> : null}
                 {/*{temp}*/}
                 <Tooltip title={this.props.loading ? text.liveReadingsLoading : (this.props.error ? text.liveReadingsFailed : text.liveReadingsLoaded)} placement="bottom">
-                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
                 </Tooltip>
                 {returnObject}
             </React.Fragment>
