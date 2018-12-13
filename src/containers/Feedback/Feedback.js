@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Avatar, Form, Icon, List, Input, Rate, Button, Divider, Pagination, notification} from 'antd';
+import {Avatar, Form, Icon, List, Input, Rate, Button, Divider, Pagination, notification, Tooltip} from 'antd';
 import {connect} from "react-redux";
 import dateformat from 'dateformat';
 import * as actions from '../../store/actions/index';
 import classes from './Feedback.module.css';
 import {updateObject} from "../../store/utility";
+import * as text from "../../assets/staticText";
 
 let userDetails;
 let userName;
@@ -134,6 +135,9 @@ class Feedback extends Component {
               </span>
         );
 
+        const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
+
+
         if(this.state.useCase.messages !== undefined) {
             this.state.useCase.messages.map((message) => {
                 return useCaseMessages.push(message);
@@ -183,6 +187,9 @@ class Feedback extends Component {
         return (
             <React.Fragment>
                 <h2>{localStorage.getItem("role") === 'Community' ? 'Forum' : 'Feedback'}</h2>
+                <Tooltip title={localStorage.getItem("role") === 'Community' ? text.communityForum : localStorage.getItem("role") === 'Trainer' ? text.feedbackTrainer : text.feedbackApprentice} style={{display: 'block'}}>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
+                </Tooltip>
                 <List
                     loading={this.props.loading}
                     itemLayout="vertical"

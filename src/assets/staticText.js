@@ -42,8 +42,11 @@ const configureArduino = <p>Learn how to configure your Arduino for this Use Cas
 const userProfileApprentice = <p>View your user details, account role and account history. <br/><br/> Here you can also change your user name and update your profile picture</p>;
 const userProfileTrainer = <p>View your user details, account role and account history. <br/><br/> Here you can also edit your user name, change your account role and update your profile picture</p>;
 
+const communityForum = <p>Read and post messages on the Community Forum board to discuss topics relevant to ongoings in the local area realting to the Use Case </p>;
+const feedbackApprentice = <p>View and read feedback and ratings left by an assigned Trainer to help you develop and improve your Use Case </p>;
+const feedbackTrainer = <p>Post messages with a rating to Apprentices about a specific use case. <br /> <br />The messages form a timeline and allow you to offer up suggestions, help and advice for the Apprentices to implement within their Use Cases. </p>;
 
 export {
  emailHoverText, emailText, sensorHoverText, sensorText, generalText, generalHoverText, newUseCase, noUseCases, useCaseList, sensorsList, usersList, signIn, signUp, toolbarLoggedIn, toolbarLoggedOut,
- liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed, historicReadings, configureArduino, information, userProfileApprentice, userProfileTrainer
+ liveReadingsLoaded, liveReadingsLoading, liveReadingsFailed, historicReadings, configureArduino, information, userProfileApprentice, userProfileTrainer, communityForum, feedbackApprentice, feedbackTrainer
 }
