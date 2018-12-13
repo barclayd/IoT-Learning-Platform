@@ -14,7 +14,8 @@ const otherSettings = {
         body: 'Email body',
         senders: [localStorage.getItem("email")],
         subject: 'Email subject'
-    }
+    },
+    messages: ['']
 };
 
 class AddNewUseCase extends Component {
@@ -33,8 +34,8 @@ class AddNewUseCase extends Component {
         sensor: null,
         sensorsData: {
             sensorName: ''
-        }
-    };
+        },
+        };
 
     showModal = () => {
         this.setState({
@@ -170,7 +171,7 @@ class AddNewUseCase extends Component {
                                 return (<Option value={sensor.sensorName} key={index}>{sensor.sensorName} </Option>)
                             })}
                             </Select>
-                          )}   
+                          )}
                     </FormItem>
                     <FormItem {...formItemLayout} label='Sensor Component'>
                     {getFieldDecorator('selectSensorType', {
@@ -188,7 +189,7 @@ class AddNewUseCase extends Component {
                        })}
                    </Select>
                       )}
-    
+
                 </FormItem>
         <FormItem {...formItemLayout} label='Min/Max Value'>
             <InputNumber  defaultValue={0} min={0} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
@@ -201,7 +202,7 @@ class AddNewUseCase extends Component {
         const newUseCaseForm = (
             <React.Fragment>
 
-           
+
                 <FormItem {...formItemLayout} label='Name'>
                     {getFieldDecorator('name', {
                         rules: [{ required: true, message: 'Please input a use case name' }],
