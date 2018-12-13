@@ -6,7 +6,7 @@ import * as actions from '../actions/index';
 export function* fetchUseCaseDataSaga(action) {
     yield put(actions.fetchUseCaseDataStart());
     try {
-        const response = yield axios.get('/useCases.json');
+        const response = yield axios.get(`/useCases.json?auth=${localStorage.getItem('token')}`);
         const fetchedData = [];
         for (let key in response.data) {
             fetchedData.push({
@@ -23,10 +23,10 @@ export function* fetchUseCaseDataSaga(action) {
 export function* submitSettingsSaga(action) {
     yield put(actions.submitSettingsStart());
     try {
-        const response = yield axios.patch(`/useCases/${action.useCaseId}.json`, action.data);
+        const response = yield axios.patch(`/useCases/${action.useCaseId}.json?auth=${localStorage.getItem('token')}`, action.data);
         yield put(actions.submitSettingsSuccess(response.data));
         try {
-            const response = yield axios.get('/useCases.json');
+            const response = yield axios.get(`/useCases.json?auth=${localStorage.getItem('token')}`);
             const fetchedData = [];
             for (let key in response.data) {
                 fetchedData.push({
@@ -47,7 +47,7 @@ export function* submitSettingsSaga(action) {
 export function* updateUseCaseSaga (action) {
     yield put(actions.updateUseCaseDataStart());
     try {
-        const response = yield axios.put('/useCases.json', action.data);
+        const response = yield axios.put(`/useCases.json?auth=${localStorage.getItem('token')}`, action.data);
         yield put(actions.updateUseCaseDataSuccess(response.data))
     } catch (error){
         yield put(actions.updateUseCaseDataFailed(error));
@@ -57,13 +57,13 @@ export function* updateUseCaseSaga (action) {
 export function* deleteUseCaseSaga (action) {
     yield put(actions.deleteUseCaseStart());
     try {
-        const response = yield axios.delete(`/useCases/${action.id}.json`);
+        const response = yield axios.delete(`/useCases/${action.id}.json?auth=${localStorage.getItem('token')}`);
         console.log(response);
         yield put(actions.deleteUseCaseSuccess(action.useCase));
         try {
             yield put(actions.fetchUseCaseDataStart());
             try {
-                const response = yield axios.get('/useCases.json');
+                const response = yield axios.get(`/useCases.json?auth=${localStorage.getItem('token')}`);
                 const fetchedData = [];
                 for (let key in response.data) {
                     fetchedData.push({
