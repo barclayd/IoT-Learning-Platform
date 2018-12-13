@@ -1,5 +1,5 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip, List} from 'antd';
 import {connect} from 'react-redux';
 import * as text from "../../../assets/staticText";
 
@@ -36,23 +36,14 @@ const Sensors = (props) => {
                             <Panel header={currentSensor.name} key={index}>
                                 <h3>Information:</h3>
                                 <div key={index}>
-                                    <FormItem {...formItemLayout} label='Name'>
-                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateSensors('name', e, index)}/>
-                                    </FormItem>
-                                    <FormItem {...formItemLayout} label='Sensor Components'>
+                                    <List {...formItemLayout} label='Name'>
+                                        <List.Item style={{width: '100%'}}><b><h4>{currentSensor.name}</h4></b></List.Item>
+                                    </List>
+                                    <List {...formItemLayout} label='Sensor Components' size='small' bordered>
                                     {currentSensor.sensorComponents.map((cmp, cmpIndex) => {
-                                        return <Input style={{width: '100%'}} value={cmp} key={cmpIndex} onChange={(e) => props.updateSensorsComponent(e, index, cmpIndex)}/>
+                                        return <List.Item>{cmp}</List.Item>
                                     })}
-                                    </FormItem>
-                                    <FormItem {...formItemLayoutWithOutLabel}>
-                                        <Button type="dashed" onClick={props.add} style={{ width: '60%' }}>
-                                            <Icon type="plus" /> Add field
-                                        </Button>
-                                    </FormItem>
-                                    <Divider />
-                                    <Button onClick={props.handleUseCasesSave} type="primary">
-                                        Save
-                                    </Button>
+                                    </List>
                                 </div>
                             </Panel>
 
