@@ -4,6 +4,7 @@ import axios from "../../shared/axios-instance";
 
 export function* postMessageSaga(action) {
     yield put(actions.postMessageStart());
+    console.log(action.useCaseId);
     try {
             console.log(action.message);
             const response = yield axios.patch(`/useCases/${action.useCaseId}/messages/${action.messageId}.json`, action.message);
