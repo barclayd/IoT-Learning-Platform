@@ -45,10 +45,14 @@ class UseCase extends React.Component {
                                         <Link to={this.props.match.url + "/historicData"}><span><Icon type="pie-chart"
                                                                                                       aria-label={'Link to Historic Data'}/><span>Historic Data</span></span></Link>
                                     </Menu.Item>
-                                    <Menu.Item key="feedback">
+                                    { localStorage.getItem("role") !== 'Community' ? <Menu.Item key="feedback">
                                         <Link to={this.props.match.url + "/feedback"}><span><Icon type="message"
                                                                                                   aria-label={'Link to Feedback'}/><span>Feedback</span></span></Link>
-                                    </Menu.Item>
+                                    </Menu.Item> : null}
+                                    { localStorage.getItem("role") === 'Community' ? <Menu.Item key="forum">
+                                        <Link to={this.props.match.url + "/forum"}><span><Icon type="message"
+                                                                                                  aria-label={'Link to Forum'}/><span>Forum</span></span></Link>
+                                    </Menu.Item> : null}
                                     <Menu.Item key="settings">
                                         <Link to={this.props.match.url + "/settings"}><span><Icon type="setting"
                                                                                                       aria-label={'Link to Settings'}/><span>Settings</span></span></Link>
