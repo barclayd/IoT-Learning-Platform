@@ -39,7 +39,7 @@ const AppRouter = (props) => {
     if(localStorage.getItem("email") !== null){
         routes =
             <Switch>
-                <Route exact path="/documentation" component={documentation} />
+                <Route path="/documentation" component={documentation} />
                 <Route exact path="/dashboard" component={UseCasesList}/>
                 <Route exact path="/profile" component={asyncUserProfile}/>
                 <Route exact path="/login" component={asyncLogin}/>

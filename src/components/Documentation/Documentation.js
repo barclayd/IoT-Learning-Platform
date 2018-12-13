@@ -22,7 +22,7 @@ class Documentation extends Component {
                                             <Menu.Item key={key}>
                                                 <Link to={this.props.match.url + "/" + docData[key].title}>
                                                     <span>
-                                                        <Icon type="robot" aria-label={'Link to ' + docData[key].title}/>
+                                                        <Icon type="read" aria-label={'Link to ' + docData[key].title}/>
                                                         <span>{docData[key].title}</span>
                                                     </span>
                                                 </Link>
