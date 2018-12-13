@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import styles from './AdminArea.module.scss'
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
-import {Menu, Icon, Row, Col, notification, Tooltip} from 'antd';
+import {Menu, Icon, Row, Col, notification, Tooltip, Form} from 'antd';
 import {Link, Switch, Route} from 'react-router-dom';
 import UseCasesController from './UseCasesController/UseCasesController';
 import Users from './Users/Users';
@@ -120,16 +120,45 @@ class AdminArea extends Component {
     updateSensors = (settingName, settingValue, sensorId) => {
         let sensor = settingValue.target.value;
         console.log(sensor);
-        console.log((this.state.sensors[0].sensorName));
-        const sensorIndex = Object.keys(this.state.sensors).filter((sensor) => sensor === sensorId);
-        console.log(sensorIndex);
-        // sensors[sensorId] = {...sensor,
-        //     [settingName]: settingValue.target.value
-        // };
-        //
-        // this.setState({
-        //     sensors
-        // });
+        // console.log((this.state.sensors[0].sensorName));
+        // const sensorIndex = Object.keys(this.state.sensors[sensorId]).filter((sensor) => sensor === settingName);
+        // console.log(sensorIndex);
+        const sensors = {...this.state.sensors[sensorId]};
+
+        console.log(sensors[sensorId]);
+        sensors[sensorId] = {...sensors,
+            [settingName]: settingValue.target.value
+        };
+
+
+        this.setState({
+            sensors
+        });
+    };
+
+    updateSensorsComponents = (settingValue, sensorId, cmpIndex) => {
+        let sensor = settingValue.target.value;
+        console.log(sensor);
+        // console.log((this.state.sensors[0].sensorName));
+        // const sensorIndex = Object.keys(this.state.sensors[sensorId]).filter((sensor) => sensor === settingName);
+        // console.log(sensorIndex);
+        const sensors = {...this.state.sensors};
+        console.log(cmpIndex);
+
+        // const sensorsComponent = {...this.state.sensors[sensorId].sensorComponents};
+        const components = {...this.state.sensors[sensorId].sensorComponents};
+        console.log(components[0]);
+        // [cmpIndex]
+        // console.log(sensors[sensorId]);
+        const sensorsComponent = {...this.state.sensors[sensorId].sensorComponents[cmpIndex] = settingValue.target.value};
+
+        console.log(components);
+
+
+        this.setState({
+            sensors: sensorsComponent
+        });
+        console.log(this.state.components);
     };
 
 
@@ -220,6 +249,8 @@ class AdminArea extends Component {
                                                deletedUseCaseNotification = {this.deletedUseCaseNotification}
                                                sensors={this.state.sensors}
                                                updateSensors={this.updateSensors}
+                                               updateSensorsComponent={this.updateSensorsComponents}
+                                               add={this.add}
                                            />} />
                                      <Route path="/users"
                                             render={ props => <Users
@@ -282,6 +313,7 @@ const mapDispatchToProps = dispatch => {
         onDeleteUsers: (id, userName) => dispatch(actions.deleteUser(id, userName))
     }
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminArea);
 

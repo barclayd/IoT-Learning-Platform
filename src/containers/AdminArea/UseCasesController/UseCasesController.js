@@ -72,7 +72,7 @@ const UseCasesController = (props) => {
             {notification}
             <h2 style={{display: 'inline'}}>Use Cases List</h2>
             <Tooltip title={text.useCaseList} style={{display: 'block'}}>
-                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
             </Tooltip>
             <Divider/>
             {content}

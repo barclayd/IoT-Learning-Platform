@@ -226,13 +226,13 @@ class Settings extends Component {
 
         let users = this.props.users.filter(user => listedUsers.includes(user.userUUID));
 
-        let emailSettings = Object.keys(emails).map((email) => {
+        let emailSettings = Object.keys(emails).map((email, emailIndx) => {
             switch (email) {
                         case('senders'):
-                            return <FormItem {...formItemLayout} key={email} label={'Recipients'}>
+                            return <FormItem {...formItemLayout} key={emailIndx} label={'Recipients'}>
                                 <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={this.state.senders} onChange={(e) => this.changeEmailSetting(email, e)}>
-                                    {users.map(usr => {
-                                    return <Option value={usr.email}>{usr.name}</Option>})}
+                                    {users.map((usr, index) => {
+                                    return <Option key={index} value={usr.email}>{usr.name}</Option>})}
                                 </Select>
                             </FormItem>;
                         default:

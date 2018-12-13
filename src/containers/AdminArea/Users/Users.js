@@ -69,11 +69,11 @@ const Users = (props) => {
                                         </FormItem>
                                         <FormItem {...formItemLayout} label='Use Cases'>
                                             <List bordered size='small'>
-                                                {props.usersUseCases(selectedUser).map((useCase) => {
+                                                {props.usersUseCases(selectedUser).map((useCase, index) => {
                                                     console.log(useCase);
-                                                    return (props.usersUseCases(selectedUser).length ? <List.Item>
+                                                    return (props.usersUseCases(selectedUser).length ? <List.Item key={index}>
                                                             {useCase.name}
-                                                        </List.Item> : <List.Item> User currently has no assigned Use Cases.</List.Item>
+                                                        </List.Item> : <List.Item key={index}> User currently has no assigned Use Cases.</List.Item>
                                                     )
                                                 })}
                                             </List>
@@ -98,7 +98,7 @@ const Users = (props) => {
             {notification}
             <h2 style={{display: 'inline'}}>Users</h2>
             <Tooltip title={text.usersList}>
-                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle} />
             </Tooltip>
             <Divider/>
             {content}
