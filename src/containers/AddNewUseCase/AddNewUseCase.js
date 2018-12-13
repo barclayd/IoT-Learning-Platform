@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, Avatar} from "antd";
+import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, Avatar, message} from "antd";
 import classes from './AddNewUseCase.module.scss';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
@@ -59,10 +59,13 @@ class AddNewUseCase extends Component {
         let mergedAgain = {...mergedObject, access};
         let finalMerge = {...mergedAgain, ...otherSettings};
 
+
         this.props.form.validateFields((err, values) => {
-            if (!err) {
-              console.log('Received values of form: ', values);
-              this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
+            if (this.state.sensorsData.minValue >= this.state.sensorsData.maxValue || this.state.sensorsData.maxValue <= this.state.sensorsData.minValue) {
+                message.warning('Minimum value is not less than Maximum value for Sensors, please change them before submitting');
+            } else if (!err) {
+                console.log('Received values of form: ', values);
+                this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
             }
           });
     };
