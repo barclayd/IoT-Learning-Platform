@@ -47,8 +47,8 @@ class AdminArea extends Component {
     };
 
     getUseCaseUsers = (useCase) => {
-        return this.props.users
-            .filter(user => useCase.access.listedUsers.includes(user.userUUID));
+            return this.props.users
+                .filter(user => useCase.access.listedUsers.includes(user.userUUID));
     };
 
     getUserUseCase = (user) => {
