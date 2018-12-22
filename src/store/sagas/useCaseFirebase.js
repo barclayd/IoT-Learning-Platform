@@ -1,12 +1,17 @@
-import {put} from 'redux-saga/effects';
+import {put, call} from 'redux-saga/effects';
 import axios from '../../shared/axios-instance';
 
 import * as actions from '../actions/index';
 
+export function fetchUseCase () {
+    return axios.get('/useCases.json');
+}
+
+
 export function* fetchUseCaseDataSaga(action) {
     yield put(actions.fetchUseCaseDataStart());
     try {
-        const response = yield axios.get('/useCases.json');
+        const response = yield call(fetchUseCase)
         const fetchedData = [];
         for (let key in response.data) {
             fetchedData.push({
