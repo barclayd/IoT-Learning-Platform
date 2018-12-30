@@ -48,9 +48,9 @@ class TemperatureData extends Component {
             });
         }
         let returnObject;
-        if (this.props.loading) {
+        if (false) {
             returnObject = <Spin size="large" />
-        } else if (this.props.data.success) {
+        } else if (false) {
             returnObject = <TempChart  temp={this.props.data.data} aria-label={'Live real time temperature graph'}/>
         } else {
             returnObject = (<React.Fragment>
