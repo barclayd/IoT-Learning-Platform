@@ -175,7 +175,7 @@ Go to [https://console.firebase.google.com](https://console.firebase.google.com)
 
 Login in using the following credentials:
 * username: [nsa.team1.iot@gmail.com](mailto:nsa.team1.iot@gmail.com)
-* password: 123123q1)
+* password: 123123q1
 
 ## Installation of Client
 Provide step by step series of examples and explanations about how to get a development env running.
