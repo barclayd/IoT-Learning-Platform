@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Configure Arduino /> should renders correctly 1`] = `
+<div
+  className="Connections"
+>
+  <h1>
+    Configure Your Arudino
+  </h1>
+  <Tooltip
+    arrowPointAtCenter={false}
+    autoAdjustOverflow={true}
+    mouseEnterDelay={0.1}
+    mouseLeaveDelay={0.1}
+    placement="bottom"
+    prefixCls="ant-tooltip"
+    title={
+      <p>
+        Learn how to configure your Arduino for this Use Case 
+      </p>
+    }
+    transitionName="zoom-big-fast"
+  >
+    <Icon
+      defaultVisible={true}
+      style={
+        Object {
+          "fontSize": "30px",
+          "position": "absolute",
+          "right": "30px",
+          "top": "20px",
+        }
+      }
+      theme="filled"
+      type="question-circle"
+    />
+  </Tooltip>
+  <p>
+    The breadboard for 
+    LM35
+  </p>
+  <img
+    alt="arduino"
+    aria-label="tmp36.jpg"
+    className="ArduinoImg"
+    src="/images/tmp36.jpg"
+    width="650px"
+  />
+  <p>
+    The LM35 series are precision integrated-circuit temperature devices with an output voltage linearly-proportional to the Centigrade temperature. The LM35 device has an advantage over linear temperature sensors calibrated in Kelvin, as the user is not required to subtract a large constant voltage from the output to obtain convenient Centigrade scaling. The LM35 device does not require any external calibration or trimming to provide typical accuracies of ±¼°C at room temperature and ±¾°C over a full −55°C to 150°C temperature range.
+  </p>
+</div>
+`;
+
+exports[`<UseCard /> should renders correctly 1`] = `
+<div
+  className="Connections"
+>
+  <h1>
+    Configure Your Arudino
+  </h1>
+  <Tooltip
+    arrowPointAtCenter={false}
+    autoAdjustOverflow={true}
+    mouseEnterDelay={0.1}
+    mouseLeaveDelay={0.1}
+    placement="bottom"
+    prefixCls="ant-tooltip"
+    title={
+      <p>
+        Learn how to configure your Arduino for this Use Case 
+      </p>
+    }
+    transitionName="zoom-big-fast"
+  >
+    <Icon
+      defaultVisible={true}
+      style={
+        Object {
+          "fontSize": "30px",
+          "position": "absolute",
+          "right": "30px",
+          "top": "20px",
+        }
+      }
+      theme="filled"
+      type="question-circle"
+    />
+  </Tooltip>
+  <p>
+    The breadboard for 
+    LM35
+  </p>
+  <img
+    alt="arduino"
+    aria-label="tmp36.jpg"
+    className="ArduinoImg"
+    src="/images/tmp36.jpg"
+    width="650px"
+  />
+  <p>
+    The LM35 series are precision integrated-circuit temperature devices with an output voltage linearly-proportional to the Centigrade temperature. The LM35 device has an advantage over linear temperature sensors calibrated in Kelvin, as the user is not required to subtract a large constant voltage from the output to obtain convenient Centigrade scaling. The LM35 device does not require any external calibration or trimming to provide typical accuracies of ±¼°C at room temperature and ±¾°C over a full −55°C to 150°C temperature range.
+  </p>
+</div>
+`;
