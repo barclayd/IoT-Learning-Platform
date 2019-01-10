@@ -1,5 +1,5 @@
 import React from 'react';
-import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip} from 'antd';
+import {Select, Button, Collapse, Form, Input, Icon, Row, Col, notification, Divider, Tooltip, List} from 'antd';
 import {connect} from 'react-redux';
 import * as text from "../../../assets/staticText";
 
@@ -19,6 +19,12 @@ const Sensors = (props) => {
     let notification = (props.deleted ? props.deletedUseCaseNotification('warning') : null);
     const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
 
+    const formItemLayoutWithOutLabel = {
+        wrapperCol: {
+            xs: { span: 24, offset: 0 },
+            sm: { span: 20, offset: 4 },
+        },
+    };
 
     if (props.sensors){
         content =
@@ -26,23 +32,18 @@ const Sensors = (props) => {
                 <Collapse accordion>
                     {Object.keys(props.sensors).map((sensor, index) => {
                         const currentSensor = props.sensors[sensor];
-                        console.log(currentSensor);
                         return (
                             <Panel header={currentSensor.name} key={index}>
                                 <h3>Information:</h3>
                                 <div key={index}>
-                                    <FormItem {...formItemLayout} label='Name'>
-                                        <Input style={{width: '100%'}} value={currentSensor.name} onChange={(e) => props.updateSensors('sensorName', e, index)}/>
-                                    </FormItem>
-                                    <FormItem {...formItemLayout} label='Sensor Components'>
-                                    {currentSensor.sensorComponents.map((cmp) => {
-                                        return <Input style={{width: '100%'}} value={cmp}  onChange={(e) => props.updateSensors('shortDesc', e)}/>
+                                    <List {...formItemLayout} label='Name'>
+                                        <List.Item style={{width: '100%'}}><b><h4>{currentSensor.name}</h4></b></List.Item>
+                                    </List>
+                                    <List {...formItemLayout} label='Sensor Components' size='small' bordered>
+                                    {currentSensor.sensorComponents.map((cmp, cmpIndex) => {
+                                        return <List.Item>{cmp}</List.Item>
                                     })}
-                                    </FormItem>
-                                    <Divider />
-                                    <Button onClick={props.handleUseCasesSave} type="primary">
-                                        Save
-                                    </Button>
+                                    </List>
                                 </div>
                             </Panel>
 
@@ -57,7 +58,7 @@ const Sensors = (props) => {
             {notification}
             <h2 style={{display: 'inline'}}>Sensors</h2>
             <Tooltip title={text.sensorsList}>
-                <Icon type="question-circle" theme="filled" style={questionMarkStyle} defaultVisible={true}/>
+                <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
             </Tooltip>
             <Divider/>
             {content}

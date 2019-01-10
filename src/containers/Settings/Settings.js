@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, Tooltip, Icon} from "antd";
+import {Form, Input, Select, InputNumber, Button, notification, Tabs, Popconfirm, Tooltip, Icon, message} from "antd";
 import * as actions from "../../store/actions";
 import FormItem from "antd/lib/form/FormItem";
 import {Redirect} from "react-router-dom";
@@ -63,6 +63,14 @@ class Settings extends Component {
         });
     };
 
+    minMaxNotfication = (type) => {
+        notification[type]({
+            message: 'Minimum and Maximum Error for Sensor',
+            description: `Minimum value is not less than Maximum value for Sensors, please change them before submitting'`,
+            duration: 1.5
+        });
+    };
+
     onChangeTab = (key) => {
         this.setState({
             tab: key
@@ -83,9 +91,13 @@ class Settings extends Component {
         let useCaseData = {'name': this.state.name, 'shortDesc': this.state.shortDesc, 'longDesc': this.state.longDesc, 'image': this.state.image, 'imageDesc': this.state.imageDesc};
         let mergedObject = {...email, sensorsData};
         let finalMerge = {...mergedObject, ...useCaseData};
-        this.props.onSubmitSettings(this.props.id, finalMerge);
-        if(this.props.saved) {
-            this.savedSettingsNotification('success');
+        if (this.state.sensors.minValue >= this.state.sensors.maxValue || this.state.sensors.maxValue <= this.state.sensors.minValue) {
+            this.minMaxNotfication('warning');
+        } else {
+            this.props.onSubmitSettings(this.props.id, finalMerge);
+            if(this.props.saved) {
+                this.savedSettingsNotification('success');
+            }
         }
     }
 
@@ -226,13 +238,13 @@ class Settings extends Component {
 
         let users = this.props.users.filter(user => listedUsers.includes(user.userUUID));
 
-        let emailSettings = Object.keys(emails).map((email) => {
+        let emailSettings = Object.keys(emails).map((email, emailIndx) => {
             switch (email) {
                         case('senders'):
-                            return <FormItem {...formItemLayout} key={email} label={'Recipients'}>
+                            return <FormItem {...formItemLayout} key={emailIndx} label={'Recipients'}>
                                 <Select settingType={email} mode='multiple' placeholder='Please select email addresses' defaultValue={this.state.senders} onChange={(e) => this.changeEmailSetting(email, e)}>
-                                    {users.map(usr => {
-                                    return <Option value={usr.email}>{usr.name}</Option>})}
+                                    {users.map((usr, index) => {
+                                    return <Option key={index} value={usr.email}>{usr.name}</Option>})}
                                 </Select>
                             </FormItem>;
                         default:

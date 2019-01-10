@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, Avatar} from "antd";
+import {Modal, Card, Icon, Form, Select, Input, InputNumber, Upload, Button, Radio, Avatar, message} from "antd";
 import classes from './AddNewUseCase.module.scss';
 import {updateObject} from "../../store/utility";
 import {connect} from 'react-redux';
@@ -14,7 +14,8 @@ const otherSettings = {
         body: 'Email body',
         senders: [localStorage.getItem("email")],
         subject: 'Email subject'
-    }
+    },
+    messages: ['']
 };
 
 class AddNewUseCase extends Component {
@@ -33,8 +34,8 @@ class AddNewUseCase extends Component {
         sensor: null,
         sensorsData: {
             sensorName: ''
-        }
-    };
+        },
+        };
 
     showModal = () => {
         this.setState({
@@ -58,10 +59,13 @@ class AddNewUseCase extends Component {
         let mergedAgain = {...mergedObject, access};
         let finalMerge = {...mergedAgain, ...otherSettings};
 
+
         this.props.form.validateFields((err, values) => {
-            if (!err) {
-              console.log('Received values of form: ', values);
-              this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
+            if (this.state.sensorsData.minValue >= this.state.sensorsData.maxValue || this.state.sensorsData.maxValue <= this.state.sensorsData.minValue) {
+                message.warning('Minimum value is not less than Maximum value for Sensors, please change them before submitting');
+            } else if (!err) {
+                console.log('Received values of form: ', values);
+                this.props.onCreateNewUseCase(parseInt(this.props.id),finalMerge);
             }
           });
     };
@@ -157,27 +161,14 @@ class AddNewUseCase extends Component {
                     <br />
                     <h2>{`Sensor Component ${sensor}`}</h2>
                     <FormItem {...formItemLayout} label='Sensor Type'>
-
-
-                        {getFieldDecorator('selectSensorType', {
-                            rules: [
-                              { required: true, message: 'Please select a sensor type!' },
-                            ],
-                          })(
                             <Select style={{width: '125%'}} placeholder='Select a sensor type' onChange={(e) => this.updateSensorDataForm('sensorName', e)}>
                             {this.props.sensors.map((sensor, index) => {
                                 currentSensor = sensor;
                                 return (<Option value={sensor.sensorName} key={index}>{sensor.sensorName} </Option>)
                             })}
                             </Select>
-                          )}   
                     </FormItem>
                     <FormItem {...formItemLayout} label='Sensor Component'>
-                    {getFieldDecorator('selectSensorType', {
-                        rules: [
-                          { required: true, message: 'Please select a sensor component' },
-                        ],
-                      })(
                         <Select style={{width: '100%'}} placeholder='Select a sensor component' onChange={(e) => this.updateSensorDataForm('sensorComponent', e)}>
                         {this.props.sensors.map((sensor, index) => {
                             if(sensor.sensorName === this.state.sensorsData.sensorName) {
@@ -187,12 +178,10 @@ class AddNewUseCase extends Component {
                             }
                        })}
                    </Select>
-                      )}
-    
                 </FormItem>
         <FormItem {...formItemLayout} label='Min/Max Value'>
-            <InputNumber  defaultValue={0} min={0} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
-            <InputNumber defaultValue={1} min={1} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('maxValue', e)}/>
+            <InputNumber  defaultValue={0} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('minValue', e)}/>
+            <InputNumber defaultValue={10} style={{width: '50%'}} onChange={(e) => this.updateSensorDataForm('maxValue', e)}/>
             </FormItem>
                     <br />
                 </React.Fragment>
@@ -200,8 +189,6 @@ class AddNewUseCase extends Component {
 
         const newUseCaseForm = (
             <React.Fragment>
-
-           
                 <FormItem {...formItemLayout} label='Name'>
                     {getFieldDecorator('name', {
                         rules: [{ required: true, message: 'Please input a use case name' }],

@@ -53,7 +53,7 @@ export function* authUserSaga(action) {
 
     // get user role
     try {
-        const response = yield axios.get('/users.json');
+        const response = yield axios.get(`/users.json`);
         const fetchedData = [];
         let role;
         for (let key in response.data) {

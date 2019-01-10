@@ -99,6 +99,29 @@
     "imageDesc" : "A fridge image",
     "key" : "nhsfridgetemp",
     "longDesc" : "If you leave the fridge door open, heat is recycled from the room into the refrigerator, then back into the room. A net room temperature increase would result from the heat of the motor that would be constantly running to move energy around in a circle. This makes precious, double-blind research drugs at great risk of becoming spoilt and along with other medical equipment, all of which are vitally important for application to patients within hospitals whose lives depend on the application of working drugs and medicines.",
+    "messages" : [ {
+      "authorName" : "Peter Trott",
+      "date" : "5th Dec 2018 | 17:04 PM",
+      "message" : "Please update sensor values and components",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "title" : "Needs improvement"
+    }, {
+      "authorName" : "Peter Trott",
+      "date" : "9th Dec 2018 | 18:04 PM",
+      "message" : "Very good work on this Use Case - I am very impressed",
+      "profileImage" : "nhsfridge.jpg",
+      "rating" : 4,
+      "title" : "Top Work"
+    }, null, {
+      "authorName" : "Community 2",
+      "date" : "December 13th 2018 | 9:24 PM",
+      "message" : "Congratulations",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "rawDate" : "2018-12-13T21:24:00.185Z",
+      "title" : "Well done all!"
+    } ],
     "name" : "NHS Fridges 💉",
     "sensorsData" : [ {
       "maxValue" : 10,
@@ -106,25 +129,7 @@
       "sensorComponent" : "TMP36",
       "sensorName" : "Temperature Sensor"
     } ],
-    "shortDesc" : "Check the temperature of fridges in University Hospital, Cardiff",
-    "messages" : [
-      {
-        "title": "Needs improvement",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Please update sensor values and components",
-        "rating": 2.5,
-        "date": "5th Dec 2018 | 17:04 PM"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Very good work on this Use Case - I am very impressed",
-        "rating": 4,
-        "date": "9th Dec 2018 | 18:04 PM"
-      }
-    ]
+    "shortDesc" : "Check the temperature of fridges in University Hospital, Cardiff"
   }, {
     "access" : {
       "community" : false,
@@ -145,6 +150,29 @@
     "imageDesc" : "A fridge image",
     "key" : "bathmotion",
     "longDesc" : "Problem: Proprioception. Autism can mess with your sense of balance and your ability to feel what your body is doing. If you aren’t sure of your balance, standing in a slippery tub is scary.",
+    "messages" : [ {
+      "authorName" : "Peter Trott",
+      "date" : "5th Dec 2018 | 17:04 PM",
+      "message" : "Please update sensor values and components",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "title" : "Needs improvement"
+    }, {
+      "authorName" : "Peter Trott",
+      "date" : "9th Dec 2018 | 18:04 PM",
+      "message" : "Very good work on this Use Case - I am very impressed",
+      "profileImage" : "nhsfridge.jpg",
+      "rating" : 4,
+      "title" : "Top Work"
+    }, {
+      "authorName" : "Peter",
+      "date" : "December 13th 2018 | 9:39 PM",
+      "message" : "Great work chaps, keep it up!",
+      "profileImage" : "dog.jpg",
+      "rating" : 5,
+      "rawDate" : "2018-12-13T21:39:17.965Z",
+      "title" : "Excellent work"
+    } ],
     "name" : "Bath Motion Sensor 🛁",
     "sensorsData" : [ {
       "maxValue" : "80",
@@ -152,25 +180,7 @@
       "sensorComponent" : "GP2Y0A60SZLF",
       "sensorName" : "Motion Sensor"
     } ],
-    "shortDesc" : "Detect if you slip under the water when in the bath",
-    "messages" : [
-      {
-        "title": "Needs improvement",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Please update sensor values and components",
-        "rating": 2.5,
-        "date": "5th Dec 2018 | 17:04 PM"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Very good work on this Use Case - I am very impressed",
-        "rating": 4,
-        "date": "9th Dec 2018 | 18:04 PM"
-      }
-    ]
+    "shortDesc" : "Detect if you slip under the water when in the bath"
   }, {
     "access" : {
       "community" : true,
@@ -191,6 +201,21 @@
     "imageDesc" : "A fridge image",
     "key" : "watercomposition",
     "longDesc" : "Water pollution is the contamination of water bodies, usually as a result of human activities. Water bodies include for example lakes, rivers, oceans, aquifers and groundwater. Water pollution results when contaminants are introduced into the natural environment.",
+    "messages" : [ {
+      "authorName" : "Peter Trott",
+      "date" : "11th Dec 2018",
+      "message" : "Excellent work on the Use Case",
+      "profileImage" : "beach.jpg",
+      "rating" : 5,
+      "title" : "Excellent Work"
+    }, {
+      "authorName" : "Peter Trott",
+      "date" : "9th Dec 2018",
+      "message" : "Top work on the Use Case",
+      "profileImage" : "nhsfridge.jpg",
+      "rating" : 4,
+      "title" : "Top Work"
+    } ],
     "name" : "Water Composition 💦",
     "sensorsData" : [ {
       "maxValue" : 72,
@@ -198,25 +223,7 @@
       "sensorComponent" : "HC-SR501",
       "sensorName" : "Motion Sensor"
     } ],
-    "shortDesc" : "Check for contamination in the River Cynon by analysing composition of the chemicals in the water",
-    "messages" : [
-      {
-        "title": "Excellent Work",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Excellent work on the Use Case",
-        "rating": 5,
-        "date": "11th Dec 2018"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Top work on the Use Case",
-        "rating": 4,
-        "date": "9th Dec 2018"
-      }
-    ]
+    "shortDesc" : "Check for contamination in the River Cynon by analysing composition of the chemicals in the water"
   }, {
     "access" : {
       "Trainer" : true,
@@ -233,6 +240,21 @@
     "imageDesc" : "road-safety",
     "key" : "road safety in wales",
     "longDesc" : "Road traffic safety refers to the methods and measures used to prevent road users from being killed or seriously injured. Typical road users include: pedestrians, cyclists, motorists, vehicle passengers, horse-riders and passengers of on-road public transport",
+    "messages" : [ {
+      "authorName" : "Bill Yott",
+      "date" : "1st Dec 2018 | 11:43 PM",
+      "message" : "Hi All, has anyone noticed how the recent council developments off the M4? Shocking! 😡",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "title" : "Manic traffic leading to more Road Pollution!!!"
+    }, {
+      "authorName" : "Sarah Scott",
+      "date" : "2nd Dec 2018 | 10:04 AM",
+      "message" : "Hi Bill, yes I noticed on the other day as well. Very disappointed with Newport Council...",
+      "profileImage" : "cat.jpg",
+      "rating" : 4,
+      "title" : "More frustrations with Council"
+    } ],
     "name" : "Road Safety ⚠️",
     "numberSensors" : 5,
     "sensorsData" : [ {
@@ -241,28 +263,10 @@
       "sensorComponent" : "ADXL362",
       "sensorName" : "Accelerometer Sensor"
     } ],
-    "shortDesc" : "Check the safety of the roads in Wales, including potholes and other aspects of road safety",
-    "messages" : [
-      {
-        "title": "Needs improvement",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Please update sensor values and components",
-        "rating": 2.5,
-        "date": "5th Dec 2018 | 17:04 PM"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Very good work on this Use Case - I am very impressed",
-        "rating": 4,
-        "date": "9th Dec 2018 | 18:04 PM"
-      }
-    ]
+    "shortDesc" : "Check the safety of the roads in Wales, including potholes and other aspects of road safety"
   }, {
     "access" : {
-      "listedUsers" : [ "kLQWic2cb4W7Y2DEnxuP0VEZYjp1", "NT9mgymeBqVZXg0LLNQ0gVFrP0w2", "l5AExuLCwlOwevsTCBI8f27q3Vt1", "WcgsnhsRsiSxRykCmrnE2Vv4Pwe2", "kwLX0IevWZMyQmhESLU4CMGj2gO2" ]
+      "listedUsers" : [ "kwLX0IevWZMyQmhESLU4CMGj2gO2", "l5AExuLCwlOwevsTCBI8f27q3Vt1", "WcgsnhsRsiSxRykCmrnE2Vv4Pwe2", "7rjPo6g2nKaXGkbf3Qin7qxBZ0i1" ]
     },
     "arduino" : "tmp36.jpg",
     "arduinoName" : "TMP36",
@@ -276,6 +280,29 @@
     "imageDesc" : "beach party 🌞",
     "key" : "safe in the sun",
     "longDesc" : "Be safe in the sunBe safe in the sunBe safe in the sunBe safe in the sunBe safe in the sunBe safe in the sun",
+    "messages" : [ {
+      "authorName" : "Peter Trott",
+      "date" : "5th Dec 2018 | 17:04 PM",
+      "message" : "Please update sensor values and components",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "title" : "Needs improvement"
+    }, {
+      "authorName" : "Peter Trott",
+      "date" : "9th Dec 2018 | 18:04 PM",
+      "message" : "Very good work on this Use Case - I am very impressed",
+      "profileImage" : "nhsfridge.jpg",
+      "rating" : 4,
+      "title" : "Top Work"
+    }, {
+      "authorName" : "Peter",
+      "date" : "December 13th 2018 | 11:29 PM",
+      "message" : "Brilliant to see such an improvement in your work. Very well done guys!",
+      "profileImage" : "dog.jpg",
+      "rating" : 5,
+      "rawDate" : "2018-12-13T23:29:06.459Z",
+      "title" : "Fantastic Work"
+    } ],
     "name" : "Safe in the Sun 🌞",
     "numberSensors" : 5,
     "sensorsData" : [ {
@@ -284,25 +311,7 @@
       "sensorComponent" : "NXT",
       "sensorName" : "Light Sensor"
     } ],
-    "shortDesc" : "Be safe in the sun",
-    "messages" : [
-      {
-        "title": "Needs improvement",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Please update sensor values and components",
-        "rating": 2.5,
-        "date": "5th Dec 2018 | 17:04 PM"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Very good work on this Use Case - I am very impressed",
-        "rating": 4,
-        "date": "9th Dec 2018 | 18:04 PM"
-      }
-    ]
+    "shortDesc" : "Be safe in the sun"
   }, {
     "access" : {
       "listedUsers" : [ "kwLX0IevWZMyQmhESLU4CMGj2gO2", "9LPYnckydnMADGSSVnzZxeDwDL83" ]
@@ -314,11 +323,34 @@
       "senders" : [ "lll@l.com" ],
       "subject" : "Email subject"
     },
-    "id" : 5,
+    "id" : "5",
     "image" : "cat.jpg",
     "imageDesc" : "hello",
     "key" : "testing 234",
     "longDesc" : "testingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtestingtesting",
+    "messages" : [ {
+      "authorName" : "Peter Trott",
+      "date" : "5th Dec 2018 | 17:04 PM",
+      "message" : "Please update sensor values and components",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "title" : "Needs improvement"
+    }, {
+      "authorName" : "Peter Trott",
+      "date" : "9th Dec 2018 | 18:04 PM",
+      "message" : "Very good work on this Use Case - I am very impressed",
+      "profileImage" : "nhsfridge.jpg",
+      "rating" : 4,
+      "title" : "Top Work"
+    }, {
+      "authorName" : "Peter",
+      "date" : "December 13th 2018 | 10:00 PM",
+      "message" : "Very pleasing work!",
+      "profileImage" : "dog.jpg",
+      "rating" : 4.5,
+      "rawDate" : "2018-12-13T22:00:59.277Z",
+      "title" : "Keep it going"
+    } ],
     "name" : "Cat Life",
     "numberSensors" : 1,
     "sensorsData" : [ {
@@ -327,25 +359,7 @@
       "sensorComponent" : "GP2Y0D805Z0F",
       "sensorName" : "Motion Sensor"
     } ],
-    "shortDesc" : "🙀",
-    "messages" : [
-      {
-        "title": "Needs improvement",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Please update sensor values and components",
-        "rating": 2.5,
-        "date": "5th Dec 2018 | 17:04 PM"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Very good work on this Use Case - I am very impressed",
-        "rating": 4,
-        "date": "9th Dec 2018 | 18:04 PM"
-      }
-    ]
+    "shortDesc" : "🙀"
   }, {
     "access" : {
       "listedUsers" : [ "kwLX0IevWZMyQmhESLU4CMGj2gO2", "RPlPc2x9EDWLtvHzsXR0Zl4HEDk1" ]
@@ -357,34 +371,55 @@
       "senders" : [ "t@t.com" ],
       "subject" : "Email subject"
     },
-    "id" : 6,
+    "id" : "6",
     "image" : "dog.jpg",
     "key" : "who's a good boy? 🐶",
     "longDesc" : "Dogs need walks for both exercise and mental stimulation. ... Generally, people walk their dog for 4 reasons: elimination, mental stimulation, exercise, and training. Dogs like to go for walks to get outdoors, sniff and engage with their environment, exercise, and perhaps socialise with people and dogs outside the home.",
+    "messages" : [ {
+      "authorName" : "Peter Trott",
+      "date" : "5th Dec 2018 | 17:04 PM",
+      "message" : "Please update sensor values and components",
+      "profileImage" : "beach.jpg",
+      "rating" : 2.5,
+      "title" : "Needs improvement"
+    }, {
+      "authorName" : "Peter Trott",
+      "date" : "9th Dec 2018 | 18:04 PM",
+      "message" : "Very good work on this Use Case - I am very impressed",
+      "profileImage" : "nhsfridge.jpg",
+      "rating" : 4,
+      "title" : "Top Work"
+    } ],
     "name" : "Who's a Good Boy? 🐶",
     "numberSensors" : 1,
     "sensorsData" : [ {
       "sensorName" : ""
     } ],
-    "shortDesc" : "Woof woof",
-    "messages" : [
-      {
-        "title": "Needs improvement",
-        "profileImage": "beach.jpg",
-        "authorName": "Peter Trott",
-        "message": "Please update sensor values and components",
-        "rating": 2.5,
-        "date": "5th Dec 2018 | 17:04 PM"
-      },
-      {
-        "title": "Top Work",
-        "profileImage": "nhsfridge.jpg",
-        "authorName": "Peter Trott",
-        "message": "Very good work on this Use Case - I am very impressed",
-        "rating": 4,
-        "date": "9th Dec 2018 | 18:04 PM"
-      }
-    ]
+    "shortDesc" : "Woof woof"
+  }, null, {
+    "access" : {
+      "listedUsers" : [ "kwLX0IevWZMyQmhESLU4CMGj2gO2" ]
+    },
+    "arduino" : "tmp36.jpg",
+    "arduinoName" : "TMP36",
+    "email" : {
+      "body" : "Email body",
+      "senders" : [ "t@t.com" ],
+      "subject" : "Email subject"
+    },
+    "id" : "7",
+    "image" : "road.jpg",
+    "key" : "dsfdfsd",
+    "longDesc" : "dsfsdfsdfsdf",
+    "messages" : [ "" ],
+    "name" : "dsfdfsd",
+    "sensorsData" : [ {
+      "maxValue" : 12,
+      "minValue" : 11,
+      "sensorComponent" : "LSM303C",
+      "sensorName" : "IMU Sensor"
+    } ],
+    "shortDesc" : "dsfdsfsdf"
   } ],
   "users" : [ {
     "accountCreatedDate" : "28th November 2018",

@@ -6,7 +6,7 @@ import * as actions from '../actions/index';
 export function* fetchSensorsDataSaga(action) {
     yield put(actions.fetchSensorsDataStart());
     try {
-        const response = yield axios.get('/sensors.json');
+        const response = yield axios.get(`/sensors.json?auth=${localStorage.getItem('token')}`);
         const fetchedData = [];
         for (let key in response.data) {
             fetchedData.push({

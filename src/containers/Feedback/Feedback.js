@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
-import {Avatar, Form, Icon, List, Input, Rate, Button, Divider, Pagination, notification} from 'antd';
+import {Avatar, Form, Icon, List, Input, Rate, Button, Divider, Pagination, notification, Tooltip} from 'antd';
 import {connect} from "react-redux";
 import dateformat from 'dateformat';
 import * as actions from '../../store/actions/index';
 import classes from './Feedback.module.css';
 import {updateObject} from "../../store/utility";
+import * as text from "../../assets/staticText";
 
-
-let id;
 let userDetails;
 let userName;
 let userEmail;
 let profileImage;
 let messageId;
+let id;
 
 const userId = localStorage.getItem("userId");
 
@@ -45,6 +45,7 @@ class Feedback extends Component {
 
     componentWillReceiveProps(nextProps) {
         id = this.props.match.params.id;
+
         if (!nextProps.loading) {
             this.setState({
                 useCase: nextProps.useCases[id]
@@ -79,7 +80,8 @@ class Feedback extends Component {
     };
 
     handleSubmit = () => {
-      const userData = {
+
+        const userData = {
             'authorName': userName,
             'date': dateformat(new Date(), "mmmm dS yyyy | h:MM TT"),
             'profileImage': profileImage,
@@ -87,6 +89,9 @@ class Feedback extends Component {
         };
         messageId = this.state.useCase.messages.length;
         const messageObject = {...userData, ...this.state.newMessage};
+
+        console.log(this.props);
+        console.log(id);
       this.props.onPostMessage(id, messageId, messageObject);
       if(this.props.savedMessage) {
           this.setState({
@@ -106,7 +111,7 @@ class Feedback extends Component {
 
         userDetails = this.props.users.map((user, index) => {
             if (user.userUUID === userId) {
-                [userName, userEmail, id, profileImage] = [user.name, user.email, user.id, user.profileImage];
+                [userName, userEmail, profileImage] = [user.name, user.email, user.profileImage];
             }
         });
 
@@ -130,12 +135,16 @@ class Feedback extends Component {
               </span>
         );
 
+        const questionMarkStyle = {position: 'absolute', fontSize: '35px', left: '645px',top: '0px'};
+
+
         if(this.state.useCase.messages !== undefined) {
             this.state.useCase.messages.map((message) => {
                 return useCaseMessages.push(message);
             });
         }
         const newComment = <React.Fragment>
+            <h3>Add new Feedback</h3>
             <FormItem {...formItemLayout} label='Title'>
                 <Input style={{width: '150%'}} value={this.state.newMessage.title} onChange={(e) => this.updateForm('title', e)}/>
             </FormItem>
@@ -145,7 +154,16 @@ class Feedback extends Component {
             <FormItem {...formItemLayout} label='Rating' className={classes.text}>
                 <Rate allowHalf defaultValue={2.5} value={this.state.newMessage.rating} onChange={(e) => this.updateFormValue('rating', e)}/>
             </FormItem>
+        </React.Fragment>;
 
+        const newForumPost = <React.Fragment>
+            <h3>Add new Post</h3>
+            <FormItem {...formItemLayout} label='Title'>
+                <Input style={{width: '150%'}} value={this.state.newMessage.title} onChange={(e) => this.updateForm('title', e)}/>
+            </FormItem>
+            <FormItem {...formItemLayout} label='Message' className={classes.text}>
+                <textarea rows={4} value={this.state.newMessage.message} onChange={(e) => this.updateForm('message', e)}/>
+            </FormItem>
         </React.Fragment>;
 
         const button = <Button type="primary" htmlType="submit" onClick={() => this.handleSubmit()} loading={this.props.messageLoading}>Post</Button>;
@@ -155,12 +173,12 @@ class Feedback extends Component {
               if(msg !== null) {
                   return ( <List.Item
                       key={index}
-                      actions={[<IconText type="clock-circle" text={` ${msg.date}`} />, <Rate allowHalf disabled value={msg.rating} />]}
+                      actions={[<IconText type="clock-circle" text={` ${msg.date}`} />, localStorage.getItem("role") === 'Community' ? null : <Rate allowHalf disabled value={msg.rating} />]}
                          >
                       <List.Item.Meta
                           avatar={<Avatar src={`/images/${msg.profileImage}`} />}
                           title={msg.title}
-                          description={`Trainer: ${msg.authorName}`}
+                          description={localStorage.getItem("role") === 'Community' ? `Member: ${msg.authorName}` : `Trainer: ${msg.authorName}`}
                                                         />
                       <p style={{color: 'black', fontSize: '14px'}}>{msg.message}</p>
                   </List.Item> )
@@ -168,7 +186,10 @@ class Feedback extends Component {
 
         return (
             <React.Fragment>
-                <h2>Feedback</h2>
+                <h2>{localStorage.getItem("role") === 'Community' ? 'Forum' : 'Feedback'}</h2>
+                <Tooltip title={localStorage.getItem("role") === 'Community' ? text.communityForum : localStorage.getItem("role") === 'Trainer' ? text.feedbackTrainer : text.feedbackApprentice} style={{display: 'block'}}>
+                    <Icon type="question-circle" theme="filled" style={questionMarkStyle}/>
+                </Tooltip>
                 <List
                     loading={this.props.loading}
                     itemLayout="vertical"
@@ -187,10 +208,9 @@ class Feedback extends Component {
 
                 </List>
                 <Divider />
-                {localStorage.getItem('role') === 'Trainer' && !this.props.loading ?
+                {localStorage.getItem('role') !== 'Apprentice' && !this.props.loading ?
                     <div className={classes.Comment}>
-                        <h3>Add new Feedback</h3>
-                        {newComment}
+                        {localStorage.getItem("role") === 'Community' ? newForumPost : newComment}
                         {button}
                     </div> : null
                 }

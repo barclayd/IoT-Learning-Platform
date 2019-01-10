@@ -11,7 +11,7 @@ export function fetchUseCase () {
 export function* fetchUseCaseDataSaga(action) {
     yield put(actions.fetchUseCaseDataStart());
     try {
-        const response = yield call(fetchUseCase)
+        const response = yield call(fetchUseCase);
         const fetchedData = [];
         for (let key in response.data) {
             fetchedData.push({

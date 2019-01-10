@@ -1,7 +1,9 @@
 import React from 'react'
+import styles from './Content.module.scss';
 
 const Content = (props) => {
     let data;
+    let image;
     Object.keys(props.content).forEach(function(key){
         if(props.match.params.title === props.content[key].title){
 
@@ -16,7 +18,10 @@ const Content = (props) => {
     return(
         <div>
             <h1>{data.title}</h1>
-            {data.text.map((paragraph) =>{
+            <p>{data.imageDesc}</p>
+            <img className={styles.image} src={"/images/" + data.image} alt={data.image} width="600" height="300" />
+            {
+                data.text.map((paragraph) =>{
                 return(
                     <p>{paragraph}</p>
                 )

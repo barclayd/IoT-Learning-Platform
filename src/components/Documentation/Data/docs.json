@@ -3,18 +3,35 @@
     {
         "title" : "Getting Started",
         "text" : [
-            "This web-app is a learning platform for apprentices learning to use IoT(Internet of Things) which will contain real life use cases so that they can see how IoT can be applied"
-        ]
+            "This web-app is a learning platform for apprentices learning to use IoT(Internet of Things) which will contain real life use cases so that they can see how IoT can be applied.",
+            "A Firmata script is needed to be run on the Arduino if the Arduino is completely new so that the web-app can find the sensors plugged in the Arduino",
+            "This can be done by going to the Arduino desktop app and under \"File\" > \"Examples\" > \"Firmata\" and then select \"StandardFirmata\"",
+            "Then verify and upload the script which can be found in the top left of the Arduino desktop app"
+        ],
+        "image" : "",
+        "imageDesc" : ""
     },
     "Core Features":
     {
         "title" : "Core Features",
         "text" : [
             "Email Notification",
+            "The platform leverages Nodemailer library to build a notification email system that is mainly used now for sending warning messages when a sensor reading goes out side of the range specified  in the use-case/settings page.",
             "Admin Area",
+            "Admin Area is only available for the account which has the admin right.  In the Admin Area, administrators can control and manage the content and users of the platform. For instance, add new use case, edit existing use cases, edit sensor details, user details and associate use cases to different users.",
             "Authentication",
-            "Use Cases"
-        ]
+            "The platform supports private login for three different types of users; which are Apprentices, Trainers and login for Communities.  The role of a Trainer is to act as an administrator and a facilitator in this platform. Trainers has privileges to add new use cases, edit users' permissions such as giving them access to new use cases. While the role of Apprentices accounts is to act as learner who wants to learn more about real-life use cases which involves the use of IoT devices. Whereas the role of a Communities accounts is to act as a shared account that has the same privileges as an apprentice account.",
+            "Use Cases",
+            "The platform supports wide range of interesting use cases, small projects, to play and learn more about how sensors work in IoT devices. Each use case describes and explained what it is about and how to configure and connect your Arduino to start getting real time readings from sensors. Trainers are the only ones who can create use cases which can be done in the Admin Area page. Use cases can also be edited in the use case settings.",
+            "Customised User Experience",
+            "Trainers have full access to the system with the ability to create, update and delete all Use Cases. Trainers can monitor all users from a glance in the Admin Area and change key permissions such as who can access a Use Case and change a user’s role. Apprentices and Communities, on the other hand, can only view Use Cases they have been granted access to and only update certain values of a Use Case such as Email and Sensor settings",
+            "User Profiles",
+            "Each user will have access to his/her profile to manage their personal details such as user name, profile picture and know more about their account like the date when this account was created. users are able user names and also select profile pictures where other learners can recognize them easily in the platform for example in the feedback section of each use case",
+            "Tips and tricks",
+            "The Informative question marks act as a prompt to assist in guiding the user through the application. Hovering over a question mark displays dynamic text (based on state of the application and the user's role) to display key information."
+        ],
+        "image" : "",
+        "imageDesc" : ""
     },
     "Temperature":
     {
@@ -26,42 +43,77 @@
             "LM35",
             "DS18B20",
             "DHT11_I2C_NANO_BACKPACK"
-        ]
+        ],
+        "image" : "tmp36.jpg",
+        "imageDesc" : "This is how an temperature sensor in an Arduino Board should be set up"
     },
     "Motion":
     {
         "title" : "Motion Sensor",
         "text" : [
-            "This is a motion detection sensor."
-        ]
+            "This is a motion detection sensor.",
+            "Sensor Components",
+            "HC-SR501",
+            "GP2Y0D805Z0F",
+            "GP2Y0D810Z0F",
+            "GP2Y0A60SZLF"
+        ],
+        "image" : "motion.png",
+        "imageDesc" : "This is how a passive infraRed motion sensor should be set up in an Arduino Board"
     },
     "Hygrometers":
     {
         "title" : "Hygrometers Sensor",
         "text" : [
-            "Hygrometers are used to measure absolute and relative humidity."
-        ]
+            "Hygrometers are used to measure absolute and relative humidity.",
+            "Sensor Components",
+            "BME280",
+            "HTU21D",
+            "HIH6130",
+            "TH02"
+        ],
+        "image" : "HTU21D.png",
+        "imageDesc" : "This is how a HTU21D Hygrometer sensor should be set up in an Arduino Board"
     },
     "Barometers":
     {
         "title" : "Barometers Sensor",
         "text" : [
-            "A baromoter is an instrument measuring atmospheric pressure, used especially in forecasting the weather and determining altitude."
-        ]
+            "A baromoter is an instrument measuring atmospheric pressure, used especially in forecasting the weather and determining altitude.",
+            "Sensor Components",
+            "BMP180",
+            "MPL115A2",
+            "MPL3115A2",
+            "MS5611"
+        ],
+        "image" : "bmp180.png",
+        "imageDesc" : "This is how a BMP180 Barometer sensor should be set up in an Arduino Board"
     },
     "Light":
     {
         "title" : "Light Sensor",
         "text" : [
-            "Light sensors are used to measure ambient or direct light intensity."
-        ]
+            "Light sensors are used to measure ambient or direct light intensity.",
+            "Sensor Components",
+            "TSL2561",
+            "EV3",
+            "NXT"
+        ],
+        "image" : "light.png",
+        "imageDesc" : "This is how a Light sensor should be set up in an Arduino Board"
     },
     "Accelerometers":
     {
         "title" : "Accelerometers Sensor",
         "text" : [
-            "Accelerometer is used for measuring the acceleration of a moving or vibrating body."
-        ]
+            "Accelerometer is used for measuring the acceleration of a moving or vibrating body.",
+            "Sensor Components",
+            "ADXL335",
+            "ADXL362",
+            "LIS344AL"
+        ],
+        "image" : "adxl335.png",
+        "imageDesc" : "This is how a ADXL335 accelerometer sensor should be set up in an Arduino Board"
     }
 
 

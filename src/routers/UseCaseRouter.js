@@ -19,6 +19,7 @@ const UseCaseRouter = (props) => {
                 <Route path={"/usecases/:id/readings"}  render={props => <Readings useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/historicData"}  render={props => <HistoricData useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/feedback"}  render={props => <Feedback useCaseData={useCase} {...props} />}/>
+                <Route path={"/usecases/:id/forum"}  render={props => <Feedback useCaseData={useCase} {...props} />}/>
                 <Route path={"/usecases/:id/settings"}  render={props => <Settings useCaseData={useCase} {...props} />}/>
             </Switch>
 )};
