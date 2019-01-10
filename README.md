@@ -15,6 +15,7 @@ The aim of the project is to build a generalised learning platform that involves
 ## Screenshots and Demos
 
 ![Add a New Use Case](https://user-images.githubusercontent.com/39765499/50987356-58c58100-1501-11e9-80a2-5997eaad5117.gif)
+<img width="1000" alt="Add a New Use Case" src="https://user-images.githubusercontent.com/39765499/50987356-58c58100-1501-11e9-80a2-5997eaad5117.gif">
 
 
 **GIF of updating Use Case**
