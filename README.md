@@ -1,3 +1,96 @@
+
+## IoT - Team 1
+###### 10th January 2019
+
+View this project live: https://team1-iot.firebaseapp.com/
+
+## Motivation
+
+The aim of the project, which will help Data Work Wales in achieving its objectives, is to build a modularised learning platform in the form of a web application to assist Trainers, Apprentices and Communities in developing sensor based, Internet of Things Use Cases – all managed through a centralised learning platform. Peter Trott, the Managing Director, stated three example Use Cases; Monitoring of Fridge Temperatures in a hospital ward, assisting people with autism to detect if they slip under the water when in the bath and thirdly, monitoring heavy metal pollution for contamination in rivers.
+
+The aim of the project is to build a generalised learning platform that involves the use of an Arduino to feed data using sensors with live and historic data graphs with the ability to produce a notification based on given criteria (email/SMS).
+
+## Code style
+  [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+
+## Screenshots and GIFs
+
+**GIF of adding Use Case**
+
+**GIF of updating Use Case**
+
+**GIF of updating adding user permissions in Admin Area**
+
+**GIF of success notification**
+
+**GIF of adding feedback**
+
+##### Dashboard
+<img width="1552" alt="screenshot 2019-01-10 at 16 13 22" src="https://user-images.githubusercontent.com/39765499/50981383-c61de580-14f2-11e9-9da8-cf9d6bb4f344.png">
+##### Use Case - Configure Your Adrudino
+<img width="1552" alt="screenshot 2019-01-10 at 16 14 23" src="https://user-images.githubusercontent.com/39765499/50981398-d3d36b00-14f2-11e9-81f9-4e24d2b17a5d.png">
+##### Use Case - Settings
+<img width="1552" alt="screenshot 2019-01-10 at 16 14 47" src="https://user-images.githubusercontent.com/39765499/50981457-ee0d4900-14f2-11e9-9e7b-41c07a70534a.png">
+##### Admin Area
+<img width="1552" alt="screenshot 2019-01-10 at 16 15 08" src="https://user-images.githubusercontent.com/39765499/50981473-f1a0d000-14f2-11e9-9b6d-fec093000fa9.png">
+##### Add New Use Case
+<img width="1552" alt="screenshot 2019-01-10 at 16 16 13" src="https://user-images.githubusercontent.com/39765499/50981525-1301bc00-14f3-11e9-8f71-285791eef939.png">
+
+
+## Tech/framework used
+
+<b>Built with</b>
+
+* Hardware - Arduino UNO board with provided sensors (e.g. thermometer)
+* Database - Firebase: https://team1-iot.firebaseio.com/
+* IoT framework - johnny-five
+* Backend - Node.js server
+* Frontend - React.js client
+* State Management – Redux, Redux Saga, Redux Thunk
+* Routing - react-router
+* Charting libraries - EON.js, Chart.js
+* HTTP Client - axios
+* Authentication - Firebase Auth API
+* Hosting: Firebase
+* Real-time data transfer - websockets
+* Email framework – nodemailer
+* Styling: Ant.d, node-sass, normalize.css
+* Development: Redux Chrome Tools, Nodemon
+* Accessibility: jsx-a11y
+* Testing: Enzyme
+
+## Features
+
+- [x] Authentication
+- [x] Customised User Experience
+- [x] User Profiles
+- [x] Admin Area
+- [x] Use Cases
+- [x] Email notifications
+- [x] Full range of CRUD operations
+- [x] Tips and tricks
+- [x] Feedback system
+- [x] Community Forum
+- [x] Documentation
+- [x] Form validation
+- [x] Highly dynamic and customised design
+- [x] Notification system generated when sensors values fall above/below range
+- [x] Form validation
+
+## Design and Usability Decisions
+
+Clean, high contrast was implemented to ensure that it provided an optimum experience for users who are visually impaired
+
+## Supported Accessibility
+* Autism adapted design
+* Every care has been taken to implement as many feature as possible to ensure the most optimum experience for visually impaired users
+* Testing with Chrome Vox
+* Implementation of React a11y library, use of aria-label and React features for enhanced screen reading compatability
+
+## Styling Decisions
+
+Styling has been primarily achieved through use of an external library – [Ant Design](https://ant.design/). This has been further customised with use of inline, dynamic css styling and css/scss.module files which have allowed us to style components and functionality further to our own choosing. Alternative options styling that we could have chosen include a variety of other frameworks, such as React-Material-UI or Boostrap.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -25,13 +118,7 @@ Alternatively, you can run 'node server/index' from terminal.
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
+It correctly bundles React in production mode and optimizes the build for the best performance, ready for deployment to Firebase
 - - - -
 
 ### `scripts/StandardFirmata`
@@ -45,33 +132,94 @@ On Arduino IDE, go to Tools > Port and ensure that the correct board (Arduino Un
 2. lternatively, on the IDE. Open File > Example > Firmata > StandardFirmata
 3. Click the upload (right arrow) button and wait for a message from the IDE displaying "Done uploading"
 4. Close the IDE
-
-
 - - - -
 
-## Components
+## Setting up Firebase
+
+1. Create an account for Firebase
+2. Import firebase.json from Server/data/Firebase/Firebase.json
+3. Edit baseURL from server/axios-instance to the url of the database you created in firebase.
+
+## Installation of Client
+Provide step by step series of examples and explanations about how to get a development env running.
+
+```sh
+$ npm install
+$ npm start
+```
+
+## How to use the Web App
+
+As a Trainer
+
+1. Login using these credentials (email: [t@t.com](mailto:t@t.com), pass: testing).
+2. Create new use case at the bottom of the main menu
+3. Edit use cases by clicking on a use case and go to the settings section
+4. Edit user details in Admin Area
+5. Add new feedback for a Use Case
+6. Change the list of support sensors in the Sensors tab in Admin Area
+7. Update details, change role and delete users from Users tab in Admin Area
+
+The only way to create a new trainer account is through Admin Area page accessed by the [t@t.com](mailto:t@t.com) account. Find the user you want to change its role to a trainer in the Users section from the right-side menu. Then change the role of that user from Apprentice to a Trainer. This user now has all the privileges [t@t.com](mailto:t@t.com) has.
+
+Go to [https://console.firebase.google.com](https://console.firebase.google.com)
+
+<Login in using these credentials (username: [nsa.team1.iot@gmail.com](mailto:nsa.team1.iot@gmail.com), pass: 123123q1)
+
+As an Apprentice
+
+1. Login/sign up to apprentice user account
+2. Can only look at use cases assigned by trainer
+3. Look at sensor readings in the use case page
+4. Can change email and sensor settings
+
+As a Community
+
+ - Login/sign up to community user account – select community mode and select Newport from the dropdown list. Password: newport16
+ - Can only look at the use cases associated with the community
+ - Look at sensor readings in the use case page
+ - Can change email and sensor settings
+ - Post messages on the community forum page
+
+## Installed Packages
+
+ - [Antd](https://electron.atom.io)
+ - [Axios](https://github.com/axios/axios)
+ - [bootstrap](https://electron.atom.io)
+ - [dateFormat](https://github.com/felixge/node-dateformat)
+  - [EON](https://github.com/pubnub/eon)
+ - [Nodemailer](https://electron.atom.io)
+  - [Nodemon](https://github.com/remy/nodemon)
+  - [PropTypes](https://electron.atom.io)
+  - [React-App-Rewired](https://github.com/timarney/react-app-rewired)
+ - [React-Redux](https://github.com/reduxjs/react-redux/)
+ - [React-Router-Dom](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/api/Link.md)
+ - [React a11y](https://github.com/reactjs/react-a11y)
+  - [React Chart JS 2](https://github.com/jerairrest/react-chartjs-2)
+  - [ReduxSaga](https://github.com/redux-saga/redux-saga)
+  - [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+ - [Redux](https://redux.js.org/)
+ - [Socket.io](https://socket.io/)
+ - [Socket.io-client](https://socket.io/)
 
 
-### contianers
-* UseCasesCardsList
-* UseCase
-* HistoricData
-* TemperatureData
+## Tests and Test Strategy
 
-### components
-* UseCaseCard
-* Navigation
-* Toolbar
+Jest and Enzyme were implemented to test the functionality of components through component testing and snapshots. Jest was also used to testing Redux.
 
-### store
-* actions
-* reducers
+## Organisation of Code
 
-### shared
+**React frontend**
 
-* serverUtility
+React frontend was structured using best practise methods. Components hold all stateless, functional components used in the project whereas Containers hold all stateful, class based components. Routers holds all routing for the application. Store hold all actions, reducers and sagas used within the implementation of advanced Redux in the project.
 
-### hoc
-* Layout
-* asyncComponent
+**Node.js backend**
 
+Node.js app was structured with a models folder to hold all the data-related logic that used within the application - including the retrieval of data from Arudino, sending off data to React frontend using websockets and sending sensor data to Firebase.
+
+
+## Plans for expanding the project
+
+ - Enhanced Security
+ - Notifcation system
+ - Improved feedback system
