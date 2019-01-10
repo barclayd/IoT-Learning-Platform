@@ -1,4 +1,3 @@
-
 ## IoT - Team 1
 ###### 10th January 2019
 
@@ -27,12 +26,16 @@ The aim of the project is to build a generalised learning platform that involves
 
 ##### Dashboard
 <img width="1552" alt="screenshot 2019-01-10 at 16 13 22" src="https://user-images.githubusercontent.com/39765499/50981383-c61de580-14f2-11e9-9da8-cf9d6bb4f344.png">
+
 ##### Use Case - Configure Your Adrudino
 <img width="1552" alt="screenshot 2019-01-10 at 16 14 23" src="https://user-images.githubusercontent.com/39765499/50981398-d3d36b00-14f2-11e9-81f9-4e24d2b17a5d.png">
+
 ##### Use Case - Settings
 <img width="1552" alt="screenshot 2019-01-10 at 16 14 47" src="https://user-images.githubusercontent.com/39765499/50981457-ee0d4900-14f2-11e9-9e7b-41c07a70534a.png">
+
 ##### Admin Area
 <img width="1552" alt="screenshot 2019-01-10 at 16 15 08" src="https://user-images.githubusercontent.com/39765499/50981473-f1a0d000-14f2-11e9-9b6d-fec093000fa9.png">
+
 ##### Add New Use Case
 <img width="1552" alt="screenshot 2019-01-10 at 16 16 13" src="https://user-images.githubusercontent.com/39765499/50981525-1301bc00-14f3-11e9-8f71-285791eef939.png">
 
