@@ -4,15 +4,15 @@ const Content = (props) => {
     let data;
     Object.keys(props.content).forEach(function(key){
         if(props.match.params.title === props.content[key].title){
-            
+
             data = props.content[key];
         }
-    })
+    });
 
     if(props.match.path === "/documentation"){
         data = props.content["Get Started"];
     }
-    
+
     return(
         <div>
             <h1>{data.title}</h1>
@@ -23,6 +23,6 @@ const Content = (props) => {
             })}
         </div>
     )
-}
+};
 
 export default Content;

@@ -3,14 +3,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import { Card } from 'antd';
-
-
-import ReactRouterEnzymeContext from 'react-router-enzyme-context';
-
-
 import UseCaseCard from './UseCaseCard';
-// import SensorLive from '../../components/LiveSensor/LiveSensor';
-
 
 configure({adapter: new Adapter()});
 
@@ -58,22 +51,22 @@ const mockedUseCase = {
       "sensorName" : "Temperature Sensor"
     } ],
     "shortDesc" : "Check the temperature of fridges in University Hospital, Cardiff"
-  }
+  };
 
   describe('<UseCard />', () => {
-    let wrapper
+    let wrapper;
     // before if test "it()" do the below
     beforeEach(() => {
         wrapper = shallow(<UseCaseCard isLoading={false} {...mockedUseCase} />);
-    })
+    });
 
     it('should renders correctly', () => {
         expect(toJson(wrapper)).toMatchSnapshot();
-    })
+    });
 
     it('component should render the correct useCaseCard values', () => {
         const card = wrapper.find('.card');
         expect(card.find(Meta).prop('title')).toEqual(mockedUseCase.name);
         expect(card.find(Meta).prop('description')).toEqual(mockedUseCase.shortDesc);
     })
-})
+});
