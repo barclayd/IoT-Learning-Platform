@@ -14,25 +14,25 @@ The aim of the project is to build a generalised learning platform that involves
 
 ## Demos and Screenshots
 
-##### Trainer View: Adding a New Use Case
+#### Trainer View: Adding a New Use Case
 ![Add a New Use Case](https://user-images.githubusercontent.com/39765499/50987356-58c58100-1501-11e9-80a2-5997eaad5117.gif)
 
-## Updating Settings of a Use Case
+#### Updating Settings of a Use Case
 ![Update Settings](https://user-images.githubusercontent.com/39765499/50998798-79e99a00-1520-11e9-9c74-2421f29de635.gif)
 
-## Trainer View: Admin Area - Adding New Users to a Use Case
+#### Trainer View: Admin Area - Adding New Users to a Use Case
 ![Adding New Users to a Use Case](https://user-images.githubusercontent.com/39765499/50998871-b1f0dd00-1520-11e9-902c-e4a59f1114c0.gif)
 
-## Deleting a Use Case
+#### Deleting a Use Case
 ![Deleting a Use Case](https://user-images.githubusercontent.com/39765499/50999070-40655e80-1521-11e9-8f8e-01a76e68c225.gif)
 
-## Trainer View: Writing Feedback for a Use Case
+#### Trainer View: Writing Feedback for a Use Case
 ![Writing Feedback for a Use Case](https://user-images.githubusercontent.com/39765499/50999185-828ea000-1521-11e9-916f-f4ef0402e9cd.gif)
 
-## Apprentice View: User Profile
+#### Apprentice View: User Profile
 ![Apprentice View - User Profile](https://user-images.githubusercontent.com/39765499/50999560-5aec0780-1522-11e9-9062-abcae34b67c4.gif)
 
-## Community View: Community Forum Board and Tooltips
+#### Community View: Community Forum Board and Tooltips
 ![Community Forum Board and Tooltips](https://user-images.githubusercontent.com/39765499/50999801-22006280-1523-11e9-8821-ba5c1b40b582.gif)
 
 ##### Dashboard
