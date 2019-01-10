@@ -22,12 +22,12 @@ export const UseCaseCard = (props) => {
                 >
                     <div className="content" aria-label={`Use case name: ${props.name}, 
                                 Use case description: ${props.shortDesc}`}>
-                        <Meta style={{textAlign: 'center'}} title={props.name} description={props.shortDesc} aria-label={`Use case name: ${props.name}, Use case description: ${props.shortDesc}`}/>
+                        <Meta style={{textAlign: 'center'}} title={props.name} description={props.shortDesc} 
+                        aria-label={`Use case name: ${props.name}, Use case description: ${props.shortDesc}`}/>
                     </div>
                 </Card>
             )}
         </div>
     )
 };
-
 export default UseCaseCard;
