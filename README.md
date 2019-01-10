@@ -12,9 +12,11 @@ The aim of the project is to build a generalised learning platform that involves
 ## Code style
   [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-## Screenshots and GIFs
+## Screenshots and Demos
 
-**GIF of adding Use Case**
+![Add a New Use Case](https://user-images.githubusercontent.com/39765499/50987356-58c58100-1501-11e9-80a2-5997eaad5117.gif)
+<img width="1000" alt="Add a New Use Case" src="https://user-images.githubusercontent.com/39765499/50987356-58c58100-1501-11e9-80a2-5997eaad5117.gif">
+
 
 **GIF of updating Use Case**
 
@@ -208,7 +210,7 @@ As a Community
 
 ## Tests and Test Strategy
 
-Jest and Enzyme were implemented to test the functionality of components through component testing and snapshots. Jest was also used to testing Redux.
+Jest and Enzyme were implemented to test the functionality of components through component testing and snapshots. Jest was also used to test the implementation of Redux.
 
 ## Organisation of Code
 
