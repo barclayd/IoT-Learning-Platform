@@ -1,3 +1,4 @@
+
 ## IoT - Team 1
 ###### 10th January 2019
 
@@ -51,6 +52,14 @@ The aim of the project is to build a generalised learning platform that involves
 
 ##### Add New Use Case
 <img width="1552" alt="screenshot 2019-01-10 at 16 16 13" src="https://user-images.githubusercontent.com/39765499/50981525-1301bc00-14f3-11e9-8f71-285791eef939.png">
+
+## System Architecture
+
+##### System Architecture (High-Level)
+![systemarc](https://user-images.githubusercontent.com/39765499/51000636-9cca7d00-1525-11e9-92db-f7676e76b44f.jpg)
+
+##### System Architecture including Arduino
+<img width="684" alt="screenshot 2019-01-10 at 22 17 17" src="https://user-images.githubusercontent.com/39765499/51000635-9c31e680-1525-11e9-81e5-7bd628678452.png">
 
 
 ## Tech/framework used
@@ -156,6 +165,14 @@ On Arduino IDE, go to Tools > Port and ensure that the correct board (Arduino Un
 2. Import firebase.json from Server/data/Firebase/Firebase.json
 3. Edit baseURL from server/axios-instance to the url of the database you created in firebase.
 
+#### Making Changes to the existing Firebase
+
+Go to [https://console.firebase.google.com](https://console.firebase.google.com)
+
+Login in using the following credentials:
+* username: [nsa.team1.iot@gmail.com](mailto:nsa.team1.iot@gmail.com)
+* password: 123123q1)
+
 ## Installation of Client
 Provide step by step series of examples and explanations about how to get a development env running.
 
@@ -168,7 +185,9 @@ $ npm start
 
 As a Trainer
 
-1. Login using these credentials (email: [t@t.com](mailto:t@t.com), pass: testing).
+1. Login using these credentials:
+	- username: t@t.com
+	- password: testing
 2. Create new use case at the bottom of the main menu
 3. Edit use cases by clicking on a use case and go to the settings section
 4. Edit user details in Admin Area
@@ -178,20 +197,20 @@ As a Trainer
 
 The only way to create a new trainer account is through Admin Area page accessed by the [t@t.com](mailto:t@t.com) account. Find the user you want to change its role to a trainer in the Users section from the right-side menu. Then change the role of that user from Apprentice to a Trainer. This user now has all the privileges [t@t.com](mailto:t@t.com) has.
 
-Go to [https://console.firebase.google.com](https://console.firebase.google.com)
-
-<Login in using these credentials (username: [nsa.team1.iot@gmail.com](mailto:nsa.team1.iot@gmail.com), pass: 123123q1)
-
 As an Apprentice
 
 1. Login/sign up to apprentice user account
+	- Example Apprentice Account
+		- username: liam@m.com
+		- password: testing
 2. Can only look at use cases assigned by trainer
 3. Look at sensor readings in the use case page
 4. Can change email and sensor settings
 
 As a Community
 
- - Login/sign up to community user account – select community mode and select Newport from the dropdown list. Password: newport16
+ - Login/sign up to community user account – select community mode and select Newport from the dropdown list
+ - Password for Newport account: newport16
  - Can only look at the use cases associated with the community
  - Look at sensor readings in the use case page
  - Can change email and sensor settings
@@ -239,3 +258,5 @@ Node.js app was structured with a models folder to hold all the data-related log
  - Enhanced Security
  - Notifcation system
  - Improved feedback system
+ - Make design responsive for mobile and tablet devices
+ - Setting up of a CI-CD pipeline for easier depolyments
