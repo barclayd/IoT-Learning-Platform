@@ -134,7 +134,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Alternatively, you can run
 ```
-$ `npm test -- --coverage
+$ npm test -- --coverage
 ```
 
 ### `npm run server`
