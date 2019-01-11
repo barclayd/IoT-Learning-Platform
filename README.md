@@ -169,14 +169,6 @@ On Arduino IDE, go to Tools > Port and ensure that the correct board (Arduino Un
 2. Import firebase.json from Server/data/Firebase/Firebase.json
 3. Edit baseURL from server/axios-instance to the url of the database you created in firebase.
 
-#### Making Changes to the existing Firebase
-
-Go to [https://console.firebase.google.com](https://console.firebase.google.com)
-
-Login in using the following credentials:
-* username: [nsa.team1.iot@gmail.com](mailto:nsa.team1.iot@gmail.com)
-* password: 123123q1
-
 ## Installation of Client
 Provide step by step series of examples and explanations about how to get a development env running.
 
