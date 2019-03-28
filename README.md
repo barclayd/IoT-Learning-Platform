@@ -254,5 +254,5 @@ Node.js app was structured with a models folder to hold all the data-related log
  - Enhanced Security
  - Notifcation system
  - Improved feedback system
- - Make design responsive for mobile and tablet devices
+ - Make design responsive for mobile, laptop and tablet devices
  - Setting up of a CI-CD pipeline for easier depolyments
