@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "antd": "^3.10.8",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.11.0",
     "chart.js": "^2.7.3",
     "dateformat": "^3.0.3",
